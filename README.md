@@ -9,3 +9,7 @@ Hey everyone, nice to meet you all. I go by Jason. I am a 3rd year Computing Sci
 Kyle Isaak
 kisaak@sfu.ca
 Hey guys, let's kill this project!
+
+Hon Tat Chou
+hontatc@sfu.ca
+Nice to meet you guys, I am Alex/
