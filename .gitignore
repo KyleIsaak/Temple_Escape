@@ -16,6 +16,9 @@ java/build/**
 *.iml
 *.iws
 
+#META-INF
+*/META-INF/*
+
 # Package Files #
 *.jar
 *.war
