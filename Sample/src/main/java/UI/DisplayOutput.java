@@ -13,6 +13,10 @@ public class DisplayOutput {
         window.getContentPane().add(new DrawPlayer(pos));
         window.setVisible(true);
     }
+    public void renderEnemy(int[] pos) {
+        window.getContentPane().add(new DrawEnemy(pos));
+        window.setVisible(true);
+    }
     public JFrame getFrame(){
         return this.window;
     }

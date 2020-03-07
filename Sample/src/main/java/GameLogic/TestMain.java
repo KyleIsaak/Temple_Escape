@@ -19,9 +19,10 @@ public class TestMain {
         while(!isGameOver) {
             TimeUnit.MILLISECONDS.sleep(delay);
             output.renderPlayer(board.getPlayerPos());
+            output.renderEnemy(board.getEnemyPos());
             direction = input.getDirection(output.getFrame());
             input.resetDirection();
-            
+            board.moveEnemy(direction);
             board.movePlayer(direction);
             //have a function later that reads the position list and output it
 
