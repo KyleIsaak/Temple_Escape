@@ -27,3 +27,6 @@ java/build/**
 *.zip
 *.tar.gz
 *.rar
+
+# Pom.xml
+pm.xml
