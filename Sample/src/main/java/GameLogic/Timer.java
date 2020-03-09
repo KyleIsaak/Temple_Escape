@@ -16,9 +16,7 @@ public class Timer {
 
     //Calculate time elapsed in milliseconds
     private long getTime(){
-        long currentTime = System.currentTimeMillis();
-        long elapsedTime = currentTime - startTime;
-        return elapsedTime;
+        return System.currentTimeMillis() - this.startTime;
     }
 
 
@@ -28,14 +26,15 @@ public class Timer {
     }
 
     public long getSeconds(){
-        long seconds = (getTime() / 1000);
-        seconds = seconds % 60;
-        return seconds;
+        return getTime() / 1000;
     }
 
-    public long getMinutes(){
-        long minutes = (getSeconds() / 60);
-        return minutes;
+    public long displaySeconds(){
+        return getSeconds() %60;
+    }
+
+    public long displayMinutes(){
+        return getSeconds() / 60;
     }
 
 

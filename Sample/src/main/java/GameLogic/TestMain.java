@@ -30,7 +30,7 @@ public class TestMain {
 
 
             //Timer testing:
-            System.out.println("Time elapsed:" + timer.getMinutes() + ":" + timer.getSeconds());
+            System.out.println("Time elapsed:" + timer.displayMinutes() + ":" + timer.displaySeconds());
 
 
 
