@@ -22,6 +22,7 @@ public class TestMain {
             TimeUnit.MILLISECONDS.sleep(delay);
             output.renderPlayer(board.getPlayerPos());
             output.renderEnemy(board.getEnemyPos());
+            output.renderReward(board.getRewardPos());
             direction = input.getDirection(output.getFrame());
             input.resetDirection();
             board.moveEnemy(direction);
@@ -31,6 +32,7 @@ public class TestMain {
 
             //Timer testing:
             System.out.println("Time elapsed:" + timer.displayMinutes() + ":" + timer.displaySeconds());
+            //output.renderTimer();
 
 
 

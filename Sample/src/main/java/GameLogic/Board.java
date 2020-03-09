@@ -8,14 +8,18 @@ public class Board {
     private Enemy enemy;
     private int[] enemyInit;
     //private enemy number = level * 2
+    private Reward reward;
+    private int[] rewardInit;
 
     public Board(int level){
         //test
         if (level == 1) {
-            playerInit = new int[]{10, 10};
+            playerInit = new int[]{20, 20};
             player = new Player(playerInit);
             enemyInit= new int[]{1000, 1000};
             enemy = new Enemy(enemyInit);
+            rewardInit = new int[]{500,500};
+            reward = new Reward(rewardInit);
         }
     }
     public void moveEnemy(int [] direction){enemy.chaseThePlayer(player.getPosition(),20); }
@@ -26,4 +30,5 @@ public class Board {
         return player.getPosition();
     }
     public int[] getEnemyPos() { return enemy.getPosition(); }
+    public int[] getRewardPos() { return reward.getPosition();}
 }

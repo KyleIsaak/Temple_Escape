@@ -17,6 +17,15 @@ public class DisplayOutput {
         window.getContentPane().add(new DrawEnemy(pos));
         window.setVisible(true);
     }
+    public void renderReward(int[] pos){
+        window.getContentPane().add(new DrawReward(pos));
+        window.setVisible(true);
+    }
+
+    public void renderTimer(int[] pos){
+        window.getContentPane().add(new DrawTimer(pos));
+    }
+
     public JFrame getFrame(){
         return this.window;
     }
