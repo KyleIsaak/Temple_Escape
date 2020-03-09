@@ -1,4 +1,4 @@
-package UI;
+package GameLogic;
 
 public class Timer {
     private long startTime;
@@ -28,12 +28,13 @@ public class Timer {
     }
 
     public long getSeconds(){
-        long seconds = getTime() / 1000;
+        long seconds = (getTime() / 1000);
+        seconds = seconds % 60;
         return seconds;
     }
 
     public long getMinutes(){
-        long minutes = getTime() / 60000;
+        long minutes = (getSeconds() / 60);
         return minutes;
     }
 

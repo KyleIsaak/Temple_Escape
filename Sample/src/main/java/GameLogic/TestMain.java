@@ -15,6 +15,8 @@ public class TestMain {
 
         Board board = new Board(currentLevel);
 
+        Timer timer = new Timer();
+
         int[] direction;
         while(!isGameOver) {
             TimeUnit.MILLISECONDS.sleep(delay);
@@ -26,13 +28,11 @@ public class TestMain {
             board.movePlayer(direction);
             //have a function later that reads the position list and output it
 
-            /*
-            //Timer and score testing:
-            Timer timer = new Timer();
-            System.out.println(timer.getMilliseconds());
-            TimeUnit.MILLISECONDS.sleep(delay);
-            System.out.println(timer.getMilliseconds());
-            */
+
+            //Timer testing:
+            System.out.println("Time elapsed:" + timer.getMinutes() + ":" + timer.getSeconds());
+
+
 
         }
 
