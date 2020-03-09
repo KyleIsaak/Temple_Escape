@@ -13,6 +13,8 @@ public class DisplayOutput {
         window.setVisible(true);
     }
     public void renderPlayer(int[] pos) {
+        pos = new int[]{pos[0] * step, pos[1] * step};
+
         window.getContentPane().add(new DrawCell(pos, DrawCell.cellType.PLAYER));
         window.setVisible(true);
     }

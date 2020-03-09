@@ -10,7 +10,7 @@ public class TestMain {
     private static int currentLevel = 1;
     public static void main (String[] args) throws InterruptedException {
 
-        Input input = new Input(step);
+        Input input = new Input();
         DisplayOutput output = new DisplayOutput(step);
 
         Board board = new Board(currentLevel);
@@ -18,14 +18,15 @@ public class TestMain {
 
         int[] direction;
         while(!isGameOver) {
-            output.renderBoard(map);
-            //TimeUnit.MILLISECONDS.sleep(delay);
-            output.renderPlayer(board.getPlayerPos());
-//            output.renderEnemy(board.getEnemyPos());
             direction = input.getDirection(output.getFrame());
             input.resetDirection();
-//            board.moveEnemy(direction);
             board.movePlayer(direction);
+            output.renderPlayer(board.getPlayerPos());
+
+//            output.renderBoard(map);
+            //TimeUnit.MILLISECONDS.sleep(delay);
+
+
             //have a function later that reads the position list and output it
 
         }

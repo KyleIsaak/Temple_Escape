@@ -44,17 +44,17 @@ public class LevelGenerator {
     public int[][] getLevel(Difficulty choice){
         switch(choice){
             case EASY:
-                for(int i = 0; i < (x * y / 4); i++){
+                for(int i = 0; i < (x * y / 3); i++){
                     randomRemoveWall();
                 }
                 return board;
             case MEDIUM:
-                for(int i = 0; i < (x * y / 6); i ++){
+                for(int i = 0; i < (x * y / 4); i ++){
                     randomRemoveWall();
                 }
                 return board;
             case HARD:
-                for(int i = 0; i < (x * y / 8); i ++){
+                for(int i = 0; i < (x * y / 5); i ++){
                     randomRemoveWall();
                 }
                 return board;

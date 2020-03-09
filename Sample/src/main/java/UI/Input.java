@@ -7,7 +7,6 @@ import java.awt.event.KeyListener;
 
 public class Input{
     private int[] direction = new int[] {0, 0};
-    private int step;
 
     private char UP = 'w';
     private char LEFT = 'a';
@@ -25,7 +24,7 @@ public class Input{
 
         @Override
         public void keyReleased(KeyEvent event) {
-            changeDirection(event, step);
+            changeDirection(event);
         }
     };
 
@@ -38,19 +37,15 @@ public class Input{
         return this.direction;
     }
 
-    public Input(int step){
-        this.step = step;
-
-    }
-    private void changeDirection(KeyEvent event, int step){
+    private void changeDirection(KeyEvent event){
         if (event.getKeyChar() == UP) {
-            direction = new int[]{0, -step};
+            direction = new int[]{0, -1};
         } else if (event.getKeyChar() == DOWN) {
-            direction = new int[]{0, step};
+            direction = new int[]{0, 1};
         } else if (event.getKeyChar() == LEFT) {
-            direction = new int[]{-step, 0};
+            direction = new int[]{-1, 0};
         } else if (event.getKeyChar() == RIGHT){
-            direction = new int[]{step, 0};
+            direction = new int[]{1, 0};
         } else {
             direction = new int[]{0, 0};
         }
