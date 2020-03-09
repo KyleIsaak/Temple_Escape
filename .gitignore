@@ -30,3 +30,6 @@ java/build/**
 
 # Pom.xml
 pm.xml
+
+#Maven
+target/
