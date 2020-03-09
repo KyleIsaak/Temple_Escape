@@ -26,6 +26,14 @@ public class TestMain {
             board.movePlayer(direction);
             //have a function later that reads the position list and output it
 
+            /*
+            //Timer and score testing:
+            Timer timer = new Timer();
+            System.out.println(timer.getMilliseconds());
+            TimeUnit.MILLISECONDS.sleep(delay);
+            System.out.println(timer.getMilliseconds());
+            */
+
         }
 
 
