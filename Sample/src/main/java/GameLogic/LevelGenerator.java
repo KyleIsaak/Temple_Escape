@@ -17,7 +17,18 @@ public class LevelGenerator {
 
     public static void main(String[] args){
         LevelGenerator test = new LevelGenerator(40, 40);
-        int map[][] = test.getLevel(LevelGenerator.Difficulty.EASY);
+        test.setLevel(LevelGenerator.Difficulty.EASY);
+        int[][] map = test.getBoard();
+        for (int y = 0; y < map[0].length; y++) {
+            for (int x = 0; x < map.length; x++) {
+                System.out.print(map[x][y]);
+            }
+            System.out.println();
+        }
+
+        System.out.println();
+        System.out.println();
+        System.out.println();
         for (int y = 0; y < map[0].length; y++) {
             for (int x = 0; x < map.length; x++) {
                 System.out.print(map[x][y]);
@@ -25,6 +36,7 @@ public class LevelGenerator {
             System.out.println();
         }
     }
+
     public LevelGenerator(int x, int y){
         this.x = x;
         this.y = y;
@@ -41,26 +53,31 @@ public class LevelGenerator {
         MEDIUM,
         HARD
     }
-    public int[][] getLevel(Difficulty choice){
+    public void setLevel(Difficulty choice){
         switch(choice){
             case EASY:
                 for(int i = 0; i < (x * y / 3); i++){
                     randomRemoveWall();
+                    break;
                 }
-                return board;
             case MEDIUM:
                 for(int i = 0; i < (x * y / 4); i ++){
                     randomRemoveWall();
+                    break;
                 }
-                return board;
             case HARD:
                 for(int i = 0; i < (x * y / 5); i ++){
                     randomRemoveWall();
+                    break;
                 }
-                return board;
             default:
-                return null;
+                break;
+
         }
+    }
+
+    public int[][] getBoard(){
+        return this.board;
     }
     private void generate(){
         board[1][y/2] = PATH;
@@ -148,13 +165,13 @@ public class LevelGenerator {
         Random random = new Random();
         boolean isRemoved = false;
 
-        int ranX;
-        int ranY;
-        while(true) {
+        int ranX = 0;
+        int ranY = 0;
+        while(!isRemoved) {
             ranX = random.nextInt(this.x);
             ranY = random.nextInt(this.y);
             if (isInBound(ranX, ranY) && board[ranX][ranY] == WALL){
-                break;
+                isRemoved = true;
             }
         }
         board[ranX][ranY] = PATH;

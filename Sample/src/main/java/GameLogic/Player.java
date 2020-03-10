@@ -15,6 +15,6 @@ public class Player {
         pos[0] += direction[0];
         pos[1] += direction[1];
 
-        System.out.println("x: " + pos[0] + ", y: " + pos[1]);
+//        System.out.println("x: " + pos[0] + ", y: " + pos[1]);
     }
 }
