@@ -40,8 +40,14 @@ public class DrawCell extends JComponent {
                 break;
         }
     }
-    public void paint(Graphics graphic) {
+
+    public void setNewPosition(int[] pos){
+        this.pos = pos;
+        repaint();
+    }
+    public void paintComponent(Graphics graphic) {
         graphic.setColor(this.color);
         graphic.fillRect (pos[0], pos[1], width, height);
     }
+
 }
