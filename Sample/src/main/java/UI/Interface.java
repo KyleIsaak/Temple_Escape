@@ -2,16 +2,16 @@ package UI;
 
 import GameLogic.Board;
 
-import javax.swing.JFrame;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import javax.swing.*;
+
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-public class Interface extends JFrame implements ActionListener{
-    
+public class Interface extends JFrame{
+
     private int step;
-    private Input input;
+//    private Input input;
     private DrawCell player;
     private ArrayList<DrawCell> wallCell;
     private ArrayList<DrawCell> pathCell;
@@ -20,36 +20,34 @@ public class Interface extends JFrame implements ActionListener{
     public Interface(int step, Board board){
 
         this.step = step;
-        this.input = new Input();
         this.board = board;
-        addKeyListener(input);
-
+        addKeyListener(new listener());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(30, 30, 1000, 1000);
+        setLayout(new OverlayLayout(getContentPane()));
 
-        player = new DrawCell(new int[]{0, 0}, DrawCell.cellType.PLAYER);
+        player = new DrawCell(board.getPlayerPos(), step, DrawCell.cellType.PLAYER);
+
         add(player);
         wallCell = new ArrayList<>();
         pathCell = new ArrayList<>();
 
         createBoard();
-
+        setSize( 1000, 1000);
         setVisible(true);
     }
-
 
     private void createBoard(){
         int[][] map= board.getBoard();
         int pos[];
-        for (int y = 0; y < map[0].length; y++){
-            for (int x = 0; x < map.length; x++){
-                pos = new int[]{x * step, y * step};
+        for (int y = 1; y < map[0].length; y++){
+            for (int x = 0; x < map.length - 1; x++){
+                pos = new int[]{x, y - 1};
                 if (map[x][y] == 0){
-                    DrawCell wall = new DrawCell(pos, DrawCell.cellType.WALL);
+                    DrawCell wall = new DrawCell(pos, step, DrawCell.cellType.WALL);
                     wallCell.add(wall);
                     add(wall);
                 } else{
-                    DrawCell path = new DrawCell(pos, DrawCell.cellType.PATH);
+                    DrawCell path = new DrawCell(pos, step, DrawCell.cellType.PATH);
                     pathCell.add(path);
                     add(path);
                 }
@@ -57,38 +55,36 @@ public class Interface extends JFrame implements ActionListener{
         }
     }
 
-    int[] pos;
-    @Override
-    public void actionPerformed(ActionEvent actionEvent) {
-        System.out.println("test");
-        pos = input.getDirection();
-        board.movePlayer(pos);
-        player.repaint();
+    private class listener extends KeyAdapter {
+        boolean isReleased = false;
+        int UP = KeyEvent.VK_W;
+        int DOWN = KeyEvent.VK_S;
+        int LEFT = KeyEvent.VK_A;
+        int RIGHT = KeyEvent.VK_D;
+
+        @Override
+        public void keyReleased(KeyEvent e){
+            isReleased = true;
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e){
+            int key = e.getKeyCode();
+            if (isReleased){
+                isReleased = false;
+                if (key == UP){
+                    board.getPlayer().moveUp();
+                } else if (key == DOWN){
+                    board.getPlayer().moveDown();
+                } else if (key == RIGHT){
+                    board.getPlayer().moveRight();
+                } else if (key == LEFT){
+                    board.getPlayer().moveLeft();
+                }
+                player.setNewPosition(board.getPlayerPos());
+                repaint();
+            }
+        }
     }
-
-//    public void renderPlayer(int[] pos) {
-//        pos = new int[]{pos[0] * step, pos[1] * step};
-//        player.setNewPosition(pos);
-//        window.setVisible(true);
-//    }
-
-//    public void renderBoard(int[][] board){
-//        int pos[];
-//        for (int y = 0; y < board[0].length; y++){
-//            for (int x = 0; x < board.length; x++){
-//                pos = new int[]{x * step, y * step};
-//                if (board[x][y] == 0){
-//                    window.getContentPane().add(new DrawCell(pos, DrawCell.cellType.WALL));
-//                    window.setVisible(true);
-//                } else{
-//                    window.getContentPane().add(new DrawCell(pos, DrawCell.cellType.PATH));
-//                    window.setVisible(true);
-//                }
-//            }
-//        }
-//    }
-
-
-
 
 }

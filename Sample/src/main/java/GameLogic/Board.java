@@ -10,7 +10,7 @@ public class Board {
     public Board(int level){
         //test
         generator = new LevelGenerator(40, 40);
-        playerInit = new int[]{1, 1};
+        playerInit = new int[]{0, 0};
         player = new Player(playerInit);
     }
 
@@ -18,9 +18,7 @@ public class Board {
     public int[][] getBoard() { return generator.getBoard();}
     public void setDifficulty(LevelGenerator.Difficulty choice) { generator.setLevel(choice);}
 
-    public void movePlayer(int[] direction){
-        player.move(direction);
-    }
+    public Player getPlayer(){return this.player;}
     public int[] getPlayerPos(){
         return player.getPosition();
     }

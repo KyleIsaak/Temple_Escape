@@ -19,22 +19,13 @@ public class LevelGenerator {
         LevelGenerator test = new LevelGenerator(40, 40);
         test.setLevel(LevelGenerator.Difficulty.EASY);
         int[][] map = test.getBoard();
-        for (int y = 0; y < map[0].length; y++) {
-            for (int x = 0; x < map.length; x++) {
+        for (int y = 1; y < map[0].length; y++) {
+            for (int x = 0; x < map.length - 1; x++) {
                 System.out.print(map[x][y]);
             }
             System.out.println();
         }
 
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        for (int y = 0; y < map[0].length; y++) {
-            for (int x = 0; x < map.length; x++) {
-                System.out.print(map[x][y]);
-            }
-            System.out.println();
-        }
     }
 
     public LevelGenerator(int x, int y){
