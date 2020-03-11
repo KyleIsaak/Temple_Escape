@@ -70,16 +70,30 @@ public class Interface extends JFrame{
         @Override
         public void keyPressed(KeyEvent e){
             int key = e.getKeyCode();
+            int[] playerPos = board.getPlayerPos();
+            //System.out.println(playerPos[1]);
             if (isReleased){
                 isReleased = false;
                 if (key == UP){
-                    board.getPlayer().moveUp();
+                    if(!board.isWall(playerPos[0], playerPos[1])){
+                        board.getPlayer().moveUp();
+                    }
+
                 } else if (key == DOWN){
-                    board.getPlayer().moveDown();
+                    if(!board.isWall(playerPos[0], playerPos[1]+2)) {
+                        board.getPlayer().moveDown();
+                    }
+
                 } else if (key == RIGHT){
-                    board.getPlayer().moveRight();
+                    if(!board.isWall(playerPos[0]+1, playerPos[1]+1)) {
+                        board.getPlayer().moveRight();
+                    }
+
                 } else if (key == LEFT){
-                    board.getPlayer().moveLeft();
+                    if(!board.isWall(playerPos[0]-1, playerPos[1]+1)){
+                        board.getPlayer().moveLeft();
+                    }
+                    //else{
                 }
                 player.setNewPosition(board.getPlayerPos());
                 repaint();
