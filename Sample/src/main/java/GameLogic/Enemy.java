@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class Enemy {
     private int[] position;
-    private static int damage=9999999;
+    private static int damage = 9999999;
 
 
     public Enemy(int[] position) {
