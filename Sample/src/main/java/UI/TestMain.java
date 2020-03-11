@@ -1,6 +1,6 @@
 package UI;
 import GameLogic.Board;
-
+import GameLogic.Timer;
 
 
 public class TestMain  {
@@ -9,11 +9,21 @@ public class TestMain  {
     private static int step = 20;
     private static int currentLevel = 1;
     private static Board board;
+//    private static Timer timer;
 
 
     public static void main (String[] args) {
         board = new Board(currentLevel);
         new Interface(step, board);
+
+//        timer = new Timer();
+//        long startTime = 20;
+//        long timeRemaining = startTime;
+
+//        while(timeRemaining >= 0){
+//            timeRemaining = startTime - timer.displaySeconds();
+//            System.out.println(timeRemaining);
+//        }
 
 //        JFrame test = new JFrame();
 //        JPanel panel = new JPanel();
@@ -27,6 +37,9 @@ public class TestMain  {
 //        test.setSize(1000, 1000);
 //
 //        test.setVisible(true);
+
+
+
     }
 
 }
