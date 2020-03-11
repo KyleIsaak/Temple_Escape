@@ -6,8 +6,8 @@ import javax.swing.JComponent;
 
 
 class DrawEnemy extends JComponent {
-    private int width = 40;
-    private int height = 40;
+    private int width = 20;
+    private int height = 20;
     private int[] pos;
     public DrawEnemy(int[] pos ){
         this.pos = pos;

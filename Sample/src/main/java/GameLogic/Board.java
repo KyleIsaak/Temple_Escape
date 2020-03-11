@@ -4,31 +4,23 @@ package GameLogic;
 public class Board {
     private Player player;
     private int[] playerInit;
-    //could have a board generator that generates enemy position randomly, or it could be designed hard code
-    private Enemy enemy;
-    private int[] enemyInit;
-    //private enemy number = level * 2
-    private Reward reward;
-    private int[] rewardInit;
+
+    private LevelGenerator generator;
 
     public Board(int level){
         //test
-        if (level == 1) {
-            playerInit = new int[]{20, 20};
-            player = new Player(playerInit);
-            enemyInit= new int[]{1000, 1000};
-            enemy = new Enemy(enemyInit);
-            rewardInit = new int[]{500,500};
-            reward = new Reward(rewardInit);
-        }
+        generator = new LevelGenerator(40, 40);
+        playerInit = new int[]{0, 0};
+        player = new Player(playerInit);
     }
-    public void moveEnemy(int [] direction){enemy.chaseThePlayer(player.getPosition(),20); }
-    public void movePlayer(int[] direction){
-        player.move(direction);
-    }
+
+    public boolean isWall(int x, int y){ return generator.isWall(x, y);}
+    public int[][] getBoard() { return generator.getBoard();}
+    public void setDifficulty(LevelGenerator.Difficulty choice) { generator.setLevel(choice);}
+
+    public Player getPlayer(){return this.player;}
     public int[] getPlayerPos(){
         return player.getPosition();
     }
-    public int[] getEnemyPos() { return enemy.getPosition(); }
-    public int[] getRewardPos() { return reward.getPosition();}
+
 }

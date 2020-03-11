@@ -11,8 +11,19 @@ public class Player {
         return this.pos;
     }
 
-    public void move(int[] direction){
-        pos[0] += direction[0];
-        pos[1] += direction[1];
+    public void moveUp(){
+        pos[1] -= 1;
+    }
+
+    public void moveLeft(){
+        pos[0] -= 1;
+    }
+
+    public void moveDown(){
+        pos[1] += 1;
+    }
+
+    public void moveRight(){
+        pos[0] += 1;
     }
 }
