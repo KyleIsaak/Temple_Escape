@@ -91,36 +91,26 @@ public class Interface extends JFrame{
             if (isReleased){
                 isReleased = false;
                 if (key == UP){
-
-                    board.getPlayer().moveUp();
-                    player.setPlayerUP();
-                } else if (key == DOWN){
-                    board.getPlayer().moveDown();
-                    player.setPlayerDOWN();
-                } else if (key == RIGHT){
-                    board.getPlayer().moveRight();
-                    player.setPlayerRIGHT();
-                } else if (key == LEFT){
-                    board.getPlayer().moveLeft();
-                    player.setPlayerLEFT();
-
-                    if(!board.isWall(playerPos[0], playerPos[1])){
+                    if(!board.isWall(playerPos[0], playerPos[1] - 1)) {
                         board.getPlayer().moveUp();
+                        player.setPlayerUP();
                     }
-
                 } else if (key == DOWN){
-                    if(!board.isWall(playerPos[0], playerPos[1]+2)) {
+                    if(!board.isWall(playerPos[0], playerPos[1] + 1)) {
                         board.getPlayer().moveDown();
+                        player.setPlayerDOWN();
                     }
 
                 } else if (key == RIGHT){
-                    if(!board.isWall(playerPos[0]+1, playerPos[1]+1)) {
+                    if(!board.isWall(playerPos[0] + 1, playerPos[1])) {
                         board.getPlayer().moveRight();
+                        player.setPlayerRIGHT();
                     }
 
                 } else if (key == LEFT){
-                    if(!board.isWall(playerPos[0]-1, playerPos[1]+1)) {
+                    if(!board.isWall(playerPos[0]-  1, playerPos[1])) {
                         board.getPlayer().moveLeft();
+                        player.setPlayerLEFT();
                     }
 
                 }
