@@ -4,8 +4,9 @@ public class TrapTypeA extends Trap {
     private int damage = 10;
     private  char type = 'A';
 
+    public TrapTypeA() {super(new int[] {0,0}); }
     public TrapTypeA(int[] position) {super(position); }
     public int getDamage() { return damage; }
-    public int getType() { return type; }
+    public char getType() { return type; }
 
 }

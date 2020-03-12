@@ -17,7 +17,9 @@ public class DrawCell extends JComponent {
         PLAYER,
         ENEMY,
         WALL,
-        PATH
+        PATH,
+        TRAPTYPEA,
+        TRAPTYPEB
     }
     //color can be set to sprites later on
     public DrawCell(int[] pos, int step, cellType type){
@@ -38,8 +40,23 @@ public class DrawCell extends JComponent {
 //
 //                break;
             case WALL:
-
+                Random ran = new Random();
+                int choice = ran.nextInt(2);
+                if (choice == 0){
+                    imageSrc = "src/pic/wall.png";
+                } else if (choice == 1){
+                    imageSrc = "src/pic/wall2.png";
+                }
                 break;
+
+            case TRAPTYPEA:
+                imageSrc = "src/pic/Spikes.png";
+                break;
+
+            case TRAPTYPEB:
+                imageSrc = "src/pic/Lava.png";
+                break;
+
             case PATH:
                 imageSrc = "src/pic/path.png";
                 break;
@@ -95,11 +112,13 @@ public class DrawCell extends JComponent {
         }
         image = Toolkit.getDefaultToolkit().getImage(imageSrc);
     }
+
     public void setNewPosition(int[] pos){
         this.pos = pos;
         image = Toolkit.getDefaultToolkit().getImage(imageSrc);
         repaint();
     }
+
 
     public void paint (Graphics graphic) {
         super.paintComponent(graphic);
