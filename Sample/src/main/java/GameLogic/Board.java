@@ -10,7 +10,7 @@ public class Board {
     public Board(int level){
         //test
         generator = new LevelGenerator(41, 41);
-        playerInit = new int[]{1, 1};
+        playerInit = new int[]{0, 0};
         player = new Player(playerInit);
     }
 
