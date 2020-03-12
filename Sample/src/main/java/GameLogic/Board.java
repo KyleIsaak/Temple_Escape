@@ -8,14 +8,12 @@ public class Board {
     private Player player;
     private int[] playerInit;
     private ArrayList<Trap> trapArrayManager;
-    private ArrayList<int[]> cellStatusManager;
     private LevelGenerator generator;
 
     public Board(int level){
         //test
         generator = new LevelGenerator(41, 41);
         trapArrayManager = new ArrayList<Trap>();
-        cellStatusManager = new ArrayList<int[]>();
         trapGenerator(level);
         playerInit = new int[]{1, 1};
         player = new Player(playerInit);
@@ -35,7 +33,6 @@ public class Board {
 
     ///////////////// Trap Functionality ///////////////
     public ArrayList<Trap> getTrapArrayManager(){ return trapArrayManager; }
-    public ArrayList<int[]> getCellStatusManager(){ return cellStatusManager; }
     public void trapGenerator (int difficultyLevel){
         switch (difficultyLevel){
             case 1:
@@ -91,13 +88,13 @@ public class Board {
         }
 
         trapObject.setPosition(new int [] {x, y});
-        cellStatusManager.add(new int [] {x, y});
+        //cellStatusManager.add(new int [] {x, y});
         trapArrayManager.add(trapObject);
     }
 
     public boolean isContain(int x, int y){
-        for (int i = 0; i < cellStatusManager.size(); i++) {
-            int[] current = cellStatusManager.get(i);
+        for (int i = 0; i < trapArrayManager.size(); i++) {
+            int[] current = trapArrayManager.get(i).getPosition();
             if ((current[0] == x) && (current[1] == y)) {
                 return true;
             }
