@@ -23,9 +23,9 @@ public class Board {
 
     public boolean isWall(int x, int y){ return generator.isWall(x, y);}
     public boolean isInBounds(int x, int y) {return (x >= 0 && x < 41 && y >= 0 && y < 41);}
+
     public int[][] getBoard() { return generator.getBoard();}
     public void setDifficulty(LevelGenerator.Difficulty choice) { generator.setLevel(choice);}
-
     public Player getPlayer(){return this.player;}
     public int[] getPlayerPos(){
         return player.getPosition();

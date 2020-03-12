@@ -105,6 +105,7 @@ public class Interface extends JFrame {
         @Override
         public void keyPressed(KeyEvent e) {
             int key = e.getKeyCode();
+            int[] playerPos = board.getPlayerPos();
             if (isReleased) {
                 isReleased = false;
                 if (key == UP){
