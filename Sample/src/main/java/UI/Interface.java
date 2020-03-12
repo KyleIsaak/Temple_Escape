@@ -79,28 +79,41 @@ public class Interface extends JFrame{
         int RIGHT = KeyEvent.VK_D;
 
         @Override
-        public void keyReleased(KeyEvent e){
+        public void keyReleased(KeyEvent e) {
             isReleased = true;
         }
 
         @Override
-        public void keyPressed(KeyEvent e){
+        public void keyPressed(KeyEvent e) {
             int key = e.getKeyCode();
-            if (isReleased){
+            int[] playerPos = board.getPlayerPos();
+            //System.out.println(playerPos[1]);
+            if (isReleased) {
                 isReleased = false;
-                if (key == UP){
-                    board.getPlayer().moveUp();
-                } else if (key == DOWN){
-                    board.getPlayer().moveDown();
-                } else if (key == RIGHT){
-                    board.getPlayer().moveRight();
-                } else if (key == LEFT){
-                    board.getPlayer().moveLeft();
+                if (key == UP) {
+                    if (!board.isWall(playerPos[0], playerPos[1]-1)) {
+                        board.getPlayer().moveUp();
+                    }
                 }
-                player.setNewPosition(board.getPlayerPos());
-                repaint();
+                else if (key == DOWN) {
+                    if (!board.isWall(playerPos[0], playerPos[1]+1)) {
+                        board.getPlayer().moveDown();
+                    }
+                }
+                else if (key == RIGHT) {
+                    if (!board.isWall(playerPos[0]+1, playerPos[1])) {
+                        board.getPlayer().moveRight();
+                    }
+                }
+                else if (key == LEFT) {
+                    if (!board.isWall(playerPos[0] - 1, playerPos[1])) {
+                        board.getPlayer().moveLeft();
+                    }
+                }
+                    player.setNewPosition(board.getPlayerPos());
+                    repaint();
+
+                }
             }
         }
     }
-
-}
