@@ -16,11 +16,13 @@ public class Interface extends JFrame{
     private ArrayList<DrawCell> wallCell;
     private ArrayList<DrawCell> pathCell;
     private Board board;
+    private int[][] map;
 
     public Interface(int step, Board board){
 
         this.step = step;
         this.board = board;
+        this.map = board.getBoard();
         addKeyListener(new listener());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new OverlayLayout(getContentPane()));
@@ -37,15 +39,13 @@ public class Interface extends JFrame{
     }
 
     private void createBoard(){
-        int[][] map= board.getBoard();
         int pos[];
-        for (int y = 1; y < map[0].length; y++){
-            for (int x = 0; x < map.length - 1; x++){
-                pos = new int[]{x, y - 1};
+        for (int y = 0; y < map[0].length; y++){
+            for (int x = 0; x < map.length; x++){
+                pos = new int[]{x, y};
                 if (map[x][y] == 0){
-                    DrawCell wall = new DrawCell(pos, step, DrawCell.cellType.WALL);
-                    wallCell.add(wall);
-                    add(wall);
+                    createWall(x, y, pos);
+
                 } else{
                     DrawCell path = new DrawCell(pos, step, DrawCell.cellType.PATH);
                     pathCell.add(path);
@@ -55,6 +55,22 @@ public class Interface extends JFrame{
         }
     }
 
+    private void createWall(int x, int y, int[] pos){
+        boolean left = false;
+        boolean right = false;
+        boolean top = false;
+        boolean down = false;
+
+        if (board.isInBounds(x - 1, y) && board.isWall(x - 1, y)){ left = true; }
+        if (board.isInBounds(x + 1, y) && board.isWall(x + 1, y)){ right = true; }
+        if (board.isInBounds(x, y + 1) && board.isWall(x, y + 1)){ down = true; }
+        if (board.isInBounds(x, y - 1) && board.isWall(x, y - 1)){ top = true; }
+
+        DrawCell wall = new DrawCell(pos, step, DrawCell.cellType.WALL);
+        wall.setWallDirection(top, left, down, right);
+        wallCell.add(wall);
+        add(wall);
+    }
     private class listener extends KeyAdapter {
         boolean isReleased = false;
         int UP = KeyEvent.VK_W;
