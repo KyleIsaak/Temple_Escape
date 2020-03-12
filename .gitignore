@@ -16,6 +16,9 @@ java/build/**
 *.iml
 *.iws
 
+#META-INF
+*/META-INF/*
+
 # Package Files #
 *.jar
 *.war
@@ -24,3 +27,9 @@ java/build/**
 *.zip
 *.tar.gz
 *.rar
+
+# Pom.xml
+pm.xml
+
+#Maven
+target/

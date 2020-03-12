@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class Enemy {
     private int[] position;
-    private static int damage=9999999;
+    private static int damage = 9999999;
 
 
     public Enemy(int[] position) {
@@ -31,20 +31,39 @@ public class Enemy {
     public void chaseThePlayer(int[] position,int step) {
         int[] chase;
         chase = new int[]{0,0};
-        if( position[0]>this.position[0])
+        double distanceX= position[0]-this.position[0];//enemy - player location;
+        double distanceY= position[1]-this.position[1];//enemy - player location;
+        //double test= distanceY- distanceX;
+        if( Math.abs(distanceY)>Math.abs(distanceX))//distance Y> distance X
         {
-            chase[0]+=step;
+            if(this.position[1]<position[1]) {
+                chase[0] = 0;
+                chase[1] = step;
+            }
+            else if(this.position[1]>position[1])
+            {
+                chase[0] = 0;
+                chase[1] = - step;
+            }
+            else
+            {
+                chase[0]=0;
+                chase[1]=0;
+            }
         }
-        else
-        {
-            chase[0]+=(-step);
-        }
-        if(position[1]>this.position[1])
-        {
-            chase[1]+=step;
-        }
-        else {
-            chase[1] +=(-step);
+        else{
+            if(this.position[0]<position[0]) {
+                chase[0] = step;
+                chase[1] = 0;
+            }
+            else if(this.position[0]>position[0]){
+                chase[0] = -step;
+                chase[1] =  0;
+            }
+            else {
+                chase[0] = 0;
+                chase[1] = 0;
+            }
         }
         this.move(chase);
         return ;

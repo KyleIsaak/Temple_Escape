@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Interface extends JFrame{
 
     private int step;
-//    private Input input;
+    //    private Input input;
     private DrawCell player;
     private ArrayList<DrawCell> wallCell;
     private ArrayList<DrawCell> pathCell;
@@ -86,9 +86,12 @@ public class Interface extends JFrame{
         @Override
         public void keyPressed(KeyEvent e){
             int key = e.getKeyCode();
+            int[] playerPos = board.getPlayerPos();
+            //System.out.println(playerPos[1]);
             if (isReleased){
                 isReleased = false;
                 if (key == UP){
+
                     board.getPlayer().moveUp();
                     player.setPlayerUP();
                 } else if (key == DOWN){
@@ -100,6 +103,26 @@ public class Interface extends JFrame{
                 } else if (key == LEFT){
                     board.getPlayer().moveLeft();
                     player.setPlayerLEFT();
+
+                    if(!board.isWall(playerPos[0], playerPos[1])){
+                        board.getPlayer().moveUp();
+                    }
+
+                } else if (key == DOWN){
+                    if(!board.isWall(playerPos[0], playerPos[1]+2)) {
+                        board.getPlayer().moveDown();
+                    }
+
+                } else if (key == RIGHT){
+                    if(!board.isWall(playerPos[0]+1, playerPos[1]+1)) {
+                        board.getPlayer().moveRight();
+                    }
+
+                } else if (key == LEFT){
+                    if(!board.isWall(playerPos[0]-1, playerPos[1]+1)) {
+                        board.getPlayer().moveLeft();
+                    }
+
                 }
                 player.setNewPosition(board.getPlayerPos());
                 repaint();
