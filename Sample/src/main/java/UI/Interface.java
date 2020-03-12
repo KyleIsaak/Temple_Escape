@@ -90,10 +90,9 @@ public class Interface extends JFrame{
                     }
 
                 } else if (key == LEFT){
-                    if(!board.isWall(playerPos[0]-1, playerPos[1]+1)){
+                    if(!board.isWall(playerPos[0]-1, playerPos[1]+1)) {
                         board.getPlayer().moveLeft();
                     }
-                    //else{
                 }
                 player.setNewPosition(board.getPlayerPos());
                 repaint();
