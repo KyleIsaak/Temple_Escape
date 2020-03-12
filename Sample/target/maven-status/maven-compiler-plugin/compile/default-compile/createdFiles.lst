@@ -3,6 +3,7 @@ UI/DrawCell$cellType.class
 UI/Interface$listener.class
 UI/DrawEnemy.class
 GameLogic/LevelGenerator$Difficulty.class
+GameLogic/Trap.class
 UI/DrawTimer.class
 UI/DrawCell$1.class
 GameLogic/Reward.class
@@ -10,6 +11,8 @@ UI/DrawCell.class
 GameLogic/Board.class
 UI/TestMain.class
 GameLogic/Timer.class
+GameLogic/TrapTypeA.class
+GameLogic/TrapTypeB.class
 GameLogic/LevelGenerator.class
 UI/DrawReward.class
 GameLogic/LevelGenerator$1.class

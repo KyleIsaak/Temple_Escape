@@ -8,19 +8,23 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-public class Interface extends JFrame{
+public class Interface extends JFrame {
 
     private int step;
     //    private Input input;
     private DrawCell player;
     private ArrayList<DrawCell> wallCell;
     private ArrayList<DrawCell> pathCell;
+    private ArrayList<DrawCell> trapACell;
+    private ArrayList<DrawCell> trapBCell;
     private Board board;
+    private int[][] map;
 
-    public Interface(int step, Board board){
+    public Interface(int step, Board board) {
 
         this.step = step;
         this.board = board;
+        this.map = board.getBoard();
         addKeyListener(new listener());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new OverlayLayout(getContentPane()));
@@ -30,29 +34,68 @@ public class Interface extends JFrame{
         add(player);
         wallCell = new ArrayList<>();
         pathCell = new ArrayList<>();
+        trapACell = new ArrayList<>();
+        trapBCell = new ArrayList<>();
 
         createBoard();
-        setSize( 1000, 1000);
+        setSize(1000, 1000);
         setVisible(true);
     }
 
-    private void createBoard(){
-        int[][] map= board.getBoard();
+    private void createBoard() {
         int pos[];
-        for (int y = 1; y < map[0].length; y++){
-            for (int x = 0; x < map.length - 1; x++){
-                pos = new int[]{x, y - 1};
-                if (map[x][y] == 0){
-                    DrawCell wall = new DrawCell(pos, step, DrawCell.cellType.WALL);
-                    wallCell.add(wall);
-                    add(wall);
-                } else{
+        for (int y = 0; y < map[0].length; y++) {
+            for (int x = 0; x < map.length; x++) {
+                pos = new int[]{x, y};
+                if (board.isContain(x, y)) {
+                    int index = board.trapFinder(x, y);
+                    char trapType = board.getTrapArrayManager().get(index).getType();
+                    if (trapType == 'A'){
+                        DrawCell trapA = new DrawCell(pos, step, DrawCell.cellType.TRAPTYPEA);
+                        trapACell.add(trapA);
+                        add(trapA);
+                    }
+                    else if (trapType == 'B'){
+                        DrawCell trapB = new DrawCell(pos, step, DrawCell.cellType.TRAPTYPEB);
+                        trapBCell.add(trapB);
+                        add(trapB);
+                    }
+                }
+                else if (map[x][y] == 0) {
+                    createWall(x, y, pos);
+
+                } else {
                     DrawCell path = new DrawCell(pos, step, DrawCell.cellType.PATH);
                     pathCell.add(path);
                     add(path);
                 }
             }
         }
+    }
+
+    private void createWall(int x, int y, int[] pos) {
+        boolean left = false;
+        boolean right = false;
+        boolean top = false;
+        boolean down = false;
+
+        if (board.isInBounds(x - 1, y) && board.isWall(x - 1, y)) {
+            left = true;
+        }
+        if (board.isInBounds(x + 1, y) && board.isWall(x + 1, y)) {
+            right = true;
+        }
+        if (board.isInBounds(x, y + 1) && board.isWall(x, y + 1)) {
+            down = true;
+        }
+        if (board.isInBounds(x, y - 1) && board.isWall(x, y - 1)) {
+            top = true;
+        }
+
+        DrawCell wall = new DrawCell(pos, step, DrawCell.cellType.WALL);
+        wall.setWallDirection(top, left, down, right);
+        wallCell.add(wall);
+        add(wall);
     }
 
     private class listener extends KeyAdapter {
@@ -63,42 +106,28 @@ public class Interface extends JFrame{
         int RIGHT = KeyEvent.VK_D;
 
         @Override
-        public void keyReleased(KeyEvent e){
+        public void keyReleased(KeyEvent e) {
             isReleased = true;
         }
 
         @Override
-        public void keyPressed(KeyEvent e){
+        public void keyPressed(KeyEvent e) {
             int key = e.getKeyCode();
-            int[] playerPos = board.getPlayerPos();
-            //System.out.println(playerPos[1]);
-            if (isReleased){
+            if (isReleased) {
                 isReleased = false;
-                if (key == UP){
-                    if(!board.isWall(playerPos[0], playerPos[1])){
-                        board.getPlayer().moveUp();
-                    }
-
-                } else if (key == DOWN){
-                    if(!board.isWall(playerPos[0], playerPos[1]+2)) {
-                        board.getPlayer().moveDown();
-                    }
-
-                } else if (key == RIGHT){
-                    if(!board.isWall(playerPos[0]+1, playerPos[1]+1)) {
-                        board.getPlayer().moveRight();
-                    }
-
-                } else if (key == LEFT){
-                    if(!board.isWall(playerPos[0]-1, playerPos[1]+1)){
-                        board.getPlayer().moveLeft();
-                    }
-                    //else{
+                if (key == UP) {
+                    board.getPlayer().moveUp();
+                } else if (key == DOWN) {
+                    board.getPlayer().moveDown();
+                } else if (key == RIGHT) {
+                    board.getPlayer().moveRight();
+                } else if (key == LEFT) {
+                    board.getPlayer().moveLeft();
                 }
                 player.setNewPosition(board.getPlayerPos());
                 repaint();
             }
         }
     }
-
 }
+
