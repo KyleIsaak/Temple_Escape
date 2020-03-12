@@ -16,6 +16,7 @@ public class Board {
         trapArrayManager = new ArrayList<Trap>();
         trapGenerator(level);
         playerInit = new int[]{1, 1};
+
         player = new Player(playerInit);
 
     }

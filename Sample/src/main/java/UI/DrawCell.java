@@ -29,6 +29,7 @@ public class DrawCell extends JComponent {
         selectSprite();
     }
 
+
     private void selectSprite(){
         switch(type){
             case PLAYER:
@@ -63,6 +64,18 @@ public class DrawCell extends JComponent {
         image = Toolkit.getDefaultToolkit().getImage(imageSrc);
     }
 
+    public void setPlayerUP(){
+        imageSrc = "src/pic/player_up.png";
+    }
+    public void setPlayerDOWN(){
+        imageSrc = "src/pic/player.png";
+    }
+    public void setPlayerLEFT(){
+        imageSrc = "src/pic/player_left.png";
+    }
+    public void setPlayerRIGHT(){
+        imageSrc = "src/pic/player_right.png";
+    }
     public void setWallDirection(boolean top, boolean left, boolean down, boolean right){
         if (top && left && down && right){
             imageSrc = "src/pic/wall_cross.png";
@@ -102,6 +115,7 @@ public class DrawCell extends JComponent {
 
     public void setNewPosition(int[] pos){
         this.pos = pos;
+        image = Toolkit.getDefaultToolkit().getImage(imageSrc);
         repaint();
     }
 

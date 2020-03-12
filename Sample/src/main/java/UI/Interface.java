@@ -73,24 +73,16 @@ public class Interface extends JFrame {
         }
     }
 
-    private void createWall(int x, int y, int[] pos) {
+    private void createWall(int x, int y, int[] pos){
         boolean left = false;
         boolean right = false;
         boolean top = false;
         boolean down = false;
 
-        if (board.isInBounds(x - 1, y) && board.isWall(x - 1, y)) {
-            left = true;
-        }
-        if (board.isInBounds(x + 1, y) && board.isWall(x + 1, y)) {
-            right = true;
-        }
-        if (board.isInBounds(x, y + 1) && board.isWall(x, y + 1)) {
-            down = true;
-        }
-        if (board.isInBounds(x, y - 1) && board.isWall(x, y - 1)) {
-            top = true;
-        }
+        if (board.isInBounds(x - 1, y) && board.isWall(x - 1, y)){ left = true; }
+        if (board.isInBounds(x + 1, y) && board.isWall(x + 1, y)){ right = true; }
+        if (board.isInBounds(x, y + 1) && board.isWall(x, y + 1)){ down = true; }
+        if (board.isInBounds(x, y - 1) && board.isWall(x, y - 1)){ top = true; }
 
         DrawCell wall = new DrawCell(pos, step, DrawCell.cellType.WALL);
         wall.setWallDirection(top, left, down, right);
@@ -115,14 +107,29 @@ public class Interface extends JFrame {
             int key = e.getKeyCode();
             if (isReleased) {
                 isReleased = false;
-                if (key == UP) {
-                    board.getPlayer().moveUp();
-                } else if (key == DOWN) {
-                    board.getPlayer().moveDown();
-                } else if (key == RIGHT) {
-                    board.getPlayer().moveRight();
-                } else if (key == LEFT) {
-                    board.getPlayer().moveLeft();
+                if (key == UP){
+                    if(!board.isWall(playerPos[0], playerPos[1] - 1)) {
+                        board.getPlayer().moveUp();
+                        player.setPlayerUP();
+                    }
+                } else if (key == DOWN){
+                    if(!board.isWall(playerPos[0], playerPos[1] + 1)) {
+                        board.getPlayer().moveDown();
+                        player.setPlayerDOWN();
+                    }
+
+                } else if (key == RIGHT){
+                    if(!board.isWall(playerPos[0] + 1, playerPos[1])) {
+                        board.getPlayer().moveRight();
+                        player.setPlayerRIGHT();
+                    }
+
+                } else if (key == LEFT){
+                    if(!board.isWall(playerPos[0]-  1, playerPos[1])) {
+                        board.getPlayer().moveLeft();
+                        player.setPlayerLEFT();
+                    }
+
                 }
                 player.setNewPosition(board.getPlayerPos());
                 repaint();
