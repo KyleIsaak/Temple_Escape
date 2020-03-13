@@ -40,25 +40,26 @@ public class DrawCell extends JComponent {
 //
 //                break;
             case WALL:
-                Random ran = new Random();
-                int choice = ran.nextInt(2);
-                if (choice == 0){
-                    imageSrc = "src/pic/wall.png";
-                } else if (choice == 1){
-                    imageSrc = "src/pic/wall2.png";
-                }
+
                 break;
 
             case TRAPTYPEA:
-                imageSrc = "src/pic/Spikes.png";
+                imageSrc = "src/pic/spike.png";
                 break;
 
             case TRAPTYPEB:
-                imageSrc = "src/pic/Lava.png";
+                imageSrc = "src/pic/lava.png";
                 break;
 
             case PATH:
-                imageSrc = "src/pic/path.png";
+                Random ran = new Random();
+                int choice = ran.nextInt(2);
+                if (choice == 0){
+                    imageSrc = "src/pic/path.png";
+                } else if (choice == 1){
+                    imageSrc = "src/pic/path2.png";
+                }
+
                 break;
         }
         image = Toolkit.getDefaultToolkit().getImage(imageSrc);
@@ -76,21 +77,22 @@ public class DrawCell extends JComponent {
     public void setPlayerRIGHT(){
         imageSrc = "src/pic/player_right.png";
     }
+
     public void setWallDirection(boolean top, boolean left, boolean down, boolean right){
         if (top && left && down && right){
             imageSrc = "src/pic/wall_cross.png";
         } else if (top && left && down){
-            imageSrc = "src/pic/wall_no_right.png";
+            imageSrc = "src/pic/wall_top_right.png";
         } else if (top && left && right){
-            imageSrc = "src/pic/wall_no_down.png";
+            imageSrc = "src/pic/wall_horizontal.png";
         } else if (top && right && down){
-            imageSrc = "src/pic/wall_no_left.png";
+            imageSrc = "src/pic/wall_top_left.png";
         } else if (right && left && down){
-            imageSrc = "src/pic/wall_no_up.png";
+            imageSrc = "src/pic/wall_cross.png";
         } else if (top && left){
             imageSrc = "src/pic/wall_bottom_right.png";
         } else if (top && down){
-            imageSrc = "src/pic/wall_vertical.png";
+            imageSrc = "src/pic/wall_top.png";
         } else if (top && right){
             imageSrc = "src/pic/wall_bottom_left.png";
         } else if (left && down){
@@ -100,13 +102,13 @@ public class DrawCell extends JComponent {
         } else if (right && down){
             imageSrc = "src/pic/wall_top_left.png";
         } else if (top){
-            imageSrc = "src/pic/wall_broken_down.png";
+            imageSrc = "src/pic/wall_down.png";
         } else if (left){
-            imageSrc = "src/pic/wall_broken_right.png";
+            imageSrc = "src/pic/wall_right.png";
         } else if (right){
-            imageSrc = "src/pic/wall_broken_left.png";
+            imageSrc = "src/pic/wall_left.png";
         } else if (down){
-            imageSrc = "src/pic/wall_broken_up.png";
+            imageSrc = "src/pic/wall_top.png";
         } else{
             imageSrc = "src/pic/wall.png";
         }

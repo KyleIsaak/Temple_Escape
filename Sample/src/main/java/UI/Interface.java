@@ -1,6 +1,7 @@
 package UI;
 
 import GameLogic.Board;
+import GameLogic.LevelGenerator;
 
 import javax.swing.*;
 
@@ -24,6 +25,7 @@ public class Interface extends JFrame {
 
         this.step = step;
         this.board = board;
+        board.setDifficulty(LevelGenerator.Difficulty.EASY);
         this.map = board.getBoard();
         addKeyListener(new listener());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
