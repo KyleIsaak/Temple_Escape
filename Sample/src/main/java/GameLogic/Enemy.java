@@ -1,6 +1,9 @@
 package GameLogic;
 
 import javax.swing.*;
+import javax.swing.text.Position;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Enemy {
     private int[] position;
@@ -22,6 +25,9 @@ public class Enemy {
         return this.damage;
     }
 
+    public void setPosition(int[] position){
+        this.position=position;
+    }
     public void move(int[] direction) {
         this.position[0] += direction[0];
         this.position[1] += direction[1];

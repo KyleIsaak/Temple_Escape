@@ -18,12 +18,12 @@ public class TestMain  {
         new Interface(step, board);
 
         Timer timer =new Timer();
-        while(!isGameOver)
+        /*while(!isGameOver)
         {
             TimeUnit.MILLISECONDS.sleep(delay);
             board.chaseThePlayer();
             //System.out.println("Time elapsed:" + timer.displayMinutes() + ":" + timer.displaySeconds());
-        }
+        }*/
 
 //        timer = new Timer();
 //        long startTime = 20;

@@ -14,11 +14,12 @@ public class Interface extends JFrame {
     //    private Input input;
     private DrawCell player;
     private DrawCell exit;
-    private DrawCell enemy;
+   // private DrawCell enemy;
     private ArrayList<DrawCell> wallCell;
     private ArrayList<DrawCell> pathCell;
     private ArrayList<DrawCell> trapACell;
     private ArrayList<DrawCell> trapBCell;
+    private ArrayList<DrawCell> EnemyCell;
     private Board board;
     private int[][] map;
 
@@ -35,14 +36,14 @@ public class Interface extends JFrame {
         add(player);
         exit = new DrawCell(board.getExit().getPosition(),step, DrawCell.cellType.EXITLOCKED);
         add(exit);
-        enemy = new DrawCell(board.getEnemyPos(), step, DrawCell.cellType.ENEMY);
-        add(enemy);
+        //enemy = new DrawCell(board.getEnemyPos(), step, DrawCell.cellType.ENEMY);
+        //add(enemy);
 
         wallCell = new ArrayList<>();
         pathCell = new ArrayList<>();
         trapACell = new ArrayList<>();
         trapBCell = new ArrayList<>();
-
+        EnemyCell = new ArrayList<>();
         createBoard();
         setSize(1000, 1000);
         setVisible(true);
@@ -67,10 +68,20 @@ public class Interface extends JFrame {
                         add(trapB);
                     }
                 }
+                else if(board.isEnemy(x,y))
+                {
+                    int index = board.EnemyFinder(x, y);
+                   // char EnType = board.getEnemyArrayManager().get(index).getType();
+                    DrawCell Enemy= new DrawCell(pos, step, DrawCell.cellType.ENEMY);
+                    trapACell.add(Enemy);
+                    add(Enemy);
+
+                }
                 else if (map[x][y] == 0) {
                     createWall(x, y, pos);
 
-                } else {
+                }
+                else {
                     DrawCell path = new DrawCell(pos, step, DrawCell.cellType.PATH);
                     pathCell.add(path);
                     add(path);

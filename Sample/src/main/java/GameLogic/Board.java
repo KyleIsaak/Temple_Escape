@@ -8,10 +8,10 @@ public class Board {
     private Player player;
     private int[] playerInit;
     private ArrayList<Trap> trapArrayManager;
+    private ArrayList<Enemy> EnemyArrayManager;
     private Exit exit;
     private LevelGenerator generator;
-    private Enemy enemy;
-    private int[] enemyInit;
+
 
 
     public Board(int level){
@@ -19,13 +19,12 @@ public class Board {
         generator = new LevelGenerator(41, 41);
         trapArrayManager = new ArrayList<Trap>();
         trapGenerator(level);
+        EnemyArrayManager = new ArrayList<Enemy>();
+        EnemyGenerator(level);
         exit = new Exit();
         randomizeExitPosition();
         playerInit = new int[]{1, 1};
         player = new Player(playerInit);
-        //test// need to modify the number of enemy base on the level
-        enemyInit = new int[]{39, 39};
-        enemy = new Enemy(enemyInit);
     }
 
     public boolean isWall(int x, int y){ return generator.isWall(x, y);}
@@ -39,13 +38,14 @@ public class Board {
         return player.getPosition();
     }
 
-    public Enemy getEnemy(){return this.enemy;}
-    public int[] getEnemyPos(){return enemy.getPosition();}
+    //public Enemy getEnemy(){return this.enemy;}
+    //public int[] getEnemyPos(){return enemy.getPosition();}
 
     public int integerRandomizer(){
         Random random = new Random();
         return random.nextInt(40);
     }
+
     ///////////////// Trap Functionality ///////////////
     public ArrayList<Trap> getTrapArrayManager(){ return trapArrayManager; }
     public void trapGenerator (int difficultyLevel){
@@ -100,7 +100,6 @@ public class Board {
             x = integerRandomizer();
             y = integerRandomizer();
         }
-
         trapObject.setPosition(new int [] {x, y});
         //cellStatusManager.add(new int [] {x, y});
         trapArrayManager.add(trapObject);
@@ -166,7 +165,66 @@ public class Board {
             return true;
         return false;
     }
+    ///////////////// Enemy Functionality ///////////////
+    public ArrayList<Enemy> getEnemyArrayManager(){ return EnemyArrayManager; }
+    public void EnemyGenerator (int difficultyLevel){
+        switch (difficultyLevel){
+            case 1:
+                for (int i = 0; i < 2; i++){
+                    EnemyLocationRandomizer(new Enemy(playerInit));
+                }
+                break;
+
+            case 2:
+                for (int i = 0; i < 3; i++){
+                    EnemyLocationRandomizer(new Enemy(playerInit));
+                }
+                break;
+
+            case 3:
+                for (int i = 0; i < 4; i++){
+                    EnemyLocationRandomizer(new Enemy(playerInit));
+                }
+                break;
+        }
+    }
+
+
+
+    public void EnemyLocationRandomizer (Enemy EnemyObject){
+        int x = integerRandomizer();
+        int y = integerRandomizer();
+
+        while ((isWall(x,y)) || (isTrap(x,y))){
+            x = integerRandomizer();
+            y = integerRandomizer();
+        }
+
+       EnemyObject.setPosition(new int [] {x, y});
+        //cellStatusManager.add(new int [] {x, y});
+       EnemyArrayManager.add(EnemyObject);
+    }
+    public boolean isEnemy(int x, int y){
+        for (int i = 0; i < EnemyArrayManager.size(); i++) {
+            int[] current = EnemyArrayManager.get(i).getPosition();
+            if ((current[0] == x) && (current[1] == y)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int EnemyFinder (int x, int y){
+        for (int i = 0; i < EnemyArrayManager.size(); i++){
+            Enemy current = EnemyArrayManager.get(i);
+            if ((current.getPosition()[0] == x )&& (current.getPosition()[1] == y)){
+                return i;
+            }
+        }
+        return -1;
+    }
     //Enemy functionality
+    /*
     public void chaseThePlayer(){
         boolean testValidMove = true;
         int[] planMove = {0,0};
@@ -259,6 +317,8 @@ public class Board {
                 testValidMove = isWall(EnemyX+planMove[0],EnemyY+planMove[1]);
             }
         }
-        enemy.move(planMove);
+       enemy.move(planMove);
     }
+    */
+
 }
