@@ -21,8 +21,8 @@ public class TestMain  {
         while(!isGameOver)
         {
             TimeUnit.MILLISECONDS.sleep(delay);
-            board.getEnemy().chaseThePlayer(board.getPlayerPos(),1);
-            System.out.println("Time elapsed:" + timer.displayMinutes() + ":" + timer.displaySeconds());
+            board.chaseThePlayer();
+            //System.out.println("Time elapsed:" + timer.displayMinutes() + ":" + timer.displaySeconds());
         }
 
 //        timer = new Timer();

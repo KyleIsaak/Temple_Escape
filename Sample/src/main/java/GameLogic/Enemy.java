@@ -6,7 +6,6 @@ public class Enemy {
     private int[] position;
     private static int damage = 9999999;
 
-
     public Enemy(int[] position) {
         this.position = position;
     }
@@ -27,9 +26,16 @@ public class Enemy {
         this.position[0] += direction[0];
         this.position[1] += direction[1];
     }
+    double getDistanceX(int[] position) {
+        return position[0]-this.position[0];//enemy - player location;
+    }
+    double getDistanceY(int[] position) {
+        return position[1]-this.position[1];//enemy - player location;
+    }
 
-    public void chaseThePlayer(int[] position,int step) {
+    public int[] chaseThePlayer(int[] position) {
         int[] chase;
+        int step = 1;
         chase = new int[]{0,0};
         double distanceX= position[0]-this.position[0];//enemy - player location;
         double distanceY= position[1]-this.position[1];//enemy - player location;
@@ -65,8 +71,7 @@ public class Enemy {
                 chase[1] = 0;
             }
         }
-        this.move(chase);
-        return ;
+        return chase;
     }
 
 

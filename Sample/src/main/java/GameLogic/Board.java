@@ -10,7 +10,6 @@ public class Board {
     private ArrayList<Trap> trapArrayManager;
     private Exit exit;
     private LevelGenerator generator;
-
     private Enemy enemy;
     private int[] enemyInit;
 
@@ -25,11 +24,8 @@ public class Board {
         playerInit = new int[]{1, 1};
         player = new Player(playerInit);
         //test// need to modify the number of enemy base on the level
-        enemyInit = new int[]{20, 20};
+        enemyInit = new int[]{39, 39};
         enemy = new Enemy(enemyInit);
-
-
-
     }
 
     public boolean isWall(int x, int y){ return generator.isWall(x, y);}
@@ -141,5 +137,59 @@ public class Board {
         }
         exit.setPosition(new int[]{x, y});
 
+    }
+
+    //Enemy functionality
+    public void chaseThePlayer(){
+        boolean testValidMove = true;
+        int[] planMove = {0,0};
+        planMove=enemy.chaseThePlayer(player.getPosition());
+        int[] PlayerPosition=getEnemyPos();
+        int PlayerX=PlayerPosition[0];//playerPositionX
+        int PlayerY=PlayerPosition[1];//PlayerPositionY
+        int[] Enemyposition=getEnemyPos();
+        int EnemyX=Enemyposition[0];
+        int EnemyY=Enemyposition[1];
+        while(testValidMove) {
+            testValidMove = isWall(EnemyX+planMove[0],EnemyY+planMove[1]);
+            if(testValidMove == true)
+            {
+                if(planMove[0]== 1)
+                {
+                    planMove[0]=0;
+                    if(PlayerY>EnemyY  )
+                        planMove[1]=-1;
+                    else
+                        planMove[1]=1;
+
+                }
+                else if(planMove[0]==-1)
+                {
+                    planMove[0]=0;
+                    if(PlayerY>EnemyY)
+                        planMove[1]=1;
+                    else
+                        planMove[1]=-1;
+                }
+                else if(planMove[1]==1)
+                {
+                    planMove[1]=0;
+                    if(PlayerX>EnemyX)
+                        planMove[0]=1;
+                    else
+                        planMove[0]=-1;
+                }
+                else if(planMove[1]==-1)
+                {
+                    planMove[1]=0;
+                    if(PlayerX>EnemyX)
+                        planMove[0]=1;
+                    else
+                        planMove[0]=-1;
+                }
+                testValidMove = isWall(EnemyX+planMove[0],EnemyY+planMove[1]);
+            }
+        }
+        enemy.move(planMove);
     }
 }
