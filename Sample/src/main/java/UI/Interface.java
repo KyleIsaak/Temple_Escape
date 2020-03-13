@@ -14,6 +14,7 @@ public class Interface extends JFrame {
     //    private Input input;
     private DrawCell player;
     private DrawCell exit;
+    private DrawCell enemy;
     private ArrayList<DrawCell> wallCell;
     private ArrayList<DrawCell> pathCell;
     private ArrayList<DrawCell> trapACell;
@@ -34,6 +35,8 @@ public class Interface extends JFrame {
         add(player);
         exit = new DrawCell(board.getExit().getPosition(),step, DrawCell.cellType.EXITLOCKED);
         add(exit);
+        enemy = new DrawCell(board.getEnemyPos(), step, DrawCell.cellType.ENEMY);
+        add(enemy);
 
         wallCell = new ArrayList<>();
         pathCell = new ArrayList<>();

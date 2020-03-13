@@ -11,6 +11,10 @@ public class Board {
     private Exit exit;
     private LevelGenerator generator;
 
+    private Enemy enemy;
+    private int[] enemyInit;
+
+
     public Board(int level){
         //test
         generator = new LevelGenerator(41, 41);
@@ -20,6 +24,10 @@ public class Board {
         randomizeExitPosition();
         playerInit = new int[]{1, 1};
         player = new Player(playerInit);
+        //test// need to modify the number of enemy base on the level
+        enemyInit = new int[]{20, 20};
+        enemy = new Enemy(enemyInit);
+
 
 
     }
@@ -34,6 +42,9 @@ public class Board {
     public int[] getPlayerPos(){
         return player.getPosition();
     }
+
+    public Enemy getEnemy(){return this.enemy;}
+    public int[] getEnemyPos(){return enemy.getPosition();}
 
     public int integerRandomizer(){
         Random random = new Random();

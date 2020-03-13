@@ -38,9 +38,10 @@ public class DrawCell extends JComponent {
                 imageSrc = "src/pic/player.png";
 
                 break;
-//            case ENEMY:
-//
-//                break;
+            case ENEMY:
+                imageSrc = "src/pic/enemy.png";
+                break;
+
             case WALL:
                 Random ran = new Random();
                 int choice = ran.nextInt(2);
