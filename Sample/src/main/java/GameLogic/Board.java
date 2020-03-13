@@ -138,7 +138,34 @@ public class Board {
         exit.setPosition(new int[]{x, y});
 
     }
-
+    public boolean isCorner(int[] position)
+    {
+        int X=position[0];
+        int Y=position[1];
+        if(isWall(X+1,Y) && isWall(X,Y+1))
+            return true;
+        if(isWall(X-1,Y)&&isWall(X,Y+1))
+            return true;
+        if(isWall(X+1,Y)&&isWall(X,Y-1))
+            return true;
+        if(isWall(X-1,Y)&&isWall(X,Y-1))
+            return true;
+        return false;
+    }
+    public boolean isThreeWall(int[]position)
+    {
+        int X=position[0];
+        int Y=position[1];
+        if(isWall(X+1,Y) && isWall(X,Y+1) && isWall(X-1,Y))
+            return true;
+        if(isWall(X+1,Y) && isWall(X,Y-1) && isWall(X-1,Y))
+            return true;
+        if(isWall(X,Y+1) && isWall(X,Y-1) && isWall(X-1,Y))
+            return true;
+        if(isWall(X,Y+1) && isWall(X,Y-1) && isWall(X+1,Y))
+            return true;
+        return false;
+    }
     //Enemy functionality
     public void chaseThePlayer(){
         boolean testValidMove = true;
@@ -154,39 +181,81 @@ public class Board {
             testValidMove = isWall(EnemyX+planMove[0],EnemyY+planMove[1]);
             if(testValidMove == true)
             {
-                if(planMove[0]== 1)
-                {
-                    planMove[0]=0;
-                    if(PlayerY>EnemyY  )
-                        planMove[1]=-1;
-                    else
-                        planMove[1]=1;
+                 if(isThreeWall(Enemyposition)==true)
+                    {
+                        if(isWall(EnemyX+1,EnemyY) && isWall(EnemyX,EnemyY+1) && isWall(EnemyX-1,EnemyY))
+                        {
+                            planMove[0]=0;
+                            planMove[1]=-1;
+                        }
+                        if(isWall(EnemyX+1,EnemyY) && isWall(EnemyX,EnemyY-1) && isWall(EnemyX-1,EnemyY))
+                        {
+                            planMove[0]=0;
+                            planMove[1]=1;
+                        }
+                        if(isWall(EnemyX,EnemyY+1) && isWall(EnemyX,EnemyY-1) && isWall(EnemyX-1,EnemyY))
+                        {
+                            planMove[0]=1;
+                            planMove[1]=0;
+                        }
+                        if(isWall(EnemyX,EnemyY+1) && isWall(EnemyX,EnemyY-1) && isWall(EnemyX+1,EnemyY))
+                        {
+                            planMove[0]=-1;
+                            planMove[1]=0;
+                        }
+                    }
+                 else if(isCorner(Enemyposition)==true)
+                 {
+                     if(isWall(EnemyX+1,EnemyY) && isWall(EnemyX,EnemyY+1))
+                     {
+                         planMove[0]=0;
+                         planMove[1]=-1;
+                     }
+                     if(isWall(EnemyX-1,EnemyY)&&isWall(EnemyX,EnemyY+1))
+                     {
+                         planMove[0]=0;
+                         planMove[1]=-1;
+                     }
+                     if(isWall(EnemyX+1,EnemyY)&&isWall(EnemyX,EnemyY-1))
+                     {
+                         planMove[0]=0;
+                         planMove[1]=1;
+                     }
+                     if(isWall(EnemyX-1,EnemyY)&&isWall(EnemyX,EnemyY-1))
+                     {
+                         planMove[0]=0;
+                         planMove[1]=1;
+                     }
+                 }
+                 else if(isCorner(Enemyposition)==false)
+                 {
+                     if (planMove[0] == 1) {
+                         planMove[0] = 0;
+                         if (PlayerY > EnemyY)
+                             planMove[1] = -1;
+                         else
+                             planMove[1] = 1;
 
-                }
-                else if(planMove[0]==-1)
-                {
-                    planMove[0]=0;
-                    if(PlayerY>EnemyY)
-                        planMove[1]=1;
-                    else
-                        planMove[1]=-1;
-                }
-                else if(planMove[1]==1)
-                {
-                    planMove[1]=0;
-                    if(PlayerX>EnemyX)
-                        planMove[0]=1;
-                    else
-                        planMove[0]=-1;
-                }
-                else if(planMove[1]==-1)
-                {
-                    planMove[1]=0;
-                    if(PlayerX>EnemyX)
-                        planMove[0]=1;
-                    else
-                        planMove[0]=-1;
-                }
+                     } else if (planMove[0] == -1) {
+                         planMove[0] = 0;
+                         if (PlayerY > EnemyY)
+                             planMove[1] = 1;
+                         else
+                             planMove[1] = -1;
+                     } else if (planMove[1] == 1) {
+                         planMove[1] = 0;
+                         if (PlayerX > EnemyX)
+                             planMove[0] = 1;
+                         else
+                             planMove[0] = -1;
+                     } else if (planMove[1] == -1) {
+                         planMove[1] = 0;
+                         if (PlayerX > EnemyX)
+                             planMove[0] = 1;
+                         else
+                             planMove[0] = -1;
+                     }
+                 }
                 testValidMove = isWall(EnemyX+planMove[0],EnemyY+planMove[1]);
             }
         }
