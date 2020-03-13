@@ -8,6 +8,7 @@ public class Board {
     private Player player;
     private int[] playerInit;
     private ArrayList<Trap> trapArrayManager;
+    private Exit exit;
     private LevelGenerator generator;
 
     public Board(int level){
@@ -15,9 +16,11 @@ public class Board {
         generator = new LevelGenerator(41, 41);
         trapArrayManager = new ArrayList<Trap>();
         trapGenerator(level);
+        exit = new Exit();
+        randomizeExitPosition();
         playerInit = new int[]{1, 1};
-
         player = new Player(playerInit);
+
 
     }
 
@@ -25,13 +28,17 @@ public class Board {
     public boolean isInBounds(int x, int y) {return (x >= 0 && x < 41 && y >= 0 && y < 41);}
 
     public int[][] getBoard() { return generator.getBoard();}
+    public Exit getExit() { return exit; }
     public void setDifficulty(LevelGenerator.Difficulty choice) { generator.setLevel(choice);}
     public Player getPlayer(){return this.player;}
     public int[] getPlayerPos(){
         return player.getPosition();
     }
 
-
+    public int integerRandomizer(){
+        Random random = new Random();
+        return random.nextInt(40);
+    }
     ///////////////// Trap Functionality ///////////////
     public ArrayList<Trap> getTrapArrayManager(){ return trapArrayManager; }
     public void trapGenerator (int difficultyLevel){
@@ -68,24 +75,23 @@ public class Board {
     private void trapTypeGenerator (char type){
         switch (type){
             case 'A' :
-                locationRandomizer(new TrapTypeA());
+                trapLocationRandomizer(new TrapTypeA());
 
                 break;
 
             case 'B' :
-                locationRandomizer(new TrapTypeB());
+                trapLocationRandomizer(new TrapTypeB());
                 break;
         }
     }
 
-    public void locationRandomizer (Trap trapObject){
-        Random random = new Random();
-        int x = random.nextInt(40);
-        int y = random.nextInt(40);
+    public void trapLocationRandomizer (Trap trapObject){
+        int x = integerRandomizer();
+        int y = integerRandomizer();
 
-        while ((isWall(x,y)) || (isContain(x,y))){
-            x = random.nextInt(40);
-            y = random.nextInt(40);
+        while ((isWall(x,y)) || (isTrap(x,y))){
+            x = integerRandomizer();
+            y = integerRandomizer();
         }
 
         trapObject.setPosition(new int [] {x, y});
@@ -93,7 +99,7 @@ public class Board {
         trapArrayManager.add(trapObject);
     }
 
-    public boolean isContain(int x, int y){
+    public boolean isTrap(int x, int y){
         for (int i = 0; i < trapArrayManager.size(); i++) {
             int[] current = trapArrayManager.get(i).getPosition();
             if ((current[0] == x) && (current[1] == y)) {
@@ -111,5 +117,18 @@ public class Board {
             }
         }
         return -1;
+    }
+
+    ////////////// Exit /////////////
+    public void randomizeExitPosition(){
+        int x = integerRandomizer();
+        int y = integerRandomizer();
+
+        while ((isWall(x,y)) || (isTrap(x,y))){
+            x = integerRandomizer();
+            y = integerRandomizer();
+        }
+        exit.setPosition(new int[]{x, y});
+
     }
 }

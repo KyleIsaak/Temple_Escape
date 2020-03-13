@@ -13,6 +13,7 @@ public class Interface extends JFrame {
     private int step;
     //    private Input input;
     private DrawCell player;
+    private DrawCell exit;
     private ArrayList<DrawCell> wallCell;
     private ArrayList<DrawCell> pathCell;
     private ArrayList<DrawCell> trapACell;
@@ -30,8 +31,10 @@ public class Interface extends JFrame {
         setLayout(new OverlayLayout(getContentPane()));
 
         player = new DrawCell(board.getPlayerPos(), step, DrawCell.cellType.PLAYER);
-
         add(player);
+        exit = new DrawCell(board.getExit().getPosition(),step, DrawCell.cellType.EXITLOCKED);
+        add(exit);
+
         wallCell = new ArrayList<>();
         pathCell = new ArrayList<>();
         trapACell = new ArrayList<>();
@@ -47,7 +50,7 @@ public class Interface extends JFrame {
         for (int y = 0; y < map[0].length; y++) {
             for (int x = 0; x < map.length; x++) {
                 pos = new int[]{x, y};
-                if (board.isContain(x, y)) {
+                if (board.isTrap(x, y)) {
                     int index = board.trapFinder(x, y);
                     char trapType = board.getTrapArrayManager().get(index).getType();
                     if (trapType == 'A'){
