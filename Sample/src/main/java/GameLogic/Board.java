@@ -7,6 +7,7 @@ import java.util.Random;
 public class Board {
     private Player player;
     private int[] playerInit;
+    private Score score;
     private ArrayList<Trap> trapArrayManager;
     private Exit exit;
     private LevelGenerator generator;
@@ -23,6 +24,7 @@ public class Board {
         randomizeExitPosition();
         playerInit = new int[]{1, 1};
         player = new Player(playerInit);
+        score = new Score();
         //test// need to modify the number of enemy base on the level
         enemyInit = new int[]{39, 39};
         enemy = new Enemy(enemyInit);
@@ -35,12 +37,10 @@ public class Board {
     public Exit getExit() { return exit; }
     public void setDifficulty(LevelGenerator.Difficulty choice) { generator.setLevel(choice);}
     public Player getPlayer(){return this.player;}
-    public int[] getPlayerPos(){
-        return player.getPosition();
-    }
-
+    public int[] getPlayerPos(){ return player.getPosition(); }
     public Enemy getEnemy(){return this.enemy;}
     public int[] getEnemyPos(){return enemy.getPosition();}
+    public Score getScore() { return score; }
 
     public int integerRandomizer(){
         Random random = new Random();
@@ -138,6 +138,11 @@ public class Board {
         exit.setPosition(new int[]{x, y});
 
     }
+
+
+
+
+
     public boolean isCorner(int[] position)
     {
         int X=position[0];
@@ -166,6 +171,7 @@ public class Board {
             return true;
         return false;
     }
+
     //Enemy functionality
     public void chaseThePlayer(){
         boolean testValidMove = true;
@@ -204,7 +210,7 @@ public class Board {
                             planMove[1]=0;
                         }
                     }
-                 else if(isCorner(Enemyposition)==true)
+                 else if(isCorner(Enemyposition) == true)
                  {
                      if(isWall(EnemyX+1,EnemyY) && isWall(EnemyX,EnemyY+1))
                      {

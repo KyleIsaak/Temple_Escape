@@ -114,11 +114,13 @@ public class Interface extends JFrame {
             int[] playerPos = board.getPlayerPos();
             if (isReleased) {
                 isReleased = false;
+
                 if (key == UP){
                     if(!board.isWall(playerPos[0], playerPos[1] - 1)) {
                         board.getPlayer().moveUp();
                         player.setPlayerUP();
                     }
+
                 } else if (key == DOWN){
                     if(!board.isWall(playerPos[0], playerPos[1] + 1)) {
                         board.getPlayer().moveDown();
@@ -140,6 +142,17 @@ public class Interface extends JFrame {
                 }
                 player.setNewPosition(board.getPlayerPos());
                 repaint();
+                // Check whether player stepped on any traps
+                if (board.isTrap(playerPos[0], playerPos[1])){
+                    // Test
+                    System.out.print("Trap Stepped On: ");
+                    int trapIndex = board.trapFinder(playerPos[0], playerPos[1]);
+                    int damage = board.getTrapArrayManager().get(trapIndex).getDamage();
+                    board.getScore().subtractScore(damage);
+                    //Test
+                    System.out.print(board.getScore().getScore());
+                    System.out.println();
+                }
             }
         }
     }
