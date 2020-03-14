@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Board {
+    private int sizeX = 31;
+    private int sizeY = 41;
     private Player player;
     private int[] playerInit;
     private ArrayList<Trap> trapArrayManager;
@@ -12,7 +14,7 @@ public class Board {
 
     public Board(int level){
         //test
-        generator = new LevelGenerator(41, 41);
+        generator = new LevelGenerator(sizeX, sizeY);
         trapArrayManager = new ArrayList<Trap>();
         trapGenerator(level);
         playerInit = new int[]{1, 1};
@@ -80,12 +82,12 @@ public class Board {
 
     public void locationRandomizer (Trap trapObject){
         Random random = new Random();
-        int x = random.nextInt(40);
-        int y = random.nextInt(40);
+        int x = random.nextInt(sizeX);
+        int y = random.nextInt(sizeY);
 
         while ((isWall(x,y)) || (isContain(x,y))){
-            x = random.nextInt(40);
-            y = random.nextInt(40);
+            x = random.nextInt(sizeX);
+            y = random.nextInt(sizeY);
         }
 
         trapObject.setPosition(new int [] {x, y});

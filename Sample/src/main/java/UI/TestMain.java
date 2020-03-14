@@ -6,7 +6,7 @@ import GameLogic.Timer;
 public class TestMain  {
     private static boolean isGameOver = false;
     private static int delay = 200;
-    private static int step = 16;
+    private static int step = 32;
     private static int currentLevel = 1;
     private static Board board;
 //    private static Timer timer;

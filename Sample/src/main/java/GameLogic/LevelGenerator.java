@@ -71,18 +71,19 @@ public class LevelGenerator {
             case EASY:
                 for(int i = 0; i < (x * y / 3); i++){
                     randomRemoveWall();
-                    break;
                 }
+                break;
             case MEDIUM:
                 for(int i = 0; i < (x * y / 4); i ++){
                     randomRemoveWall();
-                    break;
                 }
+                break;
             case HARD:
                 for(int i = 0; i < (x * y / 5); i ++){
                     randomRemoveWall();
-                    break;
                 }
+                break;
+
             default:
                 break;
 
