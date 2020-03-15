@@ -5,14 +5,18 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Board {
-    private Player player;
-    private int[] playerInit;
     private Score score;
     private ArrayList<Trap> trapArrayManager;
+    private ArrayList<Reward> rewardArrayManager;
     private Exit exit;
     private LevelGenerator generator;
+
+    private Player player;
+    private int[] playerInit;
     private Enemy enemy;
     private int[] enemyInit;
+    private Reward reward;
+    private int[] rewardInit;
 
 
     public Board(int level){
@@ -20,6 +24,8 @@ public class Board {
         generator = new LevelGenerator(41, 41);
         trapArrayManager = new ArrayList<Trap>();
         trapGenerator(level);
+        rewardArrayManager = new ArrayList<Reward>();
+        rewardGenerator(level);
         exit = new Exit();
         randomizeExitPosition();
         playerInit = new int[]{1, 1};
@@ -28,6 +34,7 @@ public class Board {
         //test// need to modify the number of enemy base on the level
         enemyInit = new int[]{39, 39};
         enemy = new Enemy(enemyInit);
+
     }
 
     public boolean isWall(int x, int y){ return generator.isWall(x, y);}
@@ -36,10 +43,14 @@ public class Board {
     public int[][] getBoard() { return generator.getBoard();}
     public Exit getExit() { return exit; }
     public void setDifficulty(LevelGenerator.Difficulty choice) { generator.setLevel(choice);}
+
     public Player getPlayer(){return this.player;}
     public int[] getPlayerPos(){ return player.getPosition(); }
     public Enemy getEnemy(){return this.enemy;}
     public int[] getEnemyPos(){return enemy.getPosition();}
+    public Reward getReward(){return this.reward;}
+    public int[] getRewardPos(){return reward.getPosition();}
+
     public Score getScore() { return score; }
 
     public int integerRandomizer(){
@@ -105,7 +116,7 @@ public class Board {
         //cellStatusManager.add(new int [] {x, y});
         trapArrayManager.add(trapObject);
     }
-    
+
     public boolean isTrap(int x, int y){
         for (int i = 0; i < trapArrayManager.size(); i++) {
             int[] current = trapArrayManager.get(i).getPosition();
@@ -267,5 +278,87 @@ public class Board {
         }
         enemy.move(planMove);
     }
+
+    ///////////////// Reward Functionality ///////////////
+    public ArrayList<Reward> getRewardArrayManager(){ return rewardArrayManager; }
+    public void rewardGenerator (int difficultyLevel){
+        switch (difficultyLevel){
+            case 1:
+                for (int i = 0; i < 4; i++) {
+                   rewardTypeGenerator('A');
+                }
+                for (int i = 0; i < 2; i++){
+                    rewardTypeGenerator('B');
+                }
+                break;
+
+            case 2:
+                for (int i = 0; i < 8; i++){
+                    rewardTypeGenerator('A');
+                }
+                for (int i = 0; i < 4; i++){
+                    rewardTypeGenerator('B');
+                }
+                break;
+
+            case 3:
+                for (int i = 0; i < 12; i++){
+                    rewardTypeGenerator('A');
+                }
+                for (int i = 0; i < 8; i++){
+                    rewardTypeGenerator('B');
+                }
+                break;
+        }
+    }
+
+    private void rewardTypeGenerator (char type){
+        switch (type){
+            case 'A' :
+                rewardLocationRandomizer(new RewardTypeA());
+
+                break;
+
+            case 'B' :
+                rewardLocationRandomizer(new RewardTypeB());
+                break;
+        }
+    }
+
+    public void rewardLocationRandomizer (Reward rewardObject){
+        int x = integerRandomizer();
+        int y = integerRandomizer();
+
+        while ((isWall(x,y)) || (isReward(x,y))){
+            x = integerRandomizer();
+            y = integerRandomizer();
+        }
+
+        rewardObject.setPosition(new int [] {x, y});
+        //cellStatusManager.add(new int [] {x, y});
+        rewardArrayManager.add(rewardObject);
+    }
+
+    public boolean isReward(int x, int y){
+        for (int i = 0; i < rewardArrayManager.size(); i++) {
+            int[] current = rewardArrayManager.get(i).getPosition();
+            if ((current[0] == x) && (current[1] == y)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int rewardFinder (int x, int y){
+        for (int i = 0; i < rewardArrayManager.size(); i++){
+            Reward current = rewardArrayManager.get(i);
+            if ((current.getPosition()[0] == x )&& (current.getPosition()[1] == y)){
+                return i;
+            }
+        }
+        return -1;
+    }
 }
+
+
 

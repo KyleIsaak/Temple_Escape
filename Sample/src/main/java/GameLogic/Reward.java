@@ -1,44 +1,19 @@
 package GameLogic;
+import java.util.Random;
 
-public class Reward {
-    private int[] pos;
-    private int rewardAmount;
+public abstract class Reward {
+    private int[] position;
 
-
-    //Constructors
-    public Reward(){
-        this.rewardAmount = 50;
-    }
-
-    public Reward(int[] pos){
-        this.pos = pos;
-    }
-
-    public Reward(int reward){
-        this.rewardAmount = reward;
-    }
-
-    public Reward(int[] pos, int reward){
-        this.pos = pos;
-        this.rewardAmount = reward;
-    }
-
-
-
-    //Getters
-    public int[] getPosition(){
-        return this.pos;
-    }
-    public int getRewardAmount(){
-        return this.rewardAmount;
-    }
-
+    //Default constructor
+    public Reward(){position = new int[] {0, 0}; }
+    //Constructor with pos input
+    public Reward (int[] position) { this.position = position; }
 
     //Setters
-    public void setRewardAmount(int reward){
-        this.rewardAmount = reward;
-    }
-    public void setPosition(int[] pos){ this.pos = pos; }
+    public void setPosition(int[] position) { this.position = position; }
 
-
+    //Getters
+    public int[] getPosition(){ return position; }
+    public abstract int getRewardAmount();
+    public abstract char getType();
 }

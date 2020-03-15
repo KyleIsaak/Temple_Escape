@@ -19,6 +19,8 @@ public class Interface extends JFrame {
     private ArrayList<DrawCell> pathCell;
     private ArrayList<DrawCell> trapACell;
     private ArrayList<DrawCell> trapBCell;
+    private ArrayList<DrawCell> rewardACell;
+    private ArrayList<DrawCell> rewardBCell;
     private Board board;
     private int[][] map;
 
@@ -42,6 +44,8 @@ public class Interface extends JFrame {
         pathCell = new ArrayList<>();
         trapACell = new ArrayList<>();
         trapBCell = new ArrayList<>();
+        rewardACell = new ArrayList<>();
+        rewardBCell = new ArrayList<>();
 
         createBoard();
         setSize(1000, 1000);
@@ -65,6 +69,20 @@ public class Interface extends JFrame {
                         DrawCell trapB = new DrawCell(pos, step, DrawCell.cellType.TRAPTYPEB);
                         trapBCell.add(trapB);
                         add(trapB);
+                    }
+                }
+                if (board.isReward(x, y)) {
+                    int index = board.rewardFinder(x, y);
+                    char rewardType = board.getRewardArrayManager().get(index).getType();
+                    if (rewardType == 'A'){
+                        DrawCell rewardA = new DrawCell(pos, step, DrawCell.cellType.REWARDTYPEA);
+                        rewardACell.add(rewardA);
+                        add(rewardA);
+                    }
+                    else if (rewardType == 'B'){
+                        DrawCell rewardB = new DrawCell(pos, step, DrawCell.cellType.REWARDTYPEB);
+                        trapBCell.add(rewardB);
+                        add(rewardB);
                     }
                 }
                 else if (map[x][y] == 0) {
@@ -153,6 +171,7 @@ public class Interface extends JFrame {
                     System.out.print(board.getScore().getScore());
                     System.out.println();
                 }
+
             }
         }
     }

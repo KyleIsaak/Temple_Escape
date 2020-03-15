@@ -20,10 +20,12 @@ public class DrawCell extends JComponent {
         PATH,
         TRAPTYPEA,
         TRAPTYPEB,
+        REWARDTYPEA,
+        REWARDTYPEB,
         EXITLOCKED,
         EXITUNLOCKED
     }
-    //color can be set to sprites later on
+
     public DrawCell(int[] pos, int step, cellType type){
         this.step = step;
         this.pos = pos;
@@ -58,6 +60,14 @@ public class DrawCell extends JComponent {
 
             case TRAPTYPEB:
                 imageSrc = "src/pic/Lava.png";
+                break;
+
+            case REWARDTYPEA:
+                imageSrc = "src/pic/coin.png";
+                break;
+
+            case REWARDTYPEB:
+                imageSrc = "src/pic/key.png";
                 break;
 
             case PATH:
