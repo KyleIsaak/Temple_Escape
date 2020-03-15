@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Board {
-    private int sizeX = 31;
-    private int sizeY = 41;
+    private int sizeX = 29;
+    private int sizeY = 29;
     private Player player;
     private int[] playerInit;
     private ArrayList<Trap> trapArrayManager;
@@ -24,7 +24,7 @@ public class Board {
     }
 
     public boolean isWall(int x, int y){ return generator.isWall(x, y);}
-    public boolean isInBounds(int x, int y) {return (x >= 0 && x < 41 && y >= 0 && y < 41);}
+    public boolean isInBounds(int x, int y) {return (x >= 0 && x < sizeX && y >= 0 && y < sizeY);}
 
     public int[][] getBoard() { return generator.getBoard();}
     public void setDifficulty(LevelGenerator.Difficulty choice) { generator.setLevel(choice);}

@@ -2,6 +2,10 @@ package UI;
 import GameLogic.Board;
 import GameLogic.Timer;
 
+import javax.swing.*;
+import javax.swing.border.Border;
+import java.awt.*;
+
 
 public class TestMain  {
     private static boolean isGameOver = false;
@@ -13,8 +17,11 @@ public class TestMain  {
 
 
     public static void main (String[] args) {
+
+
         board = new Board(currentLevel);
         new Interface(step, board);
+
 
 //        timer = new Timer();
 //        long startTime = 20;

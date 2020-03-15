@@ -5,7 +5,7 @@ import java.awt.*;
 import java.util.Random;
 
 
-public class DrawCell extends JComponent {
+public class DrawDead extends JComponent {
 
     private String imageSrc;
     private Image image;
@@ -14,15 +14,13 @@ public class DrawCell extends JComponent {
     private int step;
 
     public enum cellType{
-        PLAYER,
-        ENEMY,
         WALL,
         PATH,
         TRAPTYPEA,
         TRAPTYPEB
     }
     //color can be set to sprites later on
-    public DrawCell(int[] pos, int step, cellType type){
+    public DrawDead(int[] pos, int step, cellType type){
         this.step = step;
         this.pos = pos;
         this.type = type;
@@ -32,13 +30,6 @@ public class DrawCell extends JComponent {
 
     private void selectSprite(){
         switch(type){
-            case PLAYER:
-                imageSrc = "src/pic/player.png";
-
-                break;
-//            case ENEMY:
-//
-//                break;
             case WALL:
 
                 break;
@@ -63,19 +54,6 @@ public class DrawCell extends JComponent {
                 break;
         }
         image = Toolkit.getDefaultToolkit().getImage(imageSrc);
-    }
-
-    public void setPlayerUP(){
-        imageSrc = "src/pic/player_up.png";
-    }
-    public void setPlayerDOWN(){
-        imageSrc = "src/pic/player.png";
-    }
-    public void setPlayerLEFT(){
-        imageSrc = "src/pic/player_left.png";
-    }
-    public void setPlayerRIGHT(){
-        imageSrc = "src/pic/player_right.png";
     }
 
     public void setWallDirection(boolean top, boolean left, boolean down, boolean right){
@@ -115,16 +93,9 @@ public class DrawCell extends JComponent {
         image = Toolkit.getDefaultToolkit().getImage(imageSrc);
     }
 
-    public void setNewPosition(int[] pos){
-        this.pos = pos;
-        image = Toolkit.getDefaultToolkit().getImage(imageSrc);
-        repaint();
-    }
-
-
     public void paint (Graphics graphic) {
         super.paintComponent(graphic);
-        graphic.drawImage(image, this.pos[0] * step, this.pos[1] * step, this);
+        graphic.drawImage(image, this.pos[0] * step + 10, this.pos[1] * step + 10, this);
 
     }
 
