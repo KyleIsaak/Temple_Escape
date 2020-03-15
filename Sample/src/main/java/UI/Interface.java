@@ -1,6 +1,7 @@
 package UI;
 
 import GameLogic.Board;
+import GameLogic.LevelGenerator;
 
 import javax.swing.*;
 
@@ -15,6 +16,7 @@ public class Interface extends JFrame {
     private DrawCell player;
     private DrawCell exit;
     private DrawCell enemy;
+    private DrawCell path;
     private ArrayList<DrawCell> wallCell;
     private ArrayList<DrawCell> pathCell;
     private ArrayList<DrawCell> trapACell;
@@ -54,8 +56,8 @@ public class Interface extends JFrame {
 
     private void createBoard() {
         int pos[];
-        for (int y = 0; y < map[0].length; y++) {
-            for (int x = 0; x < map.length; x++) {
+        for (int y = 1; y < map[0].length; y++) {
+            for (int x = 1; x < map.length; x++) {
                 pos = new int[]{x, y};
                 if (board.isTrap(x, y)) {
                     int index = board.trapFinder(x, y);
@@ -81,7 +83,7 @@ public class Interface extends JFrame {
                     }
                     else if (rewardType == 'B'){
                         DrawCell rewardB = new DrawCell(pos, step, DrawCell.cellType.REWARDTYPEB);
-                        trapBCell.add(rewardB);
+                        rewardBCell.add(rewardB);
                         add(rewardB);
                     }
                 }
@@ -173,12 +175,28 @@ public class Interface extends JFrame {
                 }
 
                 if (board.isReward(playerPos[0], playerPos[1])){
+                    int rewardIndex = board.rewardFinder(playerPos[0], playerPos[1]);
+                    int[] rewardPos = board.getRewardArrayManager().get(rewardIndex).getPosition();
+                    int rewardAmount = board.getRewardArrayManager().get(rewardIndex).getRewardAmount();
+                    char rewardType = board.getRewardArrayManager().get(rewardIndex).getType();
+                    board.getScore().addScore(rewardAmount);
+
+                    if(rewardType == 'A'){
+                        rewardACell.remove(board.getRewardArrayManager().get(rewardIndex));
+                    }
+
+                    if(rewardType == 'B'){
+                        rewardBCell.remove(board.getRewardArrayManager().get(rewardIndex));
+                    }
+
+                    DrawCell newPath = new DrawCell(rewardPos, step, DrawCell.cellType.PATH);
+                    pathCell.add(newPath);
+                    add(newPath);
+                    board.getRewardArrayManager().remove(rewardIndex);
+                    repaint();
+
                     // Test
                     System.out.print("Reward Stepped On: ");
-                    int rewardIndex = board.rewardFinder(playerPos[0], playerPos[1]);
-                    int rewardAmount = board.getRewardArrayManager().get(rewardIndex).getRewardAmount();
-                    board.getScore().addScore(rewardAmount);
-                    //Test
                     System.out.print(board.getScore().getScore());
                     System.out.println();
                 }
