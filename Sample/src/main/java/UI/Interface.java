@@ -172,6 +172,17 @@ public class Interface extends JFrame {
                     System.out.println();
                 }
 
+                if (board.isReward(playerPos[0], playerPos[1])){
+                    // Test
+                    System.out.print("Reward Stepped On: ");
+                    int rewardIndex = board.rewardFinder(playerPos[0], playerPos[1]);
+                    int rewardAmount = board.getRewardArrayManager().get(rewardIndex).getRewardAmount();
+                    board.getScore().addScore(rewardAmount);
+                    //Test
+                    System.out.print(board.getScore().getScore());
+                    System.out.println();
+                }
+
             }
         }
     }
