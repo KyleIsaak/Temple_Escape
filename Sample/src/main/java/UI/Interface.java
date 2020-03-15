@@ -1,6 +1,7 @@
 package UI;
 
 import GameLogic.Board;
+import GameLogic.Enemy;
 
 import javax.swing.*;
 
@@ -44,11 +45,19 @@ public class Interface extends JFrame {
         trapACell = new ArrayList<>();
         trapBCell = new ArrayList<>();
         EnemyCell = new ArrayList<>();
+
         createBoard();
         setSize(1000, 1000);
         setVisible(true);
     }
-
+    public void updateEnemyPosition(int currentlevel)
+    {
+        for(int i=0;i<currentlevel*2;i++)
+        {
+            this.EnemyCell.get(i).setNewPosition(board.getEnemyArrayManager().get(i).getPosition());
+        }
+        repaint();
+    }
     private void createBoard() {
         int pos[];
         for (int y = 0; y < map[0].length; y++) {
@@ -73,13 +82,12 @@ public class Interface extends JFrame {
                     int index = board.EnemyFinder(x, y);
                    // char EnType = board.getEnemyArrayManager().get(index).getType();
                     DrawCell Enemy= new DrawCell(pos, step, DrawCell.cellType.ENEMY);
-                    trapACell.add(Enemy);
+                    EnemyCell.add(Enemy);
                     add(Enemy);
 
                 }
                 else if (map[x][y] == 0) {
                     createWall(x, y, pos);
-
                 }
                 else {
                     DrawCell path = new DrawCell(pos, step, DrawCell.cellType.PATH);

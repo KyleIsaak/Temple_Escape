@@ -13,7 +13,7 @@ class DrawEnemy extends JComponent {
         this.pos = pos;
     }
     public void paint(Graphics graphic) {
-        graphic.setColor(Color.red);
+        graphic.setColor(Color.green);
         graphic.fillRect (pos[0], pos[1], width, height);
     }
 }

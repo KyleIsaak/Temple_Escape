@@ -13,8 +13,7 @@ public class Board {
     private LevelGenerator generator;
 
 
-
-    public Board(int level){
+    public Board(int level) {
         //test
         generator = new LevelGenerator(41, 41);
         trapArrayManager = new ArrayList<Trap>();
@@ -27,85 +26,105 @@ public class Board {
         player = new Player(playerInit);
     }
 
-    public boolean isWall(int x, int y){ return generator.isWall(x, y);}
-    public boolean isInBounds(int x, int y) {return (x >= 0 && x < 41 && y >= 0 && y < 41);}
+    public boolean isWall(int x, int y) {
+        return generator.isWall(x, y);
+    }
 
-    public int[][] getBoard() { return generator.getBoard();}
-    public Exit getExit() { return exit; }
-    public void setDifficulty(LevelGenerator.Difficulty choice) { generator.setLevel(choice);}
-    public Player getPlayer(){return this.player;}
-    public int[] getPlayerPos(){
+    public boolean isInBounds(int x, int y) {
+        return (x >= 0 && x < 41 && y >= 0 && y < 41);
+    }
+
+    public int[][] getBoard() {
+        return generator.getBoard();
+    }
+
+    public Exit getExit() {
+        return exit;
+    }
+
+    public void setDifficulty(LevelGenerator.Difficulty choice) {
+        generator.setLevel(choice);
+    }
+
+    public Player getPlayer() {
+        return this.player;
+    }
+
+    public int[] getPlayerPos() {
         return player.getPosition();
     }
 
     //public Enemy getEnemy(){return this.enemy;}
     //public int[] getEnemyPos(){return enemy.getPosition();}
 
-    public int integerRandomizer(){
+    public int integerRandomizer() {
         Random random = new Random();
         return random.nextInt(40);
     }
 
     ///////////////// Trap Functionality ///////////////
-    public ArrayList<Trap> getTrapArrayManager(){ return trapArrayManager; }
-    public void trapGenerator (int difficultyLevel){
-        switch (difficultyLevel){
+    public ArrayList<Trap> getTrapArrayManager() {
+        return trapArrayManager;
+    }
+
+    public void trapGenerator(int difficultyLevel) {
+        switch (difficultyLevel) {
             case 1:
                 for (int i = 0; i < 4; i++) {
                     trapTypeGenerator('A');
                 }
-                for (int i = 0; i < 2; i++){
+                for (int i = 0; i < 2; i++) {
                     trapTypeGenerator('B');
                 }
                 break;
 
             case 2:
-                for (int i = 0; i < 8; i++){
+                for (int i = 0; i < 8; i++) {
                     trapTypeGenerator('A');
                 }
-                for (int i = 0; i < 4; i++){
+                for (int i = 0; i < 4; i++) {
                     trapTypeGenerator('B');
                 }
                 break;
 
             case 3:
-                for (int i = 0; i < 12; i++){
+                for (int i = 0; i < 12; i++) {
                     trapTypeGenerator('A');
                 }
-                for (int i = 0; i < 8; i++){
+                for (int i = 0; i < 8; i++) {
                     trapTypeGenerator('B');
                 }
                 break;
         }
     }
 
-    private void trapTypeGenerator (char type){
-        switch (type){
-            case 'A' :
+    private void trapTypeGenerator(char type) {
+        switch (type) {
+            case 'A':
                 trapLocationRandomizer(new TrapTypeA());
 
                 break;
 
-            case 'B' :
+            case 'B':
                 trapLocationRandomizer(new TrapTypeB());
                 break;
         }
     }
 
-    public void trapLocationRandomizer (Trap trapObject){
+    public void trapLocationRandomizer(Trap trapObject) {
         int x = integerRandomizer();
         int y = integerRandomizer();
 
-        while ((isWall(x,y)) || (isTrap(x,y))){
+        while ((isWall(x, y)) || (isTrap(x, y))) {
             x = integerRandomizer();
             y = integerRandomizer();
         }
-        trapObject.setPosition(new int [] {x, y});
+        trapObject.setPosition(new int[]{x, y});
         //cellStatusManager.add(new int [] {x, y});
         trapArrayManager.add(trapObject);
     }
 
-    public boolean isTrap(int x, int y){
+    public boolean isTrap(int x, int y) {
         for (int i = 0; i < trapArrayManager.size(); i++) {
             int[] current = trapArrayManager.get(i).getPosition();
             if ((current[0] == x) && (current[1] == y)) {
@@ -115,10 +134,10 @@ public class Board {
         return false;
     }
 
-    public int trapFinder (int x, int y){
-        for (int i = 0; i < trapArrayManager.size(); i++){
+    public int trapFinder(int x, int y) {
+        for (int i = 0; i < trapArrayManager.size(); i++) {
             Trap current = trapArrayManager.get(i);
-            if ((current.getPosition()[0] == x )&& (current.getPosition()[1] == y)){
+            if ((current.getPosition()[0] == x) && (current.getPosition()[1] == y)) {
                 return i;
             }
         }
@@ -126,63 +145,68 @@ public class Board {
     }
 
     ////////////// Exit /////////////
-    public void randomizeExitPosition(){
+    public void randomizeExitPosition() {
         int x = integerRandomizer();
         int y = integerRandomizer();
 
-        while ((isWall(x,y)) || (isTrap(x,y))){
+        while ((isWall(x, y)) || (isTrap(x, y))) {
             x = integerRandomizer();
             y = integerRandomizer();
         }
         exit.setPosition(new int[]{x, y});
 
     }
-    public boolean isCorner(int[] position)
-    {
-        int X=position[0];
-        int Y=position[1];
-        if(isWall(X+1,Y) && isWall(X,Y+1))
+
+    public boolean isCorner(int[] position) {
+        int X = position[0];
+        int Y = position[1];
+        if (isWall(X + 1, Y) && isWall(X, Y + 1))
             return true;
-        if(isWall(X-1,Y)&&isWall(X,Y+1))
+        if (isWall(X - 1, Y) && isWall(X, Y + 1))
             return true;
-        if(isWall(X+1,Y)&&isWall(X,Y-1))
+        if (isWall(X + 1, Y) && isWall(X, Y - 1))
             return true;
-        if(isWall(X-1,Y)&&isWall(X,Y-1))
-            return true;
-        return false;
-    }
-    public boolean isThreeWall(int[]position)
-    {
-        int X=position[0];
-        int Y=position[1];
-        if(isWall(X+1,Y) && isWall(X,Y+1) && isWall(X-1,Y))
-            return true;
-        if(isWall(X+1,Y) && isWall(X,Y-1) && isWall(X-1,Y))
-            return true;
-        if(isWall(X,Y+1) && isWall(X,Y-1) && isWall(X-1,Y))
-            return true;
-        if(isWall(X,Y+1) && isWall(X,Y-1) && isWall(X+1,Y))
+        if (isWall(X - 1, Y) && isWall(X, Y - 1))
             return true;
         return false;
     }
+
+    public boolean isThreeWall(int[] position) {
+        int X = position[0];
+        int Y = position[1];
+        if (isWall(X + 1, Y) && isWall(X, Y + 1) && isWall(X - 1, Y))
+            return true;
+        if (isWall(X + 1, Y) && isWall(X, Y - 1) && isWall(X - 1, Y))
+            return true;
+        if (isWall(X, Y + 1) && isWall(X, Y - 1) && isWall(X - 1, Y))
+            return true;
+        if (isWall(X, Y + 1) && isWall(X, Y - 1) && isWall(X + 1, Y))
+            return true;
+        return false;
+    }
+
     ///////////////// Enemy Functionality ///////////////
-    public ArrayList<Enemy> getEnemyArrayManager(){ return EnemyArrayManager; }
-    public void EnemyGenerator (int difficultyLevel){
-        switch (difficultyLevel){
+    public ArrayList<Enemy> getEnemyArrayManager() {
+        return EnemyArrayManager;
+    }
+
+    public void EnemyGenerator(int difficultyLevel)
+    {
+        switch (difficultyLevel) {
             case 1:
-                for (int i = 0; i < 2; i++){
+                for (int i = 0; i < 2; i++) {
                     EnemyLocationRandomizer(new Enemy(playerInit));
                 }
                 break;
 
             case 2:
-                for (int i = 0; i < 3; i++){
+                for (int i = 0; i < 3; i++) {
                     EnemyLocationRandomizer(new Enemy(playerInit));
                 }
                 break;
 
             case 3:
-                for (int i = 0; i < 4; i++){
+                for (int i = 0; i < 4; i++) {
                     EnemyLocationRandomizer(new Enemy(playerInit));
                 }
                 break;
@@ -190,21 +214,21 @@ public class Board {
     }
 
 
-
-    public void EnemyLocationRandomizer (Enemy EnemyObject){
+    public void EnemyLocationRandomizer(Enemy EnemyObject) {
         int x = integerRandomizer();
         int y = integerRandomizer();
 
-        while ((isWall(x,y)) || (isTrap(x,y))){
+        while ((isWall(x, y)) || (isTrap(x, y))) {
             x = integerRandomizer();
             y = integerRandomizer();
         }
 
-       EnemyObject.setPosition(new int [] {x, y});
+        EnemyObject.setPosition(new int[]{x, y});
         //cellStatusManager.add(new int [] {x, y});
-       EnemyArrayManager.add(EnemyObject);
+        EnemyArrayManager.add(EnemyObject);
     }
-    public boolean isEnemy(int x, int y){
+
+    public boolean isEnemy(int x, int y) {
         for (int i = 0; i < EnemyArrayManager.size(); i++) {
             int[] current = EnemyArrayManager.get(i).getPosition();
             if ((current[0] == x) && (current[1] == y)) {
@@ -214,15 +238,24 @@ public class Board {
         return false;
     }
 
-    public int EnemyFinder (int x, int y){
-        for (int i = 0; i < EnemyArrayManager.size(); i++){
+    public int EnemyFinder(int x, int y) {
+        for (int i = 0; i < EnemyArrayManager.size(); i++) {
             Enemy current = EnemyArrayManager.get(i);
-            if ((current.getPosition()[0] == x )&& (current.getPosition()[1] == y)){
+            if ((current.getPosition()[0] == x) && (current.getPosition()[1] == y)) {
                 return i;
             }
         }
         return -1;
     }
+
+    public void MoveEnemy(int currentlevel) {
+        for (int i = 0; i < currentlevel*2; i++) {
+            ArrayList<int[]> position = EnemyArrayManager.get(i).chaseThePlayer(getPlayerPos());
+            int []nextMove=position.get(0);
+            EnemyArrayManager.get(i).move(nextMove);
+        }
+    }
+}
     //Enemy functionality
     /*
     public void chaseThePlayer(){
@@ -321,4 +354,4 @@ public class Board {
     }
     */
 
-}
+

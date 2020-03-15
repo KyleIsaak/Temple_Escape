@@ -15,15 +15,18 @@ public class TestMain  {
 
     public static void main (String[] args) throws InterruptedException{
         board = new Board(currentLevel);
-        new Interface(step, board);
+        Interface test=new Interface(step, board);
 
         Timer timer =new Timer();
-        /*while(!isGameOver)
+        while(!isGameOver)
         {
             TimeUnit.MILLISECONDS.sleep(delay);
-            board.chaseThePlayer();
+            board.MoveEnemy(currentLevel);
+            test.updateEnemyPosition(currentLevel);
             //System.out.println("Time elapsed:" + timer.displayMinutes() + ":" + timer.displaySeconds());
-        }*/
+        }
+
+
 
 //        timer = new Timer();
 //        long startTime = 20;
