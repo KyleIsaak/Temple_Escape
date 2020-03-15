@@ -16,16 +16,38 @@ public class LevelGenerator {
     private final int PATH = 1;
 
     public static void main(String[] args){
-        LevelGenerator test = new LevelGenerator(40, 40);
+        LevelGenerator test = new LevelGenerator(41, 41);
         test.setLevel(LevelGenerator.Difficulty.EASY);
         int[][] map = test.getBoard();
-        for (int y = 1; y < map[0].length; y++) {
-            for (int x = 0; x < map.length - 1; x++) {
+
+        for (int y = 0; y < 41; y++) {
+            for (int x = 0; x < 41; x++) {
                 System.out.print(map[x][y]);
             }
             System.out.println();
         }
-
+//
+//        int newx = 3;
+//        int newy = 3;
+//
+//        map[newx][newy] = 5;
+//        newx = 2;
+//        map[newx][newy] = 4;
+//        newx = 4;
+//        map[newx][newy] = 6;
+//        newx = 3; newy = 2;
+//        map[newx][newy] = 8;
+//        newy = 4;
+//        map[newx][newy] = 7;
+//
+//        for (int y = 1; y < map[0].length; y++) {
+//            for (int x = 0; x < map.length - 1; x++) {
+//                System.out.print(map[x][y]);
+//            }
+//            System.out.println();
+//        }
+//
+//        System.out.println("3, 4: " + map[3][4]);
     }
 
     public LevelGenerator(int x, int y){
@@ -67,14 +89,12 @@ public class LevelGenerator {
         }
     }
 
-    public int[][] getBoard(){
-        return this.board;
-    }
-    private void generate(){
-        board[1][y/2] = PATH;
-        unvisited(1, y/2);
+    public void generate(){
+        board[1][1] = PATH;                //player init
+
+        pushStacks(1, 1);
         int currentX = 1;
-        int currentY = y/2;
+        int currentY = 1;
         int next;
         while (!unvisitX.empty()) {
             findNeighbor(currentX, currentY);
@@ -82,7 +102,7 @@ public class LevelGenerator {
                 next = randomNeighbor();
                 makePath(currentX, currentY, next);
                 if (!isComplete()){
-                    unvisited(currentX, currentY);
+                    pushStacks(currentX, currentY);
                 }
 
                 currentX = neighborX.get(next);
@@ -96,7 +116,11 @@ public class LevelGenerator {
 
     public boolean isWall(int x, int y){ return board[x][y] == WALL; }
 
-    private void unvisited(int x, int y){
+    public int[][] getBoard(){
+        return board;
+    }
+
+    private void pushStacks(int x, int y){
         unvisitX.push(x);
         unvisitY.push(y);
     }
@@ -108,14 +132,6 @@ public class LevelGenerator {
         int wallY = y - (y - nextY) / 2;
         board[wallX][wallY] = PATH;
         board[nextX][nextY] = PATH;
-    }
-
-    private boolean isComplete(){
-        return (neighborX.size() == 1);
-    }
-
-    private boolean hasNeighbor(){
-        return !neighborX.isEmpty();
     }
 
     private void findNeighbor(int x, int y){
@@ -140,11 +156,12 @@ public class LevelGenerator {
         }
     }
 
-    private  boolean isInBound(int x, int y){
-        if (x < 1 || x > this.x - 2 || y < 1 || y > this.y - 2) {
-            return false;
-        }
-        return true;
+    private boolean isComplete(){
+        return (neighborX.size() == 1);
+    }
+
+    private boolean hasNeighbor(){
+        return !neighborX.isEmpty();
     }
 
     private int randomNeighbor(){
@@ -152,21 +169,30 @@ public class LevelGenerator {
         return random.nextInt(neighborX.size());
     }
 
+    private boolean isInBound(int x, int y){
+        if (x < 1 || x > this.x - 2 || y < 1 || y > this.y - 2) {
+            return false;
+        }
+        return true;
+    }
+
     private void randomRemoveWall(){
         Random random = new Random();
         boolean isRemoved = false;
 
-        int ranX = 0;
-        int ranY = 0;
-        while(!isRemoved) {
-            ranX = random.nextInt(this.x);
-            ranY = random.nextInt(this.y);
-            if (isInBound(ranX, ranY) && board[ranX][ranY] == WALL){
-                isRemoved = true;
+        while (!isRemoved){
+            int ranX;
+            int ranY;
+            while(true) {
+                ranX = random.nextInt(x);
+                ranY = random.nextInt(y);
+                if (board[ranX][ranY] == WALL && isInBound(ranX, ranY)){
+                    break;
+                }
+
             }
+            isRemoved = true;
+            board[ranX][ranY] = PATH;
         }
-        board[ranX][ranY] = PATH;
-
-
     }
 }

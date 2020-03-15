@@ -3,6 +3,9 @@ package GameLogic;
 public class Score {
     private int currentScore;
 
+    //Constructor
+    public Score (){ this.currentScore = 100; }
+
     //Getters
     public int getScore() {
         return this.currentScore;
