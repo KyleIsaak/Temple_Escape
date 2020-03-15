@@ -8,7 +8,7 @@ public class Player {
     }
 
     public int[] getPosition(){
-        System.out.println("Player x = " + this.pos[0] + " Player y = " + this.pos[1]);
+        //System.out.println("Player x = " + this.pos[0] + " Player y = " + this.pos[1]);
         return this.pos;
     }
 

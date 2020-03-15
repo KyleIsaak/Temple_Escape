@@ -94,10 +94,7 @@ public class LevelGenerator {
         }
     }
 
-    public boolean isWall(int x, int y){
-        //System.out.println(board[x][y] == WALL);
-        return board[x][y] == WALL;
-    }
+    public boolean isWall(int x, int y){ return board[x][y] == WALL; }
 
     private void unvisited(int x, int y){
         unvisitX.push(x);
