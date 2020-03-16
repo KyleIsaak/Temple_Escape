@@ -48,7 +48,7 @@ public class GameScreen extends JPanel {
         nextScreen = next;
     }
     private void setUp(){
-
+        removeAll();
         board = new Board(Misc.getCurrentLevel());
         wallCell = new ArrayList<>();
         pathCell = new ArrayList<>();
@@ -56,7 +56,6 @@ public class GameScreen extends JPanel {
         trapBCell = new ArrayList<>();
         rewardACell = new ArrayList<>();
         rewardBCell = new ArrayList<>();
-
 
         board.setDifficulty(LevelGenerator.Difficulty.EASY);
         this.map = board.getBoard();
@@ -75,7 +74,7 @@ public class GameScreen extends JPanel {
         addKeyListener(new listener());
         setFocusable(true);
         setVisible(false);
-        repaint();
+
     }
     private void createBoard() {
         int pos[];
@@ -267,7 +266,7 @@ public class GameScreen extends JPanel {
                             board.getPlayer().getPosition()[1] == board.getExit().getPosition()[1]) {
                         System.out.println("next level");
                         Misc.incCurrentLevel();
-
+                        setUp();
                         nextScreen.requestFocus();
                         nextScreen.setVisible(true);
 
