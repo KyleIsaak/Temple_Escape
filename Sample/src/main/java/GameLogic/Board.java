@@ -21,8 +21,6 @@ public class Board {
 
     private Enemy enemy;
     private int[] enemyInit;
-    private Reward reward;
-    private int[] rewardInit;
 
     public Board(int level){
         generator = new LevelGenerator(sizeX, sizeY);
@@ -53,15 +51,13 @@ public class Board {
     public int[] getPlayerPos(){ return player.getPosition(); }
     public Enemy getEnemy(){return this.enemy;}
     public int[] getEnemyPos(){return enemy.getPosition();}
-    public Reward getReward(){return this.reward;}
-    public int[] getRewardPos(){return reward.getPosition();}
     public Score getScore() { return score; }
-    public void decreaseRegularRewardCounter() { regularRewardCounter = regularRewardCounter - 1; }
 
     public int integerRandomizer(){
         Random random = new Random();
         return (random.nextInt(sizeX));
     }
+
     ///////////////// Trap Functionality ///////////////
     public ArrayList<Trap> getTrapArrayManager(){ return trapArrayManager; }
     public void trapGenerator (int difficultyLevel){
