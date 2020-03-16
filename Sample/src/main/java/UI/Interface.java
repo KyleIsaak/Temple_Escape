@@ -142,16 +142,16 @@ public class Interface extends JFrame {
                     }
 
                 } else if (key == DOWN) {
-                    if (!board.isWall(playerPos[0], playerPos[1] + 1)) {
+                    //if (!board.isWall(playerPos[0], playerPos[1] + 1)) {
                         board.getPlayer().moveDown();
                         player.setPlayerDOWN();
-                    }
+                    //}
 
                 } else if (key == RIGHT) {
-                    if (!board.isWall(playerPos[0] + 1, playerPos[1])) {
+                    //if (!board.isWall(playerPos[0] + 1, playerPos[1])) {
                         board.getPlayer().moveRight();
                         player.setPlayerRIGHT();
-                    }
+                    //}
 
                 } else if (key == LEFT) {
                     if (!board.isWall(playerPos[0] - 1, playerPos[1])) {
@@ -185,29 +185,32 @@ public class Interface extends JFrame {
                     if (rewardType == 'A') {
                         for (int i = 0; i < rewardACell.size(); i++) {
                             DrawCell oldReward = rewardACell.get(i);
-                            if (oldReward.getPosition() == rewardPos) {
-                                rewardACell.remove(oldReward);
-                                remove(oldReward);
-                                repaint();
-                                break;
+                            if (oldReward.getPosition()[0] == rewardPos[0]) {
+                                if (oldReward.getPosition()[1] == rewardPos[1]) {
+                                    System.out.println("Reward removed");
+                                    oldReward.setVisible(false);
+                                    rewardACell.remove(oldReward);
+                                    remove(oldReward);
+                                    break;
+                                }
                             }
                         }
-
-                            //DrawCell rewardA = new DrawCell(rewardPos, step, DrawCell.cellType.REWARDTYPEB);
-                            //rewardBCell.remove(rewardA);
-                            //remove(rewardA);
                     }
 
                         if (rewardType == 'B') {
 
                             for (int i = 0; i < rewardBCell.size(); i++) {
                                 DrawCell oldReward = rewardBCell.get(i);
-                                if (oldReward.getPosition() == rewardPos) {
-                                    rewardBCell.remove(oldReward);
-                                    remove(oldReward);
-                                    repaint();
+                                if (oldReward.getPosition()[0] == rewardPos[0]) {
+                                    if (oldReward.getPosition()[1] == rewardPos[1]){
+                                        System.out.println("Reward removed");
+                                        oldReward.setVisible(false);
+                                        rewardBCell.remove(oldReward);
+                                        remove(oldReward);
                                     break;
+                                   }
                                 }
+
                             }
 
 
@@ -221,8 +224,9 @@ public class Interface extends JFrame {
                             add(newPath);
 
                             board.getRewardArrayManager().remove(rewardIndex);  //Remove reward from its array
+                            newPath.updateCell(DrawCell.cellType.PATH);
                             repaint();
-                            newPath.setPlayerDOWN();
+                            //newPath.setPlayerREWARD();    //If we want a sprite of the player getting a reward
                             //newPath.setNewPosition(rewardPos);
                             //newPath.updateCell(DrawCell.cellType.PATH);
 
