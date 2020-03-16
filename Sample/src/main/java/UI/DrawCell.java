@@ -22,8 +22,7 @@ public class DrawCell extends JComponent {
         TRAPTYPEB,
         REWARDTYPEA,
         REWARDTYPEB,
-        EXITLOCKED,
-        EXITUNLOCKED
+        EXIT
     }
 
     public DrawCell(int[] pos, int step, cellType type){
@@ -74,22 +73,21 @@ public class DrawCell extends JComponent {
                 imageSrc = "src/pic/path.png";
                 break;
 
-            case EXITLOCKED:
+            case EXIT:
                 imageSrc = "src/pic/Lock.png";
                 break;
         }
         image = Toolkit.getDefaultToolkit().getImage(imageSrc);
     }
 
+    public void setLockUnlocked() { imageSrc = "src/pic/Unlock.png"; }
     public void setPlayerUP(){
         imageSrc = "src/pic/player_up.png";
     }
     public void setPlayerDOWN(){
         imageSrc = "src/pic/player.png";
     }
-    public void setPlayerLEFT(){
-        imageSrc = "src/pic/player_left.png";
-    }
+    public void setPlayerLEFT(){ imageSrc = "src/pic/player_left.png"; }
     public void setPlayerRIGHT(){
         imageSrc = "src/pic/player_right.png";
     }
