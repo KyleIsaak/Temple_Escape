@@ -147,16 +147,16 @@ public class Interface extends JFrame {
                     }
 
                 } else if (key == DOWN) {
-                    //if (!board.isWall(playerPos[0], playerPos[1] + 1)) {
+                    if (!board.isWall(playerPos[0], playerPos[1] + 1)) {
                     board.getPlayer().moveDown();
                     player.setPlayerDOWN();
-                    //}
+                    }
 
                 } else if (key == RIGHT) {
-                    //if (!board.isWall(playerPos[0] + 1, playerPos[1])) {
+                    if (!board.isWall(playerPos[0] + 1, playerPos[1])) {
                     board.getPlayer().moveRight();
                     player.setPlayerRIGHT();
-                    //}
+                    }
 
                 } else if (key == LEFT) {
                     if (!board.isWall(playerPos[0] - 1, playerPos[1])) {
@@ -220,8 +220,11 @@ public class Interface extends JFrame {
                         }
                         //System.out.println(rewardBCell);
                         if(rewardBCell.isEmpty()){
-                            System.out.println("ALL KEYS COLLECTED!!!");
-                            board.isExitUnlocked();
+                            System.out.println("All keys collected");
+                            board.unlockExit();
+                            exit.setLockUnlocked();
+                            exit.setNewPosition(board.getExit().getPosition());
+                            repaint();
                         }
 
                     }
@@ -241,14 +244,6 @@ public class Interface extends JFrame {
                     System.out.println();
                 }
 
-            }
-
-
-            if (board.isExitUnlocked()) {
-                System.out.println("Exit unlocked");
-                exit.setLockUnlocked();
-                exit.setNewPosition(board.getExit().getPosition());
-                repaint();
             }
 
             if ((board.getExit().getPosition()[0] == playerPos[0]) && (board.getExit().getPosition()[1] == playerPos[1])) {
