@@ -37,7 +37,7 @@ public class Interface extends JFrame {
 
         player = new DrawCell(board.getPlayerPos(), step, DrawCell.cellType.PLAYER);
         add(player);
-        exit = new DrawCell(board.getExit().getPosition(),step, DrawCell.cellType.EXITLOCKED);
+        exit = new DrawCell(board.getExit().getPosition(), step, DrawCell.cellType.EXIT);
         add(exit);
         enemy = new DrawCell(board.getEnemyPos(), step, DrawCell.cellType.ENEMY);
         add(enemy);
@@ -183,6 +183,7 @@ public class Interface extends JFrame {
 
                     if(rewardType == 'A'){
                         rewardACell.remove(board.getRewardArrayManager().get(rewardIndex));
+                        board.decreaseRegularRewardCounter();
                     }
 
                     if(rewardType == 'B'){
@@ -196,11 +197,23 @@ public class Interface extends JFrame {
                     repaint();
 
                     // Test
-                    System.out.print("Reward Stepped On: ");
+                    System.out.println("Reward Stepped On: ");
                     System.out.print(board.getScore().getScore());
-                    System.out.println();
                 }
 
+                if (board.isExitUnlocked()){
+                    System.out.println("Exit unlocked");
+                    exit.setLockUnlocked();
+                    exit.setNewPosition(board.getExit().getPosition());
+                    repaint();
+                }
+
+                if ((board.getExit().getPosition()[0] == playerPos[0]) && (board.getExit().getPosition()[1] == playerPos[1])){
+                    if (board.isExitUnlocked()){
+                        //Test
+                        System.out.println("Game Completed");
+                    }
+                }
             }
         }
     }

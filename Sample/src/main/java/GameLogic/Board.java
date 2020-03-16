@@ -8,6 +8,7 @@ public class Board {
     private Score score;
     private ArrayList<Trap> trapArrayManager;
     private ArrayList<Reward> rewardArrayManager;
+    private int regularRewardCounter;
     private Exit exit;
     private LevelGenerator generator;
 
@@ -50,12 +51,12 @@ public class Board {
     public int[] getEnemyPos(){return enemy.getPosition();}
     public Reward getReward(){return this.reward;}
     public int[] getRewardPos(){return reward.getPosition();}
-
     public Score getScore() { return score; }
+    public void decreaseRegularRewardCounter() { regularRewardCounter = regularRewardCounter - 1; }
 
     public int integerRandomizer(){
         Random random = new Random();
-        return random.nextInt(40);
+        return (random.nextInt(39) + 1);
     }
     ///////////////// Trap Functionality ///////////////
     public ArrayList<Trap> getTrapArrayManager(){ return trapArrayManager; }
@@ -150,7 +151,17 @@ public class Board {
 
     }
 
-
+    public boolean isExitUnlocked(){
+        if (exit.getIsUnlocked()){
+            return true;
+        }
+        else if (regularRewardCounter <= 0){
+            System.out.println("Unlock Exit");
+            exit.setUnlocked(true);
+            return true;
+        }
+        return false;
+    }
 
 
 
@@ -290,6 +301,7 @@ public class Board {
                 for (int i = 0; i < 2; i++){
                     rewardTypeGenerator('B');
                 }
+                regularRewardCounter = 4;
                 break;
 
             case 2:
@@ -299,6 +311,7 @@ public class Board {
                 for (int i = 0; i < 4; i++){
                     rewardTypeGenerator('B');
                 }
+                regularRewardCounter = 8;
                 break;
 
             case 3:
@@ -308,6 +321,7 @@ public class Board {
                 for (int i = 0; i < 8; i++){
                     rewardTypeGenerator('B');
                 }
+                regularRewardCounter = 12;
                 break;
         }
     }
