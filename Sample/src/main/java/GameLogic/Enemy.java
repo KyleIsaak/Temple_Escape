@@ -26,6 +26,9 @@ public class Enemy {
         this.position[0] += direction[0];
         this.position[1] += direction[1];
     }
+    public void setPosition(int[] position) {
+        this.position = position;
+    }
 
     public int[] chaseThePlayer(int[] position) {
         int[] chase;

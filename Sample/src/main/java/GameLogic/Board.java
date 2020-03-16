@@ -19,8 +19,8 @@ public class Board {
     private Exit exit;
     private LevelGenerator generator;
 
-    private Enemy enemy;
-    private int[] enemyInit;
+    private ArrayList<Enemy> EnemyArrayManager;
+
 
     public Board(int level){
         generator = new LevelGenerator(sizeX, sizeY);
@@ -34,8 +34,9 @@ public class Board {
         player = new Player(playerInit);
         score = new Score();
         //test// need to modify the number of enemy base on the level
-        enemyInit = new int[]{sizeX - 2, sizeY - 2};
-        enemy = new Enemy(enemyInit);
+        EnemyArrayManager = new ArrayList<Enemy>();
+        EnemyGenerator(level);
+
 
 
     }
@@ -52,9 +53,10 @@ public class Board {
         playerInit = new int[]{1, 1};
         player = new Player(playerInit);
         score = new Score(scoreAmount);
-        //test// need to modify the number of enemy base on the level
-        enemyInit = new int[]{sizeX - 2, sizeY - 2};
-        enemy = new Enemy(enemyInit);
+
+        EnemyArrayManager = new ArrayList<Enemy>();
+        EnemyGenerator(level);
+
 
 
     }
@@ -68,8 +70,8 @@ public class Board {
 
     public Player getPlayer(){return this.player;}
     public int[] getPlayerPos(){ return player.getPosition(); }
-    public Enemy getEnemy(){return this.enemy;}
-    public int[] getEnemyPos(){return enemy.getPosition();}
+    public Enemy getEnemy(int i){return EnemyArrayManager.get(i);}
+    public int[] getEnemyPos(int i){return EnemyArrayManager.get(i).getPosition();}
     public Score getScore() { return score; }
 
     public int integerRandomizer(){
@@ -199,14 +201,14 @@ public class Board {
     }
 
     //Enemy functionality
-    public void chaseThePlayer(){
+    public void chaseThePlayer(Enemy enemy, int i){
         boolean testValidMove = true;
         int[] planMove = {0,0};
         planMove=enemy.chaseThePlayer(player.getPosition());
-        int[] PlayerPosition=getEnemyPos();
+        int[] PlayerPosition=getPlayerPos();
         int PlayerX=PlayerPosition[0];//playerPositionX
         int PlayerY=PlayerPosition[1];//PlayerPositionY
-        int[] Enemyposition=getEnemyPos();
+        int[] Enemyposition=getEnemyPos(i);
         int EnemyX=Enemyposition[0];
         int EnemyY=Enemyposition[1];
         while(testValidMove) {
@@ -293,6 +295,77 @@ public class Board {
         }
         enemy.move(planMove);
     }
+    public ArrayList<Enemy> getEnemyArrayManager() {
+        return EnemyArrayManager;
+    }
+
+    public void EnemyGenerator(int difficultyLevel)
+    {
+        switch (difficultyLevel) {
+            case 1:
+                for (int i = 0; i < 2; i++) {
+                    EnemyLocationRandomizer(new Enemy(playerInit));
+                }
+                break;
+
+            case 2:
+                for (int i = 0; i < 3; i++) {
+                    EnemyLocationRandomizer(new Enemy(playerInit));
+                }
+                break;
+
+            case 3:
+                for (int i = 0; i < 4; i++) {
+                    EnemyLocationRandomizer(new Enemy(playerInit));
+                }
+                break;
+        }
+    }
+
+
+    public void EnemyLocationRandomizer(Enemy enemy) {
+        int x = integerRandomizer();
+        int y = integerRandomizer();
+
+        while ((isWall(x, y)) || (isTrap(x, y))) {
+            x = integerRandomizer();
+            y = integerRandomizer();
+        }
+
+       enemy.setPosition(new int[]{x, y});
+        //cellStatusManager.add(new int [] {x, y});
+        EnemyArrayManager.add(enemy);
+    }
+
+    public boolean isEnemy(int x, int y) {
+        for (int i = 0; i < EnemyArrayManager.size(); i++) {
+            int[] current = EnemyArrayManager.get(i).getPosition();
+            if ((current[0] == x) && (current[1] == y)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int EnemyFinder(int x, int y) {
+        for (int i = 0; i < EnemyArrayManager.size(); i++) {
+            Enemy current = EnemyArrayManager.get(i);
+            if ((current.getPosition()[0] == x) && (current.getPosition()[1] == y)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public void MoveEnemy(int currentlevel) {
+        for (int i = 0; i < currentlevel*2; i++) {
+            int[] position = EnemyArrayManager.get(i).chaseThePlayer(getPlayerPos());
+            EnemyArrayManager.get(i).move(position);
+        }
+    }
+
+
+
 
     ///////////////// Reward Functionality ///////////////
     public ArrayList<Reward> getRewardArrayManager(){ return rewardArrayManager; }

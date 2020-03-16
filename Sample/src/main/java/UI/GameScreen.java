@@ -63,11 +63,15 @@ public class GameScreen extends JPanel {
 
         player = new DrawLive(board.getPlayerPos(), step, DrawLive.cellType.PLAYER);
         exit = new DrawDead(board.getExit().getPosition(), step, DrawDead.cellType.EXIT);
-        enemy = new DrawLive(board.getEnemyPos(), step, DrawLive.cellType.ENEMY);
+        int currentlevel=1;
+        for(int i=0;i<=currentlevel;i++) {
+            enemy = new DrawLive(board.getEnemyPos(i), step, DrawLive.cellType.ENEMY);
+            add(enemy);
+        }
 
         add(player);
         add(exit);
-        add(enemy);
+
 
         createBoard();
         setBackground(Color.decode("#483b3a"));
@@ -276,7 +280,13 @@ public class GameScreen extends JPanel {
                 }
                 Misc.setScore(board.getScore().getScore());
             }
-            board.chaseThePlayer();
+            for(int i=0;i<=1;i++) {
+                board.chaseThePlayer(board.getEnemyArrayManager().get(i), i);
+                if(playerPos[0]==board.getEnemyArrayManager().get(i).getPosition()[0] && playerPos[1]==board.getEnemyArrayManager().get(i).getPosition()[1])
+                {
+                    System.out.println("Game Over");
+                }
+            }
         }
     }
 }
