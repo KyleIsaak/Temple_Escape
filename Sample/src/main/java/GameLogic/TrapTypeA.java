@@ -6,6 +6,7 @@ public class TrapTypeA extends Trap {
 
     public TrapTypeA() {super(new int[] {0,0}); }
     public TrapTypeA(int[] position) {super(position); }
+
     public int getDamage() { return damage; }
     public char getType() { return type; }
 

@@ -92,7 +92,7 @@ public class PauseScreen extends JPanel implements ActionListener{
         if (listener.equals(resume)){
             setVisible(false);
             gameScreen.requestFocus();
-            gameScreen.setButton(true);
+
         } else if (listener.equals(control)){
             button_control.setText("NO");
         }

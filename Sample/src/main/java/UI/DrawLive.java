@@ -37,9 +37,9 @@ public class DrawLive extends JComponent {
 
                 System.out.println(imageSrc);
                 break;
-//            case ENEMY:
-//
-//                break;
+            case ENEMY:
+                inputStream = DrawLive.class.getResourceAsStream("/enemy_right.png");
+                break;
         }
 //        image = Toolkit.getDefaultToolkit().getImage(imageSrc);
         try {

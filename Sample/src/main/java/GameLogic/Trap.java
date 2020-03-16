@@ -8,5 +8,6 @@ public abstract class Trap {
     public Trap (int[] position) { this.position = position; }
     public int[] getPosition(){ return position; }
     public void setPosition(int[] position) { this.position = position; }
+    public abstract int getDamage();
     public abstract char getType();
 }

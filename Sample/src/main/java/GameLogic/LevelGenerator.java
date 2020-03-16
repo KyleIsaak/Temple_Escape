@@ -115,9 +115,7 @@ public class LevelGenerator {
         }
     }
 
-    public boolean isWall(int x, int y){
-        return (board[x][y] == WALL);
-    }
+    public boolean isWall(int x, int y){ return board[x][y] == WALL; }
 
     public int[][] getBoard(){
         return board;

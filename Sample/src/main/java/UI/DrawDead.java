@@ -9,7 +9,6 @@ import java.util.Random;
 
 public class DrawDead extends JComponent {
 
-    private String imageSrc;
     private Image imageSource;
     private cellType type;
     private int[] pos;
@@ -20,7 +19,10 @@ public class DrawDead extends JComponent {
         WALL,
         PATH,
         TRAPTYPEA,
-        TRAPTYPEB
+        TRAPTYPEB,
+        REWARDTYPEA,
+        REWARDTYPEB,
+        EXIT
     }
     //color can be set to sprites later on
     public DrawDead(int[] pos, int step, cellType type){
@@ -52,7 +54,16 @@ public class DrawDead extends JComponent {
                 } else if (choice == 1){
                     inputStream = DrawLive.class.getResourceAsStream("/path2.png");
                 }
+                break;
+            case REWARDTYPEA:
+                inputStream = DrawLive.class.getResourceAsStream("/coin.png");
+                break;
 
+            case REWARDTYPEB:
+                inputStream = DrawLive.class.getResourceAsStream("/key.png");
+                break;
+            case EXIT:
+                inputStream = DrawLive.class.getResourceAsStream("/Lock.png");
                 break;
         }
         try {
@@ -60,6 +71,16 @@ public class DrawDead extends JComponent {
         } catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public void setLockUnlocked() {
+        inputStream = DrawLive.class.getResourceAsStream("/Unlock.png");
+        try {
+            imageSource = ImageIO.read(inputStream);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        repaint();
     }
 
     public void setWallDirection(boolean top, boolean left, boolean down, boolean right){
@@ -109,4 +130,19 @@ public class DrawDead extends JComponent {
 
     }
 
+    public int[] getPosition(){
+        return this.pos;
+    }
+
+    public void updateCell(cellType type){
+        this.type = type;
+        selectSprite();
+        try {
+            imageSource = ImageIO.read(inputStream);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        repaint();
+
+    }
 }

@@ -6,7 +6,7 @@
 
     <groupId>UI</groupId>
     <artifactId>Sample</artifactId>
-    <version>1.0-SNAPSHIP</version>
+    <version>1.0</version>
 
     <properties>
         <maven.compiler.source>1.7</maven.compiler.source>
@@ -33,7 +33,7 @@
 
         <resources>
             <resource>
-                <directory>classes</directory>
+                <directory>src/pic</directory>
                 <includes>
                     <include>*.*</include>
                 </includes>
