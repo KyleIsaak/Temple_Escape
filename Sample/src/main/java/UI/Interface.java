@@ -185,13 +185,7 @@ public class Interface extends JFrame {
                     int rewardAmount = board.getRewardArrayManager().get(rewardIndex).getRewardAmount();
                     char rewardType = board.getRewardArrayManager().get(rewardIndex).getType();
                     board.getScore().addScore(rewardAmount);
-
-/* old code
-                    if(rewardType == 'A'){
-                        rewardACell.remove(board.getRewardArrayManager().get(rewardIndex));
-                        board.decreaseRegularRewardCounter();
-                    }
-*/
+                    
 
                     if (rewardType == 'A') {
                         for (int i = 0; i < rewardACell.size(); i++) {
@@ -224,10 +218,6 @@ public class Interface extends JFrame {
 
                         }
 
-
-                        //DrawCell rewardB = new DrawCell(rewardPos, step, DrawCell.cellType.REWARDTYPEB);
-                        //rewardBCell.remove(rewardB);
-                        //remove(rewardB);
                     }
 
                     DrawCell newPath = new DrawCell(rewardPos, step, DrawCell.cellType.PATH);
@@ -238,8 +228,6 @@ public class Interface extends JFrame {
                     newPath.updateCell(DrawCell.cellType.PATH);
                     repaint();
                     //newPath.setPlayerREWARD();    //If we want a sprite of the player getting a reward
-                    //newPath.setNewPosition(rewardPos);
-                    //newPath.updateCell(DrawCell.cellType.PATH);
 
                     // Test
                     System.out.println("Reward Stepped On At Position: " + rewardPos[0] + "," + rewardPos[1]);
