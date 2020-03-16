@@ -42,6 +42,7 @@ public class GameScreen extends JPanel {
     public GameScreen(int step) {
         this.step = step;
         setUp();
+        addKeyListener(new listener());
     }
 
     public void setNextScreen(NextScreen next){
@@ -71,7 +72,7 @@ public class GameScreen extends JPanel {
         createBoard();
         setBackground(Color.decode("#483b3a"));
         setLayout(new OverlayLayout(this));
-        addKeyListener(new listener());
+
         setFocusable(true);
         setVisible(false);
 
@@ -159,6 +160,7 @@ public class GameScreen extends JPanel {
             if (isReleased) {
                 isReleased = false;
                 if (key == UP){
+                    System.out.println("UP");
                     if(!board.isWall(playerPos[0], playerPos[1] - 1)) {
                         board.getPlayer().moveUp();
                     }
