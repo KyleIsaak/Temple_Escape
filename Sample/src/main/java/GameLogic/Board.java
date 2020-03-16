@@ -65,41 +65,20 @@ public class Board {
     ///////////////// Trap Functionality ///////////////
     public ArrayList<Trap> getTrapArrayManager(){ return trapArrayManager; }
     public void trapGenerator (int difficultyLevel){
-        switch (difficultyLevel){
-            case 1:
-                for (int i = 0; i < 4; i++) {
-                    trapTypeGenerator('A');
-                }
-                for (int i = 0; i < 2; i++){
-                    trapTypeGenerator('B');
-                }
-                break;
-
-            case 2:
-                for (int i = 0; i < 8; i++){
-                    trapTypeGenerator('A');
-                }
-                for (int i = 0; i < 4; i++){
-                    trapTypeGenerator('B');
-                }
-                break;
-
-            case 3:
-                for (int i = 0; i < 12; i++){
-                    trapTypeGenerator('A');
-                }
-                for (int i = 0; i < 8; i++){
-                    trapTypeGenerator('B');
-                }
-                break;
+        for (int i = 0; i < difficultyLevel*2; i++) {   //Spikes
+            trapTypeGenerator('A');
         }
+        for (int i = 0; i < difficultyLevel; i++){      //Lava
+            trapTypeGenerator('B');
+        }
+
     }
+
 
     private void trapTypeGenerator (char type){
         switch (type){
             case 'A' :
                 trapLocationRandomizer(new TrapTypeA());
-
                 break;
 
             case 'B' :
@@ -303,37 +282,15 @@ public class Board {
     ///////////////// Reward Functionality ///////////////
     public ArrayList<Reward> getRewardArrayManager(){ return rewardArrayManager; }
     public void rewardGenerator (int difficultyLevel){
-        switch (difficultyLevel){
-            case 1:
-                for (int i = 0; i < 4; i++) {
-                   rewardTypeGenerator('A');
-                }
-                for (int i = 0; i < 2; i++){
-                    rewardTypeGenerator('B');
-                }
-                regularRewardCounter = 4;
-                break;
 
-            case 2:
-                for (int i = 0; i < 8; i++){
-                    rewardTypeGenerator('A');
-                }
-                for (int i = 0; i < 4; i++){
-                    rewardTypeGenerator('B');
-                }
-                regularRewardCounter = 8;
-                break;
-
-            case 3:
-                for (int i = 0; i < 12; i++){
-                    rewardTypeGenerator('A');
-                }
-                for (int i = 0; i < 8; i++){
-                    rewardTypeGenerator('B');
-                }
-                regularRewardCounter = 12;
-                break;
+        for (int i = 0; i < difficultyLevel*2; i++) {   //Coins
+            rewardTypeGenerator('A');
         }
+        for (int i = 0; i < difficultyLevel; i++){      //Keys
+            rewardTypeGenerator('B');
+        }
+        regularRewardCounter = 4;
+
     }
 
     private void rewardTypeGenerator (char type){
