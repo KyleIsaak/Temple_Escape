@@ -71,18 +71,19 @@ public class LevelGenerator {
             case EASY:
                 for(int i = 0; i < (x * y / 3); i++){
                     randomRemoveWall();
-                    break;
                 }
+                break;
             case MEDIUM:
                 for(int i = 0; i < (x * y / 4); i ++){
                     randomRemoveWall();
-                    break;
                 }
+                break;
             case HARD:
                 for(int i = 0; i < (x * y / 5); i ++){
                     randomRemoveWall();
-                    break;
                 }
+                break;
+
             default:
                 break;
 
@@ -179,17 +180,17 @@ public class LevelGenerator {
     private void randomRemoveWall(){
         Random random = new Random();
         boolean isRemoved = false;
-
+        boolean found = false;
+        int ranX = 0;
+        int ranY = 0;
         while (!isRemoved){
-            int ranX;
-            int ranY;
-            while(true) {
+
+            while(!found) {
                 ranX = random.nextInt(x);
                 ranY = random.nextInt(y);
                 if (board[ranX][ranY] == WALL && isInBound(ranX, ranY)){
-                    break;
+                    found = true;
                 }
-
             }
             isRemoved = true;
             board[ranX][ranY] = PATH;

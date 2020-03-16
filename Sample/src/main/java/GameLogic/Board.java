@@ -5,24 +5,27 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Board {
+
+    private int sizeX = 27;
+    private int sizeY = 27;
+    private Player player;
+    private int[] playerInit;
+
     private Score score;
+
     private ArrayList<Trap> trapArrayManager;
     private ArrayList<Reward> rewardArrayManager;
     private int regularRewardCounter;
     private Exit exit;
     private LevelGenerator generator;
 
-    private Player player;
-    private int[] playerInit;
     private Enemy enemy;
     private int[] enemyInit;
     private Reward reward;
     private int[] rewardInit;
 
-
     public Board(int level){
-        //test
-        generator = new LevelGenerator(41, 41);
+        generator = new LevelGenerator(sizeX, sizeY);
         trapArrayManager = new ArrayList<Trap>();
         trapGenerator(level);
         rewardArrayManager = new ArrayList<Reward>();
@@ -33,14 +36,14 @@ public class Board {
         player = new Player(playerInit);
         score = new Score();
         //test// need to modify the number of enemy base on the level
-        enemyInit = new int[]{39, 39};
+        enemyInit = new int[]{sizeX - 2, sizeY - 2};
         enemy = new Enemy(enemyInit);
 
 
     }
 
     public boolean isWall(int x, int y){ return generator.isWall(x, y);}
-    public boolean isInBounds(int x, int y) {return (x >= 0 && x < 41 && y >= 0 && y < 41);}
+    public boolean isInBounds(int x, int y) {return (x >= 0 && x < sizeX && y >= 0 && y < sizeY);}
 
     public int[][] getBoard() { return generator.getBoard();}
     public Exit getExit() { return exit; }
@@ -57,7 +60,7 @@ public class Board {
 
     public int integerRandomizer(){
         Random random = new Random();
-        return (random.nextInt(39) + 1);
+        return (random.nextInt(sizeX));
     }
     ///////////////// Trap Functionality ///////////////
     public ArrayList<Trap> getTrapArrayManager(){ return trapArrayManager; }
@@ -104,6 +107,7 @@ public class Board {
                 break;
         }
     }
+
 
     public void trapLocationRandomizer (Trap trapObject){
         int x = integerRandomizer();

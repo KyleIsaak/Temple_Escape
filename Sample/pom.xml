@@ -6,10 +6,39 @@
 
     <groupId>UI</groupId>
     <artifactId>Sample</artifactId>
-    <version>1.0-SNAPSHIP</version>
+    <version>1.0</version>
 
     <properties>
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
     </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>UI.TestMain</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+
+            </plugin>
+        </plugins>
+
+        <resources>
+            <resource>
+                <directory>src/pic</directory>
+                <includes>
+                    <include>*.*</include>
+                </includes>
+            </resource>
+
+        </resources>
+    </build>
 </project>

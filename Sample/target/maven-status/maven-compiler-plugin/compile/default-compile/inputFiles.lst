@@ -1,13 +1,24 @@
-/Users/jasontan/Documents/SFU/Semester/Spring 2020/CMPT 276/project/Sample/src/main/java/GameLogic/Timer.java
-/Users/jasontan/Documents/SFU/Semester/Spring 2020/CMPT 276/project/Sample/src/main/java/UI/DrawEnemy.java
-/Users/jasontan/Documents/SFU/Semester/Spring 2020/CMPT 276/project/Sample/src/main/java/GameLogic/Player.java
-/Users/jasontan/Documents/SFU/Semester/Spring 2020/CMPT 276/project/Sample/src/main/java/UI/TestMain.java
-/Users/jasontan/Documents/SFU/Semester/Spring 2020/CMPT 276/project/Sample/src/main/java/UI/DrawTimer.java
-/Users/jasontan/Documents/SFU/Semester/Spring 2020/CMPT 276/project/Sample/src/main/java/GameLogic/Score.java
-/Users/jasontan/Documents/SFU/Semester/Spring 2020/CMPT 276/project/Sample/src/main/java/GameLogic/Board.java
-/Users/jasontan/Documents/SFU/Semester/Spring 2020/CMPT 276/project/Sample/src/main/java/UI/DrawCell.java
-/Users/jasontan/Documents/SFU/Semester/Spring 2020/CMPT 276/project/Sample/src/main/java/UI/DrawReward.java
-/Users/jasontan/Documents/SFU/Semester/Spring 2020/CMPT 276/project/Sample/src/main/java/GameLogic/LevelGenerator.java
-/Users/jasontan/Documents/SFU/Semester/Spring 2020/CMPT 276/project/Sample/src/main/java/GameLogic/Reward.java
-/Users/jasontan/Documents/SFU/Semester/Spring 2020/CMPT 276/project/Sample/src/main/java/UI/Interface.java
-/Users/jasontan/Documents/SFU/Semester/Spring 2020/CMPT 276/project/Sample/src/main/java/GameLogic/Enemy.java
+D:\CMPT-276\project\Sample\src\main\java\UI\DrawLive.java
+D:\CMPT-276\project\Sample\src\main\java\UI\DrawTimer.java
+D:\CMPT-276\project\Sample\src\main\java\UI\TitleScreen.java
+D:\CMPT-276\project\Sample\src\main\java\UI\DrawCell.java
+D:\CMPT-276\project\Sample\src\main\java\UI\DrawDead.java
+D:\CMPT-276\project\Sample\src\main\java\GameLogic\LevelGenerator.java
+D:\CMPT-276\project\Sample\src\main\java\GameLogic\RewardTypeA.java
+D:\CMPT-276\project\Sample\src\main\java\GameLogic\Timer.java
+D:\CMPT-276\project\Sample\src\main\java\UI\TestMain.java
+D:\CMPT-276\project\Sample\src\main\java\GameLogic\Enemy.java
+D:\CMPT-276\project\Sample\src\main\java\UI\Button.java
+D:\CMPT-276\project\Sample\src\main\java\GameLogic\Score.java
+D:\CMPT-276\project\Sample\src\main\java\GameLogic\TrapTypeB.java
+D:\CMPT-276\project\Sample\src\main\java\UI\DrawReward.java
+D:\CMPT-276\project\Sample\src\main\java\GameLogic\Trap.java
+D:\CMPT-276\project\Sample\src\main\java\UI\Interface.java
+D:\CMPT-276\project\Sample\src\main\java\UI\PauseScreen.java
+D:\CMPT-276\project\Sample\src\main\java\GameLogic\TrapTypeA.java
+D:\CMPT-276\project\Sample\src\main\java\GameLogic\Player.java
+D:\CMPT-276\project\Sample\src\main\java\GameLogic\Exit.java
+D:\CMPT-276\project\Sample\src\main\java\GameLogic\Board.java
+D:\CMPT-276\project\Sample\src\main\java\UI\GameScreen.java
+D:\CMPT-276\project\Sample\src\main\java\GameLogic\RewardTypeB.java
+D:\CMPT-276\project\Sample\src\main\java\GameLogic\Reward.java

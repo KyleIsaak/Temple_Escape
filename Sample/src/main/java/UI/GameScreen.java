@@ -4,96 +4,94 @@ import GameLogic.Board;
 import GameLogic.LevelGenerator;
 
 import javax.swing.*;
-
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 
-public class Interface extends JFrame {
 
-//<<<<<<< HEAD
-//=======
-//    private int step;
-//    private DrawCell player;
-//    private DrawCell exit;
-//    private DrawCell enemy;
-//    //private DrawCell path;
-//    private ArrayList<DrawCell> wallCell;
-//    private ArrayList<DrawCell> pathCell;
-//    private ArrayList<DrawCell> trapACell;
-//    private ArrayList<DrawCell> trapBCell;
-//    private ArrayList<DrawCell> rewardACell;
-//    private ArrayList<DrawCell> rewardBCell;
-//    private Board board;
-//    private int[][] map;
-//
-//>>>>>>> origin/testMerge
-    public Interface(int step) {
-        setLayout(null);
-        setTitle("Game");
-        PauseScreen pause = new PauseScreen();
-        GameScreen game = new GameScreen(step);
-        JPanel title = new TitleScreen(game);
-        JPanel misc = new Misc(game, pause);
-        NextScreen nextScreen = new NextScreen();
+public class GameScreen extends JPanel {
 
-        game.setNextScreen(nextScreen);
-        nextScreen.setGameScreen(game);
-        pause.setGameScreen(game);
-        title.setBounds(0, 0, 1000, 1000);
-        game.setBounds(0, 0, 880, 1000);
-        pause.setBounds(0, 0, 1000, 1000);
-        misc.setBounds(880, 0, 120, 1000);
-        nextScreen.setBounds(0, 0, 1000, 1000);
+    private int step;
+    private DrawLive player;
+    private DrawDead exit;
+    private DrawLive enemy;
 
-//<<<<<<< HEAD
-        getContentPane().add(title);
-        getContentPane().add(pause);
-        getContentPane().add(nextScreen);
-        getContentPane().add(game);
-        getContentPane().add(misc);
+    private ArrayList<DrawDead> wallCell;
+    private ArrayList<DrawDead> pathCell;
+    private ArrayList<DrawDead> trapACell;
+    private ArrayList<DrawDead> trapBCell;
+    private ArrayList<DrawDead> rewardACell;
+    private ArrayList<DrawDead> rewardBCell;
 
+    private Board board;
+    private int[][] map;
 
-        createWindow();
-//=======
-//        player = new DrawCell(board.getPlayerPos(), step, DrawCell.cellType.PLAYER);
-//        add(player);
-//        exit = new DrawCell(board.getExit().getPosition(), step, DrawCell.cellType.EXIT);
-//        add(exit);
-//        enemy = new DrawCell(board.getEnemyPos(), step, DrawCell.cellType.ENEMY);
-//        add(enemy);
-//
-//        wallCell = new ArrayList<>();
-//        pathCell = new ArrayList<>();
-//        trapACell = new ArrayList<>();
-//        trapBCell = new ArrayList<>();
-//        rewardACell = new ArrayList<>();
-//        rewardBCell = new ArrayList<>();
-//>>>>>>> origin/testMerge
+    private JPanel nextScreen;
+    //default controls
+    int UP = KeyEvent.VK_W;
+    int DOWN = KeyEvent.VK_S;
+    int LEFT = KeyEvent.VK_A;
+    int RIGHT = KeyEvent.VK_D;
 
+    public GameScreen(int step) {
+        this.step = step;
+        setUp();
     }
 
-
-    private void createWindow(){
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1000, 1000);
-        setVisible(true);
+    public void setNextScreen(NextScreen next){
+        nextScreen = next;
     }
+    private void setUp(){
+
+        board = new Board(Misc.getCurrentLevel());
+        wallCell = new ArrayList<>();
+        pathCell = new ArrayList<>();
+        trapACell = new ArrayList<>();
+        trapBCell = new ArrayList<>();
+        rewardACell = new ArrayList<>();
+        rewardBCell = new ArrayList<>();
 
 
+        board.setDifficulty(LevelGenerator.Difficulty.EASY);
+        this.map = board.getBoard();
+
+        player = new DrawLive(board.getPlayerPos(), step, DrawLive.cellType.PLAYER);
+        exit = new DrawDead(board.getExit().getPosition(), step, DrawDead.cellType.EXIT);
+        enemy = new DrawLive(board.getEnemyPos(), step, DrawLive.cellType.ENEMY);
+
+        add(player);
+        add(exit);
+        add(enemy);
+
+        createBoard();
+        setBackground(Color.decode("#483b3a"));
+        setLayout(new OverlayLayout(this));
+        addKeyListener(new listener());
+        setFocusable(true);
+        setVisible(false);
+        repaint();
+    }
     private void createBoard() {
         int pos[];
-        for (int y = 1; y < map[0].length; y++) {
-            for (int x = 1; x < map.length; x++) {
+        for (int y = 0; y < map[0].length; y++) {
+            for (int x = 0; x < map.length; x++) {
                 pos = new int[]{x, y};
+
                 if (board.isTrap(x, y)) {
                     int index = board.trapFinder(x, y);
                     char trapType = board.getTrapArrayManager().get(index).getType();
-                    if (trapType == 'A') {
-                        DrawCell trapA = new DrawCell(pos, step, DrawCell.cellType.TRAPTYPEA);
+                    if (trapType == 'A'){
+                        DrawDead trapA = new DrawDead(pos, step, DrawDead.cellType.TRAPTYPEA);
                         trapACell.add(trapA);
                         add(trapA);
-                    } else if (trapType == 'B') {
-                        DrawCell trapB = new DrawCell(pos, step, DrawCell.cellType.TRAPTYPEB);
+                    } else if (trapType == 'B'){
+                        DrawDead trapB = new DrawDead(pos, step, DrawDead.cellType.TRAPTYPEB);
                         trapBCell.add(trapB);
                         add(trapB);
                     }
@@ -102,25 +100,26 @@ public class Interface extends JFrame {
                     int index = board.rewardFinder(x, y);
                     char rewardType = board.getRewardArrayManager().get(index).getType();
                     if (rewardType == 'A') {
-                        DrawCell rewardA = new DrawCell(pos, step, DrawCell.cellType.REWARDTYPEA);
+                        DrawDead rewardA = new DrawDead(pos, step, DrawDead.cellType.REWARDTYPEA);
                         rewardACell.add(rewardA);
                         add(rewardA);
-                        DrawCell path = new DrawCell(pos, step, DrawCell.cellType.PATH);
+                        DrawDead path = new DrawDead(pos, step, DrawDead.cellType.PATH);
                         pathCell.add(path);
                         add(path);
                     } else if (rewardType == 'B') {
-                        DrawCell rewardB = new DrawCell(pos, step, DrawCell.cellType.REWARDTYPEB);
+                        DrawDead rewardB = new DrawDead(pos, step, DrawDead.cellType.REWARDTYPEB);
                         rewardBCell.add(rewardB);
                         add(rewardB);
-                        DrawCell path = new DrawCell(pos, step, DrawCell.cellType.PATH);
+                        DrawDead path = new DrawDead(pos, step, DrawDead.cellType.PATH);
                         pathCell.add(path);
                         add(path);
                     }
-                } else if (map[x][y] == 0) {
+                }
+                else if (map[x][y] == 0) {
                     createWall(x, y, pos);
 
                 } else {
-                    DrawCell path = new DrawCell(pos, step, DrawCell.cellType.PATH);
+                    DrawDead path = new DrawDead(pos, step, DrawDead.cellType.PATH);
                     pathCell.add(path);
                     add(path);
                 }
@@ -128,26 +127,18 @@ public class Interface extends JFrame {
         }
     }
 
-    private void createWall(int x, int y, int[] pos) {
+    private void createWall(int x, int y, int[] pos){
         boolean left = false;
         boolean right = false;
         boolean top = false;
         boolean down = false;
 
-        if (board.isInBounds(x - 1, y) && board.isWall(x - 1, y)) {
-            left = true;
-        }
-        if (board.isInBounds(x + 1, y) && board.isWall(x + 1, y)) {
-            right = true;
-        }
-        if (board.isInBounds(x, y + 1) && board.isWall(x, y + 1)) {
-            down = true;
-        }
-        if (board.isInBounds(x, y - 1) && board.isWall(x, y - 1)) {
-            top = true;
-        }
+        if (board.isInBounds(x - 1, y) && board.isWall(x - 1, y)){ left = true; }
+        if (board.isInBounds(x + 1, y) && board.isWall(x + 1, y)){ right = true; }
+        if (board.isInBounds(x, y + 1) && board.isWall(x, y + 1)){ down = true; }
+        if (board.isInBounds(x, y - 1) && board.isWall(x, y - 1)){ top = true; }
 
-        DrawCell wall = new DrawCell(pos, step, DrawCell.cellType.WALL);
+        DrawDead wall = new DrawDead(pos, step, DrawDead.cellType.WALL);
         wall.setWallDirection(top, left, down, right);
         wallCell.add(wall);
         add(wall);
@@ -155,10 +146,7 @@ public class Interface extends JFrame {
 
     private class listener extends KeyAdapter {
         boolean isReleased = false;
-        int UP = KeyEvent.VK_W;
-        int DOWN = KeyEvent.VK_S;
-        int LEFT = KeyEvent.VK_A;
-        int RIGHT = KeyEvent.VK_D;
+
 
         @Override
         public void keyReleased(KeyEvent e) {
@@ -169,40 +157,38 @@ public class Interface extends JFrame {
         public void keyPressed(KeyEvent e) {
             int key = e.getKeyCode();
             int[] playerPos = board.getPlayerPos();
-
-            //System.out.println(playerPos[1]);
-            if (isReleased){
-                //Update Enemy
-
+            if (isReleased) {
                 isReleased = false;
-
-                if (key == UP) {
-                    if (!board.isWall(playerPos[0], playerPos[1] - 1)) {
+                if (key == UP){
+                    if(!board.isWall(playerPos[0], playerPos[1] - 1)) {
                         board.getPlayer().moveUp();
-                        player.setPlayerUP();
                     }
-
-                } else if (key == DOWN) {
-                    if (!board.isWall(playerPos[0], playerPos[1] + 1)) {
-                    board.getPlayer().moveDown();
+                    player.setPlayerUP();
+                    player.setNewPosition(board.getPlayerPos());
+                    repaint();
+                } else if (key == DOWN){
+                    if(!board.isWall(playerPos[0], playerPos[1] + 1)) {
+                        board.getPlayer().moveDown();
+                    }
                     player.setPlayerDOWN();
+                    player.setNewPosition(board.getPlayerPos());
+                    repaint();
+                } else if (key == RIGHT){
+                    if(!board.isWall(playerPos[0] + 1, playerPos[1])) {
+                        board.getPlayer().moveRight();
                     }
-
-                } else if (key == RIGHT) {
-                    if (!board.isWall(playerPos[0] + 1, playerPos[1])) {
-                    board.getPlayer().moveRight();
                     player.setPlayerRIGHT();
-                    }
-
-                } else if (key == LEFT) {
-                    if (!board.isWall(playerPos[0] - 1, playerPos[1])) {
+                    player.setNewPosition(board.getPlayerPos());
+                    repaint();
+                } else if (key == LEFT){
+                    if(!board.isWall(playerPos[0]-  1, playerPos[1])) {
                         board.getPlayer().moveLeft();
-                        player.setPlayerLEFT();
                     }
-
+                    player.setPlayerLEFT();
+                    player.setNewPosition(board.getPlayerPos());
+                    repaint();
                 }
-                player.setNewPosition(board.getPlayerPos());
-                repaint();
+
                 // Check whether player stepped on any traps
                 if (board.isTrap(playerPos[0], playerPos[1])) {
                     // Test
@@ -225,7 +211,7 @@ public class Interface extends JFrame {
 
                     if (rewardType == 'A') {
                         for (int i = 0; i < rewardACell.size(); i++) {
-                            DrawCell oldReward = rewardACell.get(i);
+                            DrawDead oldReward = rewardACell.get(i);
                             if (oldReward.getPosition()[0] == rewardPos[0]) {
                                 if (oldReward.getPosition()[1] == rewardPos[1]) {
                                     System.out.println("Reward type A removed");
@@ -236,13 +222,11 @@ public class Interface extends JFrame {
                                 }
                             }
                         }
-
                     }
-
                     if (rewardType == 'B') {
 
                         for (int i = 0; i < rewardBCell.size(); i++) {
-                            DrawCell oldReward = rewardBCell.get(i);
+                            DrawDead oldReward = rewardBCell.get(i);
                             if (oldReward.getPosition()[0] == rewardPos[0]) {
                                 if (oldReward.getPosition()[1] == rewardPos[1]) {
                                     System.out.println("Reward type B removed");
@@ -252,25 +236,23 @@ public class Interface extends JFrame {
                                     break;
                                 }
                             }
-
                         }
                         //System.out.println(rewardBCell);
                         if(rewardBCell.isEmpty()){
                             System.out.println("All keys collected");
                             board.unlockExit();
                             exit.setLockUnlocked();
-                            exit.setNewPosition(board.getExit().getPosition());
                             repaint();
                         }
-
                     }
 
-                    DrawCell newPath = new DrawCell(rewardPos, step, DrawCell.cellType.PATH);
+
+                    DrawDead newPath = new DrawDead(rewardPos, step, DrawDead.cellType.PATH);
                     pathCell.add(newPath);
                     add(newPath);
 
                     board.getRewardArrayManager().remove(rewardIndex);  //Remove reward from its array
-                    newPath.updateCell(DrawCell.cellType.PATH);
+                    newPath.updateCell(DrawDead.cellType.PATH);
                     repaint();
                     //newPath.setPlayerREWARD();    //If we want a sprite of the player getting a reward
 
@@ -280,17 +262,23 @@ public class Interface extends JFrame {
                     System.out.println();
                 }
 
-            }
+                if (board.getExit().getIsUnlocked()) {
+                    if (board.getPlayer().getPosition()[0] == board.getExit().getPosition()[0] &&
+                            board.getPlayer().getPosition()[1] == board.getExit().getPosition()[1]) {
+                        System.out.println("next level");
+                        Misc.incCurrentLevel();
 
-            if ((board.getExit().getPosition()[0] == playerPos[0]) && (board.getExit().getPosition()[1] == playerPos[1])) {
-                if (board.isExitUnlocked()) {
-                    //Test
-                    System.out.println("Game Completed");
+                        nextScreen.requestFocus();
+                        nextScreen.setVisible(true);
+
+                    }
                 }
+                Misc.setScore(board.getScore().getScore());
             }
+            board.chaseThePlayer();
         }
     }
-
 }
+
 
 

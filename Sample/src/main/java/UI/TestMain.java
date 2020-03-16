@@ -2,28 +2,34 @@ package UI;
 import GameLogic.Board;
 import GameLogic.Timer;
 
+//<<<<<<< HEAD
+//import javax.swing.*;
+//import javax.swing.border.Border;
+//import java.awt.*;
+//
+//=======
 import java.util.concurrent.TimeUnit;
+//>>>>>>> origin/testMerge
 
 public class TestMain  {
     private static boolean isGameOver = false;
     private static int delay = 200;
-    private static int step = 20;
+    private static int step = 32;
     private static int currentLevel = 1;
     private static Board board;
-//    private static Timer timer;
-
 
     public static void main (String[] args) throws InterruptedException{
-        board = new Board(currentLevel);
-        new Interface(step, board);
+        new newFont();
+        new Interface(step);
 
-        Timer timer =new Timer();
-        while(!isGameOver)
-        {
-            TimeUnit.MILLISECONDS.sleep(delay);
-            board.chaseThePlayer();
-            //System.out.println("Time elapsed:" + timer.displayMinutes() + ":" + timer.displaySeconds());
-        }
+//        Timer timer =new Timer();
+//        while(!isGameOver)
+//        {
+//            TimeUnit.MILLISECONDS.sleep(delay);
+//
+//            //System.out.println("Time elapsed:" + timer.displayMinutes() + ":" + timer.displaySeconds());
+//        }
+//>>>>>>> origin/testMerge
 
 //        timer = new Timer();
 //        long startTime = 20;

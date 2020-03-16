@@ -26,12 +26,6 @@ public class Enemy {
         this.position[0] += direction[0];
         this.position[1] += direction[1];
     }
-    double getDistanceX(int[] position) {
-        return position[0]-this.position[0];//enemy - player location;
-    }
-    double getDistanceY(int[] position) {
-        return position[1]-this.position[1];//enemy - player location;
-    }
 
     public int[] chaseThePlayer(int[] position) {
         int[] chase;
