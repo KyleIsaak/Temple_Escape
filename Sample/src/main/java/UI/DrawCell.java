@@ -66,7 +66,7 @@ public class DrawCell extends JComponent {
                 break;
 
             case REWARDTYPEB:
-                imageSrc = "src/pic/key.png";
+                imageSrc = "src/pic/key2.png";
                 break;
 
             case PATH:
