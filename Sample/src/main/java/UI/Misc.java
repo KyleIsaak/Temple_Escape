@@ -1,5 +1,7 @@
 package UI;
 
+        import GameLogic.Score;
+
         import javax.swing.*;
         import java.awt.*;
         import java.awt.event.ActionEvent;
@@ -7,6 +9,7 @@ package UI;
 
 public class Misc extends JPanel implements ActionListener {
     private static int currentLevel = 1;
+    private static int scoreContainer = 0;
     private JButton button_pause;
     private JButton button_TxtScore;
     private static JButton button_score;
@@ -42,7 +45,9 @@ public class Misc extends JPanel implements ActionListener {
         setVisible(true);
     }
 
+    public static int getScoreContainer() {return scoreContainer; }
     public static void setScore(int score){
+        scoreContainer = score;
         button_score.setText(String.valueOf(score));
     }
 

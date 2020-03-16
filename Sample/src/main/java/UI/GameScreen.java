@@ -50,7 +50,7 @@ public class GameScreen extends JPanel {
     }
     private void setUp(){
         removeAll();
-        board = new Board(Misc.getCurrentLevel());
+        board = new Board(Misc.getCurrentLevel(), Misc.getScoreContainer());
         wallCell = new ArrayList<>();
         pathCell = new ArrayList<>();
         trapACell = new ArrayList<>();

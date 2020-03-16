@@ -40,6 +40,25 @@ public class Board {
 
     }
 
+    //Non-Default Constructor
+    public Board(int level, int scoreAmount){
+        generator = new LevelGenerator(sizeX, sizeY);
+        trapArrayManager = new ArrayList<Trap>();
+        trapGenerator(level);
+        rewardArrayManager = new ArrayList<Reward>();
+        rewardGenerator(level);
+        exit = new Exit();
+        randomizeExitPosition();
+        playerInit = new int[]{1, 1};
+        player = new Player(playerInit);
+        score = new Score(scoreAmount);
+        //test// need to modify the number of enemy base on the level
+        enemyInit = new int[]{sizeX - 2, sizeY - 2};
+        enemy = new Enemy(enemyInit);
+
+
+    }
+
     public boolean isWall(int x, int y){ return generator.isWall(x, y);}
     public boolean isInBounds(int x, int y) {return (x >= 0 && x < sizeX && y >= 0 && y < sizeY);}
 
