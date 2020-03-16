@@ -5,15 +5,20 @@ import GameLogic.LevelGenerator;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 
-public class GameScreen extends JPanel {
+public class GameScreen extends JPanel implements ActionListener {
 
     private int step;
-
+    private JButton button_pause;
     private DrawLive player;
     private ArrayList<DrawDead> wallCell;
     private ArrayList<DrawDead> pathCell;
@@ -21,17 +26,28 @@ public class GameScreen extends JPanel {
     private ArrayList<DrawDead> trapBCell;
     private Board board;
     private int[][] map;
+    private final String PAUSE = " pause ";
+    private JPanel pauseScreen;
 
-    public GameScreen(int step, Board board) {
+    //default controls
+    int UP = KeyEvent.VK_W;
+    int DOWN = KeyEvent.VK_S;
+    int LEFT = KeyEvent.VK_A;
+    int RIGHT = KeyEvent.VK_D;
+
+    public GameScreen(int step, Board board, JPanel pauseScreen) {
         wallCell = new ArrayList<>();
         pathCell = new ArrayList<>();
         trapACell = new ArrayList<>();
         trapBCell = new ArrayList<>();
 
+        this.pauseScreen = pauseScreen;
         this.step = step;
         this.board = board;
         board.setDifficulty(LevelGenerator.Difficulty.EASY);
         this.map = board.getBoard();
+
+        addPauseButton();
 
         player = new DrawLive(board.getPlayerPos(), step, DrawLive.cellType.PLAYER);
         add(player);
@@ -42,9 +58,31 @@ public class GameScreen extends JPanel {
         setLayout(new OverlayLayout(this));
         addKeyListener(new listener());
         setFocusable(true);
-        setVisible(true);
+        setVisible(false);
     }
 
+    private void addPauseButton() {
+        Font font;
+        try {
+            InputStream input = GameScreen.class.getResourceAsStream("/font.ttf");
+            System.out.println(input);
+            font = Font.createFont(Font.TRUETYPE_FONT, input);
+            font = font.deriveFont(18f);
+        } catch (Exception e){
+            e.printStackTrace();
+            font = new Font("serif", Font.PLAIN, 14);
+        }
+        button_pause = new JButton(PAUSE);
+        button_pause.setForeground(Color.white);
+        button_pause.setFont(font);
+        button_pause.setBorder(BorderFactory.createRaisedBevelBorder());
+        button_pause.setBackground(null);
+        button_pause.addActionListener(this);
+        button_pause.setActionCommand(PAUSE);
+        add(button_pause);
+        button_pause.setAlignmentX(0.97f);
+        button_pause.setAlignmentY(0.1f);
+    }
     private void createBoard() {
         int pos[];
         for (int y = 0; y < map[0].length; y++) {
@@ -93,12 +131,22 @@ public class GameScreen extends JPanel {
         add(wall);
     }
 
+    public void setButton(boolean bool){
+        button_pause.setVisible(bool);
+    }
+    @Override
+    public void actionPerformed(ActionEvent actionEvent) {
+        String listener = actionEvent.getActionCommand();
+        if (listener.equals(PAUSE)){
+            pauseScreen.requestFocus();
+            pauseScreen.setVisible(true);
+            button_pause.setVisible(false);
+        }
+    }
+
     private class listener extends KeyAdapter {
         boolean isReleased = false;
-        int UP = KeyEvent.VK_W;
-        int DOWN = KeyEvent.VK_S;
-        int LEFT = KeyEvent.VK_A;
-        int RIGHT = KeyEvent.VK_D;
+
 
         @Override
         public void keyReleased(KeyEvent e) {
@@ -116,24 +164,31 @@ public class GameScreen extends JPanel {
                         board.getPlayer().moveUp();
                     }
                     player.setPlayerUP();
+                    player.setNewPosition(board.getPlayerPos());
+                    repaint();
                 } else if (key == DOWN){
                     if(!board.isWall(playerPos[0], playerPos[1] + 1)) {
                         board.getPlayer().moveDown();
                     }
                     player.setPlayerDOWN();
+                    player.setNewPosition(board.getPlayerPos());
+                    repaint();
                 } else if (key == RIGHT){
                     if(!board.isWall(playerPos[0] + 1, playerPos[1])) {
                         board.getPlayer().moveRight();
                     }
                     player.setPlayerRIGHT();
+                    player.setNewPosition(board.getPlayerPos());
+                    repaint();
                 } else if (key == LEFT){
                     if(!board.isWall(playerPos[0]-  1, playerPos[1])) {
                         board.getPlayer().moveLeft();
                     }
                     player.setPlayerLEFT();
+                    player.setNewPosition(board.getPlayerPos());
+                    repaint();
                 }
-                player.setNewPosition(board.getPlayerPos());
-                repaint();
+
             }
         }
     }

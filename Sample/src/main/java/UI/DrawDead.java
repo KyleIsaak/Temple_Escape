@@ -1,17 +1,20 @@
 package UI;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.InputStream;
 import java.util.Random;
 
 
 public class DrawDead extends JComponent {
 
     private String imageSrc;
-    private Image image;
+    private Image imageSource;
     private cellType type;
     private int[] pos;
     private int step;
+    private InputStream inputStream;
 
     public enum cellType{
         WALL,
@@ -27,75 +30,82 @@ public class DrawDead extends JComponent {
         selectSprite();
     }
 
-
     private void selectSprite(){
         switch(type){
             case WALL:
-
+                inputStream = DrawLive.class.getResourceAsStream("/wall.png");
                 break;
 
             case TRAPTYPEA:
-                imageSrc = "src/pic/spike.png";
+                inputStream = DrawLive.class.getResourceAsStream("/spike.png");
                 break;
 
             case TRAPTYPEB:
-                imageSrc = "src/pic/lava.png";
+                inputStream = DrawLive.class.getResourceAsStream("/lava.png");
                 break;
 
             case PATH:
                 Random ran = new Random();
                 int choice = ran.nextInt(2);
                 if (choice == 0){
-                    imageSrc = "src/pic/path.png";
+                    inputStream = DrawLive.class.getResourceAsStream("/path.png");
                 } else if (choice == 1){
-                    imageSrc = "src/pic/path2.png";
+                    inputStream = DrawLive.class.getResourceAsStream("/path2.png");
                 }
 
                 break;
         }
-        image = Toolkit.getDefaultToolkit().getImage(imageSrc);
+        try {
+            imageSource = ImageIO.read(inputStream);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void setWallDirection(boolean top, boolean left, boolean down, boolean right){
         if (top && left && down && right){
-            imageSrc = "src/pic/wall_cross.png";
+            inputStream = DrawLive.class.getResourceAsStream("/wall_cross.png");
         } else if (top && left && down){
-            imageSrc = "src/pic/wall_top_right.png";
+            inputStream = DrawLive.class.getResourceAsStream("/wall_top_right.png");
         } else if (top && left && right){
-            imageSrc = "src/pic/wall_horizontal.png";
+            inputStream = DrawLive.class.getResourceAsStream("/wall_horizontal.png");
         } else if (top && right && down){
-            imageSrc = "src/pic/wall_top_left.png";
+            inputStream = DrawLive.class.getResourceAsStream("/wall_top_left.png");
         } else if (right && left && down){
-            imageSrc = "src/pic/wall_cross.png";
+            inputStream = DrawLive.class.getResourceAsStream("/wall_cross.png");
         } else if (top && left){
-            imageSrc = "src/pic/wall_bottom_right.png";
+            inputStream = DrawLive.class.getResourceAsStream("/wall_bottom_right.png");
         } else if (top && down){
-            imageSrc = "src/pic/wall_top.png";
+            inputStream = DrawLive.class.getResourceAsStream("/wall_top.png");
         } else if (top && right){
-            imageSrc = "src/pic/wall_bottom_left.png";
+            inputStream = DrawLive.class.getResourceAsStream("/wall_bottom_left.png");
         } else if (left && down){
-            imageSrc = "src/pic/wall_top_right.png";
+            inputStream = DrawLive.class.getResourceAsStream("/wall_top_right.png");
         } else if (left && right){
-            imageSrc = "src/pic/wall_horizontal.png";
+            inputStream = DrawLive.class.getResourceAsStream("/wall_horizontal.png");
         } else if (right && down){
-            imageSrc = "src/pic/wall_top_left.png";
+            inputStream = DrawLive.class.getResourceAsStream("/wall_top_left.png");
         } else if (top){
-            imageSrc = "src/pic/wall_down.png";
+            inputStream = DrawLive.class.getResourceAsStream("/wall_down.png");
         } else if (left){
-            imageSrc = "src/pic/wall_right.png";
+            inputStream = DrawLive.class.getResourceAsStream("/wall_right.png");
         } else if (right){
-            imageSrc = "src/pic/wall_left.png";
+            inputStream = DrawLive.class.getResourceAsStream("/wall_left.png");
         } else if (down){
-            imageSrc = "src/pic/wall_top.png";
+            inputStream = DrawLive.class.getResourceAsStream("/wall_top.png");
         } else{
-            imageSrc = "src/pic/wall.png";
+            inputStream = DrawLive.class.getResourceAsStream("/wall.png");
         }
-        image = Toolkit.getDefaultToolkit().getImage(imageSrc);
+        try {
+            imageSource = ImageIO.read(inputStream);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void paint (Graphics graphic) {
         super.paintComponent(graphic);
-        graphic.drawImage(image, this.pos[0] * step + 10, this.pos[1] * step + 10, this);
+        graphic.drawImage(imageSource, this.pos[0] * step + 10, this.pos[1] * step + 50, this);
 
     }
 

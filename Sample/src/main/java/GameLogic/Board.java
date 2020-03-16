@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Board {
-    private int sizeX = 29;
-    private int sizeY = 29;
+    private int sizeX = 27;
+    private int sizeY = 27;
     private Player player;
     private int[] playerInit;
     private ArrayList<Trap> trapArrayManager;

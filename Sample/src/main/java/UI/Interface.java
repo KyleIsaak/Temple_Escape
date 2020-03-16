@@ -10,15 +10,20 @@ import java.util.ArrayList;
 public class Interface extends JFrame {
 
     public Interface(int step, Board board) {
-        setLayout(new OverlayLayout(getContentPane()));
+        setLayout(null);
+        setTitle("Game");
+        PauseScreen pause = new PauseScreen();
+        GameScreen game = new GameScreen(step, board, pause);
+        JPanel title = new TitleScreen(game);
 
-        JPanel game = new GameScreen(step, board);
-        JPanel pause = new PauseScreen();
-        pause.setAlignmentX(0);
-        pause.setAlignmentY(0);
-        getContentPane(). add(pause);
+        pause.setGameScreen(game);
+        title.setBounds(0, 0, 1000, 1000);
+        game.setBounds(0, 0, 1000, 1000);
+        pause.setBounds(0, 0, 1000, 1000);
+
+        getContentPane().add(title);
+        getContentPane().add(pause);
         getContentPane().add(game);
-
 
         createWindow();
 
@@ -26,8 +31,7 @@ public class Interface extends JFrame {
 
     private void createWindow(){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        setSize(960, 980);
+        setSize(1000, 1000);
         setVisible(true);
     }
 
