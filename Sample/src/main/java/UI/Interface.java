@@ -16,7 +16,7 @@ public class Interface extends JFrame {
     private DrawCell player;
     private DrawCell exit;
     private DrawCell enemy;
-    private DrawCell path;
+    //private DrawCell path;
     private ArrayList<DrawCell> wallCell;
     private ArrayList<DrawCell> pathCell;
     private ArrayList<DrawCell> trapACell;
@@ -135,26 +135,26 @@ public class Interface extends JFrame {
             if (isReleased) {
                 isReleased = false;
 
-                if (key == UP){
-                    if(!board.isWall(playerPos[0], playerPos[1] - 1)) {
+                if (key == UP) {
+                    if (!board.isWall(playerPos[0], playerPos[1] - 1)) {
                         board.getPlayer().moveUp();
                         player.setPlayerUP();
                     }
 
-                } else if (key == DOWN){
-                    if(!board.isWall(playerPos[0], playerPos[1] + 1)) {
+                } else if (key == DOWN) {
+                    if (!board.isWall(playerPos[0], playerPos[1] + 1)) {
                         board.getPlayer().moveDown();
                         player.setPlayerDOWN();
                     }
 
-                } else if (key == RIGHT){
-                    if(!board.isWall(playerPos[0] + 1, playerPos[1])) {
+                } else if (key == RIGHT) {
+                    if (!board.isWall(playerPos[0] + 1, playerPos[1])) {
                         board.getPlayer().moveRight();
                         player.setPlayerRIGHT();
                     }
 
-                } else if (key == LEFT){
-                    if(!board.isWall(playerPos[0]-  1, playerPos[1])) {
+                } else if (key == LEFT) {
+                    if (!board.isWall(playerPos[0] - 1, playerPos[1])) {
                         board.getPlayer().moveLeft();
                         player.setPlayerLEFT();
                     }
@@ -163,7 +163,7 @@ public class Interface extends JFrame {
                 player.setNewPosition(board.getPlayerPos());
                 repaint();
                 // Check whether player stepped on any traps
-                if (board.isTrap(playerPos[0], playerPos[1])){
+                if (board.isTrap(playerPos[0], playerPos[1])) {
                     // Test
                     System.out.print("Trap Stepped On: ");
                     int trapIndex = board.trapFinder(playerPos[0], playerPos[1]);
@@ -174,35 +174,67 @@ public class Interface extends JFrame {
                     System.out.println();
                 }
 
-                if (board.isReward(playerPos[0], playerPos[1])){
+                if (board.isReward(playerPos[0], playerPos[1])) {
                     int rewardIndex = board.rewardFinder(playerPos[0], playerPos[1]);
                     int[] rewardPos = board.getRewardArrayManager().get(rewardIndex).getPosition();
                     int rewardAmount = board.getRewardArrayManager().get(rewardIndex).getRewardAmount();
                     char rewardType = board.getRewardArrayManager().get(rewardIndex).getType();
                     board.getScore().addScore(rewardAmount);
 
-                    if(rewardType == 'A'){
-                        rewardACell.remove(board.getRewardArrayManager().get(rewardIndex));
+
+                    if (rewardType == 'A') {
+                        for (int i = 0; i < rewardACell.size(); i++) {
+                            DrawCell oldReward = rewardACell.get(i);
+                            if (oldReward.getPosition() == rewardPos) {
+                                rewardACell.remove(oldReward);
+                                remove(oldReward);
+                                repaint();
+                                break;
+                            }
+                        }
+
+                            //DrawCell rewardA = new DrawCell(rewardPos, step, DrawCell.cellType.REWARDTYPEB);
+                            //rewardBCell.remove(rewardA);
+                            //remove(rewardA);
                     }
 
-                    if(rewardType == 'B'){
-                        rewardBCell.remove(board.getRewardArrayManager().get(rewardIndex));
+                        if (rewardType == 'B') {
+
+                            for (int i = 0; i < rewardBCell.size(); i++) {
+                                DrawCell oldReward = rewardBCell.get(i);
+                                if (oldReward.getPosition() == rewardPos) {
+                                    rewardBCell.remove(oldReward);
+                                    remove(oldReward);
+                                    repaint();
+                                    break;
+                                }
+                            }
+
+
+                                //DrawCell rewardB = new DrawCell(rewardPos, step, DrawCell.cellType.REWARDTYPEB);
+                                //rewardBCell.remove(rewardB);
+                                //remove(rewardB);
+                            }
+
+                            DrawCell newPath = new DrawCell(rewardPos, step, DrawCell.cellType.PATH);
+                            pathCell.add(newPath);
+                            add(newPath);
+
+                            board.getRewardArrayManager().remove(rewardIndex);  //Remove reward from its array
+                            repaint();
+                            newPath.setPlayerDOWN();
+                            //newPath.setNewPosition(rewardPos);
+                            //newPath.updateCell(DrawCell.cellType.PATH);
+
+                            // Test
+                            System.out.println("Reward Stepped On At Position: " + rewardPos[0] + "," + rewardPos[1]);
+                            System.out.println("New score: " + board.getScore().getScore());
+                            System.out.println();
+                        }
+
                     }
-
-                    DrawCell newPath = new DrawCell(rewardPos, step, DrawCell.cellType.PATH);
-                    pathCell.add(newPath);
-                    add(newPath);
-                    board.getRewardArrayManager().remove(rewardIndex);
-                    repaint();
-
-                    // Test
-                    System.out.print("Reward Stepped On: ");
-                    System.out.print(board.getScore().getScore());
-                    System.out.println();
                 }
-
             }
         }
-    }
-}
+
 

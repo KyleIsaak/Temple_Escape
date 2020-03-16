@@ -143,4 +143,16 @@ public class DrawCell extends JComponent {
 
     }
 
+    public void updateCell(cellType type){
+        this.type = type;
+        selectSprite();
+        image = Toolkit.getDefaultToolkit().getImage(imageSrc);
+        repaint();
+
+    }
+
+    public int[] getPosition(){
+        return this.pos;
+    }
+
 }
