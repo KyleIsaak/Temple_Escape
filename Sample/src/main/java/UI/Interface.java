@@ -79,10 +79,16 @@ public class Interface extends JFrame {
                         DrawCell rewardA = new DrawCell(pos, step, DrawCell.cellType.REWARDTYPEA);
                         rewardACell.add(rewardA);
                         add(rewardA);
+                        DrawCell path = new DrawCell(pos, step, DrawCell.cellType.PATH);
+                        pathCell.add(path);
+                        add(path);
                     } else if (rewardType == 'B') {
                         DrawCell rewardB = new DrawCell(pos, step, DrawCell.cellType.REWARDTYPEB);
                         rewardBCell.add(rewardB);
                         add(rewardB);
+                        DrawCell path = new DrawCell(pos, step, DrawCell.cellType.PATH);
+                        pathCell.add(path);
+                        add(path);
                     }
                 } else if (map[x][y] == 0) {
                     createWall(x, y, pos);
