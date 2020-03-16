@@ -2,6 +2,7 @@ package UI;
 import GameLogic.Board;
 import GameLogic.Timer;
 
+import java.util.concurrent.TimeUnit;
 
 public class TestMain  {
     private static boolean isGameOver = false;
@@ -12,9 +13,17 @@ public class TestMain  {
 //    private static Timer timer;
 
 
-    public static void main (String[] args) {
+    public static void main (String[] args) throws InterruptedException{
         board = new Board(currentLevel);
         new Interface(step, board);
+
+        Timer timer =new Timer();
+        while(!isGameOver)
+        {
+            TimeUnit.MILLISECONDS.sleep(delay);
+            board.chaseThePlayer();
+            //System.out.println("Time elapsed:" + timer.displayMinutes() + ":" + timer.displaySeconds());
+        }
 
 //        timer = new Timer();
 //        long startTime = 20;
