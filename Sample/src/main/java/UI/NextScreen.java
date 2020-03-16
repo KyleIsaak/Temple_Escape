@@ -65,6 +65,7 @@ public class NextScreen extends JPanel implements ActionListener {
         String listener = actionEvent.getActionCommand();
         if (listener.equals(NEXT)){
             setVisible(false);
+            gameScreen.setVisible(true);
             gameScreen.requestFocus();
 
         }
