@@ -73,6 +73,7 @@ public class Interface extends JFrame{
             int[] playerPos = board.getPlayerPos();
             //System.out.println(playerPos[1]);
             if (isReleased){
+                //Update Enemy
                 isReleased = false;
                 if (key == UP){
                     if(!board.isWall(playerPos[0], playerPos[1])){
