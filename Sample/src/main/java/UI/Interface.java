@@ -185,14 +185,14 @@ public class Interface extends JFrame {
                     int rewardAmount = board.getRewardArrayManager().get(rewardIndex).getRewardAmount();
                     char rewardType = board.getRewardArrayManager().get(rewardIndex).getType();
                     board.getScore().addScore(rewardAmount);
-                    
+
 
                     if (rewardType == 'A') {
                         for (int i = 0; i < rewardACell.size(); i++) {
                             DrawCell oldReward = rewardACell.get(i);
                             if (oldReward.getPosition()[0] == rewardPos[0]) {
                                 if (oldReward.getPosition()[1] == rewardPos[1]) {
-                                    System.out.println("Reward removed");
+                                    System.out.println("Reward type A removed");
                                     oldReward.setVisible(false);
                                     rewardACell.remove(oldReward);
                                     remove(oldReward);
@@ -200,6 +200,7 @@ public class Interface extends JFrame {
                                 }
                             }
                         }
+
                     }
 
                     if (rewardType == 'B') {
@@ -208,7 +209,7 @@ public class Interface extends JFrame {
                             DrawCell oldReward = rewardBCell.get(i);
                             if (oldReward.getPosition()[0] == rewardPos[0]) {
                                 if (oldReward.getPosition()[1] == rewardPos[1]) {
-                                    System.out.println("Reward removed");
+                                    System.out.println("Reward type B removed");
                                     oldReward.setVisible(false);
                                     rewardBCell.remove(oldReward);
                                     remove(oldReward);
@@ -216,6 +217,11 @@ public class Interface extends JFrame {
                                 }
                             }
 
+                        }
+                        //System.out.println(rewardBCell);
+                        if(rewardBCell.isEmpty()){
+                            System.out.println("ALL KEYS COLLECTED!!!");
+                            board.isExitUnlocked();
                         }
 
                     }

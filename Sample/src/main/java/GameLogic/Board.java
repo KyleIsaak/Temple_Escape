@@ -36,6 +36,7 @@ public class Board {
         enemyInit = new int[]{39, 39};
         enemy = new Enemy(enemyInit);
 
+
     }
 
     public boolean isWall(int x, int y){ return generator.isWall(x, y);}
@@ -161,6 +162,11 @@ public class Board {
             return true;
         }
         return false;
+    }
+
+    public void unlockExit(){
+        exit.setUnlocked(true);
+        System.out.println("Exit unlocked");
     }
 
 

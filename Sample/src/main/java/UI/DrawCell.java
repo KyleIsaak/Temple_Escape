@@ -80,7 +80,11 @@ public class DrawCell extends JComponent {
         image = Toolkit.getDefaultToolkit().getImage(imageSrc);
     }
 
-    public void setLockUnlocked() { imageSrc = "src/pic/Unlock.png"; }
+    public void setLockUnlocked() {
+        imageSrc = "src/pic/Unlock.png";
+        this.image = Toolkit.getDefaultToolkit().getImage(imageSrc);
+        repaint();
+    }
     public void setPlayerUP(){
         imageSrc = "src/pic/player_up.png";
     }
