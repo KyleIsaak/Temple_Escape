@@ -19,6 +19,7 @@ public class TestMain  {
     private static int currentLevel = 1;
     private static Board board;
     private static Music music;
+    //private static Timer timer;
 
 
     public static void main (String[] args){
@@ -27,7 +28,7 @@ public class TestMain  {
         music = new Music();
         music.playSound();
 
-//        Timer timer =new Timer();
+        //timer = new Timer();
 //        while(!isGameOver)
 //        {
 //            TimeUnit.MILLISECONDS.sleep(delay);

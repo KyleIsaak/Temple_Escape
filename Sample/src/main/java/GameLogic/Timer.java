@@ -6,7 +6,7 @@ public class Timer {
     /*
     To use the timer, just create a timer in the main() function for the game using the default constructor.
     To get different time formats (minutes, seconds, or milliseconds elapsed) use the corresponding getter method.
-     */
+    */
 
     //Constructor
     public Timer(){

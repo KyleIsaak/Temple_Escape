@@ -15,49 +15,56 @@ public class Board {
 
     private ArrayList<Trap> trapArrayManager;
     private ArrayList<Reward> rewardArrayManager;
-    private int regularRewardCounter;
+    private ArrayList<Enemy> EnemyArrayManager;
+
     private Exit exit;
     private LevelGenerator generator;
+    //private static Timer timer;
+    //private int regularRewardCounter;
 
-    private ArrayList<Enemy> EnemyArrayManager;
+
 
 
     public Board(int level){
         generator = new LevelGenerator(sizeX, sizeY);
+
         trapArrayManager = new ArrayList<Trap>();
         trapGenerator(level);
         rewardArrayManager = new ArrayList<Reward>();
         rewardGenerator(level);
-        exit = new Exit();
-        randomizeExitPosition();
-        playerInit = new int[]{1, 1};
-        player = new Player(playerInit);
-        score = new Score();
-
         EnemyArrayManager = new ArrayList<Enemy>();
         EnemyGenerator(level);
 
+        exit = new Exit();
+        randomizeExitPosition();
 
+        playerInit = new int[]{1, 1};
+        player = new Player(playerInit);
+
+        score = new Score();
+        //timer = new Timer();
 
     }
 
     //Non-Default Constructor
     public Board(int level, int scoreAmount){
         generator = new LevelGenerator(sizeX, sizeY);
+
         trapArrayManager = new ArrayList<Trap>();
         trapGenerator(level);
         rewardArrayManager = new ArrayList<Reward>();
         rewardGenerator(level);
-        exit = new Exit();
-        randomizeExitPosition();
-        playerInit = new int[]{1, 1};
-        player = new Player(playerInit);
-        score = new Score(scoreAmount);
-
         EnemyArrayManager = new ArrayList<Enemy>();
         EnemyGenerator(level);
 
+        exit = new Exit();
+        randomizeExitPosition();
 
+        playerInit = new int[]{1, 1};
+        player = new Player(playerInit);
+
+        score = new Score(scoreAmount);
+        //timer = new Timer();
 
     }
 
@@ -154,11 +161,6 @@ public class Board {
 
     public boolean isExitUnlocked(){
         if (exit.getIsUnlocked()){
-            return true;
-        }
-        else if (regularRewardCounter <= 0){
-            System.out.println("Unlock Exit");
-            exit.setUnlocked(true);
             return true;
         }
         return false;
@@ -301,27 +303,18 @@ public class Board {
 
     public void EnemyGenerator(int difficultyLevel)
     {
-        switch (difficultyLevel) {
-            case 1:
-                for (int i = 0; i < 1; i++) {
-                    EnemyLocationRandomizer(new Enemy(playerInit));
-                }
-                break;
-
-            case 2:
-                for (int i = 0; i < 2; i++) {
-                    EnemyLocationRandomizer(new Enemy(playerInit));
-                }
-                break;
-
-            case 3:
-                for (int i = 0; i < 3; i++) {
-                    EnemyLocationRandomizer(new Enemy(playerInit));
-                }
-                break;
+        if(difficultyLevel <= 3) {
+            for (int i = 0; i < difficultyLevel; i++) {
+                EnemyLocationRandomizer(new Enemy(playerInit));
+            }
         }
-    }
+        else{
+            for (int i = 0; i < 3; i++) {
+                EnemyLocationRandomizer(new Enemy(playerInit));
+            }
+        }
 
+    }
 
     public void EnemyLocationRandomizer(Enemy enemy) {
         int x = integerRandomizer();
@@ -387,7 +380,7 @@ public class Board {
         for (int i = 0; i < difficultyLevel; i++){      //Keys
             rewardTypeGenerator('B');
         }
-        regularRewardCounter = 4;
+        //regularRewardCounter = 4;
 
     }
 
