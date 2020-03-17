@@ -26,6 +26,10 @@ public class Score {
         this.currentScore -= scoreToSubtract;
     }
 
+    public boolean isNegative (){
+        return currentScore < 0;
+    }
+
     public void resetScore() {
         this.currentScore = 0;
     }

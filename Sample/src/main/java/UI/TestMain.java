@@ -8,6 +8,7 @@ import GameLogic.Timer;
 //import java.awt.*;
 //
 //=======
+import java.io.FileNotFoundException;
 import java.util.concurrent.TimeUnit;
 //>>>>>>> origin/testMerge
 
@@ -18,9 +19,11 @@ public class TestMain  {
     private static int currentLevel = 1;
     private static Board board;
 
-    public static void main (String[] args) throws InterruptedException{
+
+    public static void main (String[] args){
         new newFont();
         new Interface(step);
+
 
 //        Timer timer =new Timer();
 //        while(!isGameOver)
