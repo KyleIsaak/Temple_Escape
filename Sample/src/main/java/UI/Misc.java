@@ -9,7 +9,7 @@ package UI;
 
 public class Misc extends JPanel implements ActionListener {
     private static int currentLevel = 1;
-    private static int scoreContainer = 0;
+    private static int scoreContainer = 100;
     private JButton button_pause;
     private JButton button_TxtScore;
     private static JButton button_score;
