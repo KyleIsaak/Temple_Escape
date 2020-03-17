@@ -18,12 +18,14 @@ public class TestMain  {
     private static int step = 32;
     private static int currentLevel = 1;
     private static Board board;
+    private static Music music;
 
 
     public static void main (String[] args){
         new newFont();
         new Interface(step);
-
+        music = new Music();
+        music.playSound();
 
 //        Timer timer =new Timer();
 //        while(!isGameOver)
