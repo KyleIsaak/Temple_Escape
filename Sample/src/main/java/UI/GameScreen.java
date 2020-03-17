@@ -63,7 +63,7 @@ public class GameScreen extends JPanel {
 
         player = new DrawLive(board.getPlayerPos(), step, DrawLive.cellType.PLAYER);
         exit = new DrawDead(board.getExit().getPosition(), step, DrawDead.cellType.EXIT);
-        for(int i=0;i<Misc.getCurrentLevel();i++) {
+        for(int i = 0; i < Math.min(Misc.getCurrentLevel(), 3); i++) {
             enemy = new DrawLive(board.getEnemyPos(i), step, DrawLive.cellType.ENEMY);
             add(enemy);
         }
@@ -282,8 +282,8 @@ public class GameScreen extends JPanel {
 
             for(int i=0;i<Misc.getCurrentLevel();i++) {
                 board.chaseThePlayer(board.getEnemyArrayManager().get(i), i);
-                int j=i+1;
-                System.out.println("Enemy "+ j +" current location"+board.getEnemyArrayManager().get(i).getPosition()[0]+','+board.getEnemyArrayManager().get(i).getPosition()[1]);
+                int j = i+1;
+                System.out.println("Enemy " + j + " current location" + board.getEnemyArrayManager().get(i).getPosition()[0] + ',' + board.getEnemyArrayManager().get(i).getPosition()[1]);
                 if((playerPos[0]==board.getEnemyArrayManager().get(i).getPosition()[0] && playerPos[1]==board.getEnemyArrayManager().get(i).getPosition()[1]) || board.getScore().isNegative())
                 {
                     System.out.println("Game Over");

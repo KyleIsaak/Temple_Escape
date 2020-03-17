@@ -303,7 +303,7 @@ public class Board {
 
     public void EnemyGenerator(int difficultyLevel)
     {
-        if(difficultyLevel <= 3) {
+        if(difficultyLevel < 3) {
             for (int i = 0; i < difficultyLevel; i++) {
                 EnemyLocationRandomizer(new Enemy(playerInit));
             }
@@ -313,7 +313,6 @@ public class Board {
                 EnemyLocationRandomizer(new Enemy(playerInit));
             }
         }
-
     }
 
     public void EnemyLocationRandomizer(Enemy enemy) {
@@ -325,7 +324,7 @@ public class Board {
             y = integerRandomizer();
         }
 
-       enemy.setPosition(new int[]{x, y});
+        enemy.setPosition(new int[]{x, y});
         //cellStatusManager.add(new int [] {x, y});
         EnemyArrayManager.add(enemy);
     }
@@ -353,7 +352,7 @@ public class Board {
     public void MoveEnemy(int currentlevel) {
         for (int i = 0; i < currentlevel; i++) {
             int[] position = EnemyArrayManager.get(i).chaseThePlayer(getPlayerPos());
-            for(int j=0;j<currentlevel;i++)
+            for(int j = 0; j < currentlevel; j++)
             {
                 if(i==j)
                     continue;
