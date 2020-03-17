@@ -43,13 +43,13 @@ public class Enemy {
                 chase[0] = 0;
                 chase[1] = step;
             }
-            else if(this.position[1]>position[1])
-            {
+
+            else if(this.position[1]>position[1]) {
                 chase[0] = 0;
                 chase[1] = - step;
             }
-            else
-            {
+
+            else{
                 chase[0]=0;
                 chase[1]=0;
             }
@@ -59,10 +59,12 @@ public class Enemy {
                 chase[0] = step;
                 chase[1] = 0;
             }
+
             else if(this.position[0]>position[0]){
                 chase[0] = -step;
                 chase[1] =  0;
             }
+
             else {
                 chase[0] = 0;
                 chase[1] = 0;

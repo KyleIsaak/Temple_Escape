@@ -20,10 +20,6 @@ public class Board {
     private Exit exit;
     private LevelGenerator generator;
     //private static Timer timer;
-    //private int regularRewardCounter;
-
-
-
 
     public Board(int level){
         generator = new LevelGenerator(sizeX, sizeY);
@@ -43,7 +39,6 @@ public class Board {
 
         score = new Score();
         //timer = new Timer();
-
     }
 
     //Non-Default Constructor
@@ -65,7 +60,6 @@ public class Board {
 
         score = new Score(scoreAmount);
         //timer = new Timer();
-
     }
 
     public boolean isWall(int x, int y){ return generator.isWall(x, y);}
@@ -98,7 +92,6 @@ public class Board {
 
     }
 
-
     private void trapTypeGenerator (char type){
         switch (type){
             case 'A' :
@@ -110,7 +103,6 @@ public class Board {
                 break;
         }
     }
-
 
     public void trapLocationRandomizer (Trap trapObject){
         int x = integerRandomizer();
@@ -146,6 +138,9 @@ public class Board {
         return -1;
     }
 
+
+
+
     ////////////// Exit /////////////
     public void randomizeExitPosition(){
         int x = integerRandomizer();
@@ -172,7 +167,6 @@ public class Board {
     }
 
 
-
     public boolean isCorner(int[] position)
     {
         int X=position[0];
@@ -187,6 +181,7 @@ public class Board {
             return true;
         return false;
     }
+
     public boolean isThreeWall(int[]position)
     {
         int X=position[0];
@@ -201,6 +196,9 @@ public class Board {
             return true;
         return false;
     }
+
+
+
 
     //Enemy functionality
     public void chaseThePlayer(Enemy enemy, int i){
@@ -224,22 +222,26 @@ public class Board {
                             planMove[0]=0;
                             planMove[1]=-1;
                         }
+
                         if(isWall(EnemyX+1,EnemyY) && isWall(EnemyX,EnemyY-1) && isWall(EnemyX-1,EnemyY))
                         {
                             planMove[0]=0;
                             planMove[1]=1;
                         }
+
                         if(isWall(EnemyX,EnemyY+1) && isWall(EnemyX,EnemyY-1) && isWall(EnemyX-1,EnemyY))
                         {
                             planMove[0]=1;
                             planMove[1]=0;
                         }
+
                         if(isWall(EnemyX,EnemyY+1) && isWall(EnemyX,EnemyY-1) && isWall(EnemyX+1,EnemyY))
                         {
                             planMove[0]=-1;
                             planMove[1]=0;
                         }
                     }
+
                  else if(isCorner(Enemyposition) == true)
                  {
                      if(isWall(EnemyX+1,EnemyY) && isWall(EnemyX,EnemyY+1))
@@ -247,22 +249,26 @@ public class Board {
                          planMove[0]=0;
                          planMove[1]=-1;
                      }
+
                      if(isWall(EnemyX-1,EnemyY)&&isWall(EnemyX,EnemyY+1))
                      {
                          planMove[0]=0;
                          planMove[1]=-1;
                      }
+
                      if(isWall(EnemyX+1,EnemyY)&&isWall(EnemyX,EnemyY-1))
                      {
                          planMove[0]=0;
                          planMove[1]=1;
                      }
+
                      if(isWall(EnemyX-1,EnemyY)&&isWall(EnemyX,EnemyY-1))
                      {
                          planMove[0]=0;
                          planMove[1]=1;
                      }
                  }
+
                  else if(isCorner(Enemyposition)==false)
                  {
                      if (planMove[0] == 1) {
@@ -272,19 +278,25 @@ public class Board {
                          else
                              planMove[1] = 1;
 
-                     } else if (planMove[0] == -1) {
+                     }
+
+                     else if (planMove[0] == -1) {
                          planMove[0] = 0;
                          if (PlayerY > EnemyY)
                              planMove[1] = 1;
                          else
                              planMove[1] = -1;
-                     } else if (planMove[1] == 1) {
+                     }
+
+                     else if (planMove[1] == 1) {
                          planMove[1] = 0;
                          if (PlayerX > EnemyX)
                              planMove[0] = 1;
                          else
                              planMove[0] = -1;
-                     } else if (planMove[1] == -1) {
+                     }
+
+                     else if (planMove[1] == -1) {
                          planMove[1] = 0;
                          if (PlayerX > EnemyX)
                              planMove[0] = 1;
@@ -297,9 +309,12 @@ public class Board {
         }
         enemy.move(planMove);
     }
+
+
     public ArrayList<Enemy> getEnemyArrayManager() {
         return EnemyArrayManager;
     }
+
 
     public void EnemyGenerator(int difficultyLevel)
     {
@@ -387,7 +402,6 @@ public class Board {
         switch (type){
             case 'A' :
                 rewardLocationRandomizer(new RewardTypeA());
-
                 break;
 
             case 'B' :

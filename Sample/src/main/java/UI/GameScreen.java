@@ -14,7 +14,6 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-
 public class GameScreen extends JPanel {
 
     private int step;
@@ -70,7 +69,6 @@ public class GameScreen extends JPanel {
 
         add(player);
         add(exit);
-
 
         createBoard();
         setBackground(Color.decode("#483b3a"));

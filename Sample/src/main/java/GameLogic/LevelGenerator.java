@@ -143,14 +143,17 @@ public class LevelGenerator {
             neighborX.add(x - 2);
             neighborY.add(y);
         }
+
         if (isInBound(x + 2, y) && isWall(x + 2, y)){   //right
             neighborX.add(x + 2);
             neighborY.add(y);
         }
+
         if (isInBound(x, y + 2) && isWall(x, y + 2)) {   //top
             neighborX.add(x);
             neighborY.add(y + 2);
         }
+
         if (isInBound(x, y - 2) && isWall(x, y - 2)){   //down
             neighborX.add(x);
             neighborY.add(y - 2);

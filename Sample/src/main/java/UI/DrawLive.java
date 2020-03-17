@@ -60,6 +60,7 @@ public class DrawLive extends JComponent {
 //    public void setPlayerDOWN(){
 //        is = DrawLive.class.getResourceAsStream(player_down.png";
 //    }
+
     public void setPlayerUP(){
         inputStream = DrawLive.class.getResourceAsStream("/player_up.png");
     }
