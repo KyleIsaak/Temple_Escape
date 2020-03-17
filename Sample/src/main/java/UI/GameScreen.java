@@ -280,7 +280,7 @@ public class GameScreen extends JPanel {
                 Misc.setScore(board.getScore().getScore());
             }
 
-            for(int i=0;i<Misc.getCurrentLevel();i++) {
+            for(int i=0; i < Math.min(Misc.getCurrentLevel(), 3); i++) {
                 board.chaseThePlayer(board.getEnemyArrayManager().get(i), i);
                 int j = i+1;
                 System.out.println("Enemy " + j + " current location" + board.getEnemyArrayManager().get(i).getPosition()[0] + ',' + board.getEnemyArrayManager().get(i).getPosition()[1]);
