@@ -33,7 +33,7 @@ public class Board {
         playerInit = new int[]{1, 1};
         player = new Player(playerInit);
         score = new Score();
-        //test// need to modify the number of enemy base on the level
+
         EnemyArrayManager = new ArrayList<Enemy>();
         EnemyGenerator(level);
 
@@ -303,19 +303,19 @@ public class Board {
     {
         switch (difficultyLevel) {
             case 1:
-                for (int i = 0; i < 2; i++) {
+                for (int i = 0; i < 1; i++) {
                     EnemyLocationRandomizer(new Enemy(playerInit));
                 }
                 break;
 
             case 2:
-                for (int i = 0; i < 3; i++) {
+                for (int i = 0; i < 2; i++) {
                     EnemyLocationRandomizer(new Enemy(playerInit));
                 }
                 break;
 
             case 3:
-                for (int i = 0; i < 4; i++) {
+                for (int i = 0; i < 3; i++) {
                     EnemyLocationRandomizer(new Enemy(playerInit));
                 }
                 break;
@@ -358,8 +358,18 @@ public class Board {
     }
 
     public void MoveEnemy(int currentlevel) {
-        for (int i = 0; i < currentlevel*2; i++) {
+        for (int i = 0; i < currentlevel; i++) {
             int[] position = EnemyArrayManager.get(i).chaseThePlayer(getPlayerPos());
+            for(int j=0;j<currentlevel;i++)
+            {
+                if(i==j)
+                    continue;
+                if(position[0]==EnemyArrayManager.get(j).chaseThePlayer(getPlayerPos())[0] && position[1]==EnemyArrayManager.get(j).chaseThePlayer(getPlayerPos())[1])
+                {
+                    position[0]=0;
+                    position[1]=0;
+                }
+            }
             EnemyArrayManager.get(i).move(position);
         }
     }
