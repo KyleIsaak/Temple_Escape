@@ -18,7 +18,6 @@ public class TestMain  {
     private static int step = 32;
     private static int currentLevel = 1;
     private static Board board;
-    //private static Timer timer;
 
 
     public static void main (String[] args){
@@ -33,8 +32,7 @@ public class TestMain  {
 //            //System.out.println("Time elapsed:" + timer.displayMinutes() + ":" + timer.displaySeconds());
 //        }
 //>>>>>>> origin/testMerge
-
-//        timer = new Timer();
+        
 //        long startTime = 20;
 //        long timeRemaining = startTime;
 
