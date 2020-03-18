@@ -32,5 +32,7 @@ java/build/**
 pm.xml
 
 #Maven
-target/
-settings/
+/target/
+/.classpath
+/*.project
+/.settings
