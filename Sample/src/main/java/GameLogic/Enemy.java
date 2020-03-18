@@ -15,7 +15,7 @@ public class Enemy {
     }
 
     public void setDamage(int damage) {
-        this.damage=damage;
+        this.damage = damage;
     }
 
     public int getDamage(){

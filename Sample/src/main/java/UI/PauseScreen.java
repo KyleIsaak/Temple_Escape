@@ -11,10 +11,11 @@ public class PauseScreen extends JPanel implements ActionListener{
     GameScreen gameScreen;
     InputStream inputStream;
     Image image;
+    String mute = "mute";
     String resume = "resume";
     String control = "control";
 
-
+    JButton button_mute;
     JButton button_control;
     JButton button_resume;
 
@@ -26,6 +27,7 @@ public class PauseScreen extends JPanel implements ActionListener{
             e.printStackTrace();
         }
 
+        button_mute = new JButton("Mute");
         button_resume = new JButton("Resume");
         button_control = new JButton("Control");
         JComponent background = new JComponent(){
@@ -61,26 +63,35 @@ public class PauseScreen extends JPanel implements ActionListener{
         }
 
 
+        add(button_mute);
         add(button_control);
         add(button_resume);
 
+        button_mute.setBackground(Color.white);
         button_control.setForeground(Color.white);
         button_resume.setForeground(Color.white);
+        button_mute.setFont(font);
         button_control.setFont(font);
         button_resume.setFont(font);
+        button_mute.setBorder(null);
         button_control.setBorder(null);
         button_resume.setBorder(null);
+        button_mute.setBackground(Color.decode("#483b3a"));
         button_control.setBackground(Color.decode("#483b3a"));
         button_resume.setBackground(Color.decode("#483b3a"));
 
+        button_mute.setBounds(430, 320, 100, 30);
         button_control.setBounds(430, 370, 100, 30);
         button_resume.setBounds(430, 420, 100, 30);
 
+        button_mute.addActionListener(this);
         button_resume.addActionListener(this);
         button_control.addActionListener(this);
 
+        button_mute.setActionCommand(mute);
         button_resume.setActionCommand(resume);
         button_control.setActionCommand(control);
+
     }
     public void setGameScreen(GameScreen gameScreen) {
         this.gameScreen = gameScreen;
@@ -95,6 +106,14 @@ public class PauseScreen extends JPanel implements ActionListener{
 
         } else if (listener.equals(control)){
             button_control.setText("NO");
+
+        } else if (listener.equals(mute)){
+            if (gameScreen.getMusic().isPause()){
+                gameScreen.getMusic().unPause();
+            }
+            else{
+                gameScreen.getMusic().pauseMusic();
+            }
         }
     }
 

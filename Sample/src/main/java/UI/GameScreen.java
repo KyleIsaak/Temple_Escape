@@ -27,6 +27,7 @@ public class GameScreen extends JPanel {
     private ArrayList<DrawDead> trapBCell;
     private ArrayList<DrawDead> rewardACell;
     private ArrayList<DrawDead> rewardBCell;
+    private static Music music;
 
     private Board board;
     private int[][] map;
@@ -42,8 +43,11 @@ public class GameScreen extends JPanel {
         this.step = step;
         setUp();
         addKeyListener(new listener());
+        music = new Music();
+        music.playSound();
     }
 
+    public Music getMusic(){ return music; }
     public void setNextScreen(NextScreen next){
         nextScreen = next;
     }
