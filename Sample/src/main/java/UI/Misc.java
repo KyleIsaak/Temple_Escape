@@ -8,13 +8,20 @@ package UI;
         import java.awt.event.ActionListener;
 
 public class Misc extends JPanel implements ActionListener {
+
     private static int currentLevel = 1;
-    private static int scoreContainer = 100;
-    private JButton button_pause;
-    private JButton button_TxtScore;
-    private static JButton button_score;
     GameScreen gameScreen;
     JPanel pauseScreen;
+
+    private JButton button_pause;
+
+    private static int scoreContainer = 100;
+    private JButton button_TxtScore;
+    private static JButton button_score;
+
+    private JButton button_TxtTime;
+    private static JButton button_time;
+
     private final String PAUSE = " pause ";
     private final String SCORE = " score: ";
 
@@ -62,9 +69,10 @@ public class Misc extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent actionEvent) {
         String listener = actionEvent.getActionCommand();
         if (listener.equals(PAUSE)){
+            //pauseTimer();
             pauseScreen.requestFocus();
             pauseScreen.setVisible(true);
-            button_pause.setVisible(false);
+            //button_pause.setVisible(false);
         }
     }
 
