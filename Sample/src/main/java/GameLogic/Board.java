@@ -597,7 +597,19 @@ public class Board {
         }
         return -1;
     }
+    //GameOverCase
+    public boolean isGameOver(Enemy enemy)
+    {
+        boolean test=false;
+        if(enemy.getPosition()[0]==player.getPosition()[0] && enemy.getPosition()[1]==player.getPosition()[1])
+            test=true;
+        if(score.isNegative()==true)
+            test=true;
+        return test;
+    }
 }
+
+
 
 
 

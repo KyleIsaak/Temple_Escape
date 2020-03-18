@@ -327,7 +327,7 @@ public class GameScreen extends JPanel {
                 board.chaseThePlayer(board.getEnemyArrayManager().get(i), i);
                 int j = i+1;
                 System.out.println("Enemy " + j + " current location" + board.getEnemyArrayManager().get(i).getPosition()[0] + ',' + board.getEnemyArrayManager().get(i).getPosition()[1]);
-                if((playerPos[0]==board.getEnemyArrayManager().get(i).getPosition()[0] && playerPos[1]==board.getEnemyArrayManager().get(i).getPosition()[1]) || board.getScore().isNegative())
+                if(board.isGameOver(board.getEnemyArrayManager().get(i)))
                 {
                     System.out.println("Game Over");
                 }
