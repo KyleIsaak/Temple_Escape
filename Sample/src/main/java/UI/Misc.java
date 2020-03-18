@@ -62,6 +62,7 @@ public class Misc extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent actionEvent) {
         String listener = actionEvent.getActionCommand();
         if (listener.equals(PAUSE)){
+            //pauseTimer();
             pauseScreen.requestFocus();
             pauseScreen.setVisible(true);
             button_pause.setVisible(false);
