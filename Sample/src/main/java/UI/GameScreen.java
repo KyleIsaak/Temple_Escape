@@ -27,10 +27,11 @@ public class GameScreen extends JPanel {
     private ArrayList<DrawDead> trapBCell;
     private ArrayList<DrawDead> rewardACell;
     private ArrayList<DrawDead> rewardBCell;
-    private static Music music;
 
     private Board board;
     private int[][] map;
+    private static Music music;
+    private boolean despawnTraps = false;
 
     private JPanel nextScreen;
     //default controls
@@ -207,37 +208,41 @@ public class GameScreen extends JPanel {
                     char trapType = board.getTrapArrayManager().get(trapIndex).getType();
                     board.getScore().subtractScore(damage);
 
-                    if (trapType == 'A'){
-                        for (int i = 0; i < trapACell.size(); i++) {
-                            DrawDead oldTrap = trapACell.get(i);
-                            if (oldTrap.getPosition()[0] == trapPos[0]) {
-                                if (oldTrap.getPosition()[1] == trapPos[1]) {
-                                    System.out.println("Trap type A removed");
-                                    oldTrap.setVisible(false);
-                                    trapACell.remove(oldTrap);
-                                    remove(oldTrap);
-                                    break;
+
+                    if(despawnTraps) {
+                        if (trapType == 'A') {
+                            for (int i = 0; i < trapACell.size(); i++) {
+                                DrawDead oldTrap = trapACell.get(i);
+                                if (oldTrap.getPosition()[0] == trapPos[0]) {
+                                    if (oldTrap.getPosition()[1] == trapPos[1]) {
+                                        System.out.println("Trap type A removed");
+                                        oldTrap.setVisible(false);
+                                        trapACell.remove(oldTrap);
+                                        remove(oldTrap);
+                                        break;
+                                    }
                                 }
                             }
                         }
-                    }
 
-                    if (trapType == 'B'){
-                        for (int i = 0; i < trapBCell.size(); i++) {
-                            DrawDead oldTrap = trapBCell.get(i);
-                            if (oldTrap.getPosition()[0] == trapPos[0]) {
-                                if (oldTrap.getPosition()[1] == trapPos[1]) {
-                                    System.out.println("Trap type B removed");
-                                    oldTrap.setVisible(false);
-                                    trapBCell.remove(oldTrap);
-                                    remove(oldTrap);
-                                    break;
+                        if (trapType == 'B') {
+                            for (int i = 0; i < trapBCell.size(); i++) {
+                                DrawDead oldTrap = trapBCell.get(i);
+                                if (oldTrap.getPosition()[0] == trapPos[0]) {
+                                    if (oldTrap.getPosition()[1] == trapPos[1]) {
+                                        System.out.println("Trap type B removed");
+                                        oldTrap.setVisible(false);
+                                        trapBCell.remove(oldTrap);
+                                        remove(oldTrap);
+                                        break;
+                                    }
                                 }
                             }
                         }
+                        board.getTrapArrayManager().remove(trapIndex);  //Remove reward from its array
                     }
 
-                    board.getTrapArrayManager().remove(trapIndex);  //Remove reward from its array
+
                     //Test
                     System.out.print(board.getScore().getScore());
                     System.out.println();
