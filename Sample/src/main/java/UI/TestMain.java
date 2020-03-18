@@ -23,8 +23,6 @@ public class TestMain  {
     public static void main (String[] args){
         new newFont();
         new Interface(step);
-
-        //timer = new Timer();
 //        while(!isGameOver)
 //        {
 //            TimeUnit.MILLISECONDS.sleep(delay);

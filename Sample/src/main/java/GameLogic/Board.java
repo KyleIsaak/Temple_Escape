@@ -12,6 +12,7 @@ public class Board {
     private int[] playerInit;
 
     private Score score;
+    private Timer timer;
 
     private ArrayList<Trap> trapArrayManager;
     private ArrayList<Reward> rewardArrayManager;
@@ -38,7 +39,7 @@ public class Board {
         player = new Player(playerInit);
 
         score = new Score();
-        //timer = new Timer();
+        timer = new Timer();
     }
 
     //Non-Default Constructor
@@ -59,8 +60,29 @@ public class Board {
         player = new Player(playerInit);
 
         score = new Score(scoreAmount);
-        //timer = new Timer();
+
     }
+
+    public Board(int level, int scoreAmount, long timeAmount){
+        generator = new LevelGenerator(sizeX, sizeY);
+
+        trapArrayManager = new ArrayList<Trap>();
+        trapGenerator(level);
+        rewardArrayManager = new ArrayList<Reward>();
+        rewardGenerator(level);
+        EnemyArrayManager = new ArrayList<Enemy>();
+        EnemyGenerator(level);
+
+        exit = new Exit();
+        randomizeExitPosition();
+
+        playerInit = new int[]{1, 1};
+        player = new Player(playerInit);
+
+        score = new Score(scoreAmount);
+        timer = new Timer(timeAmount);
+    }
+
 
     public boolean isWall(int x, int y){ return generator.isWall(x, y);}
     public boolean isInBounds(int x, int y) {return (x >= 0 && x < sizeX && y >= 0 && y < sizeY);}
@@ -74,6 +96,7 @@ public class Board {
     public Enemy getEnemy(int i){return EnemyArrayManager.get(i);}
     public int[] getEnemyPos(int i){return EnemyArrayManager.get(i).getPosition();}
     public Score getScore() { return score; }
+    public Timer getTimer() { return timer; }
 
     public int integerRandomizer(){
         Random random = new Random();

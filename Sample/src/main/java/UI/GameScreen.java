@@ -54,7 +54,7 @@ public class GameScreen extends JPanel {
     }
     private void setUp(){
         removeAll();
-        board = new Board(Misc.getCurrentLevel(), Misc.getScoreContainer());
+        board = new Board(Misc.getCurrentLevel(), Misc.getScoreContainer(), Misc.getTimeContainer());
         wallCell = new ArrayList<>();
         pathCell = new ArrayList<>();
         trapACell = new ArrayList<>();
@@ -155,7 +155,6 @@ public class GameScreen extends JPanel {
     private class listener extends KeyAdapter {
         boolean isReleased = false;
 
-
         @Override
         public void keyReleased(KeyEvent e) {
             isReleased = true;
@@ -163,6 +162,7 @@ public class GameScreen extends JPanel {
 
         @Override
         public void keyPressed(KeyEvent e) {
+            Misc.setTime(board.getTimer().displaySeconds());
             int key = e.getKeyCode();
             int[] playerPos = board.getPlayerPos();
             if (isReleased) {

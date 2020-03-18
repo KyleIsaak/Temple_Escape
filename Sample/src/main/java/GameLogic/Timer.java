@@ -18,6 +18,11 @@ public class Timer {
         this.pausedTime = 0;
     }
 
+    public Timer(long previousTime){
+        this.startTime = System.currentTimeMillis() - previousTime;
+        this.pausedTime = 0;
+    }
+
 
     //Calculate time elapsed in milliseconds
     private long getTime(){
