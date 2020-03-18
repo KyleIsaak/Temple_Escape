@@ -7,6 +7,7 @@ import java.util.Random;
 /**
  * Store the dimension of the Game Play Area.
  * Manages all movable and non-movable objects in the Game Play Area.
+ *
  */
 public class Board {
 
