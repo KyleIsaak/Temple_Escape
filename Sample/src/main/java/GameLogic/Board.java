@@ -238,6 +238,41 @@ public class Board {
         return (random.nextInt(sizeX));
     }
 
+    public int[] randomExitPicker(){
+        Random random = new Random();
+        int randX = (random.nextInt(4));
+
+        int[] exitPos = new int[2];
+
+        switch(randX) {
+            case 0:                 // lock to left wall
+                exitPos[0] = 1;
+                exitPos[1] = integerRandomizer();
+                break;
+
+            case 1:                 // lock to right wall
+                exitPos[0] = sizeX - 2;
+                exitPos[1] = integerRandomizer();
+                break;
+
+            case 2:                 // lock to top wall
+                exitPos[0] = integerRandomizer();
+                exitPos[1] = 1;
+                break;
+
+            case 3:                 // lock to bottom wall
+                exitPos[0] = integerRandomizer();
+                exitPos[1] = sizeY - 2;
+                break;
+        }
+
+        System.out.println(sizeX);
+        System.out.println((sizeY));
+        System.out.println(exitPos[0]);
+        System.out.println(exitPos[1]);
+        return exitPos;
+    }
+
     /**
      * Get the Trap Array Manager of this Board Class
      * @return this Board class's Trap Array Manager
@@ -312,15 +347,21 @@ public class Board {
      * Randomize the position of this Board class's exit.
      */
     public void randomizeExitPosition(){
-        int x = integerRandomizer();
-        int y = integerRandomizer();
+        //int x = integerRandomizer();
+        //int y = integerRandomizer();
 
-        while ((isWall(x,y)) || (isReward(x,y) || (isTrap(x,y)))){
-            x = integerRandomizer();
-            y = integerRandomizer();
+        int exitPos[] = randomExitPicker();
+        int x = exitPos[0];
+        int y = exitPos[1];
+
+        while ((( x < 5 && y < 5) || (isReward(x,y)) || (isTrap(x,y)))){
+            exitPos = randomExitPicker();
+            x = exitPos[0];
+            y = exitPos[1];
         }
 
         exit.setPosition(new int[]{x, y});
+        //exit.setPosition(exitPos);
 
     }
 
