@@ -91,7 +91,7 @@ public class Board {
         player = new Player(playerInit);
 
         score = new Score(scoreAmount);
-        timer = new Timer(timeAmount);
+        timer = new Timer(getTimer());
     }
 
     /**
