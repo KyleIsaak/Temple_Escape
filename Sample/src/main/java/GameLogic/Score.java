@@ -39,7 +39,5 @@ public class Score {
      * Check whether the current score is negative
      * @return true is the current score is negative and vise versa
      */
-    public boolean isNegative (){
-        return currentScore < 0;
-    }
+    public boolean isNegative (){ return currentScore < 0; }
 }
