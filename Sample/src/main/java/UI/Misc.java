@@ -32,35 +32,18 @@ public class Misc extends JPanel implements ActionListener {
         this.pauseScreen = pauseScreen;
         setLayout(null);
 
-        button_pause = new Button(PAUSE);
+        button_pause = new Button(PAUSE, this, true);
+        button_TxtScore = new Button(SCORE, this, false);
+        button_score = new Button("100", this, false);
+        button_TxtTime = new Button(TIME, this, false);
+        button_time = new Button("000", this, false);
 
-        button_TxtScore = new Button(SCORE);
-        button_score = new Button("100");
-
-        button_TxtTime = new Button(TIME);
-        button_time = new Button("000");
-
-        add(button_pause);
-        button_pause.setBounds(0, 50, 100, 40);
-        button_pause.addActionListener(this);
         button_pause.setVisible(false);
-
-        add(button_TxtScore);
+        button_pause.setBounds(0, 50, 100, 40);
         button_TxtScore.setBounds(0, 120, 100, 40);
-        button_TxtScore.setEnabled(false);
-
-        add(button_score);
         button_score.setBounds(0, 160, 100, 40);
-        button_score.setEnabled(false);
-
-        add(button_TxtTime);
         button_TxtTime.setBounds(0,240,100,40);
-        button_TxtTime.setEnabled(false);
-
-        add(button_time);
         button_time.setBounds(0,280,100,40);
-        button_time.setEnabled(false);
-
 
         setBackground(Color.decode("#483b3a"));
         setFocusable(true);

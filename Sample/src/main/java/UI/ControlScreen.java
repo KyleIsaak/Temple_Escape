@@ -25,14 +25,10 @@ public class ControlScreen extends JPanel implements ActionListener {
     private final String RIGHT = "RIGHT";
     private final String DONE = "DONE";
     private final String MUTE = "MUTE";
+    private final String CONTROL = "CONTROL";
+    private final String ERROR = "ERROR";
 
-    //the button for name
-    private JButton subtitle;
     private JButton error;
-    private JButton txtUP;
-    private JButton txtDOWN;
-    private JButton txtLEFT;
-    private JButton txtRIGHT;
 
     //the button for setting control
     private JButton setUP;
@@ -48,93 +44,85 @@ public class ControlScreen extends JPanel implements ActionListener {
     boolean right = false;
 
     private ArrayList<String> keyBindings;
-    Image image;
-    Image imageError;
     JComponent errorGirl;
     public void setGameScreen(GameScreen gameScreen) {
         keyBindings = new ArrayList<>();
-        InputStream inputError = ControlScreen.class.getResourceAsStream("/control_error.png");
-        InputStream inputStream = ControlScreen.class.getResourceAsStream("/control.png");
-        try {
-            image = ImageIO.read(inputStream);
-            imageError = ImageIO.read(inputError);
-        } catch (Exception e){
-            e.printStackTrace();
-        }
+
         JComponent background = new JComponent(){
             @Override
             public void paint(Graphics g){
                 super.paintComponent(g);
-                g.drawImage(image, 0, 0, this);
+                g.drawImage(Sprite.controlBackground(), 0, 0, this);
             }
         };
         errorGirl = new JComponent(){
             @Override
             public void paint(Graphics g){
                 super.paintComponent(g);
-                g.drawImage(imageError, 0, 0, this);
+                g.drawImage(Sprite.controlError(), 0, 0, this);
             }
         };
         this.gameScreen = gameScreen;
 
-        subtitle = new Button("CONTROL");
-        subtitle.setEnabled(false);
-        error = new Button("ERROR");
+        JButton subtitle = new Button(CONTROL, this, false);
+
+        error = new Button(ERROR, this, false);
         error.setText("<html>" + "Invalid duplicated" + "<br>" + "key bindings!" + "</html>");
         error.getFont().deriveFont(14f);
-        error.setEnabled(false);
 
-        txtUP = new Button(UP);         txtUP.setEnabled(false);
-        txtDOWN = new Button(DOWN);     txtDOWN.setEnabled(false);
-        txtLEFT = new Button(LEFT);     txtLEFT.setEnabled(false);
-        txtRIGHT = new Button(RIGHT);   txtRIGHT.setEnabled(false);
-        mute = new Button(MUTE);
-        done = new Button(DONE);
-        setUP = new Button(String.valueOf((char)(gameScreen.getUP())));
-        setDOWN = new Button(String.valueOf((char)gameScreen.getDOWN()));
-        setLEFT = new Button(String.valueOf((char)gameScreen.getLEFT()));
-        setRIGHT = new Button(String.valueOf((char)gameScreen.getRIGHT()));
+        JButton txtUP = new Button(UP, this, false);
+        JButton txtDOWN = new Button(DOWN, this, false);
+        JButton txtLEFT = new Button(LEFT, this, false);
+        JButton txtRIGHT = new Button(RIGHT, this, false);
+        mute = new Button(MUTE, this, true);
+        done = new Button(DONE, this, true);
+        setUP = new Button(String.valueOf((char)(gameScreen.getUP())), this, true);
+        setDOWN = new Button(String.valueOf((char)gameScreen.getDOWN()), this, true);
+        setLEFT = new Button(String.valueOf((char)gameScreen.getLEFT()), this, true);
+        setRIGHT = new Button(String.valueOf((char)gameScreen.getRIGHT()), this, true);
 
         keyBindings.add(setUP.getText());
         keyBindings.add(setLEFT.getText());
         keyBindings.add(setDOWN.getText());
         keyBindings.add(setRIGHT.getText());
 
-        setUP.setActionCommand(UP);     setUP.addActionListener(this);
-        setDOWN.setActionCommand(DOWN);   setDOWN.addActionListener(this);
-        setLEFT.setActionCommand(LEFT);   setLEFT.addActionListener(this);
-        setRIGHT.setActionCommand(RIGHT);  setRIGHT.addActionListener(this);
+        //adding because the command is different from the initialized
+        setUP.setActionCommand(UP);
+        setDOWN.setActionCommand(DOWN);
+        setLEFT.setActionCommand(LEFT);
+        setRIGHT.setActionCommand(RIGHT);
 
-        done.addActionListener(this);
+        errorGirl.setBounds(310, 490, 200, 200);
+        error.setBounds(420, 500, 220, 100);
 
-        add(errorGirl); errorGirl.setBounds(310, 490, 200, 200);
-        add(error);     error.setBounds(420, 500, 220, 100);
-        mute.addActionListener(this);
-
-        add(subtitle);  subtitle.setBounds(450, 120, 150, 50);
-        add(txtUP);     txtUP.setBounds(280, 320, 80, 50);
-        add(txtDOWN);   txtDOWN.setBounds(280, 400, 80, 50);
-        add(txtLEFT);   txtLEFT.setBounds(630, 320, 80, 50);
-        add(txtRIGHT);  txtRIGHT.setBounds(630, 400, 80, 50);
-        add(done);      done.setBounds(480, 550, 80, 50);
-        add(mute);      mute.setBounds(480, 470, 80, 50);
-        add(setUP);     setUP.setBounds(360, 320, 80, 50);
-        add(setDOWN);   setDOWN.setBounds(360, 400, 80, 50);
-        add(setLEFT);   setLEFT.setBounds(710, 320, 80, 50);
-        add(setRIGHT);  setRIGHT.setBounds(710, 400, 80, 50);
+        subtitle.setBounds(450, 120, 150, 50);
+        txtUP.setBounds(280, 320, 80, 50);
+        txtDOWN.setBounds(280, 400, 80, 50);
+        txtLEFT.setBounds(630, 320, 80, 50);
+        txtRIGHT.setBounds(630, 400, 80, 50);
+        done.setBounds(480, 550, 80, 50);
+        mute.setBounds(480, 470, 80, 50);
+        setUP.setBounds(360, 320, 80, 50);
+        setDOWN.setBounds(360, 400, 80, 50);
+        setLEFT.setBounds(710, 320, 80, 50);
+        setRIGHT.setBounds(710, 400, 80, 50);
 
         errorOff();
 
         add(background);
         background.setBounds(0, 0, 1000, 1000);
+
         setUP.setBorder(BorderFactory.createLoweredBevelBorder());
         setDOWN.setBorder(BorderFactory.createLoweredBevelBorder());
         setLEFT.setBorder(BorderFactory.createLoweredBevelBorder());
         setRIGHT.setBorder(BorderFactory.createLoweredBevelBorder());
+
+        //for reading key input
         setUP.addKeyListener(new keyListener());
         setDOWN.addKeyListener(new keyListener());
         setLEFT.addKeyListener(new keyListener());
         setRIGHT.addKeyListener(new keyListener());
+
         setBackground(Color.decode("#483b3a"));
         setLayout(null);
         setFocusable(true);

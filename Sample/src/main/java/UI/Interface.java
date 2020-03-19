@@ -13,6 +13,7 @@ public class Interface extends JFrame {
     public Interface(int step) {
         setLayout(null);
         setTitle("Game");
+        new Sprite();
         ControlScreen control = new ControlScreen();
         PauseScreen pause = new PauseScreen(control);
         GameScreen game = new GameScreen(step);

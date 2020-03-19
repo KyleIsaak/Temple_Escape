@@ -8,9 +8,7 @@ import java.io.InputStream;
 
 public class DrawLive extends JComponent {
 
-    private String imageSrc;
-    private InputStream inputStream;
-    private Image image;
+    private Image sprite;
     private cellType type;
     private int[] pos;
     private int step;
@@ -19,7 +17,6 @@ public class DrawLive extends JComponent {
         PLAYER,
         ENEMY,
     }
-    //color can be set to sprites later on
     public DrawLive(int[] pos, int step, cellType type){
         this.step = step;
         this.pos = pos;
@@ -27,67 +24,37 @@ public class DrawLive extends JComponent {
         selectSprite();
     }
 
-
     private void selectSprite(){
         switch(type){
             case PLAYER:
-                //is = DrawLive.class.getResourceAsStream(player_right.png";
-                inputStream = DrawLive.class.getResourceAsStream("/player_right.png");
-//                is = DrawLive.class.getResourceAsStream(player_right.png";
-
-                System.out.println(imageSrc);
+                sprite = Sprite.player_right();
                 break;
             case ENEMY:
-                inputStream = DrawLive.class.getResourceAsStream("/enemy_right.png");
+                sprite = Sprite.enemy_right();
                 break;
         }
-//        image = Toolkit.getDefaultToolkit().getImage(imageSrc);
-        try {
-            image = ImageIO.read(inputStream);
-        } catch (Exception e){
-            e.printStackTrace();
-        }
     }
-//
-//    public void setPlayerUP(){ is = DrawLive.class.getResourceAsStream(player_up.png";
-//    }
-//    public void setPlayerLEFT(){
-//        is = DrawLive.class.getResourceAsStream(player_left.png";
-//    }
-//    public void setPlayerRIGHT(){
-//        is = DrawLive.class.getResourceAsStream(player_right.png";
-//    }
-//    public void setPlayerDOWN(){
-//        is = DrawLive.class.getResourceAsStream(player_down.png";
-//    }
 
     public void setPlayerUP(){
-        inputStream = DrawLive.class.getResourceAsStream("/player_up.png");
+        sprite = Sprite.player_up();
     }
-    public void setPlayerLEFT(){
-        inputStream = DrawLive.class.getResourceAsStream("/player_left.png");
-    }
+    public void setPlayerLEFT(){sprite = Sprite.player_left(); }
     public void setPlayerRIGHT(){
-        inputStream = DrawLive.class.getResourceAsStream("/player_right.png");
+        sprite = Sprite.player_right();
     }
     public void setPlayerDOWN(){
-        inputStream = DrawLive.class.getResourceAsStream("/player_down.png");
+        sprite = Sprite.player_down();
     }
 
 
     public void setNewPosition(int[] pos){
         this.pos = pos;
-        try {
-            image = ImageIO.read(inputStream);
-        } catch (Exception e){
-            e.printStackTrace();
-        }
         repaint();
     }
 
     public void paint (Graphics graphic) {
         super.paintComponent(graphic);
-        graphic.drawImage(image, this.pos[0] * step + 10, this.pos[1] * step + 42, this);
+        graphic.drawImage(sprite, this.pos[0] * step + 10, this.pos[1] * step + 42, this);
 
     }
 

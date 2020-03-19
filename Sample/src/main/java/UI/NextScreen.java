@@ -23,7 +23,7 @@ public class NextScreen extends JPanel implements ActionListener {
             e.printStackTrace();
         }
 
-        button_resume = new Button(NEXT);
+        button_resume = new Button(NEXT, this, true);
 
         JComponent background = new JComponent(){
             @Override
@@ -35,7 +35,7 @@ public class NextScreen extends JPanel implements ActionListener {
 
         setLayout(null);
         add(background);
-        addButtons();
+        button_resume.setBounds(430, 330, 100, 30);
 
         background.setBounds(50, 150,800, 400);
 
@@ -45,17 +45,6 @@ public class NextScreen extends JPanel implements ActionListener {
 
     }
 
-    private void addButtons(){
-
-        add(button_resume);
-
-        button_resume.setBounds(430, 330, 100, 30);
-
-        button_resume.addActionListener(this);
-
-        button_resume.setActionCommand(NEXT);
-
-    }
     public void setGameScreen(GameScreen gameScreen) {
         this.gameScreen = gameScreen;
     }

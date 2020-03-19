@@ -32,6 +32,7 @@ UI\GameScreen.class
 UI\GameScreen$1.class
 GameLogic\Timer.class
 UI\PauseScreen$1.class
+UI\Sprite.class
 UI\DrawLive$cellType.class
 UI\DrawLive$1.class
 UI\DrawDead$1.class

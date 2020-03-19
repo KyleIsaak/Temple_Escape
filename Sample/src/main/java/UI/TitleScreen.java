@@ -19,8 +19,7 @@ public class TitleScreen extends JPanel implements ActionListener{
     private Misc misc;
     private GameScreen gameScreen;
     private ControlScreen control;
-    private InputStream inputStream;
-    private Image image;
+
     private final String EASY = "EASY";
     private final String MEDIUM = "MEDIUM";
     private final String HARD = "HARD";
@@ -33,17 +32,11 @@ public class TitleScreen extends JPanel implements ActionListener{
         this.misc = misc;
         setLayout(null);
 
-        inputStream = PauseScreen.class.getResourceAsStream("/title.png");
-        try {
-            image = ImageIO.read(inputStream);
-        } catch (Exception e){
-            e.printStackTrace();
-        }
         JComponent background = new JComponent(){
             @Override
             public void paint(Graphics g){
                 super.paintComponent(g);
-                g.drawImage(image, 0, 0, this);
+                g.drawImage(Sprite.titleBackground(), 0, 0, this);
             }
         };
 
@@ -105,24 +98,11 @@ public class TitleScreen extends JPanel implements ActionListener{
         misc.setPause(true);
     }
     private void addButton(){
-        button_easy = new Button(EASY);
-        button_medium = new Button(MEDIUM);
-        button_hard = new Button(HARD);
-        button_quit = new Button(QUIT);
-        button_control = new Button(CONTROL);
-
-        button_easy.addActionListener(this);
-        button_medium.addActionListener(this);
-        button_hard.addActionListener(this);
-        button_quit.addActionListener(this);
-        button_control.addActionListener(this);
-
-
-        add(button_easy);
-        add(button_medium);
-        add(button_hard);
-        add(button_quit);
-        add(button_control);
+        button_easy = new Button(EASY, this, true);
+        button_medium = new Button(MEDIUM, this, true);
+        button_hard = new Button(HARD, this, true);
+        button_quit = new Button(QUIT, this, true);
+        button_control = new Button(CONTROL, this, true);
 
         button_easy.setBounds(160, 540, 100, 35);
         button_medium.setBounds(435, 540, 100, 35);

@@ -40,10 +40,8 @@ public class EndScreen extends JPanel implements ActionListener {
     }
 
     private void addButtons(){
-        button_title = new Button(TITLE);
-        add(button_title);
+        button_title = new Button(TITLE, this, true);
         button_title.setBounds(450, 500, 80, 50);
-        button_title.addActionListener(this);
     }
     @Override
     public void actionPerformed(ActionEvent actionEvent) {

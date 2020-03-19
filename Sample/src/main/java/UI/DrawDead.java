@@ -9,11 +9,10 @@ import java.util.Random;
 
 public class DrawDead extends JComponent {
 
-    private Image imageSource;
+    private Image sprite;
     private cellType type;
     private int[] pos;
     private int step;
-    private InputStream inputStream;
 
     public enum cellType{
         WALL,
@@ -35,98 +34,83 @@ public class DrawDead extends JComponent {
     private void selectSprite(){
         switch(type){
             case WALL:
-                inputStream = DrawLive.class.getResourceAsStream("/wall.png");
+                sprite = Sprite.gameWall();
                 break;
 
             case TRAPTYPEA:
-                inputStream = DrawLive.class.getResourceAsStream("/spike.png");
+                sprite = Sprite.gameSpike();
                 break;
 
             case TRAPTYPEB:
-                inputStream = DrawLive.class.getResourceAsStream("/lava.png");
+                sprite = Sprite.gameLava();
                 break;
 
             case PATH:
                 Random ran = new Random();
                 int choice = ran.nextInt(2);
                 if (choice == 0){
-                    inputStream = DrawLive.class.getResourceAsStream("/path.png");
+                    sprite = Sprite.gamePath();
                 } else if (choice == 1){
-                    inputStream = DrawLive.class.getResourceAsStream("/path2.png");
+                    sprite = Sprite.gamePath2();
                 }
                 break;
             case REWARDTYPEA:
-                inputStream = DrawLive.class.getResourceAsStream("/coin.png");
+                sprite = Sprite.gameCoin();
                 break;
 
             case REWARDTYPEB:
-                inputStream = DrawLive.class.getResourceAsStream("/key.png");
+                sprite = Sprite.gameKey();
                 break;
             case EXIT:
-                inputStream = DrawLive.class.getResourceAsStream("/Lock.png");
+                sprite = Sprite.gameLock();
                 break;
-        }
-        try {
-            imageSource = ImageIO.read(inputStream);
-        } catch (Exception e){
-            e.printStackTrace();
         }
     }
 
     public void setLockUnlocked() {
-        inputStream = DrawLive.class.getResourceAsStream("/Unlock.png");
-        try {
-            imageSource = ImageIO.read(inputStream);
-        } catch (Exception e){
-            e.printStackTrace();
-        }
+        sprite = Sprite.gameUnlock();
         repaint();
     }
 
     public void setWallDirection(boolean top, boolean left, boolean down, boolean right){
         if (top && left && down && right){
-            inputStream = DrawLive.class.getResourceAsStream("/wall_cross.png");
+            sprite = Sprite.wall_cross();
         } else if (top && left && down){
-            inputStream = DrawLive.class.getResourceAsStream("/wall_top_right.png");
+            sprite = Sprite.wall_top_right();
         } else if (top && left && right){
-            inputStream = DrawLive.class.getResourceAsStream("/wall_horizontal.png");
+            sprite = Sprite.wall_horizontal();
         } else if (top && right && down){
-            inputStream = DrawLive.class.getResourceAsStream("/wall_top_left.png");
+            sprite = Sprite.wall_top_left();
         } else if (right && left && down){
-            inputStream = DrawLive.class.getResourceAsStream("/wall_cross.png");
+            sprite = Sprite.wall_cross();
         } else if (top && left){
-            inputStream = DrawLive.class.getResourceAsStream("/wall_bottom_right.png");
+            sprite = Sprite.wall_bottom_right();
         } else if (top && down){
-            inputStream = DrawLive.class.getResourceAsStream("/wall_top.png");
+            sprite = Sprite.wall_top();
         } else if (top && right){
-            inputStream = DrawLive.class.getResourceAsStream("/wall_bottom_left.png");
+            sprite = Sprite.wall_bottom_left();
         } else if (left && down){
-            inputStream = DrawLive.class.getResourceAsStream("/wall_top_right.png");
+            sprite = Sprite.wall_top_right();
         } else if (left && right){
-            inputStream = DrawLive.class.getResourceAsStream("/wall_horizontal.png");
+            sprite = Sprite.wall_horizontal();
         } else if (right && down){
-            inputStream = DrawLive.class.getResourceAsStream("/wall_top_left.png");
+            sprite = Sprite.wall_top_left();
         } else if (top){
-            inputStream = DrawLive.class.getResourceAsStream("/wall_down.png");
+            sprite = Sprite.wall_down();
         } else if (left){
-            inputStream = DrawLive.class.getResourceAsStream("/wall_right.png");
+            sprite = Sprite.wall_right();
         } else if (right){
-            inputStream = DrawLive.class.getResourceAsStream("/wall_left.png");
+            sprite = Sprite.wall_left();
         } else if (down){
-            inputStream = DrawLive.class.getResourceAsStream("/wall_top.png");
+            sprite = Sprite.wall_top();
         } else{
-            inputStream = DrawLive.class.getResourceAsStream("/wall.png");
-        }
-        try {
-            imageSource = ImageIO.read(inputStream);
-        } catch (Exception e){
-            e.printStackTrace();
+            sprite = Sprite.wall();
         }
     }
 
     public void paint (Graphics graphic) {
         super.paintComponent(graphic);
-        graphic.drawImage(imageSource, this.pos[0] * step + 10, this.pos[1] * step + 50, this);
+        graphic.drawImage(sprite, this.pos[0] * step + 10, this.pos[1] * step + 50, this);
 
     }
 
@@ -137,11 +121,6 @@ public class DrawDead extends JComponent {
     public void updateCell(cellType type){
         this.type = type;
         selectSprite();
-        try {
-            imageSource = ImageIO.read(inputStream);
-        } catch (Exception e){
-            e.printStackTrace();
-        }
         repaint();
 
     }
