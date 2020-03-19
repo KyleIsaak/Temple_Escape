@@ -319,7 +319,7 @@ public class GameScreen extends JPanel {
                 // Check whether player stepped on any traps
                 if (board.isTrap(playerPos[0], playerPos[1])) {
                     // Test
-                    System.out.print("Trap Stepped On: ");
+                    //System.out.print("Trap Stepped On: ");
                     int trapIndex = board.trapFinder(playerPos[0], playerPos[1]);
                     int[] trapPos = board.getTrapArrayManager().get(trapIndex).getPosition();
                     int damage = board.getTrapArrayManager().get(trapIndex).getDamage();
@@ -333,7 +333,7 @@ public class GameScreen extends JPanel {
                                 DrawDead oldTrap = trapACell.get(i);
                                 if (oldTrap.getPosition()[0] == trapPos[0]) {
                                     if (oldTrap.getPosition()[1] == trapPos[1]) {
-                                        System.out.println("Trap type A removed");
+                                        //System.out.println("Trap type A removed");
                                         oldTrap.setVisible(false);
                                         trapACell.remove(oldTrap);
                                         remove(oldTrap);
@@ -348,7 +348,7 @@ public class GameScreen extends JPanel {
                                 DrawDead oldTrap = trapBCell.get(i);
                                 if (oldTrap.getPosition()[0] == trapPos[0]) {
                                     if (oldTrap.getPosition()[1] == trapPos[1]) {
-                                        System.out.println("Trap type B removed");
+                                        //System.out.println("Trap type B removed");
                                         oldTrap.setVisible(false);
                                         trapBCell.remove(oldTrap);
                                         remove(oldTrap);
@@ -362,8 +362,8 @@ public class GameScreen extends JPanel {
 
 
                     //Test
-                    System.out.print(board.getScore().getScore());
-                    System.out.println();
+                    //System.out.print(board.getScore().getScore());
+                    //System.out.println();
                 }
 
                 if (board.isReward(playerPos[0], playerPos[1])) {
@@ -379,7 +379,7 @@ public class GameScreen extends JPanel {
                             DrawDead oldReward = rewardACell.get(i);
                             if (oldReward.getPosition()[0] == rewardPos[0]) {
                                 if (oldReward.getPosition()[1] == rewardPos[1]) {
-                                    System.out.println("Reward type A removed");
+                                    //System.out.println("Reward type A removed");
                                     oldReward.setVisible(false);
                                     rewardACell.remove(oldReward);
                                     remove(oldReward);
@@ -394,7 +394,7 @@ public class GameScreen extends JPanel {
                             DrawDead oldReward = rewardBCell.get(i);
                             if (oldReward.getPosition()[0] == rewardPos[0]) {
                                 if (oldReward.getPosition()[1] == rewardPos[1]) {
-                                    System.out.println("Reward type B removed");
+                                    //System.out.println("Reward type B removed");
                                     oldReward.setVisible(false);
                                     rewardBCell.remove(oldReward);
                                     remove(oldReward);
@@ -404,7 +404,7 @@ public class GameScreen extends JPanel {
                         }
                         //System.out.println(rewardBCell);
                         if(rewardBCell.isEmpty()){
-                            System.out.println("All keys collected");
+                            //System.out.println("All keys collected");
                             board.unlockExit();
                             exit.setLockUnlocked();
                             repaint();
@@ -422,16 +422,16 @@ public class GameScreen extends JPanel {
                     //newPath.setPlayerREWARD();    //If we want a sprite of the player getting a reward
 
                     // Test
-                    System.out.println("Reward Stepped On At Position: " + rewardPos[0] + "," + rewardPos[1]);
-                    System.out.println("New score: " + board.getScore().getScore());
-                    System.out.println();
+                    //System.out.println("Reward Stepped On At Position: " + rewardPos[0] + "," + rewardPos[1]);
+                    //System.out.println("New score: " + board.getScore().getScore());
+                    //System.out.println();
                 }
 
                 //check if exit is unlocked and goes to next level
                 if (board.getExit().getIsUnlocked()) {
                     if (board.getPlayer().getPosition()[0] == board.getExit().getPosition()[0] &&
                             board.getPlayer().getPosition()[1] == board.getExit().getPosition()[1]) {
-                        System.out.println("next level");
+                        //System.out.println("next level");
                         Misc.incCurrentLevel();
                         setUp();
                         nextScreen.requestFocus();
