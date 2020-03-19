@@ -61,12 +61,14 @@ public class TitleScreen extends JPanel implements ActionListener{
             button_quit.setEnabled(false);
             button_easy.setEnabled(false);
             button_control.setEnabled(false);
+            button_control.setVisible(false);
             button_hard.setEnabled(false);
             button_medium.setEnabled(false);
         } else{
             button_quit.setEnabled(true);
             button_easy.setEnabled(true);
             button_control.setEnabled(true);
+            button_control.setVisible(true);
             button_hard.setEnabled(true);
             button_medium.setEnabled(true);
         }
@@ -87,8 +89,8 @@ public class TitleScreen extends JPanel implements ActionListener{
         } else if (listener.equals(QUIT)){
             System.exit(0);
         } else if (listener.equals(CONTROL)){
-            control.setVisible(true);
             flipButtons();
+            control.setVisible(true);
             control.requestFocus();
         }
 
