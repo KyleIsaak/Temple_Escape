@@ -344,6 +344,7 @@ public class GameScreen extends JPanel {
                                 DrawDead oldTrap = trapBCell.get(i);
                                 if (oldTrap.getPosition()[0] == trapPos[0]) {
                                     if (oldTrap.getPosition()[1] == trapPos[1]) {
+
                                         oldTrap.setVisible(false);
                                         trapBCell.remove(oldTrap);
                                         remove(oldTrap);
@@ -354,8 +355,6 @@ public class GameScreen extends JPanel {
                         }
                         board.getTrapArrayManager().remove(trapIndex);  //Remove reward from its array
                     }
-
-
                 }
 
                 if (board.isReward(playerPos[0], playerPos[1])) {

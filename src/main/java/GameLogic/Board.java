@@ -355,7 +355,7 @@ public class Board {
         int x = exitPos[0];
         int y = exitPos[1];
 
-        while ((( x < 5 && y < 5) || (isReward(x,y)) || (isTrap(x,y)))){
+        while (( (!isInBounds(x,y))|| ( x < 5 && y < 5) || (isReward(x,y)) || (isTrap(x,y)))){
             exitPos = randomExitPicker();
             x = exitPos[0];
             y = exitPos[1];
