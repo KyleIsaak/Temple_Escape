@@ -7,7 +7,9 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.util.ArrayList;
-
+/**
+ * store the screen the the game will show depend on the situation
+ */
 public class Interface extends JFrame {
 
     public Interface(int step) {
@@ -49,7 +51,9 @@ public class Interface extends JFrame {
 
         createWindow();
     }
-
+    /**
+     * create the size of the window pop up when start run the program
+     */
     private void createWindow(){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1000, 1000);

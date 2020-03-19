@@ -13,7 +13,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
-
+/**
+ * Storing the information when the program.
+ */
 public class GameScreen extends JPanel {
 
     private int step;
@@ -43,61 +45,81 @@ public class GameScreen extends JPanel {
     private int DOWN = KeyEvent.VK_S;
     private int LEFT = KeyEvent.VK_A;
     private int RIGHT = KeyEvent.VK_D;
-
+    /**
+     * Non-Default Constructor(GameScreen class)
+     * @param step: how far the charater can move at each time
+     */
     public GameScreen(int step) {
         this.step = step;
         addKeyListener(new listener());
         music = new Music();
         music.playSound();
     }
-
+    /**
+     * set misc info
+     * @param misc:
+     */
     public void setMisc(Misc misc){
         this.misc = misc;
     }
+    /**
+     * get the control information
+     */
     public void setControlUP(int UP){
         this.UP = UP;
     }
-
     public void setControlDOWN(int DOWN){
         this.DOWN = DOWN;
     }
-
     public void setControlLEFT(int LEFT){
         this.LEFT = LEFT;
     }
-
     public void setControlRIGHT(int RIGHT){
         this.RIGHT = RIGHT;
     }
-
+    /**
+     * get the control information
+     */
     public int getUP() {
         return UP;
     }
-
     public int getDOWN() {
         return DOWN;
     }
-
     public int getLEFT() {
         return LEFT;
     }
-
     public int getRIGHT() {
         return RIGHT;
     }
-
+    /**
+     * get the background music
+     * @return the background music
+     */
     public Music getMusic(){ return music; }
+    /**
+     * set the next Screen variable
+     */
     public void setNextScreen(NextScreen next){
         nextScreen = next;
     }
+    /**
+     * set the End Screen variable
+     */
     public void setEnd(EndScreen endScreen){
         this.endScreen = endScreen;
     }
+    /**
+     * set the difficulty of the game
+     * @param mode store the game difficult
+     */
     public void setDifficulty(LevelGenerator.Difficulty mode){
         this.mode = mode;
         startGame();
     }
-
+    /**
+     * Set the stuff that need to be use for the player press start button.
+     */
     private void startGame(){
         removeAll();
 
@@ -131,7 +153,9 @@ public class GameScreen extends JPanel {
         setVisible(false);
         repaint();
     }
-
+    /**
+     * Setup all the stuff that in the game
+     */
     private void setUp(){
         removeAll();
         isReleased = true;
@@ -165,7 +189,9 @@ public class GameScreen extends JPanel {
         setVisible(false);
         repaint();
     }
-
+    /**
+     * create the game board of the game
+     */
     private void createBoard() {
         int pos[];
         for (int y = 0; y < map[0].length; y++) {
@@ -217,7 +243,12 @@ public class GameScreen extends JPanel {
             }
         }
     }
-
+    /**
+     * create the wall of the game;
+     * @param x
+     * @param y
+     * @param pos
+     */
     private void createWall(int x, int y, int[] pos){
         boolean left = false;
         boolean right = false;
@@ -414,12 +445,13 @@ public class GameScreen extends JPanel {
             for(int i=0; i < Math.min(Misc.getCurrentLevel(), 3); i++) {
                 board.chaseThePlayer(board.getEnemyArrayManager().get(i), i);
                 int j = i+1;
-                System.out.println("Enemy " + j + " current location" + board.getEnemyArrayManager().get(i).getPosition()[0] + ',' + board.getEnemyArrayManager().get(i).getPosition()[1]);
+                //System.out.println("Enemy " + j + " current location" + board.getEnemyArrayManager().get(i).getPosition()[0] + ',' + board.getEnemyArrayManager().get(i).getPosition()[1]);
                 if(board.isGameOver(board.getEnemyArrayManager().get(i)))
                 {
 
                     setVisible(false);
                     misc.setPause(false);
+                    endScreen.setScore(board.getScore().getScore());
                     endScreen.setVisible(true);
                     endScreen.requestFocus();
                 }

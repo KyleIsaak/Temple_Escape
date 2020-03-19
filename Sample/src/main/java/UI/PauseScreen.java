@@ -6,7 +6,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.InputStream;
-
+/**
+ * Setup for pauseScreen
+ */
 public class PauseScreen extends JPanel implements ActionListener{
     GameScreen gameScreen;
     String mute = "Mute";
@@ -17,7 +19,10 @@ public class PauseScreen extends JPanel implements ActionListener{
     JButton button_control;
     JButton button_resume;
     ControlScreen controlScreen;
-
+    /**
+     * Constructor
+     * @param controlScreen
+     */
     public PauseScreen(ControlScreen controlScreen){
         this.controlScreen = controlScreen;
 
@@ -43,7 +48,9 @@ public class PauseScreen extends JPanel implements ActionListener{
         setVisible(false);
 
     }
-
+    /**
+     * set up the button option on pause screen
+     */
     private void addButtons(){
         button_mute.setBackground(Color.decode("#483b3a"));
         button_control.setBackground(Color.decode("#483b3a"));
@@ -53,10 +60,16 @@ public class PauseScreen extends JPanel implements ActionListener{
         button_control.setBounds(430, 370, 100, 30);
         button_resume.setBounds(430, 420, 100, 30);
     }
+    /**
+     * setup the gameScreen
+     * @param gameScreen
+     */
     public void setGameScreen(GameScreen gameScreen) {
         this.gameScreen = gameScreen;
     }
-
+    /**
+     * to be used when user press Mute Button on pause Screen
+     */
     public void flipButtons(){
         if (button_mute.isEnabled()) {
             button_control.setEnabled(false);

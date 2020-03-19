@@ -58,7 +58,7 @@ public class Misc extends JPanel implements ActionListener {
         button_score.setText(String.valueOf(score));
     }
 
-    public static long getTimeContainer(){return timeContainer;}
+    //public static long getTimeContainer(){return timeContainer;}
     public static void setTime(long time){
         timeContainer = time;
         String timeText = time /60 + ":" + String.format("%02d", time %60);

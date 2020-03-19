@@ -19,7 +19,10 @@ public class TestMain  {
     private static Board board;
 
 
-
+    /**
+     * main program
+     * @param args
+     */
     public static void main (String[] args){
         new newFont();
         new Interface(step);

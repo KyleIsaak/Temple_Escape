@@ -8,7 +8,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.InputStream;
-
+/**
+ * Show the information of the title Screen
+ */
 public class TitleScreen extends JPanel implements ActionListener{
     private Button button_easy;
     private Button button_medium;
@@ -26,6 +28,12 @@ public class TitleScreen extends JPanel implements ActionListener{
     private final String QUIT = "QUIT";
     private final String CONTROL = "CONTROL";
 
+    /**
+     * Non default Constructor ((Title Screen
+     * @param gameScreen storing the gameScreen info
+     * @param control storing the control info
+     * @param misc storing the misc info
+     */
     public TitleScreen(GameScreen gameScreen, ControlScreen control, Misc misc){
         this.gameScreen = gameScreen;
         this.control = control;
@@ -89,6 +97,9 @@ public class TitleScreen extends JPanel implements ActionListener{
 
     }
 
+    /**
+     * Setting before the program Enter the game
+     */
     private void enterGame(){
         gameScreen.setVisible(true);
         gameScreen.requestFocus();
@@ -97,6 +108,10 @@ public class TitleScreen extends JPanel implements ActionListener{
         setFocusable(false);
         misc.setPause(true);
     }
+
+    /**
+     * add the button on main screen
+     */
     private void addButton(){
         button_easy = new Button(EASY, this, true);
         button_medium = new Button(MEDIUM, this, true);

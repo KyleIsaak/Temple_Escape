@@ -10,14 +10,18 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.InputStream;
 import java.util.ArrayList;
-
+/**
+ * Store and setup control screen
+ */
 public class ControlScreen extends JPanel implements ActionListener {
 
     GameScreen gameScreen;
     TitleScreen title;
     PauseScreen pause;
     //actual value of button
-
+    /**
+     * the string for setting action command and button name
+     */
     //the string for setting action command and button name
     private final String UP = "UP";
     private final String DOWN = "DOWN";
@@ -25,12 +29,15 @@ public class ControlScreen extends JPanel implements ActionListener {
     private final String RIGHT = "RIGHT";
     private final String DONE = "DONE";
     private final String MUTE = "MUTE";
+
     private final String CONTROL = "CONTROL";
     private final String ERROR = "ERROR";
 
     private JButton error;
 
-    //the button for setting control
+    /**
+     * the button for setting control
+     */
     private JButton setUP;
     private JButton setDOWN;
     private JButton setLEFT;
@@ -45,6 +52,10 @@ public class ControlScreen extends JPanel implements ActionListener {
 
     private ArrayList<String> keyBindings;
     JComponent errorGirl;
+    /**
+     * setup of GameScreen
+     * @param gameScreen Storing the information of GameScreen
+     */
     public void setGameScreen(GameScreen gameScreen) {
         keyBindings = new ArrayList<>();
 
@@ -138,10 +149,17 @@ public class ControlScreen extends JPanel implements ActionListener {
         error.setVisible(false);
         errorGirl.setVisible(false);
     }
-
+    /**
+     * setup pause;
+     * @param pause store the pasue information
+     */
     public void setPause(PauseScreen pause){
         this.pause = pause;
     }
+    /**
+     * setup title
+     * @param title store the title information
+     */
     public void setTitle(TitleScreen title){
         this.title = title;
     }
