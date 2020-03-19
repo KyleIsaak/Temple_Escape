@@ -8,7 +8,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.InputStream;
-
+/**
+ * Show the information of the title Screen
+ */
 public class TitleScreen extends JPanel implements ActionListener{
     private Button button_easy;
     private Button button_medium;

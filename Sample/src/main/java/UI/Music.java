@@ -4,7 +4,9 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.io.File;
-
+/**
+ * Store the details of the backgroud Music
+ */
 public class Music {
     private long clipPosition;
     private boolean isPause;
@@ -29,12 +31,22 @@ public class Music {
             ex.printStackTrace();
         }
     }
+    /**
+     * check the music is pause or not
+     * @return true if the music is pause
+     */
     public boolean isPause(){ return isPause; }
+    /**
+     * Set to pause the background music of the game
+     */
     public void pauseMusic(){
         clipPosition = clip.getMicrosecondPosition();
         clip.stop();
         isPause = true;
     }
+    /**
+     * play the music when the player unmute the background music
+     */
     public void unPause(){
         clip.setMicrosecondPosition(clipPosition);
         clip.start();
