@@ -9,7 +9,6 @@ public class RewardTypeA extends Reward {
     private int rewardAmount = 50;
     private  char type = 'A';
 
-
     /**
      * Default Constructor
      */
@@ -19,9 +18,7 @@ public class RewardTypeA extends Reward {
      * Get the value of this reward.
      * @return the value of this reward.
      */
-    public int getRewardAmount(){
-        return this.rewardAmount;
-    }
+    public int getRewardAmount(){ return this.rewardAmount; }
 
     /**
      * Get the type of this Rewards

@@ -17,9 +17,7 @@ public class RewardTypeB extends Reward {
      * Get the value of this reward.
      * @return the value of this reward.
      */
-    public int getRewardAmount(){
-        return this.rewardAmount;
-    }
+    public int getRewardAmount(){ return this.rewardAmount; }
 
     /**
      * Get the type of this Rewards
