@@ -23,6 +23,7 @@ public class ControlScreen extends JPanel implements ActionListener {
     private final String LEFT = "LEFT";
     private final String RIGHT = "RIGHT";
     private final String DONE = "DONE";
+    private final String MUTE = "MUTE";
 
     //the button for name
     private JButton subtitle;
@@ -36,6 +37,7 @@ public class ControlScreen extends JPanel implements ActionListener {
     private JButton setDOWN;
     private JButton setLEFT;
     private JButton setRIGHT;
+    private JButton mute;
     private JButton done;
 
     boolean up = false;
@@ -65,6 +67,7 @@ public class ControlScreen extends JPanel implements ActionListener {
         txtDOWN = new Button(DOWN);     txtDOWN.setEnabled(false);
         txtLEFT = new Button(LEFT);     txtLEFT.setEnabled(false);
         txtRIGHT = new Button(RIGHT);   txtRIGHT.setEnabled(false);
+        mute = new Button(MUTE);
         done = new Button(DONE);
         setUP = new Button(String.valueOf((char)(gameScreen.getUP())));
         setDOWN = new Button(String.valueOf((char)gameScreen.getDOWN()));
@@ -77,13 +80,15 @@ public class ControlScreen extends JPanel implements ActionListener {
         setRIGHT.setActionCommand(RIGHT);  setRIGHT.addActionListener(this);
 
         done.addActionListener(this);
+        mute.addActionListener(this);
 
         add(subtitle);  subtitle.setBounds(400, 120, 150, 50);
         add(txtUP);     txtUP.setBounds(280, 320, 80, 50);
         add(txtDOWN);   txtDOWN.setBounds(280, 400, 80, 50);
         add(txtLEFT);   txtLEFT.setBounds(630, 320, 80, 50);
         add(txtRIGHT);  txtRIGHT.setBounds(630, 400, 80, 50);
-        add(done);      done.setBounds(600, 500, 80, 50);
+        add(done);      done.setBounds(600, 550, 80, 50);
+        add(mute);      mute.setBounds(600, 470, 80, 50);
         add(setUP);     setUP.setBounds(360, 320, 80, 50);
         add(setDOWN);   setDOWN.setBounds(360, 400, 80, 50);
         add(setLEFT);   setLEFT.setBounds(710, 320, 80, 50);
@@ -138,6 +143,13 @@ public class ControlScreen extends JPanel implements ActionListener {
             left = true;
         } else if (listener.equals(RIGHT)) {
             right = true;
+        } else if (listener.equals(MUTE)) {
+            if (gameScreen.getMusic().isPause()){
+                gameScreen.getMusic().unPause();
+            }
+            else{
+                gameScreen.getMusic().pauseMusic();
+            }
         }
     }
 
