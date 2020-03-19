@@ -2,6 +2,7 @@ package GameLogic;
 
 
 import UI.Misc;
+import UI.TestMain;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -71,10 +72,11 @@ public class Board {
         playerInit = new int[]{1, 1};
         player = new Player(playerInit);
         score = new Score(scoreAmount);
+        timer = new Timer();
 
     }
 
-    public Board(int level, int scoreAmount, long timeAmount){
+    public Board(int level, int scoreAmount, Timer oldTimer){
         generator = new LevelGenerator(sizeX, sizeY);
 
         trapArrayManager = new ArrayList<Trap>();
@@ -91,7 +93,7 @@ public class Board {
         player = new Player(playerInit);
 
         score = new Score(scoreAmount);
-        timer = new Timer(getTimer());
+        timer = new Timer(oldTimer);
     }
 
     /**

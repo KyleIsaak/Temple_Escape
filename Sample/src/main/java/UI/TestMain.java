@@ -24,9 +24,9 @@ public class TestMain  {
         new newFont();
         new Interface(step);
 
-        while(!isGameOver)
-        {
+        //while(!isGameOver)
+        //{
             //System.out.println("Time elapsed:" + timer.displayMinutes() + ":" + timer.displaySeconds());
-       }
+       //}
     }
 }

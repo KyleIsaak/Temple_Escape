@@ -86,12 +86,13 @@ public class GameScreen extends JPanel {
     }
     public void setDifficulty(LevelGenerator.Difficulty mode){
         this.mode = mode;
-        setUp();
+        startGame();
     }
-    private void setUp(){
+
+    private void startGame(){
         removeAll();
 
-        board = new Board(Misc.getCurrentLevel(), Misc.getScoreContainer(), Misc.getTimeContainer());
+        board = new Board(Misc.getCurrentLevel(), Misc.getScoreContainer());
         board.setDifficulty(mode);
 
         wallCell = new ArrayList<>();
@@ -121,6 +122,41 @@ public class GameScreen extends JPanel {
         setVisible(false);
         repaint();
     }
+
+    private void setUp(){
+        removeAll();
+
+        board = new Board(Misc.getCurrentLevel(), Misc.getScoreContainer(), board.getTimer());
+        board.setDifficulty(mode);
+
+        wallCell = new ArrayList<>();
+        pathCell = new ArrayList<>();
+        trapACell = new ArrayList<>();
+        trapBCell = new ArrayList<>();
+        rewardACell = new ArrayList<>();
+        rewardBCell = new ArrayList<>();
+        this.map = board.getBoard();
+
+
+        player = new DrawLive(board.getPlayerPos(), step, DrawLive.cellType.PLAYER);
+        exit = new DrawDead(board.getExit().getPosition(), step, DrawDead.cellType.EXIT);
+        for(int i = 0; i < Math.min(Misc.getCurrentLevel(), 3); i++) {
+            enemy = new DrawLive(board.getEnemyPos(i), step, DrawLive.cellType.ENEMY);
+            add(enemy);
+        }
+
+        add(player);
+        add(exit);
+
+        createBoard();
+        setBackground(Color.decode("#483b3a"));
+        setLayout(new OverlayLayout(this));
+
+        setFocusable(true);
+        setVisible(false);
+        repaint();
+    }
+
     private void createBoard() {
         int pos[];
         for (int y = 0; y < map[0].length; y++) {

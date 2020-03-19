@@ -19,8 +19,8 @@ public class Timer {
     }
 
     public Timer(Timer oldTimer){
-        this.startTime = oldTimer.startTime;
-        this.pausedTime = oldTimer.pausedTime;
+        this.startTime = oldTimer.getStartTime();
+        this.pausedTime = oldTimer.getPausedTime();
     }
 
 
@@ -30,6 +30,9 @@ public class Timer {
         this.elapsedTime -= pausedTime;
         return elapsedTime;
     }
+
+    public long getStartTime(){return this.startTime;}
+    public long getPausedTime(){return  this.pausedTime;}
 
 
     //Get time in various formats
