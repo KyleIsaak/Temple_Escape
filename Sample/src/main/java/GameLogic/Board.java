@@ -266,10 +266,11 @@ public class Board {
                 break;
         }
 
-        System.out.println(sizeX);
-        System.out.println((sizeY));
-        System.out.println(exitPos[0]);
-        System.out.println(exitPos[1]);
+        //Testing values - can be removed
+        //System.out.println(sizeX);
+        //System.out.println((sizeY));
+        //System.out.println(exitPos[0]);
+        //System.out.println(exitPos[1]);
         return exitPos;
     }
 

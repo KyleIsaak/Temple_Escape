@@ -52,6 +52,7 @@ public class EndScreen extends JPanel implements ActionListener {
             setVisible(false);
             title.setVisible(true);
             title.requestFocus();
+            Misc.setScore(100);
         }
     }
 }
