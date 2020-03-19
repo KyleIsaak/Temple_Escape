@@ -18,10 +18,9 @@ public class Timer {
         this.pausedTime = 0;
     }
 
-    public Timer(long previousTime){
-        this.startTime = System.currentTimeMillis();
-        this.startTime += previousTime;
-        this.pausedTime = 0;
+    public Timer(Timer oldTimer){
+        this.startTime = oldTimer.startTime;
+        this.pausedTime = oldTimer.pausedTime;
     }
 
 
@@ -49,7 +48,7 @@ public class Timer {
     }
 
     public long displayMinutes() {
-        this.elapsedTime = getSeconds() / 60;
+        this.elapsedTime = displaySeconds() / 60;
         return elapsedTime;
     }
 
