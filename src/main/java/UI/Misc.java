@@ -7,6 +7,9 @@ package UI;
         import java.awt.event.ActionEvent;
         import java.awt.event.ActionListener;
 
+/**
+ * Storing The misc info of the game
+ */
 public class Misc extends JPanel implements ActionListener {
 
     private static int currentLevel = 1;
@@ -27,6 +30,11 @@ public class Misc extends JPanel implements ActionListener {
     private final String SCORE = " score: ";
     private final String TIME = "time: ";
 
+    /**
+     * NOn default constructor
+     * @param gameScreen stroing the gameScreen info
+     * @param pauseScreen stroing the pauseScreen info
+     */
     public Misc(GameScreen gameScreen, JPanel pauseScreen){
         this.gameScreen = gameScreen;
         this.pauseScreen = pauseScreen;
@@ -49,16 +57,29 @@ public class Misc extends JPanel implements ActionListener {
         setFocusable(true);
         setVisible(false);
     }
+
+    /**
+     * Set pause
+     * @param visible storing the info visible or not
+     */
     public void setPause(boolean visible){
         button_pause.setVisible(visible);
     }
     public static int getScoreContainer() {return scoreContainer; }
+
+    /**
+     * set Score
+     * @param score score of the player
+     */
     public static void setScore(int score){
         scoreContainer = score;
         button_score.setText(String.valueOf(score));
     }
 
     //public static long getTimeContainer(){return timeContainer;}
+    /**
+     * Set the timer
+     */
     public static void setTime(long time){
         timeContainer = time;
         String timeText = time /60 + ":" + String.format("%02d", time %60);
@@ -66,10 +87,17 @@ public class Misc extends JPanel implements ActionListener {
         //button_time.setText(String.valueOf(time));    //This line gives seconds only
     }
 
+    /**
+     * add 1 to the current level
+     */
     public static void incCurrentLevel(){
         currentLevel++;
     }
 
+    /**
+     * get current level
+     * @return current level
+     */
     public static int getCurrentLevel(){
         return currentLevel;
     }
