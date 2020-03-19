@@ -43,6 +43,7 @@ public class Misc extends JPanel implements ActionListener {
         add(button_pause);
         button_pause.setBounds(0, 50, 100, 40);
         button_pause.addActionListener(this);
+        button_pause.setVisible(false);
 
         add(button_TxtScore);
         button_TxtScore.setBounds(0, 120, 100, 40);
@@ -65,7 +66,9 @@ public class Misc extends JPanel implements ActionListener {
         setFocusable(true);
         setVisible(false);
     }
-
+    public void setPause(boolean visible){
+        button_pause.setVisible(visible);
+    }
     public static int getScoreContainer() {return scoreContainer; }
     public static void setScore(int score){
         scoreContainer = score;

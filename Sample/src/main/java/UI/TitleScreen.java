@@ -16,7 +16,7 @@ public class TitleScreen extends JPanel implements ActionListener{
     private Button button_quit;
     private Button button_control;
 
-    private JPanel misc;
+    private Misc misc;
     private GameScreen gameScreen;
     private ControlScreen control;
     private InputStream inputStream;
@@ -27,7 +27,7 @@ public class TitleScreen extends JPanel implements ActionListener{
     private final String QUIT = "QUIT";
     private final String CONTROL = "CONTROL";
 
-    public TitleScreen(GameScreen gameScreen, ControlScreen control, JPanel misc){
+    public TitleScreen(GameScreen gameScreen, ControlScreen control, Misc misc){
         this.gameScreen = gameScreen;
         this.control = control;
         this.misc = misc;
@@ -102,6 +102,7 @@ public class TitleScreen extends JPanel implements ActionListener{
         misc.setVisible(true);
         setVisible(false);
         setFocusable(false);
+        misc.setPause(true);
     }
     private void addButton(){
         button_easy = new Button(EASY);
