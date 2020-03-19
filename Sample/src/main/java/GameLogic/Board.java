@@ -242,7 +242,6 @@ public class Board {
         Random random = new Random();
         int randX = (random.nextInt(4));
 
-
         int[] exitPos = new int[2];
 
         switch(randX) {
