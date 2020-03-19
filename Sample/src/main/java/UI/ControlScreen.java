@@ -116,8 +116,8 @@ public class ControlScreen extends JPanel implements ActionListener {
         add(txtDOWN);   txtDOWN.setBounds(280, 400, 80, 50);
         add(txtLEFT);   txtLEFT.setBounds(630, 320, 80, 50);
         add(txtRIGHT);  txtRIGHT.setBounds(630, 400, 80, 50);
-        add(done);      done.setBounds(600, 550, 80, 50);
-        add(mute);      mute.setBounds(600, 470, 80, 50);
+        add(done);      done.setBounds(480, 550, 80, 50);
+        add(mute);      mute.setBounds(480, 470, 80, 50);
         add(setUP);     setUP.setBounds(360, 320, 80, 50);
         add(setDOWN);   setDOWN.setBounds(360, 400, 80, 50);
         add(setLEFT);   setLEFT.setBounds(710, 320, 80, 50);
