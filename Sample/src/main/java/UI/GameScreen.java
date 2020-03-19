@@ -420,6 +420,7 @@ public class GameScreen extends JPanel {
 
                     setVisible(false);
                     misc.setPause(false);
+                    endScreen.setScore(board.getScore().getScore());
                     endScreen.setVisible(true);
                     endScreen.requestFocus();
                 }
