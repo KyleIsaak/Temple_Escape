@@ -31,30 +31,13 @@ public class LevelGenerator {
             }
             System.out.println();
         }
-//
-//        int newx = 3;
-//        int newy = 3;
-//
-//        map[newx][newy] = 5;
-//        newx = 2;
-//        map[newx][newy] = 4;
-//        newx = 4;
-//        map[newx][newy] = 6;
-//        newx = 3; newy = 2;
-//        map[newx][newy] = 8;
-//        newy = 4;
-//        map[newx][newy] = 7;
-//
-//        for (int y = 1; y < map[0].length; y++) {
-//            for (int x = 0; x < map.length - 1; x++) {
-//                System.out.print(map[x][y]);
-//            }
-//            System.out.println();
-//        }
-//
-//        System.out.println("3, 4: " + map[3][4]);
     }
 
+    /**
+     * Non Default Constructor
+     * @param x An integer that specify the horizontal length of a board.
+     * @param y An integer that specify the vertical length of a board.
+     */
     public LevelGenerator(int x, int y){
         this.x = x;
         this.y = y;
@@ -71,6 +54,12 @@ public class LevelGenerator {
         MEDIUM,
         HARD
     }
+
+    /**
+     * Set the Difficulty of the game
+     * The harder the game, the more walls the game have.
+     * @param choice The chosen Difficulty (EASY, MEDIUM, HARD)
+     */
     public void setLevel(Difficulty choice){
         switch(choice){
             case EASY:
@@ -95,6 +84,9 @@ public class LevelGenerator {
         }
     }
 
+    /**
+     * Generate the board of the game using Depth First Search.
+     */
     private void generate(){
         board[1][1] = PATH;                //player init
 
@@ -120,17 +112,37 @@ public class LevelGenerator {
         }
     }
 
+    /**
+     * Check whether that position consists a wall
+     * @param x An integer for the x position
+     * @param y An integer for the y position
+     * @return true if that position contains a wall and vise versa.
+     */
     public boolean isWall(int x, int y){ return board[x][y] == WALL; }
 
-    public int[][] getBoard(){
-        return board;
-    }
+    /**
+     * Get the board of this class
+     * @return the board of this class
+     */
+    public int[][] getBoard(){ return board; }
 
+    /**
+     * Helper Function for generate() function.
+     * Push x, y position to unvisited points.
+     * @param x  An integer for the x position
+     * @param y  An integer for the y position
+     */
     private void pushStacks(int x, int y){
         unvisitX.push(x);
         unvisitY.push(y);
     }
 
+    /**
+     * Helper function for generate() function
+     * @param x An integer for the x position
+     * @param y  An integer for the y position
+     * @param next An integer of the next position
+     */
     private void makePath(int x, int y, int next){
         int nextX = neighborX.get(next);
         int nextY = neighborY.get(next);
@@ -140,6 +152,11 @@ public class LevelGenerator {
         board[nextX][nextY] = PATH;
     }
 
+    /**
+     * Helper Function for generate() function.
+     * @param x An integer for the x position
+     * @param y An integer for the y position
+     */
     private void findNeighbor(int x, int y){
         neighborX.clear();
         neighborY.clear();
@@ -165,19 +182,37 @@ public class LevelGenerator {
         }
     }
 
+    /**
+     * Helper Function for generate() function
+     * @return true if there is only one elements in neighborX.
+     */
     private boolean isComplete(){
         return (neighborX.size() == 1);
     }
 
+    /**
+     * Helper function for generate() function
+     * @return true if neighborX is not empty and vise versa.
+     */
     private boolean hasNeighbor(){
         return !neighborX.isEmpty();
     }
 
+    /**
+     * Helper function for generate() function
+     * @return randomize Neighbor
+     */
     private int randomNeighbor(){
         Random random = new Random();
         return random.nextInt(neighborX.size());
     }
 
+    /**
+     * Helper Function for generate() function
+     * @param x An integer for the x position
+     * @param y An integer for the y position
+     * @return true if the position is in bound and vise versa
+     */
     private boolean isInBound(int x, int y){
         if (x < 1 || x > this.x - 2 || y < 1 || y > this.y - 2) {
             return false;
@@ -185,6 +220,9 @@ public class LevelGenerator {
         return true;
     }
 
+    /**
+     * Remove walls in random location of the map.
+     */
     private void randomRemoveWall(){
         Random random = new Random();
         boolean isRemoved = false;

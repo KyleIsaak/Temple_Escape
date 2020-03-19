@@ -76,6 +76,13 @@ public class Board {
 
     }
 
+    /**
+     * Non Default Constructor (Board Class)
+     * To be used for recreating board when transiting to next level.
+     * @param level An integer defining the difficulty selected.
+     * @param scoreAmount An integer holding the current score from the current level.
+     * @param oldTimer A timer class that has the old information.
+     */
     public Board(int level, int scoreAmount, Timer oldTimer){
         generator = new LevelGenerator(sizeX, sizeY);
 
@@ -486,7 +493,20 @@ public class Board {
                 testValidMove = isWall(EnemyX+planMove[0],EnemyY+planMove[1]);
             }
         }
+        //Solving two enemy standing in a same position
+        int level=Misc.getCurrentLevel();
+        if(level>=3)
+            level=3;
+        for (int j = 0; j < level; j++) {
+            if (i == j)
+                continue;
+            else if (EnemyX + planMove[0] == EnemyArrayManager.get(j).getPosition()[0] && EnemyY + planMove[1] == EnemyArrayManager.get(j).getPosition()[1]) {
+                planMove[0] = 0;
+                planMove[1] = 0;
+            }
+        }
         enemy.move(planMove);
+
     }
 
     /**
