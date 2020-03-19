@@ -29,40 +29,76 @@ public class GameScreen extends JPanel {
     private ArrayList<DrawDead> rewardBCell;
     private static Music music;
 
+    private LevelGenerator.Difficulty mode;
     private Board board;
     private int[][] map;
 
     private JPanel nextScreen;
     //default controls
-    int UP = KeyEvent.VK_W;
-    int DOWN = KeyEvent.VK_S;
-    int LEFT = KeyEvent.VK_A;
-    int RIGHT = KeyEvent.VK_D;
+    private int UP = KeyEvent.VK_W;
+    private int DOWN = KeyEvent.VK_S;
+    private int LEFT = KeyEvent.VK_A;
+    private int RIGHT = KeyEvent.VK_D;
 
     public GameScreen(int step) {
         this.step = step;
-        setUp();
         addKeyListener(new listener());
         music = new Music();
         music.playSound();
+    }
+
+    public void setControlUP(int UP){
+        this.UP = UP;
+    }
+
+    public void setControlDOWN(int DOWN){
+        this.DOWN = DOWN;
+    }
+
+    public void setControlLEFT(int LEFT){
+        this.LEFT = LEFT;
+    }
+
+    public void setControlRIGHT(int RIGHT){
+        this.RIGHT = RIGHT;
+    }
+
+    public int getUP() {
+        return UP;
+    }
+
+    public int getDOWN() {
+        return DOWN;
+    }
+
+    public int getLEFT() {
+        return LEFT;
+    }
+
+    public int getRIGHT() {
+        return RIGHT;
     }
 
     public Music getMusic(){ return music; }
     public void setNextScreen(NextScreen next){
         nextScreen = next;
     }
+    public void setDifficulty(LevelGenerator.Difficulty mode){
+        this.mode = mode;
+        setUp();
+    }
     private void setUp(){
         removeAll();
         board = new Board(Misc.getCurrentLevel(), Misc.getScoreContainer());
+        board.setDifficulty(mode);
         wallCell = new ArrayList<>();
         pathCell = new ArrayList<>();
         trapACell = new ArrayList<>();
         trapBCell = new ArrayList<>();
         rewardACell = new ArrayList<>();
         rewardBCell = new ArrayList<>();
-
-        board.setDifficulty(LevelGenerator.Difficulty.EASY);
         this.map = board.getBoard();
+
 
         player = new DrawLive(board.getPlayerPos(), step, DrawLive.cellType.PLAYER);
         exit = new DrawDead(board.getExit().getPosition(), step, DrawDead.cellType.EXIT);
@@ -80,7 +116,7 @@ public class GameScreen extends JPanel {
 
         setFocusable(true);
         setVisible(false);
-
+        repaint();
     }
     private void createBoard() {
         int pos[];
@@ -150,7 +186,7 @@ public class GameScreen extends JPanel {
     }
 
     private class listener extends KeyAdapter {
-        boolean isReleased = false;
+        boolean isReleased = true;
 
 
         @Override
