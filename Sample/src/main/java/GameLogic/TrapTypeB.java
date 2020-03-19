@@ -5,7 +5,7 @@ package GameLogic;
  * Player lose points when stepped on traps.
  */
 public class TrapTypeB extends Trap {
-    private int damage = 20;
+    private int damage = 200;
     private  char type = 'B';
 
     /**
