@@ -33,8 +33,11 @@ public class GameScreen extends JPanel {
     private int[][] map;
     private static Music music;
     private boolean despawnTraps = true;
+    private boolean isReleased = true;
 
     private JPanel nextScreen;
+    private EndScreen endScreen;
+    private Misc misc;
     //default controls
     private int UP = KeyEvent.VK_W;
     private int DOWN = KeyEvent.VK_S;
@@ -48,6 +51,9 @@ public class GameScreen extends JPanel {
         music.playSound();
     }
 
+    public void setMisc(Misc misc){
+        this.misc = misc;
+    }
     public void setControlUP(int UP){
         this.UP = UP;
     }
@@ -83,6 +89,9 @@ public class GameScreen extends JPanel {
     public Music getMusic(){ return music; }
     public void setNextScreen(NextScreen next){
         nextScreen = next;
+    }
+    public void setEnd(EndScreen endScreen){
+        this.endScreen = endScreen;
     }
     public void setDifficulty(LevelGenerator.Difficulty mode){
         this.mode = mode;
@@ -125,7 +134,7 @@ public class GameScreen extends JPanel {
 
     private void setUp(){
         removeAll();
-
+        isReleased = true;
         board = new Board(Misc.getCurrentLevel(), Misc.getScoreContainer(), board.getTimer());
         board.setDifficulty(mode);
 
@@ -229,7 +238,7 @@ public class GameScreen extends JPanel {
     public Board getBoard(){ return this.board; }
 
     private class listener extends KeyAdapter {
-        boolean isReleased = true;
+
 
         @Override
         public void keyReleased(KeyEvent e) {
@@ -243,6 +252,8 @@ public class GameScreen extends JPanel {
             int[] playerPos = board.getPlayerPos();
             if (isReleased) {
                 isReleased = false;
+
+                //player movement
                 if (key == UP){
                     System.out.println("UP");
                     if(!board.isWall(playerPos[0], playerPos[1] - 1)) {
@@ -385,6 +396,7 @@ public class GameScreen extends JPanel {
                     System.out.println();
                 }
 
+                //check if exit is unlocked and goes to next level
                 if (board.getExit().getIsUnlocked()) {
                     if (board.getPlayer().getPosition()[0] == board.getExit().getPosition()[0] &&
                             board.getPlayer().getPosition()[1] == board.getExit().getPosition()[1]) {
@@ -405,7 +417,11 @@ public class GameScreen extends JPanel {
                 System.out.println("Enemy " + j + " current location" + board.getEnemyArrayManager().get(i).getPosition()[0] + ',' + board.getEnemyArrayManager().get(i).getPosition()[1]);
                 if(board.isGameOver(board.getEnemyArrayManager().get(i)))
                 {
-                    System.out.println("Game Over");
+
+                    setVisible(false);
+                    misc.setPause(false);
+                    endScreen.setVisible(true);
+                    endScreen.requestFocus();
                 }
             }
         }

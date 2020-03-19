@@ -1,8 +1,10 @@
+UI\EndScreen$1.class
 GameLogic\LevelGenerator$Difficulty.class
 GameLogic\RewardTypeA.class
 GameLogic\LevelGenerator.class
 UI\DrawDead$cellType.class
 UI\Misc.class
+UI\EndScreen.class
 UI\ControlScreen$2.class
 UI\DrawDead.class
 UI\DrawLive.class
