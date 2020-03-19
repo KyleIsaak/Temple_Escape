@@ -32,7 +32,7 @@ public class GameScreen extends JPanel {
     private Board board;
     private int[][] map;
     private static Music music;
-    private boolean despawnTraps = false;
+    private boolean despawnTraps = true;
 
     private JPanel nextScreen;
     //default controls
