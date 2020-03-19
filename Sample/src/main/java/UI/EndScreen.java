@@ -7,6 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.InputStream;
 
+/**
+ * Store the End Game Screen (show up when game over)
+ */
 public class EndScreen extends JPanel implements ActionListener {
 
     private TitleScreen title;
@@ -19,6 +22,10 @@ public class EndScreen extends JPanel implements ActionListener {
     //private static int scoreContainer;
     private final String SCORE = "ERROR";
 
+    /**
+     * Non-Default COnstructor(ENDSCREEN)
+     * @param title shoring the title screen info
+     */
     public EndScreen(TitleScreen title){
         this.title = title;
         InputStream inputStream = PauseScreen.class.getResourceAsStream("/gameOver.png");
@@ -44,7 +51,9 @@ public class EndScreen extends JPanel implements ActionListener {
         setFocusable(true);
         setVisible(false);
     }
-
+/**
+ * Set the button that shows on endScreen
+ */
     private void addButtons(){
         button_title = new Button(TITLE);
         add(button_title);
@@ -57,7 +66,9 @@ public class EndScreen extends JPanel implements ActionListener {
         button_score.setEnabled(false);
 
     }
-
+/**
+ * Set the score that shows on endScreen
+ */
     public void setScore(int score){
         //scoreContainer = score;
         button_score.setText("Score: " + String.valueOf(score));
