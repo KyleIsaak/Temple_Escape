@@ -81,7 +81,7 @@ public class PauseScreen extends JPanel implements ActionListener{
     public void actionPerformed(ActionEvent actionEvent) {
         String listener = actionEvent.getActionCommand();
         if (listener.equals(resume)){
-            //gameScreen.getBoard().getTimer().pauseTimer();
+            gameScreen.getBoard().getTimer().resumeTimer();
             setVisible(false);
             gameScreen.requestFocus();
 
