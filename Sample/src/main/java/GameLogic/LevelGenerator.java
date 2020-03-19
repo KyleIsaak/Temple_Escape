@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Stack;
 
+/**
+ * Level Generator is a class that uses Depth-first search algorithm to auto generate a maze
+ * To make the game playable, we randomly deleted walls to make more room for the player.
+ * this class provides a getter for the generated maze.
+ */
 public class LevelGenerator {
     private int x;
     private int y;
@@ -90,7 +95,7 @@ public class LevelGenerator {
         }
     }
 
-    public void generate(){
+    private void generate(){
         board[1][1] = PATH;                //player init
 
         pushStacks(1, 1);

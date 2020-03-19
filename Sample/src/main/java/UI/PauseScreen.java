@@ -11,9 +11,9 @@ public class PauseScreen extends JPanel implements ActionListener{
     GameScreen gameScreen;
     InputStream inputStream;
     Image image;
-    String mute = "mute";
-    String resume = "resume";
-    String control = "control";
+    String mute = "Mute";
+    String resume = "Resume";
+    String control = "Control";
 
     JButton button_mute;
     JButton button_control;
@@ -30,9 +30,9 @@ public class PauseScreen extends JPanel implements ActionListener{
             e.printStackTrace();
         }
 
-        button_mute = new Button("Mute");
-        button_resume = new Button("Resume");
-        button_control = new Button("Control");
+        button_mute = new Button(mute);
+        button_resume = new Button(resume);
+        button_control = new Button(control);
         JComponent background = new JComponent(){
             @Override
             public void paint(Graphics g){
