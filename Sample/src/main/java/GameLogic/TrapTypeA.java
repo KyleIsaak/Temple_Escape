@@ -11,7 +11,7 @@ public class TrapTypeA extends Trap {
     /**
      * Default Constructor
      */
-    public TrapTypeA() {super(new int[] {0,0}); }
+    public TrapTypeA() { super(new int[] {0,0}); }
 
     /**
      * Get the damage of this trap.
