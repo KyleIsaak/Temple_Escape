@@ -6,7 +6,9 @@ import java.awt.*;
 import java.io.InputStream;
 import java.util.Random;
 
-
+/**
+ * To Draw the object that does not move in the game
+ */
 public class DrawDead extends JComponent {
 
     private Image imageSource;
@@ -24,14 +26,18 @@ public class DrawDead extends JComponent {
         REWARDTYPEB,
         EXIT
     }
-    //color can be set to sprites later on
+    /**
+     *   color can be set to sprites later on
+     */
     public DrawDead(int[] pos, int step, cellType type){
         this.step = step;
         this.pos = pos;
         this.type = type;
         selectSprite();
     }
-
+    /**
+     * add a picture to the object base on what objects they are.
+     */
     private void selectSprite(){
         switch(type){
             case WALL:
@@ -72,7 +78,9 @@ public class DrawDead extends JComponent {
             e.printStackTrace();
         }
     }
-
+    /**
+     * unlock the location graph
+     */
     public void setLockUnlocked() {
         inputStream = DrawLive.class.getResourceAsStream("/Unlock.png");
         try {
@@ -82,7 +90,13 @@ public class DrawDead extends JComponent {
         }
         repaint();
     }
-
+    /**
+     * add the wall graph base on the direction of the wall
+     * @param top: the wall on top
+     * @param left: the wall on left
+     * @param down: the wall on down
+     * @param right: the wall on right
+     */
     public void setWallDirection(boolean top, boolean left, boolean down, boolean right){
         if (top && left && down && right){
             inputStream = DrawLive.class.getResourceAsStream("/wall_cross.png");
@@ -123,17 +137,26 @@ public class DrawDead extends JComponent {
             e.printStackTrace();
         }
     }
-
+    /**
+     * paint the graphic
+     * @param graphic
+     */
     public void paint (Graphics graphic) {
         super.paintComponent(graphic);
         graphic.drawImage(imageSource, this.pos[0] * step + 10, this.pos[1] * step + 50, this);
 
     }
-
+    /**
+     * get the position
+     * @return the object position
+     */
     public int[] getPosition(){
         return this.pos;
     }
-
+    /**
+     * update the cell if there is change
+     * @param type: The object type
+     */
     public void updateCell(cellType type){
         this.type = type;
         selectSprite();
