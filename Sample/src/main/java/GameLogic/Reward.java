@@ -2,6 +2,7 @@ package GameLogic;
 
 /**
  * Abstract class for the rewards in the game play area.
+ * Uses Factory Method for different kind of rewards.
  */
 public abstract class Reward {
     private int[] position;
