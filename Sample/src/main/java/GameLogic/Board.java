@@ -76,6 +76,13 @@ public class Board {
 
     }
 
+    /**
+     * Non Default Constructor (Board Class)
+     * To be used for recreating board when transiting to next level.
+     * @param level An integer defining the difficulty selected.
+     * @param scoreAmount An integer holding the current score from the current level.
+     * @param oldTimer A timer class that has the old information.
+     */
     public Board(int level, int scoreAmount, Timer oldTimer){
         generator = new LevelGenerator(sizeX, sizeY);
 
