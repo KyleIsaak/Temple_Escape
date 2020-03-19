@@ -7,6 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.InputStream;
 
+/**
+ * Storing the nextScreen Info
+ */
 public class NextScreen extends JPanel implements ActionListener {
     GameScreen gameScreen;
     InputStream inputStream;
