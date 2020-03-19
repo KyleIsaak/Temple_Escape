@@ -16,10 +16,8 @@ public class EndScreen extends JPanel implements ActionListener {
     private final String TITLE = "TITLE";
 
     private static JButton button_score;
-    private static int scoreContainer;
+    //private static int scoreContainer;
     private final String SCORE = "ERROR";
-    private static JButton button_scoreText;
-    private final String SCORETEXT = "Score:";
 
     public EndScreen(TitleScreen title){
         this.title = title;
@@ -53,19 +51,16 @@ public class EndScreen extends JPanel implements ActionListener {
         button_title.setBounds(450, 500, 80, 50);
         button_title.addActionListener(this);
 
-        button_score = new Button(SCORETEXT);
-        add(button_score);
-        button_score.setBounds(410, 600, 80, 50);
-
         button_score = new Button(SCORE);
         add(button_score);
-        button_score.setBounds(490, 600, 80, 50);
+        button_score.setBounds(385, 600, 200, 50);
+        button_score.setEnabled(false);
 
     }
 
     public void setScore(int score){
-        scoreContainer = score;
-        button_score.setText(String.valueOf(score));
+        //scoreContainer = score;
+        button_score.setText("Score: " + String.valueOf(score));
     }
 
     @Override
