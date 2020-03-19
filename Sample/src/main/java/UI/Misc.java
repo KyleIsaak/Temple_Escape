@@ -63,7 +63,7 @@ public class Misc extends JPanel implements ActionListener {
 
         setBackground(Color.decode("#483b3a"));
         setFocusable(true);
-        setVisible(true);
+        setVisible(false);
     }
 
     public static int getScoreContainer() {return scoreContainer; }
@@ -92,7 +92,7 @@ public class Misc extends JPanel implements ActionListener {
             gameScreen.getBoard().getTimer().pauseTimer();
             pauseScreen.requestFocus();
             pauseScreen.setVisible(true);
-            //button_pause.setVisible(false);
+
         }
     }
 }

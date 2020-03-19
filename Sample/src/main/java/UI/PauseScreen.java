@@ -18,9 +18,11 @@ public class PauseScreen extends JPanel implements ActionListener{
     JButton button_mute;
     JButton button_control;
     JButton button_resume;
+    ControlScreen controlScreen;
 
+    public PauseScreen(ControlScreen controlScreen){
+        this.controlScreen = controlScreen;
 
-    public PauseScreen(){
         inputStream = PauseScreen.class.getResourceAsStream("/pause.png");
         try {
             image = ImageIO.read(inputStream);
@@ -28,9 +30,9 @@ public class PauseScreen extends JPanel implements ActionListener{
             e.printStackTrace();
         }
 
-        button_mute = new JButton("Mute");
-        button_resume = new JButton("Resume");
-        button_control = new JButton("Control");
+        button_mute = new Button("Mute");
+        button_resume = new Button("Resume");
+        button_control = new Button("Control");
         JComponent background = new JComponent(){
             @Override
             public void paint(Graphics g){
@@ -52,31 +54,12 @@ public class PauseScreen extends JPanel implements ActionListener{
     }
 
     private void addButtons(){
-        Font font;
-        try {
-            InputStream input = GameScreen.class.getResourceAsStream("/font.ttf");
-            System.out.println(input);
-            font = Font.createFont(Font.TRUETYPE_FONT, input);
-            font = font.deriveFont(18f);
-        } catch (Exception e){
-            e.printStackTrace();
-            font = new Font("serif", Font.PLAIN, 14);
-        }
-
 
         add(button_mute);
         add(button_control);
         add(button_resume);
 
-        button_mute.setForeground(Color.white);
-        button_control.setForeground(Color.white);
-        button_resume.setForeground(Color.white);
-        button_mute.setFont(font);
-        button_control.setFont(font);
-        button_resume.setFont(font);
-        button_mute.setBorder(null);
-        button_control.setBorder(null);
-        button_resume.setBorder(null);
+
         button_mute.setBackground(Color.decode("#483b3a"));
         button_control.setBackground(Color.decode("#483b3a"));
         button_resume.setBackground(Color.decode("#483b3a"));
@@ -88,10 +71,6 @@ public class PauseScreen extends JPanel implements ActionListener{
         button_mute.addActionListener(this);
         button_resume.addActionListener(this);
         button_control.addActionListener(this);
-
-        button_mute.setActionCommand(mute);
-        button_resume.setActionCommand(resume);
-        button_control.setActionCommand(control);
 
     }
     public void setGameScreen(GameScreen gameScreen) {
@@ -106,8 +85,10 @@ public class PauseScreen extends JPanel implements ActionListener{
             setVisible(false);
             gameScreen.requestFocus();
 
+
         } else if (listener.equals(control)){
-            button_control.setText("NO");
+            controlScreen.setVisible(true);
+            controlScreen.requestFocus();
 
         } else if (listener.equals(mute)){
             if (gameScreen.getMusic().isPause()){

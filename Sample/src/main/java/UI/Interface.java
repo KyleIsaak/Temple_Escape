@@ -13,13 +13,18 @@ public class Interface extends JFrame {
     public Interface(int step) {
         setLayout(null);
         setTitle("Game");
-        PauseScreen pause = new PauseScreen();
+        ControlScreen control = new ControlScreen();
+        PauseScreen pause = new PauseScreen(control);
         GameScreen game = new GameScreen(step);
-        JPanel title = new TitleScreen(game);
         JPanel misc = new Misc(game, pause);
+        TitleScreen title = new TitleScreen(game, control, misc);
         NextScreen nextScreen = new NextScreen();
 
+
+        control.setGameScreen(game);
+        control.setTitle(title);
         game.setNextScreen(nextScreen);
+
         nextScreen.setGameScreen(game);
         pause.setGameScreen(game);
         title.setBounds(0, 0, 1000, 1000);
@@ -27,7 +32,9 @@ public class Interface extends JFrame {
         pause.setBounds(0, 0, 1000, 1000);
         misc.setBounds(880, 0, 120, 1000);
         nextScreen.setBounds(0, 0, 1000, 1000);
+        control.setBounds(0, 0, 1000, 1000);
 
+        getContentPane().add(control);
         getContentPane().add(title);
         getContentPane().add(pause);
         getContentPane().add(nextScreen);
