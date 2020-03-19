@@ -15,6 +15,7 @@ public class ControlScreen extends JPanel implements ActionListener {
 
     GameScreen gameScreen;
     TitleScreen title;
+    PauseScreen pause;
     //actual value of button
 
     //the string for setting action command and button name
@@ -78,12 +79,12 @@ public class ControlScreen extends JPanel implements ActionListener {
 
         done.addActionListener(this);
 
-        add(subtitle);  subtitle.setBounds(400, 120, 150, 50);
+        add(subtitle);  subtitle.setBounds(450, 120, 150, 50);
         add(txtUP);     txtUP.setBounds(280, 320, 80, 50);
         add(txtDOWN);   txtDOWN.setBounds(280, 400, 80, 50);
         add(txtLEFT);   txtLEFT.setBounds(630, 320, 80, 50);
         add(txtRIGHT);  txtRIGHT.setBounds(630, 400, 80, 50);
-        add(done);      done.setBounds(600, 500, 80, 50);
+        add(done);      done.setBounds(500, 500, 80, 50);
         add(setUP);     setUP.setBounds(360, 320, 80, 50);
         add(setDOWN);   setDOWN.setBounds(360, 400, 80, 50);
         add(setLEFT);   setLEFT.setBounds(710, 320, 80, 50);
@@ -105,6 +106,9 @@ public class ControlScreen extends JPanel implements ActionListener {
         setVisible(false);
     }
 
+    public void setPause(PauseScreen pause){
+        this.pause = pause;
+    }
     public void setTitle(TitleScreen title){
         this.title = title;
     }
@@ -117,7 +121,7 @@ public class ControlScreen extends JPanel implements ActionListener {
         right = false;
         String listener = actionEvent.getActionCommand();
         if (listener.equals(DONE)) {
-            title.flipButtons();
+
             System.out.println("done");
             setVisible(false);
             gameScreen.setControlUP(setUP.getText().charAt(0));
@@ -126,9 +130,11 @@ public class ControlScreen extends JPanel implements ActionListener {
             gameScreen.setControlRIGHT(setRIGHT.getText().charAt(0));
 
             if(title.isVisible()){
+                title.flipButtons();
                 title.requestFocus();
             } else if (gameScreen.isVisible()){
                 gameScreen.requestFocus();
+                pause.flipButtons();
             }
         } else if (listener.equals(UP)) {
             up = true;

@@ -77,6 +77,20 @@ public class PauseScreen extends JPanel implements ActionListener{
         this.gameScreen = gameScreen;
     }
 
+    public void flipButtons(){
+        if (button_mute.isEnabled()) {
+            button_control.setEnabled(false);
+            button_control.setVisible(false);
+            button_mute.setEnabled(false);
+            button_resume.setEnabled(false);
+        } else {
+            button_control.setEnabled(true);
+            button_control.setVisible(true);
+            button_mute.setEnabled(true);
+            button_resume.setEnabled(true);
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
         String listener = actionEvent.getActionCommand();
@@ -85,8 +99,8 @@ public class PauseScreen extends JPanel implements ActionListener{
             setVisible(false);
             gameScreen.requestFocus();
 
-
         } else if (listener.equals(control)){
+            flipButtons();
             controlScreen.setVisible(true);
             controlScreen.requestFocus();
 
