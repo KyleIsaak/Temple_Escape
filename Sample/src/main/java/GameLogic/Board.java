@@ -577,7 +577,7 @@ public class Board {
         int x = integerRandomizer();
         int y = integerRandomizer();
 
-        while ((isWall(x, y)) || (isTrap(x, y))) {
+        while (((x < 6 && y < 6) || isWall(x, y)) || (isTrap(x, y))) {
             x = integerRandomizer();
             y = integerRandomizer();
         }
