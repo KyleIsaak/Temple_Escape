@@ -1,6 +1,5 @@
 package UI;
 
-//import org.graalvm.compiler.nodes.calc.RightShiftNode;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -10,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 public class ControlScreen extends JPanel implements ActionListener {
 
@@ -27,6 +27,7 @@ public class ControlScreen extends JPanel implements ActionListener {
 
     //the button for name
     private JButton subtitle;
+    private JButton error;
     private JButton txtUP;
     private JButton txtDOWN;
     private JButton txtLEFT;
@@ -43,11 +44,18 @@ public class ControlScreen extends JPanel implements ActionListener {
     boolean down = false;
     boolean left = false;
     boolean right = false;
+
+    private ArrayList<String> keyBindings;
     Image image;
+    Image imageError;
+    JComponent errorGirl;
     public void setGameScreen(GameScreen gameScreen) {
-        InputStream inputStream = PauseScreen.class.getResourceAsStream("/control.png");
+        keyBindings = new ArrayList<>();
+        InputStream inputError = ControlScreen.class.getResourceAsStream("/control_error.png");
+        InputStream inputStream = ControlScreen.class.getResourceAsStream("/control.png");
         try {
             image = ImageIO.read(inputStream);
+            imageError = ImageIO.read(inputError);
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -58,9 +66,21 @@ public class ControlScreen extends JPanel implements ActionListener {
                 g.drawImage(image, 0, 0, this);
             }
         };
+        errorGirl = new JComponent(){
+            @Override
+            public void paint(Graphics g){
+                super.paintComponent(g);
+                g.drawImage(imageError, 0, 0, this);
+            }
+        };
         this.gameScreen = gameScreen;
+
         subtitle = new Button("CONTROL");
         subtitle.setEnabled(false);
+        error = new Button("ERROR");
+        error.setText("<html>" + "Invalid duplicated" + "<br>" + "key bindings!" + "</html>");
+        error.getFont().deriveFont(14f);
+        error.setEnabled(false);
 
         txtUP = new Button(UP);         txtUP.setEnabled(false);
         txtDOWN = new Button(DOWN);     txtDOWN.setEnabled(false);
@@ -72,13 +92,19 @@ public class ControlScreen extends JPanel implements ActionListener {
         setLEFT = new Button(String.valueOf((char)gameScreen.getLEFT()));
         setRIGHT = new Button(String.valueOf((char)gameScreen.getRIGHT()));
 
+        keyBindings.add(setUP.getText());
+        keyBindings.add(setLEFT.getText());
+        keyBindings.add(setDOWN.getText());
+        keyBindings.add(setRIGHT.getText());
+
         setUP.setActionCommand(UP);     setUP.addActionListener(this);
         setDOWN.setActionCommand(DOWN);   setDOWN.addActionListener(this);
         setLEFT.setActionCommand(LEFT);   setLEFT.addActionListener(this);
         setRIGHT.setActionCommand(RIGHT);  setRIGHT.addActionListener(this);
 
         done.addActionListener(this);
-
+        add(errorGirl); errorGirl.setBounds(310, 490, 200, 200);
+        add(error);     error.setBounds(420, 500, 220, 100);
         add(subtitle);  subtitle.setBounds(450, 120, 150, 50);
         add(txtUP);     txtUP.setBounds(280, 320, 80, 50);
         add(txtDOWN);   txtDOWN.setBounds(280, 400, 80, 50);
@@ -89,6 +115,8 @@ public class ControlScreen extends JPanel implements ActionListener {
         add(setDOWN);   setDOWN.setBounds(360, 400, 80, 50);
         add(setLEFT);   setLEFT.setBounds(710, 320, 80, 50);
         add(setRIGHT);  setRIGHT.setBounds(710, 400, 80, 50);
+
+        errorOff();
 
         add(background);
         background.setBounds(0, 0, 1000, 1000);
@@ -104,6 +132,16 @@ public class ControlScreen extends JPanel implements ActionListener {
         setLayout(null);
         setFocusable(true);
         setVisible(false);
+    }
+
+    private void errorOn(){
+        error.setVisible(true);
+        errorGirl.setVisible(true);
+    }
+
+    private void errorOff(){
+        error.setVisible(false);
+        errorGirl.setVisible(false);
     }
 
     public void setPause(PauseScreen pause){
@@ -162,12 +200,29 @@ public class ControlScreen extends JPanel implements ActionListener {
                 isReleased = false;
                 if (up){
                     setUP.setText(String.valueOf((char)key));
-                } else if (down){
+                    if (keyBindings.contains(setUP.getText())){
+                        errorOn();
+                        System.out.println("found");
+                    } else errorOff();
+                    keyBindings.set(0, setUP.getText());
+                }if (down){
                     setDOWN.setText(String.valueOf((char)key));
-                }  else if (left){
+                    if (keyBindings.contains(setDOWN.getText())){
+                        errorOn();
+                    } else errorOff();
+                    keyBindings.set(1, setDOWN.getText());
+                } if (left){
                     setLEFT.setText(String.valueOf((char)key));
-                } else if (right){
+                    if (keyBindings.contains(setLEFT.getText())){
+                        errorOn();
+                    } else errorOff();
+                    keyBindings.set(2, setLEFT.getText());
+                } if (right){
                     setRIGHT.setText(String.valueOf((char)key));
+                    if (keyBindings.contains(setRIGHT.getText())){
+                        errorOn();
+                    } else errorOff();
+                    keyBindings.set(3, setRIGHT.getText());
                 }
             }
         }
