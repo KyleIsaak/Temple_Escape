@@ -8,7 +8,6 @@ import java.io.InputStream;
 /**
  * Draw the moving object in the game
  */
-public cl
 public class DrawLive extends JComponent {
 
     private String imageSrc;

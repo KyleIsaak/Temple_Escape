@@ -7,7 +7,9 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.util.ArrayList;
-
+/**
+ * store the screen the the game will show depend on the situation
+ */
 public class Interface extends JFrame {
 
     public Interface(int step) {
