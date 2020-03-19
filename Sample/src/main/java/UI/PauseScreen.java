@@ -22,6 +22,7 @@ public class PauseScreen extends JPanel implements ActionListener{
 
     public PauseScreen(ControlScreen controlScreen){
         this.controlScreen = controlScreen;
+
         inputStream = PauseScreen.class.getResourceAsStream("/pause.png");
         try {
             image = ImageIO.read(inputStream);
@@ -58,6 +59,7 @@ public class PauseScreen extends JPanel implements ActionListener{
         add(button_control);
         add(button_resume);
 
+
         button_mute.setBackground(Color.decode("#483b3a"));
         button_control.setBackground(Color.decode("#483b3a"));
         button_resume.setBackground(Color.decode("#483b3a"));
@@ -79,6 +81,7 @@ public class PauseScreen extends JPanel implements ActionListener{
     public void actionPerformed(ActionEvent actionEvent) {
         String listener = actionEvent.getActionCommand();
         if (listener.equals(resume)){
+            //gameScreen.getBoard().getTimer().pauseTimer();
             setVisible(false);
             gameScreen.requestFocus();
 

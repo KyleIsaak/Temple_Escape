@@ -8,15 +8,24 @@ package UI;
         import java.awt.event.ActionListener;
 
 public class Misc extends JPanel implements ActionListener {
+
     private static int currentLevel = 1;
-    private static int scoreContainer = 100;
-    private JButton button_pause;
-    private JButton button_TxtScore;
-    private static JButton button_score;
     GameScreen gameScreen;
     JPanel pauseScreen;
+
+    private JButton button_pause;
+
+    private static int scoreContainer = 100;
+    private JButton button_TxtScore;
+    private static JButton button_score;
+
+    private static long timeContainer = 0;
+    private JButton button_TxtTime;
+    private static JButton button_time;
+
     private final String PAUSE = " pause ";
     private final String SCORE = " score: ";
+    private final String TIME = "time: ";
 
     public Misc(GameScreen gameScreen, JPanel pauseScreen){
         this.gameScreen = gameScreen;
@@ -24,8 +33,12 @@ public class Misc extends JPanel implements ActionListener {
         setLayout(null);
 
         button_pause = new Button(PAUSE);
+
         button_TxtScore = new Button(SCORE);
         button_score = new Button("100");
+
+        button_TxtTime = new Button(TIME);
+        button_time = new Button("000");
 
         add(button_pause);
         button_pause.setBounds(0, 50, 100, 40);
@@ -39,6 +52,14 @@ public class Misc extends JPanel implements ActionListener {
         button_score.setBounds(0, 160, 100, 40);
         button_score.setEnabled(false);
 
+        add(button_TxtTime);
+        button_TxtTime.setBounds(0,240,100,40);
+        button_TxtTime.setEnabled(false);
+
+        add(button_time);
+        button_time.setBounds(0,280,100,40);
+        button_time.setEnabled(false);
+
 
         setBackground(Color.decode("#483b3a"));
         setFocusable(true);
@@ -49,6 +70,12 @@ public class Misc extends JPanel implements ActionListener {
     public static void setScore(int score){
         scoreContainer = score;
         button_score.setText(String.valueOf(score));
+    }
+
+    public static long getTimeContainer(){return timeContainer;}
+    public static void setTime(long time){
+        timeContainer = time;
+        button_time.setText(String.valueOf(time));
     }
 
     public static void incCurrentLevel(){
@@ -62,9 +89,10 @@ public class Misc extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent actionEvent) {
         String listener = actionEvent.getActionCommand();
         if (listener.equals(PAUSE)){
+            //pauseTimer();
             pauseScreen.requestFocus();
             pauseScreen.setVisible(true);
+
         }
     }
-
 }

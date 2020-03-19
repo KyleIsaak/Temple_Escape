@@ -2,6 +2,10 @@ package GameLogic;
 
 public class Timer {
     private long startTime;
+    private long elapsedTime;
+    private long pausedTime;
+    private long startPausedTime;
+    private long endPausedTime;
 
     /*
     To use the timer, just create a timer in the main() function for the game using the default constructor.
@@ -11,12 +15,20 @@ public class Timer {
     //Constructor
     public Timer(){
         this.startTime = System.currentTimeMillis();
+        this.pausedTime = 0;
+    }
+
+    public Timer(long previousTime){
+        this.startTime = System.currentTimeMillis() - previousTime;
+        this.pausedTime = 0;
     }
 
 
     //Calculate time elapsed in milliseconds
     private long getTime(){
-        return System.currentTimeMillis() - this.startTime;
+        this.elapsedTime = System.currentTimeMillis() - this.startTime;
+        this.elapsedTime -= pausedTime;
+        return elapsedTime;
     }
 
 
@@ -26,17 +38,28 @@ public class Timer {
     }
 
     public long getSeconds(){
-        return getTime() / 1000;
+        this.elapsedTime = getTime() / 1000;
+        return elapsedTime;
     }
 
     public long displaySeconds(){
-        return getSeconds() %60;
+        this.elapsedTime = getSeconds() %60;
+        return elapsedTime;
     }
 
-    public long displayMinutes(){
-        return getSeconds() / 60;
+    public long displayMinutes() {
+        this.elapsedTime = getSeconds() / 60;
+        return elapsedTime;
     }
 
+    public void pauseTimer(){
+        this.startPausedTime = System.currentTimeMillis();
+    }
+
+    public void resumeTimer(){
+        this.endPausedTime = System.currentTimeMillis();
+        this.pausedTime = this.endPausedTime - this.startPausedTime;
+    }
 
     // call this function to reset the timer
     public void resetTimer(){

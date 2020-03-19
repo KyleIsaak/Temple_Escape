@@ -27,11 +27,12 @@ public class GameScreen extends JPanel {
     private ArrayList<DrawDead> trapBCell;
     private ArrayList<DrawDead> rewardACell;
     private ArrayList<DrawDead> rewardBCell;
-    private static Music music;
 
     private LevelGenerator.Difficulty mode;
     private Board board;
     private int[][] map;
+    private static Music music;
+    private boolean despawnTraps = false;
 
     private JPanel nextScreen;
     //default controls
@@ -89,8 +90,10 @@ public class GameScreen extends JPanel {
     }
     private void setUp(){
         removeAll();
-        board = new Board(Misc.getCurrentLevel(), Misc.getScoreContainer());
+
+        board = new Board(Misc.getCurrentLevel(), Misc.getScoreContainer(), Misc.getTimeContainer());
         board.setDifficulty(mode);
+
         wallCell = new ArrayList<>();
         pathCell = new ArrayList<>();
         trapACell = new ArrayList<>();
@@ -144,6 +147,7 @@ public class GameScreen extends JPanel {
                         DrawDead rewardA = new DrawDead(pos, step, DrawDead.cellType.REWARDTYPEA);
                         rewardACell.add(rewardA);
                         add(rewardA);
+
                         DrawDead path = new DrawDead(pos, step, DrawDead.cellType.PATH);
                         pathCell.add(path);
                         add(path);
@@ -151,6 +155,7 @@ public class GameScreen extends JPanel {
                         DrawDead rewardB = new DrawDead(pos, step, DrawDead.cellType.REWARDTYPEB);
                         rewardBCell.add(rewardB);
                         add(rewardB);
+
                         DrawDead path = new DrawDead(pos, step, DrawDead.cellType.PATH);
                         pathCell.add(path);
                         add(path);
@@ -185,9 +190,10 @@ public class GameScreen extends JPanel {
         add(wall);
     }
 
+    public Board getBoard(){ return this.board; }
+
     private class listener extends KeyAdapter {
         boolean isReleased = true;
-
 
         @Override
         public void keyReleased(KeyEvent e) {
@@ -196,6 +202,7 @@ public class GameScreen extends JPanel {
 
         @Override
         public void keyPressed(KeyEvent e) {
+            Misc.setTime(board.getTimer().displaySeconds());
             int key = e.getKeyCode();
             int[] playerPos = board.getPlayerPos();
             if (isReleased) {
@@ -236,8 +243,46 @@ public class GameScreen extends JPanel {
                     // Test
                     System.out.print("Trap Stepped On: ");
                     int trapIndex = board.trapFinder(playerPos[0], playerPos[1]);
+                    int[] trapPos = board.getTrapArrayManager().get(trapIndex).getPosition();
                     int damage = board.getTrapArrayManager().get(trapIndex).getDamage();
+                    char trapType = board.getTrapArrayManager().get(trapIndex).getType();
                     board.getScore().subtractScore(damage);
+
+
+                    if(despawnTraps) {
+                        if (trapType == 'A') {
+                            for (int i = 0; i < trapACell.size(); i++) {
+                                DrawDead oldTrap = trapACell.get(i);
+                                if (oldTrap.getPosition()[0] == trapPos[0]) {
+                                    if (oldTrap.getPosition()[1] == trapPos[1]) {
+                                        System.out.println("Trap type A removed");
+                                        oldTrap.setVisible(false);
+                                        trapACell.remove(oldTrap);
+                                        remove(oldTrap);
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+
+                        if (trapType == 'B') {
+                            for (int i = 0; i < trapBCell.size(); i++) {
+                                DrawDead oldTrap = trapBCell.get(i);
+                                if (oldTrap.getPosition()[0] == trapPos[0]) {
+                                    if (oldTrap.getPosition()[1] == trapPos[1]) {
+                                        System.out.println("Trap type B removed");
+                                        oldTrap.setVisible(false);
+                                        trapBCell.remove(oldTrap);
+                                        remove(oldTrap);
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        board.getTrapArrayManager().remove(trapIndex);  //Remove reward from its array
+                    }
+
+
                     //Test
                     System.out.print(board.getScore().getScore());
                     System.out.println();
@@ -294,8 +339,8 @@ public class GameScreen extends JPanel {
                     add(newPath);
 
                     board.getRewardArrayManager().remove(rewardIndex);  //Remove reward from its array
-                    newPath.updateCell(DrawDead.cellType.PATH);
-                    repaint();
+                    //newPath.updateCell(DrawDead.cellType.PATH);
+                    //repaint();
                     //newPath.setPlayerREWARD();    //If we want a sprite of the player getting a reward
 
                     // Test
@@ -322,7 +367,7 @@ public class GameScreen extends JPanel {
                 board.chaseThePlayer(board.getEnemyArrayManager().get(i), i);
                 int j = i+1;
                 System.out.println("Enemy " + j + " current location" + board.getEnemyArrayManager().get(i).getPosition()[0] + ',' + board.getEnemyArrayManager().get(i).getPosition()[1]);
-                if((playerPos[0]==board.getEnemyArrayManager().get(i).getPosition()[0] && playerPos[1]==board.getEnemyArrayManager().get(i).getPosition()[1]) || board.getScore().isNegative())
+                if(board.isGameOver(board.getEnemyArrayManager().get(i)))
                 {
                     System.out.println("Game Over");
                 }
