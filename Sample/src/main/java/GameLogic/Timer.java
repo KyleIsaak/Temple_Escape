@@ -19,7 +19,8 @@ public class Timer {
     }
 
     public Timer(long previousTime){
-        this.startTime = System.currentTimeMillis() - previousTime;
+        this.startTime = previousTime;
+        this.startTime += previousTime;
         this.pausedTime = 0;
     }
 
