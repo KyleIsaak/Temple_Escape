@@ -31,8 +31,8 @@ public class EndScreen extends JPanel implements ActionListener {
         };
 
         setLayout(null);
-        add(background);
         addButtons();
+        add(background);
         background.setBounds(0, 0,1000, 1000);
 
         setFocusable(true);
