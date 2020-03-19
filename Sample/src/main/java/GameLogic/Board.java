@@ -493,7 +493,20 @@ public class Board {
                 testValidMove = isWall(EnemyX+planMove[0],EnemyY+planMove[1]);
             }
         }
+        //Solving two enemy standing in a same position
+        int level=Misc.getCurrentLevel();
+        if(level>=3)
+            level=3;
+        for (int j = 0; j < level; j++) {
+            if (i == j)
+                continue;
+            else if (EnemyX + planMove[0] == EnemyArrayManager.get(j).getPosition()[0] && EnemyY + planMove[1] == EnemyArrayManager.get(j).getPosition()[1]) {
+                planMove[0] = 0;
+                planMove[1] = 0;
+            }
+        }
         enemy.move(planMove);
+
     }
 
     /**
