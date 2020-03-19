@@ -286,7 +286,7 @@ public class GameScreen extends JPanel {
 
                 //player movement
                 if (key == UP){
-                    System.out.println("UP");
+                    //System.out.println("UP");
                     if(!board.isWall(playerPos[0], playerPos[1] - 1)) {
                         board.getPlayer().moveUp();
                     }
