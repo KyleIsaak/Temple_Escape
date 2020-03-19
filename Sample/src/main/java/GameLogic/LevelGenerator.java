@@ -31,28 +31,6 @@ public class LevelGenerator {
             }
             System.out.println();
         }
-//
-//        int newx = 3;
-//        int newy = 3;
-//
-//        map[newx][newy] = 5;
-//        newx = 2;
-//        map[newx][newy] = 4;
-//        newx = 4;
-//        map[newx][newy] = 6;
-//        newx = 3; newy = 2;
-//        map[newx][newy] = 8;
-//        newy = 4;
-//        map[newx][newy] = 7;
-//
-//        for (int y = 1; y < map[0].length; y++) {
-//            for (int x = 0; x < map.length - 1; x++) {
-//                System.out.print(map[x][y]);
-//            }
-//            System.out.println();
-//        }
-//
-//        System.out.println("3, 4: " + map[3][4]);
     }
 
     public LevelGenerator(int x, int y){
