@@ -11,7 +11,7 @@ import java.awt.event.KeyEvent;
 import java.io.InputStream;
 import java.util.ArrayList;
 /**
- * setup of the control screen
+ * Store and setup control screen
  */
 public class ControlScreen extends JPanel implements ActionListener {
 
