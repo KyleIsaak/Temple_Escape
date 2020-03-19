@@ -67,7 +67,7 @@ public class PauseScreen extends JPanel implements ActionListener{
         add(button_control);
         add(button_resume);
 
-        button_mute.setBackground(Color.white);
+        button_mute.setForeground(Color.white);
         button_control.setForeground(Color.white);
         button_resume.setForeground(Color.white);
         button_mute.setFont(font);
