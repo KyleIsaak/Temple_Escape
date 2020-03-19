@@ -14,10 +14,6 @@ public class Score {
     }
 
     //Setters
-    public void setScore(int newScore) {
-        this.currentScore = newScore;
-    }
-
     public void addScore(int scoreToAdd) {
         this.currentScore += scoreToAdd;
     }
@@ -28,6 +24,10 @@ public class Score {
 
     public boolean isNegative (){
         return currentScore < 0;
+    }
+
+    public void setScore(int newScore) {
+        this.currentScore = newScore;
     }
 
     public void resetScore() {

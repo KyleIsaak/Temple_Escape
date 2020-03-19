@@ -19,6 +19,7 @@ public class PauseScreen extends JPanel implements ActionListener{
     JButton button_control;
     JButton button_resume;
 
+
     public PauseScreen(){
         inputStream = PauseScreen.class.getResourceAsStream("/pause.png");
         try {
@@ -101,7 +102,7 @@ public class PauseScreen extends JPanel implements ActionListener{
     public void actionPerformed(ActionEvent actionEvent) {
         String listener = actionEvent.getActionCommand();
         if (listener.equals(resume)){
-            //resumeTimer
+            //gameScreen.getBoard().getTimer().pauseTimer();
             setVisible(false);
             gameScreen.requestFocus();
 

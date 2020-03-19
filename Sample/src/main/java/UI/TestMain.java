@@ -19,14 +19,14 @@ public class TestMain  {
     private static Board board;
 
 
+
     public static void main (String[] args){
         new newFont();
         new Interface(step);
+
         while(!isGameOver)
-       {
-            System.out.println("Time elapsed:" + timer.displayMinutes() + ":" + timer.displaySeconds());
+        {
+            //System.out.println("Time elapsed:" + timer.displayMinutes() + ":" + timer.displaySeconds());
        }
-
     }
-
 }

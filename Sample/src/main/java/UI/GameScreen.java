@@ -152,6 +152,8 @@ public class GameScreen extends JPanel {
         add(wall);
     }
 
+    public Board getBoard(){ return this.board; }
+
     private class listener extends KeyAdapter {
         boolean isReleased = false;
 
