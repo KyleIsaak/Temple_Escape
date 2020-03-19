@@ -247,7 +247,7 @@ public class GameScreen extends JPanel {
 
         @Override
         public void keyPressed(KeyEvent e) {
-            Misc.setTime(board.getTimer().displaySeconds());
+            Misc.setTime(board.getTimer().getSeconds());
             int key = e.getKeyCode();
             int[] playerPos = board.getPlayerPos();
             if (isReleased) {

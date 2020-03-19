@@ -78,7 +78,9 @@ public class Misc extends JPanel implements ActionListener {
     public static long getTimeContainer(){return timeContainer;}
     public static void setTime(long time){
         timeContainer = time;
-        button_time.setText(String.valueOf(time));
+        String timeText = time /60 + ":" + String.format("%02d", time %60);
+        button_time.setText(timeText);
+        //button_time.setText(String.valueOf(time));    //This line gives seconds only
     }
 
     public static void incCurrentLevel(){
