@@ -13,7 +13,7 @@ public class Music {
     private Clip clip;
     void playSound(){
         try{
-            String filepath = "src/pic/BackgroundMusic.wav";
+            String filepath = "src/main/resources/BackgroundMusic.wav";
             File musicFilePath = new File(filepath);
             if (musicFilePath.exists()){
                 AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicFilePath);

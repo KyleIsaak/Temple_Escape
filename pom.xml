@@ -33,7 +33,7 @@
 
         <resources>
             <resource>
-                <directory>src/pic</directory>
+                <directory>src/main/resources</directory>
                 <includes>
                     <include>*.*</include>
                 </includes>

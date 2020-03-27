@@ -28,8 +28,6 @@ java/build/**
 *.tar.gz
 *.rar
 
-# Pom.xml
-pm.xml
 
 #Maven
 /target/

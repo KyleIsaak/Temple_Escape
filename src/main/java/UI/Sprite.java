@@ -5,6 +5,9 @@ import java.awt.*;
 import java.io.InputStream;
 import java.util.ArrayList;
 
+/**
+ * Store sprite image of the game
+ */
 public class Sprite {
     private static Image controlBackground;
     private static Image controlError;
@@ -36,7 +39,9 @@ public class Sprite {
     private static Image player_down;
     private static Image enemy_right;
 
-
+    /**
+     * Default Constructor
+     */
     public Sprite(){
         try {
             controlBackground = ImageIO.read(read("/control.png"));
