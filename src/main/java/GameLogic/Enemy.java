@@ -46,7 +46,6 @@ public class Enemy {
         chase = new int[]{0,0};
         double distanceX= position[0]-this.position[0];//enemy - player location;
         double distanceY= position[1]-this.position[1];//enemy - player location;
-        //double test= distanceY- distanceX;
         if( Math.abs(distanceY)>Math.abs(distanceX))//distance Y> distance X
         {
             if(this.position[1]<position[1]){

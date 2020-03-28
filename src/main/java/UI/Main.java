@@ -11,7 +11,7 @@ import GameLogic.Timer;
 import java.io.FileNotFoundException;
 import java.util.concurrent.TimeUnit;
 
-public class TestMain  {
+public class Main  {
     private static boolean isGameOver = false;
     private static int delay = 200;
     private static int step = 32;
@@ -29,7 +29,7 @@ public class TestMain  {
 
         //while(!isGameOver)
         //{
-            //System.out.println("Time elapsed:" + timer.displayMinutes() + ":" + timer.displaySeconds());
-       //}
+        //System.out.println("Time elapsed:" + timer.displayMinutes() + ":" + timer.displaySeconds());
+        //}
     }
 }

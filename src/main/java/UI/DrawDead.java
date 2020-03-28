@@ -137,6 +137,7 @@ public class DrawDead extends JComponent {
     public int[] getPosition(){
         return this.pos;
     }
+
     /**
      * update the cell if there is change
      * @param type: The object type

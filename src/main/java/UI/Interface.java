@@ -51,6 +51,7 @@ public class Interface extends JFrame {
 
         createWindow();
     }
+
     /**
      * create the size of the window pop up when start run the program
      */

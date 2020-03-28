@@ -19,7 +19,6 @@ public class EndScreen extends JPanel implements ActionListener {
     private final String TITLE = "TITLE";
 
     private static JButton button_score;
-    //private static int scoreContainer;
     private final String SCORE = "ERROR";
 
     /**
@@ -51,9 +50,9 @@ public class EndScreen extends JPanel implements ActionListener {
         setFocusable(true);
         setVisible(false);
     }
-/**
- * Set the button that shows on endScreen
- */
+    /**
+     * Set the button that shows on endScreen
+     */
     private void addButtons(){
         button_title = new Button(TITLE, this, true);
         button_title.setBounds(450, 500, 80, 50);
@@ -61,9 +60,10 @@ public class EndScreen extends JPanel implements ActionListener {
         button_score = new Button(SCORE, this, false);
         button_score.setBounds(385, 600, 200, 50);
     }
-/**
- * Set the score that shows on endScreen
- */
+
+    /**
+    * Set the score that shows on endScreen
+     */
     public void setScore(int score){
         //scoreContainer = score;
         button_score.setText("Score: " + String.valueOf(score));

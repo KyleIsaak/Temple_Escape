@@ -2,7 +2,6 @@ package GameLogic;
 
 
 import UI.Misc;
-import UI.TestMain;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -26,7 +25,6 @@ public class Board {
     private ArrayList<Enemy> EnemyArrayManager;
     private Exit exit;
     private LevelGenerator generator;
-    //private static Timer timer;
 
     /**
      * Non-Default Constructor (Board Class)
@@ -688,14 +686,15 @@ public class Board {
         }
         return -1;
     }
+
     //GameOverCase
     public boolean isGameOver(Enemy enemy)
     {
         boolean test=false;
-        if(enemy.getPosition()[0]==player.getPosition()[0] && enemy.getPosition()[1]==player.getPosition()[1])
-            test=true;
-        if(score.isNegative()==true)
-            test=true;
+        if(enemy.getPosition()[0] == player.getPosition()[0] && enemy.getPosition()[1] == player.getPosition()[1])
+            test = true;
+        if(score.isNegative() == true)
+            test = true;
         return test;
     }
 }
