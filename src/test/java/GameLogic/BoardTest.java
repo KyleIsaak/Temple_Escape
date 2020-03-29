@@ -13,11 +13,11 @@ public class BoardTest{
 
     @ParameterizedTest
     @ValueSource (ints = {1, 2 ,3})
-    void numberOfTrapACreatedBasedOnLevel (int level){
+    void numberOfTrapACreatedBasedOnLevel (int level) {
         Board board = new Board(level);
         int numberofTrapACreated = 0;
-        for (int i = 0; i < board.getTrapArrayManager().size(); i++){
-            if (board.getTrapArrayManager().get(i).getType() == 'A'){
+        for (int i = 0; i < board.getTrapArrayManager().size(); i++) {
+            if (board.getTrapArrayManager().get(i).getType() == 'A') {
                 numberofTrapACreated++;
             }
         }
@@ -36,7 +36,5 @@ public class BoardTest{
         }
         assertEquals(level, numberofTrapBCreated);
     }
-
-
 }
 
