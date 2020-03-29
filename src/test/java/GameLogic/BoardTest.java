@@ -1,3 +1,4 @@
+package GameLogic;
 import GameLogic.*;
 import UI.*;
 import org.junit.jupiter.api.BeforeAll;
