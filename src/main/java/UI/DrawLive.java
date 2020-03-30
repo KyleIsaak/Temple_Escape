@@ -25,7 +25,6 @@ public class DrawLive extends JComponent {
     /**
      * sprites can be set to sprites later on
      */
-
     public DrawLive(int[] pos, int step, cellType type){
         this.step = step;
         this.pos = pos;
@@ -36,7 +35,6 @@ public class DrawLive extends JComponent {
     /**
      * add the graph to the object base on the type of that object
      */
-
     private void selectSprite(){
         switch(type){
             case PLAYER:
@@ -47,10 +45,10 @@ public class DrawLive extends JComponent {
                 break;
         }
     }
-    /**
-     * set the graph of the player base on its direction
-     */
 
+    /**
+     * set the graph of the player based on its direction
+     */
     public void setPlayerUP(){
         sprite = Sprite.player_up();
     }
@@ -70,6 +68,7 @@ public class DrawLive extends JComponent {
         this.pos = pos;
         repaint();
     }
+
     /**
      * Paint the graphic
      * @param graphic: graphic of the object

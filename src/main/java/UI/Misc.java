@@ -22,7 +22,6 @@ public class Misc extends JPanel implements ActionListener {
     private JButton button_TxtScore;
     private static JButton button_score;
 
-    private static long timeContainer = 0;
     private JButton button_TxtTime;
     private static JButton button_time;
 
@@ -32,8 +31,8 @@ public class Misc extends JPanel implements ActionListener {
 
     /**
      * NOn default constructor
-     * @param gameScreen stroing the gameScreen info
-     * @param pauseScreen stroing the pauseScreen info
+     * @param gameScreen storing the gameScreen info
+     * @param pauseScreen storing the pauseScreen info
      */
     public Misc(GameScreen gameScreen, JPanel pauseScreen){
         this.gameScreen = gameScreen;
@@ -76,12 +75,10 @@ public class Misc extends JPanel implements ActionListener {
         button_score.setText(String.valueOf(score));
     }
 
-    //public static long getTimeContainer(){return timeContainer;}
     /**
      * Set the timer
      */
     public static void setTime(long time){
-        timeContainer = time;
         String timeText = time /60 + ":" + String.format("%02d", time %60);
         button_time.setText(timeText);
         //button_time.setText(String.valueOf(time));    //This line gives seconds only

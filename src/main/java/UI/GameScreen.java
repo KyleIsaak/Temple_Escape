@@ -45,6 +45,7 @@ public class GameScreen extends JPanel {
     private int DOWN = KeyEvent.VK_S;
     private int LEFT = KeyEvent.VK_A;
     private int RIGHT = KeyEvent.VK_D;
+
     /**
      * Non-Default Constructor(GameScreen class)
      * @param step: how far the charater can move at each time
@@ -55,6 +56,7 @@ public class GameScreen extends JPanel {
         music = new Music();
         music.playSound();
     }
+
     /**
      * set misc info
      * @param misc:
@@ -62,6 +64,7 @@ public class GameScreen extends JPanel {
     public void setMisc(Misc misc){
         this.misc = misc;
     }
+
     /**
      * get the control information
      */
@@ -77,6 +80,7 @@ public class GameScreen extends JPanel {
     public void setControlRIGHT(int RIGHT){
         this.RIGHT = RIGHT;
     }
+
     /**
      * get the control information
      */
@@ -92,23 +96,27 @@ public class GameScreen extends JPanel {
     public int getRIGHT() {
         return RIGHT;
     }
+
     /**
      * get the background music
      * @return the background music
      */
     public Music getMusic(){ return music; }
+
     /**
      * set the next Screen variable
      */
     public void setNextScreen(NextScreen next){
         nextScreen = next;
     }
+
     /**
      * set the End Screen variable
      */
     public void setEnd(EndScreen endScreen){
         this.endScreen = endScreen;
     }
+
     /**
      * set the difficulty of the game
      * @param mode store the game difficult
@@ -117,6 +125,7 @@ public class GameScreen extends JPanel {
         this.mode = mode;
         startGame();
     }
+
     /**
      * Set the stuff that need to be use for the player press start button.
      */
@@ -153,6 +162,7 @@ public class GameScreen extends JPanel {
         setVisible(false);
         repaint();
     }
+
     /**
      * Setup all the stuff that in the game
      */
@@ -189,6 +199,7 @@ public class GameScreen extends JPanel {
         setVisible(false);
         repaint();
     }
+
     /**
      * create the game board of the game
      */
@@ -243,6 +254,7 @@ public class GameScreen extends JPanel {
             }
         }
     }
+
     /**
      * create the wall of the game;
      * @param x

@@ -19,6 +19,7 @@ public class PauseScreen extends JPanel implements ActionListener{
     JButton button_control;
     JButton button_resume;
     ControlScreen controlScreen;
+
     /**
      * Constructor
      * @param controlScreen
@@ -48,6 +49,7 @@ public class PauseScreen extends JPanel implements ActionListener{
         setVisible(false);
 
     }
+
     /**
      * set up the button option on pause screen
      */
@@ -60,13 +62,13 @@ public class PauseScreen extends JPanel implements ActionListener{
         button_control.setBounds(430, 370, 100, 30);
         button_resume.setBounds(430, 420, 100, 30);
     }
+
     /**
      * setup the gameScreen
      * @param gameScreen
      */
-    public void setGameScreen(GameScreen gameScreen) {
-        this.gameScreen = gameScreen;
-    }
+    public void setGameScreen(GameScreen gameScreen) { this.gameScreen = gameScreen; }
+
     /**
      * to be used when user press Mute Button on pause Screen
      */

@@ -74,6 +74,7 @@ public class TitleScreen extends JPanel implements ActionListener{
             button_medium.setEnabled(true);
         }
     }
+
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
 
