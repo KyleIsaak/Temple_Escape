@@ -222,9 +222,9 @@ public class GameScreen extends JPanel {
                         add(trapB);
                     }
                 }
-                if (board.isReward(x, y)) {
-                    int index = board.rewardFinder(x, y);
-                    char rewardType = board.getRewardArrayManager().get(index).getType();
+                if (board.getRewardArrayManager().isReward(x, y)) {
+                    int index = board.getRewardArrayManager().rewardFinder(x, y);
+                    char rewardType = board.getRewardArrayManager().getRewardArray().get(index).getType();
                     if (rewardType == 'A') {
                         DrawDead rewardA = new DrawDead(pos, step, DrawDead.cellType.REWARDTYPEA);
                         rewardACell.add(rewardA);
@@ -369,11 +369,11 @@ public class GameScreen extends JPanel {
                     }
                 }
 
-                if (board.isReward(playerPos[0], playerPos[1])) {
-                    int rewardIndex = board.rewardFinder(playerPos[0], playerPos[1]);
-                    int[] rewardPos = board.getRewardArrayManager().get(rewardIndex).getPosition();
-                    int rewardAmount = board.getRewardArrayManager().get(rewardIndex).getRewardAmount();
-                    char rewardType = board.getRewardArrayManager().get(rewardIndex).getType();
+                if (board.getRewardArrayManager().isReward(playerPos[0], playerPos[1])) {
+                    int rewardIndex = board.getRewardArrayManager().rewardFinder(playerPos[0], playerPos[1]);
+                    int[] rewardPos = board.getRewardArrayManager().getRewardArray().get(rewardIndex).getPosition();
+                    int rewardAmount = board.getRewardArrayManager().getRewardArray().get(rewardIndex).getRewardAmount();
+                    char rewardType = board.getRewardArrayManager().getRewardArray().get(rewardIndex).getType();
                     board.getScore().addScore(rewardAmount);
 
 
@@ -415,7 +415,7 @@ public class GameScreen extends JPanel {
                     pathCell.add(newPath);
                     add(newPath);
 
-                    board.getRewardArrayManager().remove(rewardIndex);  //Remove reward from its array
+                    board.getRewardArrayManager().getRewardArray().remove(rewardIndex);  //Remove reward from its array
                 }
 
                 //check if exit is unlocked and goes to next level

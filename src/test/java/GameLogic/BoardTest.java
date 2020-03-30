@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class BoardTest{
 
+    ////////////////////////////////////// Test for Trap Array Manager class using Board Class /////////////////////////////////////
     @ParameterizedTest
     @ValueSource (ints = {1, 2 ,3})
     void numberOfTrapACreatedBasedOnLevel (int level) {
@@ -64,5 +65,7 @@ public class BoardTest{
         }
         assertEquals(0,intialScore);
     }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 }
 

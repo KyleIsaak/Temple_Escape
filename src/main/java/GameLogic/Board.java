@@ -20,7 +20,7 @@ public class Board {
     private Timer timer;
 
     private TrapArrayManager trapArrayManager;
-    private ArrayList<Reward> rewardArrayManager;
+    private RewardArrayManager rewardArrayManager;
     private ArrayList<Enemy> EnemyArrayManager;
     private Exit exit;
     private LevelGenerator generator;
@@ -33,8 +33,7 @@ public class Board {
         generator = new LevelGenerator(sizeX, sizeY);
 
         trapArrayManager = new TrapArrayManager(level, generator, sizeX);
-        rewardArrayManager = new ArrayList<Reward>();
-        rewardGenerator(level);
+        rewardArrayManager = new RewardArrayManager(level, generator, sizeX, trapArrayManager);
         EnemyArrayManager = new ArrayList<Enemy>();
         enemyGenerator(level);
 
@@ -58,8 +57,7 @@ public class Board {
         generator = new LevelGenerator(sizeX, sizeY);
 
         trapArrayManager = new TrapArrayManager(level, generator , sizeX);
-        rewardArrayManager = new ArrayList<Reward>();
-        rewardGenerator(level);
+        rewardArrayManager = new RewardArrayManager(level, generator, sizeX, trapArrayManager);
         EnemyArrayManager = new ArrayList<Enemy>();
         enemyGenerator(level);
         exit = new Exit();
@@ -82,8 +80,7 @@ public class Board {
         generator = new LevelGenerator(sizeX, sizeY);
 
         trapArrayManager = new TrapArrayManager(level, generator, sizeX);
-        rewardArrayManager = new ArrayList<Reward>();
-        rewardGenerator(level);
+        rewardArrayManager = new RewardArrayManager(level, generator, sizeX, trapArrayManager);
         EnemyArrayManager = new ArrayList<Enemy>();
         enemyGenerator(level);
 
@@ -130,25 +127,10 @@ public class Board {
     }
 
     /**
-     * Check whether that location on the map contains a reward.
-     * @param x An integer for the x position.
-     * @param y An integer for the y position
-     * @return true when it contains a reward and vise versa.
-     */
-    public boolean isReward(int x, int y){
-        for (int i = 0; i < rewardArrayManager.size(); i++) {
-            int[] current = rewardArrayManager.get(i).getPosition();
-            if ((current[0] == x) && (current[1] == y)) {
-                return true;
-            }
-        }
-        return false;
-    }
-    /**
      * Get this Board class's Reward Array Manager.
      * @return this Board class's Reward Array Manager.
      */
-    public ArrayList<Reward> getRewardArrayManager(){ return rewardArrayManager; }
+    public RewardArrayManager getRewardArrayManager(){ return rewardArrayManager; }
 
     /**
      * Gets the board of the Generator class
@@ -185,6 +167,12 @@ public class Board {
      * @return this Board class's Enemy Array Manager.
      */
     public ArrayList<Enemy> getEnemyArrayManager() { return EnemyArrayManager; }
+
+    /**
+     * Get the Trap Array Manager of this Board Class
+     * @return this Board class's Trap Array Manager
+     */
+    public TrapArrayManager getTrapArrayManager(){ return trapArrayManager; }
 
     /**
      * Get the ith index's Enemy from the Enemy Array
@@ -253,12 +241,6 @@ public class Board {
     }
 
     /**
-     * Get the Trap Array Manager of this Board Class
-     * @return this Board class's Trap Array Manager
-     */
-    public TrapArrayManager getTrapArrayManager(){ return trapArrayManager; }
-
-    /**
      * Randomize the position of this Board class's exit.
      */
     public void randomizeExitPosition(){
@@ -269,7 +251,7 @@ public class Board {
         int x = exitPos[0];
         int y = exitPos[1];
 
-        while (( (!isInBounds(x,y))|| ( x < 5 && y < 5) || (isReward(x,y)) || (trapArrayManager.isTrap(x,y)))){
+        while (( (!isInBounds(x,y))|| ( x < 5 && y < 5) || (rewardArrayManager.isReward(x,y)) || (trapArrayManager.isTrap(x,y)))){
             exitPos = randomExitPicker();
             x = exitPos[0];
             y = exitPos[1];
@@ -539,69 +521,6 @@ public class Board {
         }
     }
 
-    /**
-     * Create Specific Rewards in the gameplay area depending on the difficulty selected.
-     * @param difficultyLevel An integer of the difficulty selected.
-     */
-    public void rewardGenerator (int difficultyLevel){
-        for (int i = 0; i < difficultyLevel*2; i++) {   //Coins
-            rewardTypeGenerator('A');
-        }
-        for (int i = 0; i < difficultyLevel; i++){      //Keys
-            rewardTypeGenerator('B');
-        }
-    }
-
-    /**
-     * rewardGenerator's Helper function: Facilitates in creating the specific rewards (Coins and Keys)
-     * Implements the factory method design pattern.
-     * @param type A character that specify the type of specific reward selected.
-     */
-    private void rewardTypeGenerator (char type){
-        switch (type){
-            case 'A' :
-                rewardLocationRandomizer(new RewardTypeA());
-                break;
-
-            case 'B' :
-                rewardLocationRandomizer(new RewardTypeB());
-                break;
-        }
-    }
-
-    /**
-     * rewardGenerator's Helper Function: Facilitates in the randomizing the location of the rewards
-     * @param rewardObject Specific Reward Object
-     */
-    public void rewardLocationRandomizer (Reward rewardObject){
-        int x = integerRandomizer();
-        int y = integerRandomizer();
-
-        while ((isWall(x,y)) || (isReward(x,y) || (trapArrayManager.isTrap(x,y)))){
-            x = integerRandomizer();
-            y = integerRandomizer();
-        }
-
-        rewardObject.setPosition(new int [] {x, y});
-        //cellStatusManager.add(new int [] {x, y});
-        rewardArrayManager.add(rewardObject);
-    }
-
-    /**
-     * Returns the index of the Reward in the Reward Array Manager which is located in that position
-     *  @param x An integer for the x position.
-     *  @param y An integer for the y position.
-     *  @return the index of the Reward of that position in the Reward Array Manager
-     */
-    public int rewardFinder (int x, int y){
-        for (int i = 0; i < rewardArrayManager.size(); i++){
-            Reward current = rewardArrayManager.get(i);
-            if ((current.getPosition()[0] == x )&& (current.getPosition()[1] == y)){
-                return i;
-            }
-        }
-        return -1;
-    }
 
     //GameOverCase
     public boolean isGameOver(Enemy enemy)
