@@ -16,8 +16,8 @@ public class BoardTest{
     void numberOfTrapACreatedBasedOnLevel (int level) {
         Board board = new Board(level);
         int numberofTrapACreated = 0;
-        for (int i = 0; i < board.getTrapArrayManager().size(); i++) {
-            if (board.getTrapArrayManager().get(i).getType() == 'A') {
+        for (int i = 0; i < board.getTrapArrayManager().getTrapArray().size(); i++) {
+            if (board.getTrapArrayManager().getTrapArray().get(i).getType() == 'A') {
                 numberofTrapACreated++;
             }
         }
@@ -29,8 +29,8 @@ public class BoardTest{
     void numberOfTrapBCreatedBasedOnLevel (int level){
         Board board = new Board(level);
         int numberofTrapBCreated = 0;
-        for (int i = 0; i < board.getTrapArrayManager().size(); i++){
-            if (board.getTrapArrayManager().get(i).getType() == 'B'){
+        for (int i = 0; i < board.getTrapArrayManager().getTrapArray().size(); i++){
+            if (board.getTrapArrayManager().getTrapArray().get(i).getType() == 'B'){
                 numberofTrapBCreated++;
             }
         }
@@ -41,8 +41,8 @@ public class BoardTest{
     void trapLocationBounds (){
         Board board = new Board(3);
         boolean InBounds = true;
-        for (int i = 0; i < board.getTrapArrayManager().size(); i++){
-            int[] position = board.getTrapArrayManager().get(i).getPosition();
+        for (int i = 0; i < board.getTrapArrayManager().getTrapArray().size(); i++){
+            int[] position = board.getTrapArrayManager().getTrapArray().get(i).getPosition();
             if ((position[0] < 0 || position[0] >= 27) || (position[1] < 0 || position[1] >= 27)){
                 InBounds = false;
             }
@@ -56,9 +56,9 @@ public class BoardTest{
         int intialScore = 500;
         for (int i = 0; i < 27; i++){
             for (int j = 0; j < 27; j++){
-                if (board.isTrap(i,j)){
-                    int trapIndex = board.trapFinder(i, j);
-                    intialScore = intialScore - board.getTrapArrayManager().get(trapIndex).getDamage();
+                if (board.getTrapArrayManager().isTrap(i,j)){
+                    int trapIndex = board.getTrapArrayManager().trapFinder(i, j);
+                    intialScore = intialScore - board.getTrapArrayManager().getTrapArray().get(trapIndex).getDamage();
                 }
             }
         }

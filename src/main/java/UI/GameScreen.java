@@ -209,9 +209,9 @@ public class GameScreen extends JPanel {
             for (int x = 0; x < map.length; x++) {
                 pos = new int[]{x, y};
 
-                if (board.isTrap(x, y)) {
-                    int index = board.trapFinder(x, y);
-                    char trapType = board.getTrapArrayManager().get(index).getType();
+                if (board.getTrapArrayManager().isTrap(x, y)) {
+                    int index = board.getTrapArrayManager().trapFinder(x, y);
+                    char trapType = board.getTrapArrayManager().getTrapArray().get(index).getType();
                     if (trapType == 'A'){
                         DrawDead trapA = new DrawDead(pos, step, DrawDead.cellType.TRAPTYPEA);
                         trapACell.add(trapA);
@@ -328,11 +328,11 @@ public class GameScreen extends JPanel {
                 }
 
                 // Check whether player stepped on any traps
-                if (board.isTrap(playerPos[0], playerPos[1])) {
-                    int trapIndex = board.trapFinder(playerPos[0], playerPos[1]);
-                    int[] trapPos = board.getTrapArrayManager().get(trapIndex).getPosition();
-                    int damage = board.getTrapArrayManager().get(trapIndex).getDamage();
-                    char trapType = board.getTrapArrayManager().get(trapIndex).getType();
+                if (board.getTrapArrayManager().isTrap(playerPos[0], playerPos[1])) {
+                    int trapIndex = board.getTrapArrayManager().trapFinder(playerPos[0], playerPos[1]);
+                    int[] trapPos = board.getTrapArrayManager().getTrapArray().get(trapIndex).getPosition();
+                    int damage = board.getTrapArrayManager().getTrapArray().get(trapIndex).getDamage();
+                    char trapType = board.getTrapArrayManager().getTrapArray().get(trapIndex).getType();
                     board.getScore().subtractScore(damage);
 
 
@@ -365,7 +365,7 @@ public class GameScreen extends JPanel {
                                 }
                             }
                         }
-                        board.getTrapArrayManager().remove(trapIndex);  //Remove reward from its array
+                        board.getTrapArrayManager().getTrapArray().remove(trapIndex);  //Remove reward from its array
                     }
                 }
 
