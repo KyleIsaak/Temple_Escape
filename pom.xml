@@ -71,7 +71,7 @@
                     <include>*.*</include>
                 </includes>
             </resource>
-
         </resources>
+
     </build>
 </project>
