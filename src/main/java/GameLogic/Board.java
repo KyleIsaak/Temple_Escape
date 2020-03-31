@@ -205,9 +205,8 @@ public class Board {
     }
 
     public int[] randomExitPicker(){
-        Random random = new Random();
-        int randX = (random.nextInt(4));
-
+        Random switchCaseRandom = new Random();
+        int randX = (switchCaseRandom.nextInt(4));
         int[] exitPos = new int[2];
 
         switch(randX) {
@@ -231,12 +230,6 @@ public class Board {
                 exitPos[1] = sizeY - 2;
                 break;
         }
-
-        //Testing values - can be removed
-        //System.out.println(sizeX);
-        //System.out.println((sizeY));
-        //System.out.println(exitPos[0]);
-        //System.out.println(exitPos[1]);
         return exitPos;
     }
 
@@ -244,33 +237,15 @@ public class Board {
      * Randomize the position of this Board class's exit.
      */
     public void randomizeExitPosition(){
-        //int x = integerRandomizer();
-        //int y = integerRandomizer();
-
-        int exitPos[] = randomExitPicker();
-        int x = exitPos[0];
-        int y = exitPos[1];
-
-        while (( (!isInBounds(x,y))|| ( x < 5 && y < 5) || (rewardArrayManager.isReward(x,y)) || (trapArrayManager.isTrap(x,y)))){
+        int[] exitPos;
+        int x , y;
+        do {
             exitPos = randomExitPicker();
             x = exitPos[0];
             y = exitPos[1];
-        }
+        } while (( (!isInBounds(x,y))|| ( x < 5 && y < 5) || (rewardArrayManager.isReward(x,y)) || (trapArrayManager.isTrap(x,y))));
 
         exit.setPosition(new int[]{x, y});
-        //exit.setPosition(exitPos);
-
-    }
-
-    /**
-     * Check whether this Board class's exit is unlock
-     * @return true if this Board class's exit is unlock or vise versa
-     */
-    public boolean isExitUnlocked(){
-        if (exit.getIsUnlocked()){
-            return true;
-        }
-        return false;
     }
 
     /**
@@ -278,7 +253,6 @@ public class Board {
      */
     public void unlockExit(){
         exit.setUnlocked(true);
-        System.out.println("Exit unlocked");
     }
 
     /**
@@ -480,7 +454,6 @@ public class Board {
         }
 
         enemy.setPosition(new int[]{x, y});
-        //cellStatusManager.add(new int [] {x, y});
         EnemyArrayManager.add(enemy);
     }
 

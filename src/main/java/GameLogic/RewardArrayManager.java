@@ -1,5 +1,4 @@
 package GameLogic;
-import UI.Misc;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -8,6 +7,7 @@ public class RewardArrayManager {
     private final LevelGenerator generator;
     private final TrapArrayManager trapArrayManager;
     private int sizeX;
+
     /**
      * Non Default Constructor
      * @param level An integer defining the difficulty selected.
