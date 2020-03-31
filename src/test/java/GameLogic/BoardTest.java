@@ -64,5 +64,60 @@ public class BoardTest{
         }
         assertEquals(0,intialScore);
     }
+
+    @ParameterizedTest
+    @ValueSource (ints = {1, 2 ,3})
+    void numberOfRewardACreatedBasedOnLevel (int level) {
+        Board board = new Board(level);
+        int numberofRewardACreated = 0;
+        for (int i = 0; i < board.getRewardArrayManager().size(); i++) {
+            if (board.getTrapArrayManager().get(i).getType() == 'A') {
+                numberofRewardACreated++;
+            }
+        }
+        assertEquals(level * 2, numberofRewardACreated);
+    }
+
+    @ParameterizedTest
+    @ValueSource (ints = {1, 2 ,3})
+    void numberOfRewardBCreatedBasedOnLevel (int level){
+        Board board = new Board(level);
+        int numberofRewardBCreated = 0;
+        for (int i = 0; i < board.getRewardArrayManager().size(); i++){
+            if (board.getRewardArrayManager().get(i).getType() == 'B'){
+                numberofRewardBCreated++;
+            }
+        }
+        assertEquals(level, numberofRewardBCreated);
+    }
+
+    @Test
+    void RewardLocationBounds (){
+        Board board = new Board(3);
+        boolean InBounds = true;
+        for (int i = 0; i < board.getRewardArrayManager().size(); i++){
+            int[] position = board.getRewardArrayManager().get(i).getPosition();
+            if ((position[0] < 0 || position[0] >= 27) || (position[1] < 0 || position[1] >= 27)){
+                InBounds = false;
+            }
+        }
+        assertEquals(true, InBounds);
+    }
+
+    @Test
+    void totalRewardsAdditionCheck (){
+        Board board = new Board(1);
+        int intialScore = 0;
+        for (int i = 0; i < 27; i++){
+            for (int j = 0; j < 27; j++){
+                if (board.isReward(i,j)){
+                    int RewardIndex = board.rewardFinder(i, j);
+                    intialScore = intialScore + board.getRewardArrayManager().get(RewardIndex).getRewardAmount();
+                }
+            }
+        }
+        assertEquals(200,intialScore);
+    }
+
 }
 
