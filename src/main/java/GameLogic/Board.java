@@ -233,9 +233,28 @@ public class Board {
      */
     public int integerRandomizer(){
         Random random = new Random();
-        return (random.nextInt(sizeX));
+        return (random.nextInt(sizeX - 5) + 4);
     }
 
+    /**
+     * Randomize the position of this Board class's exit.
+     */
+    public void randomizeExitPosition(){
+        int[] exitPos;
+        int x , y;
+        do {
+            exitPos = randomExitPicker();
+            x = exitPos[0];
+            y = exitPos[1];
+        } while (( (!isInBounds(x,y))|| ( x < 5 && y < 5) || (isReward(x,y)) || (isTrap(x,y))));
+
+        exit.setPosition(new int[]{x, y});
+    }
+
+    /**
+     * Helper function for randomizeExitPosition
+     * @return A pair of integer for position of exit
+     */
     public int[] randomExitPicker(){
         Random random = new Random();
         int randX = (random.nextInt(4));
@@ -263,12 +282,6 @@ public class Board {
                 exitPos[1] = sizeY - 2;
                 break;
         }
-
-        //Testing values - can be removed
-        //System.out.println(sizeX);
-        //System.out.println((sizeY));
-        //System.out.println(exitPos[0]);
-        //System.out.println(exitPos[1]);
         return exitPos;
     }
 
@@ -343,39 +356,6 @@ public class Board {
     }
 
     /**
-     * Randomize the position of this Board class's exit.
-     */
-    public void randomizeExitPosition(){
-        //int x = integerRandomizer();
-        //int y = integerRandomizer();
-
-        int exitPos[] = randomExitPicker();
-        int x = exitPos[0];
-        int y = exitPos[1];
-
-        while (( (!isInBounds(x,y))|| ( x < 5 && y < 5) || (isReward(x,y)) || (isTrap(x,y)))){
-            exitPos = randomExitPicker();
-            x = exitPos[0];
-            y = exitPos[1];
-        }
-
-        exit.setPosition(new int[]{x, y});
-        //exit.setPosition(exitPos);
-
-    }
-
-    /**
-     * Check whether this Board class's exit is unlock
-     * @return true if this Board class's exit is unlock or vise versa
-     */
-    public boolean isExitUnlocked(){
-        if (exit.getIsUnlocked()){
-            return true;
-        }
-        return false;
-    }
-
-    /**
      * Unlock this Board class's exit.
      */
     public void unlockExit(){
@@ -442,7 +422,7 @@ public class Board {
             testValidMove = isWall(EnemyX+planMove[0],EnemyY+planMove[1]);
             if(testValidMove == true)
             {
-                 if(isThreeWall(Enemyposition)==true)
+                 if(isThreeWall(Enemyposition) == true)
                     {
                         if(isWall(EnemyX+1,EnemyY) && isWall(EnemyX,EnemyY+1) && isWall(EnemyX-1,EnemyY))
                         {
@@ -535,9 +515,10 @@ public class Board {
             }
         }
         //Solving two enemy standing in a same position
-        int level=Misc.getCurrentLevel();
-        if(level>=3)
-            level=3;
+        int level = Misc.getCurrentLevel();
+        if(level >= 3) {
+            level = 3;
+        }
         for (int j = 0; j < level; j++) {
             if (i == j)
                 continue;
@@ -576,13 +557,12 @@ public class Board {
         int x = integerRandomizer();
         int y = integerRandomizer();
 
-        while (((x < 6 && y < 6) || isWall(x, y)) || (isTrap(x, y))) {
+        while (((x < 6 && y < 6) || isWall(x, y)) || (isTrap(x, y)) || (isReward(x, y)) || isEnemy(x, y)) {
             x = integerRandomizer();
             y = integerRandomizer();
         }
 
         enemy.setPosition(new int[]{x, y});
-        //cellStatusManager.add(new int [] {x, y});
         EnemyArrayManager.add(enemy);
     }
 
