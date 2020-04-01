@@ -30,7 +30,7 @@ java/build/**
 
 
 #Maven
-/target/
+*/target/*
 /.classpath
 /*.project
 /.settings
