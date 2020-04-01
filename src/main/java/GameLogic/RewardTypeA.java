@@ -12,7 +12,14 @@ public class RewardTypeA extends Reward {
     /**
      * Default Constructor
      */
-    public RewardTypeA() {super(new int[] {0,0}); }
+    public RewardTypeA() { super(new int[] {0,0}); }
+
+    /**
+     * Non Default Constructor
+     */
+    public RewardTypeA(int[] pos) {
+        this.setPosition(pos);
+    }
 
     /**
      * Get the value of this reward.
