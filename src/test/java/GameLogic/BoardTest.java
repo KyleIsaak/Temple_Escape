@@ -66,6 +66,29 @@ public class BoardTest{
         assertEquals(0,intialScore);
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    @ParameterizedTest
+    @ValueSource (ints = {1, 2 ,3})
+    void numberOfRewardsCreatedBasedOnLevel (int level) {
+        Board board = new Board(level);
+        int numberofRewardACreated = 0;
+        for (int i = 0; i < board.getRewardArrayManager().getRewardArray().size(); i++) {
+            if (board.getTrapArrayManager().getTrapArray().get(i).getType() == 'A') {
+                numberofRewardACreated++;
+            }
+        }
+
+        int numberofRewardBCreated = 0;
+        for (int i = 0; i < board.getRewardArrayManager().getRewardArray().size(); i++){
+            if (board.getRewardArrayManager().getRewardArray().get(i).getType() == 'B'){
+                numberofRewardBCreated++;
+            }
+        }
+        assertEquals(level * 2, numberofRewardACreated);
+        assertEquals(level, numberofRewardBCreated);
+    }
+
+    /*
     @ParameterizedTest
     @ValueSource (ints = {1, 2 ,3})
     void numberOfRewardACreatedBasedOnLevel (int level) {
@@ -91,6 +114,8 @@ public class BoardTest{
         }
         assertEquals(level, numberofRewardBCreated);
     }
+     */
+
 
     @Test
     void RewardLocationBounds (){
