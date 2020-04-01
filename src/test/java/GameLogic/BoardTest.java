@@ -116,7 +116,6 @@ public class BoardTest{
     }
      */
 
-
     @Test
     void RewardLocationBounds (){
         Board board = new Board(3);
