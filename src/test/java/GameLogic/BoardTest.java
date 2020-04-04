@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import javax.swing.*;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -13,27 +16,19 @@ public class BoardTest{
 
     @ParameterizedTest
     @ValueSource (ints = {1, 2 ,3})
-    void numberOfTrapACreatedBasedOnLevel (int level) {
+    void numberOfTrapsCreatedBasedOnLevel (int level) {
         Board board = new Board(level);
         int numberofTrapACreated = 0;
+        int numberofTrapBCreated = 0;
         for (int i = 0; i < board.getTrapArrayManager().size(); i++) {
             if (board.getTrapArrayManager().get(i).getType() == 'A') {
                 numberofTrapACreated++;
             }
-        }
-        assertEquals(level * 2, numberofTrapACreated);
-    }
-
-    @ParameterizedTest
-    @ValueSource (ints = {1, 2 ,3})
-    void numberOfTrapBCreatedBasedOnLevel (int level){
-        Board board = new Board(level);
-        int numberofTrapBCreated = 0;
-        for (int i = 0; i < board.getTrapArrayManager().size(); i++){
             if (board.getTrapArrayManager().get(i).getType() == 'B'){
                 numberofTrapBCreated++;
             }
         }
+        assertEquals(level * 2, numberofTrapACreated);
         assertEquals(level, numberofTrapBCreated);
     }
 
@@ -47,7 +42,7 @@ public class BoardTest{
                 InBounds = false;
             }
         }
-        assertEquals(true, InBounds);
+        assertTrue(InBounds);
     }
 
      @Test
@@ -67,7 +62,7 @@ public class BoardTest{
 
     @ParameterizedTest
     @ValueSource (ints = {1, 2 ,3})
-    void numberOfRewardACreatedBasedOnLevel (int level) {
+    void numberOfRewardsCreatedBasedOnLevel (int level) {
         Board board = new Board(level);
         int numberofRewardACreated = 0;
         for (int i = 0; i < board.getRewardArrayManager().size(); i++) {
@@ -75,21 +70,17 @@ public class BoardTest{
                 numberofRewardACreated++;
             }
         }
-        assertEquals(level * 2, numberofRewardACreated);
-    }
 
-    @ParameterizedTest
-    @ValueSource (ints = {1, 2 ,3})
-    void numberOfRewardBCreatedBasedOnLevel (int level){
-        Board board = new Board(level);
         int numberofRewardBCreated = 0;
         for (int i = 0; i < board.getRewardArrayManager().size(); i++){
             if (board.getRewardArrayManager().get(i).getType() == 'B'){
                 numberofRewardBCreated++;
             }
         }
+        assertEquals(level * 2, numberofRewardACreated);
         assertEquals(level, numberofRewardBCreated);
     }
+
 
     @Test
     void RewardLocationBounds (){
@@ -101,7 +92,7 @@ public class BoardTest{
                 InBounds = false;
             }
         }
-        assertEquals(true, InBounds);
+        assertTrue(InBounds);
     }
 
     @Test
@@ -119,5 +110,18 @@ public class BoardTest{
         assertEquals(200,intialScore);
     }
 
+    @Test
+    void ExitLocationChecker (){
+        Board board = new Board(3);
+        boolean InBounds = true;
+        int[] exitPosition = board.getExit().getPosition();
+        if ((exitPosition[0] < 0 || exitPosition[0] >= 27) || (exitPosition[1] < 0 || exitPosition[1] >= 27)){
+            InBounds = false;
+        }
+        if (!(board.isWall(exitPosition[0] - 1, exitPosition[1]) || board.isWall(exitPosition[0] + 1, exitPosition[1]) || board.isWall(exitPosition[0], exitPosition[1] - 1) || board.isWall(exitPosition[0], exitPosition[1] + 1))){
+            InBounds = false;
+        }
+        assertTrue(InBounds);
+    }
 }
 
