@@ -20,19 +20,6 @@ public class LevelGenerator {
     private final int WALL = 0;
     private final int PATH = 1;
 
-    public static void main(String[] args){
-        LevelGenerator test = new LevelGenerator(41, 41);
-        test.setLevel(LevelGenerator.Difficulty.EASY);
-        int[][] map = test.getBoard();
-
-        for (int y = 0; y < 41; y++) {
-            for (int x = 0; x < 41; x++) {
-                System.out.print(map[x][y]);
-            }
-            System.out.println();
-        }
-    }
-
     /**
      * Non Default Constructor
      * @param x An integer that specify the horizontal length of a board.
