@@ -2,6 +2,9 @@ package GameLogic;
 
 import java.util.ArrayList;
 
+/**
+ * Implements the interface of ArrayFinderManager (Rewards Objects)
+ */
 public class RewardArray extends ArrayFinderManager {
 
     public boolean isObject (int x, int y, ArrayList<?> objectArray){
