@@ -65,7 +65,6 @@ class EnemyTest {
         int[] expectedReturn4={1,0};
         assertArrayEquals(expectedReturn4,functionReturn4);
 
-
-
     }
+
 }

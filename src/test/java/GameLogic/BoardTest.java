@@ -214,5 +214,32 @@ public class BoardTest {
        }
     }
 
+    @Test
+    void isItShortestPath()
+    {
+        Board board= new Board(1);
+        int[] test3={1,1};
+        assertArrayEquals(board.getPlayerPos(),test3);
+        int[] test={1,2};
+        board.getBoardArrayManager().enemyArrayManager.get(0).setPosition(test);
+        int numberOfStep=0;
+            board.chaseThePlayer(board.getBoardArrayManager().getEnemyArrayManager().get(0), 0);
+            numberOfStep++;
+        assertArrayEquals(board.getPlayerPos(),board.getBoardArrayManager().getEnemyArrayManager().get(0).getPosition());
+
+        int[] test1={2,1};
+        board.getBoardArrayManager().enemyArrayManager.get(0).setPosition(test1);
+        int numberOfStep1=0;
+        if(board.getPlayerPos()!=board.getBoardArrayManager().getEnemyArrayManager().get(0).getPosition()) {
+            board.chaseThePlayer(board.getBoardArrayManager().getEnemyArrayManager().get(0), 0);
+            numberOfStep1++;
+        }
+        assertArrayEquals(board.getPlayerPos(),board.getBoardArrayManager().getEnemyArrayManager().get(0).getPosition());
+        assertEquals(1,numberOfStep);
+        assertEquals(1,numberOfStep1);
+    }
+
+
+
 }
 
