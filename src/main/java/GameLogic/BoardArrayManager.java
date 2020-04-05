@@ -25,6 +25,7 @@ public class BoardArrayManager {
     public ArrayList<Reward> getRewardArrayManager(){ return rewardArrayManager;}
     public ArrayList<Enemy> getEnemyArrayManager(){ return enemyArrayManager;}
     public Exit getExit(){ return exit;}
+    public int[][] getBoard(){ return board;}
     /**
      * Get the ith index's Enemy's position from the Enemy Array
      * @param i index of the Enemy located in the array
@@ -57,6 +58,31 @@ public class BoardArrayManager {
      */
     public boolean isInBounds(int x, int y) { return (x >= 0 && x < 27 && y >= 0 && y < 27); }
 
+    public boolean isObject (int x, int y, String type){
+        boolean isFound = false;
+        switch (type){
+            case "Trap" :
+                isFound = trapFinder.isObject(x, y, trapArrayManager);
+                break;
+            case "Reward" :
+                isFound = rewardFinder.isObject(x, y, rewardArrayManager);
+                break;
+        }
+        return isFound;
+    }
+
+    public int objectFinder (int x, int y, String type){
+        int index = 0;
+        switch (type){
+            case "Trap" :
+                index = trapFinder.objectFinder(x, y, trapArrayManager);
+                break;
+            case "Reward" :
+                index = rewardFinder.objectFinder(x, y, rewardArrayManager);
+                break;
+        }
+        return index;
+    }
     /**
      * Unlock this Board class's exit.
      */

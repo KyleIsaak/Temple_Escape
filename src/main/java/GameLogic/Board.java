@@ -90,6 +90,7 @@ public class Board {
      */
     public void setDifficulty(LevelGenerator.Difficulty choice) { generator.setLevel(choice); }
 
+    public LocationRandomizerGenerator getBoardArrayManager(){ return boardArrayManager; }
     /**
      * Get the Player of this board.
      * @return this Board's Player.
@@ -101,6 +102,7 @@ public class Board {
      * @return the position of this Board's Player.
       */
     public int[] getPlayerPos(){ return player.getPosition(); }
+
 
     /**
      * Get the score of this Board class

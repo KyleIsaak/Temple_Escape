@@ -141,13 +141,13 @@ public class GameScreen extends JPanel {
         trapBCell = new ArrayList<>();
         rewardACell = new ArrayList<>();
         rewardBCell = new ArrayList<>();
-        this.map = board.getBoard();
+        this.map = board.getBoardArrayManager().getBoard();
 
 
         player = new DrawLive(board.getPlayerPos(), step, DrawLive.cellType.PLAYER);
-        exit = new DrawDead(board.getExit().getPosition(), step, DrawDead.cellType.EXIT);
+        exit = new DrawDead(board.getBoardArrayManager().getExit().getPosition(), step, DrawDead.cellType.EXIT);
         for(int i = 0; i < Math.min(Misc.getCurrentLevel(), 3); i++) {
-            enemy = new DrawLive(board.getEnemyPos(i), step, DrawLive.cellType.ENEMY);
+            enemy = new DrawLive(board.getBoardArrayManager().getEnemyPos(i), step, DrawLive.cellType.ENEMY);
             add(enemy);
         }
 
@@ -178,13 +178,13 @@ public class GameScreen extends JPanel {
         trapBCell = new ArrayList<>();
         rewardACell = new ArrayList<>();
         rewardBCell = new ArrayList<>();
-        this.map = board.getBoard();
+        this.map = board.getBoardArrayManager().getBoard();
 
 
         player = new DrawLive(board.getPlayerPos(), step, DrawLive.cellType.PLAYER);
-        exit = new DrawDead(board.getExit().getPosition(), step, DrawDead.cellType.EXIT);
+        exit = new DrawDead(board.getBoardArrayManager().getExit().getPosition(), step, DrawDead.cellType.EXIT);
         for(int i = 0; i < Math.min(Misc.getCurrentLevel(), 3); i++) {
-            enemy = new DrawLive(board.getEnemyPos(i), step, DrawLive.cellType.ENEMY);
+            enemy = new DrawLive(board.getBoardArrayManager().getEnemyPos(i), step, DrawLive.cellType.ENEMY);
             add(enemy);
         }
 
@@ -209,7 +209,7 @@ public class GameScreen extends JPanel {
             for (int x = 0; x < map.length; x++) {
                 pos = new int[]{x, y};
 
-                if (board.isTrap(x, y)) {
+                if (board.getBoardArrayManager().is(x, y)) {
                     int index = board.trapFinder(x, y);
                     char trapType = board.getTrapArrayManager().get(index).getType();
                     if (trapType == 'A'){
