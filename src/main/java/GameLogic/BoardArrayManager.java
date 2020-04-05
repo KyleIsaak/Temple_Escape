@@ -11,6 +11,7 @@ public class BoardArrayManager {
 
     protected ArrayFinderManager trapFinder = new TrapArray();
     protected ArrayFinderManager rewardFinder = new RewardArray();
+    protected ArrayFinderManager enemyFinder = new EnemyArray();
 
     public BoardArrayManager(int[][] board){
         trapArrayManager = new ArrayList<Trap>();
@@ -96,6 +97,9 @@ public class BoardArrayManager {
             case "Reward" :
                 isFound = rewardFinder.isObject(x, y, rewardArrayManager);
                 break;
+            case "Enemy" :
+                isFound = enemyFinder.isObject(x, y, enemyArrayManager);
+                break;
         }
         return isFound;
     }
@@ -115,6 +119,9 @@ public class BoardArrayManager {
                 break;
             case "Reward" :
                 index = rewardFinder.objectFinder(x, y, rewardArrayManager);
+                break;
+            case "Enemy" :
+                index = enemyFinder.objectFinder(x, y, enemyArrayManager);
                 break;
         }
         return index;

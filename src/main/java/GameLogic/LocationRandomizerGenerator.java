@@ -26,11 +26,25 @@ public class LocationRandomizerGenerator extends BoardArrayManager {
      * @param type a string that defines the type of object needed to be created.
      */
     public void objectGenerator (int difficultyLevel, String type){
-        for (int i = 0; i < difficultyLevel*2; i++) {
-            typeGenerator('A', type);
+        if (type.equals("Enemy")){
+            if(difficultyLevel < 3) {
+                for (int i = 0; i < difficultyLevel; i++) {
+                    typeGenerator('A', type);
+                }
+            }
+            else{
+                for (int i = 0; i < 3; i++) {
+                    typeGenerator('A', type);
+                }
+            }
         }
-        for (int i = 0; i < difficultyLevel; i++){
-            typeGenerator('B', type);
+        else {
+            for (int i = 0; i < difficultyLevel * 2; i++) {
+                typeGenerator('A', type);
+            }
+            for (int i = 0; i < difficultyLevel; i++) {
+                typeGenerator('B', type);
+            }
         }
     }
 
