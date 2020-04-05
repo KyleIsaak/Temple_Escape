@@ -119,13 +119,13 @@ public class Board {
     {
         int X=position[0];
         int Y=position[1];
-        if(isWall(X+1,Y) && isWall(X,Y+1))
+        if(boardArrayManager.isWall(X+1,Y) && boardArrayManager.isWall(X,Y+1))
             return true;
-        if(isWall(X-1,Y)&&isWall(X,Y+1))
+        if(boardArrayManager.isWall(X-1,Y) && boardArrayManager.isWall(X,Y+1))
             return true;
-        if(isWall(X+1,Y)&&isWall(X,Y-1))
+        if(boardArrayManager.isWall(X+1,Y) && boardArrayManager.isWall(X,Y-1))
             return true;
-        if(isWall(X-1,Y)&&isWall(X,Y-1))
+        if(boardArrayManager.isWall(X-1,Y) && boardArrayManager.isWall(X,Y-1))
             return true;
         return false;
     }
@@ -139,13 +139,13 @@ public class Board {
     {
         int X=position[0];
         int Y=position[1];
-        if(isWall(X+1,Y) && isWall(X,Y+1) && isWall(X-1,Y))
+        if(boardArrayManager.isWall(X+1,Y) && boardArrayManager.isWall(X,Y+1) && boardArrayManager.isWall(X-1,Y))
             return true;
-        if(isWall(X+1,Y) && isWall(X,Y-1) && isWall(X-1,Y))
+        if(boardArrayManager.isWall(X+1,Y) && boardArrayManager.isWall(X,Y-1) && boardArrayManager.isWall(X-1,Y))
             return true;
-        if(isWall(X,Y+1) && isWall(X,Y-1) && isWall(X-1,Y))
+        if(boardArrayManager.isWall(X,Y+1) && boardArrayManager.isWall(X,Y-1) && boardArrayManager.isWall(X-1,Y))
             return true;
-        if(isWall(X,Y+1) && isWall(X,Y-1) && isWall(X+1,Y))
+        if(boardArrayManager.isWall(X,Y+1) && boardArrayManager.isWall(X,Y-1) && boardArrayManager.isWall(X+1,Y))
             return true;
         return false;
     }
@@ -158,72 +158,72 @@ public class Board {
     public void chaseThePlayer(Enemy enemy, int i){
         boolean testValidMove = true;
         int[] planMove = {0,0};
-        planMove=enemy.chaseThePlayer(player.getPosition());
-        int[] PlayerPosition=getPlayerPos();
-        int PlayerX=PlayerPosition[0];//playerPositionX
-        int PlayerY=PlayerPosition[1];//PlayerPositionY
-        int[] Enemyposition=getEnemyPos(i);
-        int EnemyX=Enemyposition[0];
-        int EnemyY=Enemyposition[1];
+        planMove = enemy.chaseThePlayer(player.getPosition());
+        int[] PlayerPosition = getPlayerPos();
+        int PlayerX = PlayerPosition[0];//playerPositionX
+        int PlayerY = PlayerPosition[1];//PlayerPositionY
+        int[] enemyPosition = boardArrayManager.getEnemyPos(i);
+        int EnemyX = enemyPosition[0];
+        int EnemyY = enemyPosition[1];
         while(testValidMove) {
-            testValidMove = isWall(EnemyX+planMove[0],EnemyY+planMove[1]);
+            testValidMove = boardArrayManager.isWall(EnemyX+planMove[0],EnemyY+planMove[1]);
             if(testValidMove == true)
             {
-                 if(isThreeWall(Enemyposition) == true)
+                 if(isThreeWall(enemyPosition) == true)
                     {
-                        if(isWall(EnemyX+1,EnemyY) && isWall(EnemyX,EnemyY+1) && isWall(EnemyX-1,EnemyY))
+                        if(boardArrayManager.isWall(EnemyX+1,EnemyY) && boardArrayManager.isWall(EnemyX,EnemyY+1) && boardArrayManager.isWall(EnemyX-1,EnemyY))
                         {
                             planMove[0]=0;
                             planMove[1]=-1;
                         }
 
-                        if(isWall(EnemyX+1,EnemyY) && isWall(EnemyX,EnemyY-1) && isWall(EnemyX-1,EnemyY))
+                        if(boardArrayManager.isWall(EnemyX+1,EnemyY) && boardArrayManager.isWall(EnemyX,EnemyY-1) && boardArrayManager.isWall(EnemyX-1,EnemyY))
                         {
                             planMove[0]=0;
                             planMove[1]=1;
                         }
 
-                        if(isWall(EnemyX,EnemyY+1) && isWall(EnemyX,EnemyY-1) && isWall(EnemyX-1,EnemyY))
+                        if(boardArrayManager.isWall(EnemyX,EnemyY+1) && boardArrayManager.isWall(EnemyX,EnemyY-1) && boardArrayManager.isWall(EnemyX-1,EnemyY))
                         {
                             planMove[0]=1;
                             planMove[1]=0;
                         }
 
-                        if(isWall(EnemyX,EnemyY+1) && isWall(EnemyX,EnemyY-1) && isWall(EnemyX+1,EnemyY))
+                        if(boardArrayManager.isWall(EnemyX,EnemyY+1) && boardArrayManager.isWall(EnemyX,EnemyY-1) && boardArrayManager.isWall(EnemyX+1,EnemyY))
                         {
                             planMove[0]=-1;
                             planMove[1]=0;
                         }
                     }
 
-                 else if(isCorner(Enemyposition) == true)
+                 else if(isCorner(enemyPosition) == true)
                  {
-                     if(isWall(EnemyX+1,EnemyY) && isWall(EnemyX,EnemyY+1))
+                     if(boardArrayManager.isWall(EnemyX+1,EnemyY) && boardArrayManager.isWall(EnemyX,EnemyY+1))
                      {
                          planMove[0]=0;
                          planMove[1]=-1;
                      }
 
-                     if(isWall(EnemyX-1,EnemyY)&&isWall(EnemyX,EnemyY+1))
+                     if(boardArrayManager.isWall(EnemyX-1,EnemyY) && boardArrayManager.isWall(EnemyX,EnemyY+1))
                      {
                          planMove[0]=0;
                          planMove[1]=-1;
                      }
 
-                     if(isWall(EnemyX+1,EnemyY)&&isWall(EnemyX,EnemyY-1))
+                     if(boardArrayManager.isWall(EnemyX+1,EnemyY) && boardArrayManager.isWall(EnemyX,EnemyY-1))
                      {
                          planMove[0]=0;
                          planMove[1]=1;
                      }
 
-                     if(isWall(EnemyX-1,EnemyY)&&isWall(EnemyX,EnemyY-1))
+                     if(boardArrayManager.isWall(EnemyX-1,EnemyY) && boardArrayManager.isWall(EnemyX,EnemyY-1))
                      {
                          planMove[0]=0;
                          planMove[1]=1;
                      }
                  }
 
-                 else if(isCorner(Enemyposition)==false)
+                 else if(isCorner(enemyPosition)==false)
                  {
                      if (planMove[0] == 1) {
                          planMove[0] = 0;
@@ -258,7 +258,7 @@ public class Board {
                              planMove[0] = -1;
                      }
                  }
-                testValidMove = isWall(EnemyX+planMove[0],EnemyY+planMove[1]);
+                testValidMove = boardArrayManager.isWall(EnemyX+planMove[0],EnemyY+planMove[1]);
             }
         }
         //Solving two enemy standing in a same position
@@ -269,149 +269,13 @@ public class Board {
         for (int j = 0; j < level; j++) {
             if (i == j)
                 continue;
-            else if (EnemyX + planMove[0] == EnemyArrayManager.get(j).getPosition()[0] && EnemyY + planMove[1] == EnemyArrayManager.get(j).getPosition()[1]) {
+            else if (EnemyX + planMove[0] == boardArrayManager.getEnemyArrayManager().get(j).getPosition()[0] && EnemyY + planMove[1] == boardArrayManager.getEnemyArrayManager().get(j).getPosition()[1]) {
                 planMove[0] = 0;
                 planMove[1] = 0;
             }
         }
         enemy.move(planMove);
 
-    }
-
-    /**
-     * Create Enemy in the gameplay area depending on the difficulty selected.
-     * @param difficultyLevel An integer of the difficulty selected.
-     */
-    public void enemyGenerator(int difficultyLevel)
-    {
-        if(difficultyLevel < 3) {
-            for (int i = 0; i < difficultyLevel; i++) {
-                enemyLocationRandomizer(new Enemy(playerInit));
-            }
-        }
-        else{
-            for (int i = 0; i < 3; i++) {
-                enemyLocationRandomizer(new Enemy(playerInit));
-            }
-        }
-    }
-
-    /**
-     *  EnemyGenerator's Helper Function: Facilitates in the randomizing the location of the enemy
-     * @param enemy A specific enemy object
-     */
-    public void enemyLocationRandomizer(Enemy enemy) {
-        int x = integerRandomizer();
-        int y = integerRandomizer();
-
-        while (((x < 6 && y < 6) || isWall(x, y)) || (isTrap(x, y)) || (isReward(x, y)) || isEnemy(x, y)) {
-            x = integerRandomizer();
-            y = integerRandomizer();
-        }
-
-        enemy.setPosition(new int[]{x, y});
-        EnemyArrayManager.add(enemy);
-    }
-
-    /**
-     * Returns the index of the Enemy in the Enemy Array Manager which is located in that position
-     *  @param x An integer for the x position.
-     *  @param y An integer for the y position.
-     *  @return the index of the Enemy of that position in the Enemy Array Manager
-     */
-    public int EnemyFinder(int x, int y) {
-        for (int i = 0; i < EnemyArrayManager.size(); i++) {
-            Enemy current = EnemyArrayManager.get(i);
-            if ((current.getPosition()[0] == x) && (current.getPosition()[1] == y)) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    /**
-     * Move the enemy by one step in either direction.
-     * @param currentlevel An integer of the current difficulty selected.
-     */
-    public void MoveEnemy(int currentlevel) {
-        for (int i = 0; i < currentlevel; i++) {
-            int[] position = EnemyArrayManager.get(i).chaseThePlayer(getPlayerPos());
-            for(int j = 0; j < currentlevel; j++)
-            {
-                if(i==j)
-                    continue;
-                if(position[0]==EnemyArrayManager.get(j).chaseThePlayer(getPlayerPos())[0] && position[1]==EnemyArrayManager.get(j).chaseThePlayer(getPlayerPos())[1])
-                {
-                    position[0]=0;
-                    position[1]=0;
-                }
-            }
-            EnemyArrayManager.get(i).move(position);
-        }
-    }
-
-    /**
-     * Create Specific Rewards in the gameplay area depending on the difficulty selected.
-     * @param difficultyLevel An integer of the difficulty selected.
-     */
-    public void rewardGenerator (int difficultyLevel){
-        for (int i = 0; i < difficultyLevel*2; i++) {   //Coins
-            rewardTypeGenerator('A');
-        }
-        for (int i = 0; i < difficultyLevel; i++){      //Keys
-            rewardTypeGenerator('B');
-        }
-    }
-
-    /**
-     * rewardGenerator's Helper function: Facilitates in creating the specific rewards (Coins and Keys)
-     * Implements the factory method design pattern.
-     * @param type A character that specify the type of specific reward selected.
-     */
-    private void rewardTypeGenerator (char type){
-        switch (type){
-            case 'A' :
-                rewardLocationRandomizer(new RewardTypeA());
-                break;
-
-            case 'B' :
-                rewardLocationRandomizer(new RewardTypeB());
-                break;
-        }
-    }
-
-    /**
-     * rewardGenerator's Helper Function: Facilitates in the randomizing the location of the rewards
-     * @param rewardObject Specific Reward Object
-     */
-    public void rewardLocationRandomizer (Reward rewardObject){
-        int x = integerRandomizer();
-        int y = integerRandomizer();
-
-        while ((isWall(x,y)) || (isReward(x,y) || (isTrap(x,y)))){
-            x = integerRandomizer();
-            y = integerRandomizer();
-        }
-
-        rewardObject.setPosition(new int [] {x, y});
-        //cellStatusManager.add(new int [] {x, y});
-        rewardArrayManager.add(rewardObject);
-    }
-
-    /**
-     * Returns the index of the Reward in the Reward Array Manager which is located in that position
-     *  @param x An integer for the x position.
-     *  @param y An integer for the y position.
-     *  @return the index of the Reward of that position in the Reward Array Manager
-     */
-    public int rewardFinder (int x, int y){
-        for (int i = 0; i < rewardArrayManager.size(); i++){
-            Reward current = rewardArrayManager.get(i);
-            if ((current.getPosition()[0] == x )&& (current.getPosition()[1] == y)){
-                return i;
-            }
-        }
-        return -1;
     }
 
     //GameOverCase
