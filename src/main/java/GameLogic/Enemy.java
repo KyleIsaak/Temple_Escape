@@ -7,6 +7,10 @@ public class Enemy {
     private int[] position;
 
     /**
+     * Default Constructor of Enemy Class
+     */
+    public Enemy() { this.position = new int[]{0, 0}; }
+    /**
      * Non default constructor of Enemy Class
      * @param position A x,y position on the Map
      */
@@ -46,7 +50,7 @@ public class Enemy {
         chase = new int[]{0,0};
         double distanceX= position[0]-this.position[0];//enemy - player location;
         double distanceY= position[1]-this.position[1];//enemy - player location;
-        if( Math.abs(distanceY)>Math.abs(distanceX))//distance Y> distance X
+        if( Math.abs(distanceY) > Math.abs(distanceX))//distance Y> distance X
         {
             if(this.position[1]<position[1]){
                 chase[0] = 0;

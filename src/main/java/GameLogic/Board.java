@@ -20,10 +20,7 @@ public class Board {
     private Score score;
     private Timer timer;
 
-    private ArrayList<Trap> trapArrayManager;
-    private ArrayList<Reward> rewardArrayManager;
-    private ArrayList<Enemy> EnemyArrayManager;
-    private Exit exit;
+    private LocationRandomizerGenerator boardArrayManager;
     private LevelGenerator generator;
 
     /**
@@ -32,16 +29,11 @@ public class Board {
      */
     public Board(int level){
         generator = new LevelGenerator(sizeX, sizeY);
-
-        trapArrayManager = new ArrayList<Trap>();
-        trapGenerator(level);
-        rewardArrayManager = new ArrayList<Reward>();
-        rewardGenerator(level);
-        EnemyArrayManager = new ArrayList<Enemy>();
-        enemyGenerator(level);
-
-        exit = new Exit();
-        randomizeExitPosition();
+        boardArrayManager = new LocationRandomizerGenerator(generator.getBoard());
+        boardArrayManager.objectGenerator(level,"Trap");
+        boardArrayManager.objectGenerator(level,"Reward");
+        boardArrayManager.objectGenerator(level,"Enemy");
+        boardArrayManager.randomizeExitPosition();
 
         playerInit = new int[]{1, 1};
         player = new Player(playerInit);
@@ -58,15 +50,11 @@ public class Board {
      */
     public Board(int level, int scoreAmount){
         generator = new LevelGenerator(sizeX, sizeY);
-
-        trapArrayManager = new ArrayList<Trap>();
-        trapGenerator(level);
-        rewardArrayManager = new ArrayList<Reward>();
-        rewardGenerator(level);
-        EnemyArrayManager = new ArrayList<Enemy>();
-        enemyGenerator(level);
-        exit = new Exit();
-        randomizeExitPosition();
+        boardArrayManager = new LocationRandomizerGenerator(generator.getBoard());
+        boardArrayManager.objectGenerator(level,"Trap");
+        boardArrayManager.objectGenerator(level,"Reward");
+        boardArrayManager.objectGenerator(level,"Enemy");
+        boardArrayManager.randomizeExitPosition();
         playerInit = new int[]{1, 1};
         player = new Player(playerInit);
         score = new Score(scoreAmount);
@@ -83,15 +71,11 @@ public class Board {
      */
     public Board(int level, int scoreAmount, Timer oldTimer){
         generator = new LevelGenerator(sizeX, sizeY);
-
-        trapArrayManager = new ArrayList<Trap>();
-        trapGenerator(level);
-        rewardArrayManager = new ArrayList<Reward>();
-        rewardGenerator(level);
-        EnemyArrayManager = new ArrayList<Enemy>();
-        enemyGenerator(level);
-
-        exit = new Exit();
+        boardArrayManager = new LocationRandomizerGenerator(generator.getBoard());
+        boardArrayManager.objectGenerator(level,"Trap");
+        boardArrayManager.objectGenerator(level,"Reward");
+        boardArrayManager.objectGenerator(level,"Enemy");
+        boardArrayManager.randomizeExitPosition();
         randomizeExitPosition();
 
         playerInit = new int[]{1, 1};
