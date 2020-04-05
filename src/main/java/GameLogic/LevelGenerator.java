@@ -201,10 +201,7 @@ public class LevelGenerator {
      * @return true if the position is in bound and vise versa
      */
     private boolean isInBound(int x, int y){
-        if (x < 1 || x > this.x - 2 || y < 1 || y > this.y - 2) {
-            return false;
-        }
-        return true;
+        return x >= 1 && x <= this.x - 2 && y >= 1 && y <= this.y - 2;
     }
 
     /**
