@@ -9,8 +9,8 @@ public class BoardArrayManager {
     protected ArrayList<Enemy> enemyArrayManager;
     protected Exit exit;
 
-    protected ArrayFinderManager trapFinder;
-    protected ArrayFinderManager rewardFinder;
+    protected ArrayFinderManager trapFinder = new TrapArray();
+    protected ArrayFinderManager rewardFinder = new RewardArray();
 
     public BoardArrayManager(int[][] board){
         trapArrayManager = new ArrayList<Trap>();

@@ -30,10 +30,11 @@ public class Board {
     public Board(int level){
         generator = new LevelGenerator(sizeX, sizeY);
         boardArrayManager = new LocationRandomizerGenerator(generator.getBoard());
+        boardArrayManager.randomizeExitPosition();
         boardArrayManager.objectGenerator(level,"Trap");
         boardArrayManager.objectGenerator(level,"Reward");
         boardArrayManager.objectGenerator(level,"Enemy");
-        boardArrayManager.randomizeExitPosition();
+
 
         playerInit = new int[]{1, 1};
         player = new Player(playerInit);
@@ -51,10 +52,10 @@ public class Board {
     public Board(int level, int scoreAmount){
         generator = new LevelGenerator(sizeX, sizeY);
         boardArrayManager = new LocationRandomizerGenerator(generator.getBoard());
+        boardArrayManager.randomizeExitPosition();
         boardArrayManager.objectGenerator(level,"Trap");
         boardArrayManager.objectGenerator(level,"Reward");
         boardArrayManager.objectGenerator(level,"Enemy");
-        boardArrayManager.randomizeExitPosition();
         playerInit = new int[]{1, 1};
         player = new Player(playerInit);
         score = new Score(scoreAmount);
@@ -72,10 +73,10 @@ public class Board {
     public Board(int level, int scoreAmount, Timer oldTimer){
         generator = new LevelGenerator(sizeX, sizeY);
         boardArrayManager = new LocationRandomizerGenerator(generator.getBoard());
+        boardArrayManager.randomizeExitPosition();
         boardArrayManager.objectGenerator(level,"Trap");
         boardArrayManager.objectGenerator(level,"Reward");
         boardArrayManager.objectGenerator(level,"Enemy");
-        boardArrayManager.randomizeExitPosition();
 
         playerInit = new int[]{1, 1};
         player = new Player(playerInit);

@@ -209,9 +209,9 @@ public class GameScreen extends JPanel {
             for (int x = 0; x < map.length; x++) {
                 pos = new int[]{x, y};
 
-                if (board.getBoardArrayManager().is(x, y)) {
-                    int index = board.trapFinder(x, y);
-                    char trapType = board.getTrapArrayManager().get(index).getType();
+                if (board.getBoardArrayManager().isObject(x, y, "Trap")) {
+                    int index = board.getBoardArrayManager().objectFinder(x, y, "Trap");
+                    char trapType = board.getBoardArrayManager().getTrapArrayManager().get(index).getType();
                     if (trapType == 'A'){
                         DrawDead trapA = new DrawDead(pos, step, DrawDead.cellType.TRAPTYPEA);
                         trapACell.add(trapA);
@@ -222,9 +222,9 @@ public class GameScreen extends JPanel {
                         add(trapB);
                     }
                 }
-                if (board.isReward(x, y)) {
-                    int index = board.rewardFinder(x, y);
-                    char rewardType = board.getRewardArrayManager().get(index).getType();
+                if (board.getBoardArrayManager().isObject(x, y, "Reward")) {
+                    int index = board.getBoardArrayManager().objectFinder(x, y, "Reward");
+                    char rewardType = board.getBoardArrayManager().getRewardArrayManager().get(index).getType();
                     if (rewardType == 'A') {
                         DrawDead rewardA = new DrawDead(pos, step, DrawDead.cellType.REWARDTYPEA);
                         rewardACell.add(rewardA);
@@ -267,10 +267,10 @@ public class GameScreen extends JPanel {
         boolean top = false;
         boolean down = false;
 
-        if (board.isInBounds(x - 1, y) && board.isWall(x - 1, y)){ left = true; }
-        if (board.isInBounds(x + 1, y) && board.isWall(x + 1, y)){ right = true; }
-        if (board.isInBounds(x, y + 1) && board.isWall(x, y + 1)){ down = true; }
-        if (board.isInBounds(x, y - 1) && board.isWall(x, y - 1)){ top = true; }
+        if (board.getBoardArrayManager().isInBounds(x - 1, y) && board.getBoardArrayManager().isWall(x - 1, y)){ left = true; }
+        if (board.getBoardArrayManager().isInBounds(x + 1, y) && board.getBoardArrayManager().isWall(x + 1, y)){ right = true; }
+        if (board.getBoardArrayManager().isInBounds(x, y + 1) && board.getBoardArrayManager().isWall(x, y + 1)){ down = true; }
+        if (board.getBoardArrayManager().isInBounds(x, y - 1) && board.getBoardArrayManager().isWall(x, y - 1)){ top = true; }
 
         DrawDead wall = new DrawDead(pos, step, DrawDead.cellType.WALL);
         wall.setWallDirection(top, left, down, right);
@@ -298,28 +298,28 @@ public class GameScreen extends JPanel {
 
                 //player movement
                 if (key == UP){
-                    if(!board.isWall(playerPos[0], playerPos[1] - 1)) {
+                    if(!board.getBoardArrayManager().isWall(playerPos[0], playerPos[1] - 1)) {
                         board.getPlayer().moveUp();
                     }
                     player.setPlayerUP();
                     player.setNewPosition(board.getPlayerPos());
                     repaint();
                 } else if (key == DOWN){
-                    if(!board.isWall(playerPos[0], playerPos[1] + 1)) {
+                    if(!board.getBoardArrayManager().isWall(playerPos[0], playerPos[1] + 1)) {
                         board.getPlayer().moveDown();
                     }
                     player.setPlayerDOWN();
                     player.setNewPosition(board.getPlayerPos());
                     repaint();
                 } else if (key == RIGHT){
-                    if(!board.isWall(playerPos[0] + 1, playerPos[1])) {
+                    if(!board.getBoardArrayManager().isWall(playerPos[0] + 1, playerPos[1])) {
                         board.getPlayer().moveRight();
                     }
                     player.setPlayerRIGHT();
                     player.setNewPosition(board.getPlayerPos());
                     repaint();
                 } else if (key == LEFT){
-                    if(!board.isWall(playerPos[0]-  1, playerPos[1])) {
+                    if(!board.getBoardArrayManager().isWall(playerPos[0]-  1, playerPos[1])) {
                         board.getPlayer().moveLeft();
                     }
                     player.setPlayerLEFT();
@@ -328,11 +328,11 @@ public class GameScreen extends JPanel {
                 }
 
                 // Check whether player stepped on any traps
-                if (board.isTrap(playerPos[0], playerPos[1])) {
-                    int trapIndex = board.trapFinder(playerPos[0], playerPos[1]);
-                    int[] trapPos = board.getTrapArrayManager().get(trapIndex).getPosition();
-                    int damage = board.getTrapArrayManager().get(trapIndex).getDamage();
-                    char trapType = board.getTrapArrayManager().get(trapIndex).getType();
+                if (board.getBoardArrayManager().isObject(playerPos[0], playerPos[1], "Trap")) {
+                    int trapIndex = board.getBoardArrayManager().objectFinder(playerPos[0], playerPos[1], "Trap");
+                    int[] trapPos = board.getBoardArrayManager().getTrapArrayManager().get(trapIndex).getPosition();
+                    int damage = board.getBoardArrayManager().getTrapArrayManager().get(trapIndex).getDamage();
+                    char trapType = board.getBoardArrayManager().getTrapArrayManager().get(trapIndex).getType();
                     board.getScore().subtractScore(damage);
 
 
@@ -365,15 +365,15 @@ public class GameScreen extends JPanel {
                                 }
                             }
                         }
-                        board.getTrapArrayManager().remove(trapIndex);  //Remove reward from its array
+                        board.getBoardArrayManager().getTrapArrayManager().remove(trapIndex);  //Remove reward from its array
                     }
                 }
 
-                if (board.isReward(playerPos[0], playerPos[1])) {
-                    int rewardIndex = board.rewardFinder(playerPos[0], playerPos[1]);
-                    int[] rewardPos = board.getRewardArrayManager().get(rewardIndex).getPosition();
-                    int rewardAmount = board.getRewardArrayManager().get(rewardIndex).getRewardAmount();
-                    char rewardType = board.getRewardArrayManager().get(rewardIndex).getType();
+                if (board.getBoardArrayManager().isObject(playerPos[0], playerPos[1], "Reward")) {
+                    int rewardIndex = board.getBoardArrayManager().objectFinder(playerPos[0], playerPos[1], "Reward");
+                    int[] rewardPos = board.getBoardArrayManager().getRewardArrayManager().get(rewardIndex).getPosition();
+                    int rewardAmount = board.getBoardArrayManager().getRewardArrayManager().get(rewardIndex).getRewardAmount();
+                    char rewardType = board.getBoardArrayManager().getRewardArrayManager().get(rewardIndex).getType();
                     board.getScore().addScore(rewardAmount);
 
 
@@ -404,7 +404,7 @@ public class GameScreen extends JPanel {
                             }
                         }
                         if(rewardBCell.isEmpty()){
-                            board.unlockExit();
+                            board.getBoardArrayManager().unlockExit();
                             exit.setLockUnlocked();
                             repaint();
                         }
@@ -415,13 +415,13 @@ public class GameScreen extends JPanel {
                     pathCell.add(newPath);
                     add(newPath);
 
-                    board.getRewardArrayManager().remove(rewardIndex);  //Remove reward from its array
+                    board.getBoardArrayManager().getRewardArrayManager().remove(rewardIndex);  //Remove reward from its array
                 }
 
                 //check if exit is unlocked and goes to next level
-                if (board.getExit().getIsUnlocked()) {
-                    if (board.getPlayer().getPosition()[0] == board.getExit().getPosition()[0] &&
-                            board.getPlayer().getPosition()[1] == board.getExit().getPosition()[1]) {
+                if (board.getBoardArrayManager().getExit().getIsUnlocked()) {
+                    if (board.getPlayer().getPosition()[0] == board.getBoardArrayManager().getExit().getPosition()[0] &&
+                            board.getPlayer().getPosition()[1] == board.getBoardArrayManager().getExit().getPosition()[1]) {
                         Misc.incCurrentLevel();
                         setUp();
                         nextScreen.requestFocus();
@@ -432,10 +432,9 @@ public class GameScreen extends JPanel {
                 Misc.setScore(board.getScore().getScore());
             }
 
-            for(int i=0; i < Math.min(Misc.getCurrentLevel(), 3); i++) {
-                board.chaseThePlayer(board.getEnemyArrayManager().get(i), i);
-                int j = i+1;
-                if(board.isGameOver(board.getEnemyArrayManager().get(i))) {
+            for(int i = 0; i < Math.min(Misc.getCurrentLevel(), 3); i++) {
+                board.chaseThePlayer(board.getBoardArrayManager().getEnemyArrayManager().get(i), i);
+                if(board.isGameOver(board.getBoardArrayManager().getEnemyArrayManager().get(i))) {
                     setVisible(false);
                     misc.setPause(false);
                     endScreen.setScore(board.getScore().getScore());

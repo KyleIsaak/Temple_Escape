@@ -19,11 +19,11 @@ public class BoardTest{
         Board board = new Board(level);
         int numberofTrapACreated = 0;
         int numberofTrapBCreated = 0;
-        for (int i = 0; i < board.getTrapArrayManager().size(); i++) {
-            if (board.getTrapArrayManager().get(i).getType() == 'A') {
+        for (int i = 0; i < board.getBoardArrayManager().getTrapArrayManager().size(); i++) {
+            if (board.getBoardArrayManager().getTrapArrayManager().get(i).getType() == 'A') {
                 numberofTrapACreated++;
             }
-            if (board.getTrapArrayManager().get(i).getType() == 'B'){
+            if (board.getBoardArrayManager().getTrapArrayManager().get(i).getType() == 'B'){
                 numberofTrapBCreated++;
             }
         }
@@ -35,8 +35,8 @@ public class BoardTest{
     void trapLocationBounds (){
         Board board = new Board(3);
         boolean InBounds = true;
-        for (int i = 0; i < board.getTrapArrayManager().size(); i++){
-            int[] position = board.getTrapArrayManager().get(i).getPosition();
+        for (int i = 0; i < board.getBoardArrayManager().getTrapArrayManager().size(); i++){
+            int[] position = board.getBoardArrayManager().getTrapArrayManager().get(i).getPosition();
             if ((position[0] < 0 || position[0] >= 27) || (position[1] < 0 || position[1] >= 27)){
                 InBounds = false;
             }
@@ -50,9 +50,9 @@ public class BoardTest{
         int intialScore = 500;
         for (int i = 0; i < 27; i++){
             for (int j = 0; j < 27; j++){
-                if (board.isTrap(i,j)){
-                    int trapIndex = board.trapFinder(i, j);
-                    intialScore = intialScore - board.getTrapArrayManager().get(trapIndex).getDamage();
+                if (board.getBoardArrayManager().isObject(i, j, "Trap")){
+                    int trapIndex = board.getBoardArrayManager().objectFinder(i, j, "Trap");
+                    intialScore = intialScore - board.getBoardArrayManager().getTrapArrayManager().get(trapIndex).getDamage();
                 }
             }
         }
@@ -64,15 +64,15 @@ public class BoardTest{
     void numberOfRewardsCreatedBasedOnLevel (int level) {
         Board board = new Board(level);
         int numberofRewardACreated = 0;
-        for (int i = 0; i < board.getRewardArrayManager().size(); i++) {
-            if (board.getTrapArrayManager().get(i).getType() == 'A') {
+        for (int i = 0; i < board.getBoardArrayManager().getRewardArrayManager().size(); i++) {
+            if (board.getBoardArrayManager().getTrapArrayManager().get(i).getType() == 'A') {
                 numberofRewardACreated++;
             }
         }
 
         int numberofRewardBCreated = 0;
-        for (int i = 0; i < board.getRewardArrayManager().size(); i++){
-            if (board.getRewardArrayManager().get(i).getType() == 'B'){
+        for (int i = 0; i < board.getBoardArrayManager().getRewardArrayManager().size(); i++){
+            if (board.getBoardArrayManager().getRewardArrayManager().get(i).getType() == 'B'){
                 numberofRewardBCreated++;
             }
         }
@@ -85,8 +85,8 @@ public class BoardTest{
     void RewardLocationBounds (){
         Board board = new Board(3);
         boolean InBounds = true;
-        for (int i = 0; i < board.getRewardArrayManager().size(); i++){
-            int[] position = board.getRewardArrayManager().get(i).getPosition();
+        for (int i = 0; i < board.getBoardArrayManager().getRewardArrayManager().size(); i++){
+            int[] position = board.getBoardArrayManager().getRewardArrayManager().get(i).getPosition();
             if ((position[0] < 0 || position[0] >= 27) || (position[1] < 0 || position[1] >= 27)){
                 InBounds = false;
             }
@@ -100,9 +100,9 @@ public class BoardTest{
         int intialScore = 0;
         for (int i = 0; i < 27; i++){
             for (int j = 0; j < 27; j++){
-                if (board.isReward(i,j)){
-                    int RewardIndex = board.rewardFinder(i, j);
-                    intialScore = intialScore + board.getRewardArrayManager().get(RewardIndex).getRewardAmount();
+                if (board.getBoardArrayManager().isObject(i, j, "Reward")){
+                    int RewardIndex = board.getBoardArrayManager().objectFinder(i, j, "Reward");
+                    intialScore = intialScore + board.getBoardArrayManager().getRewardArrayManager().get(RewardIndex).getRewardAmount();
                 }
             }
         }
@@ -113,11 +113,11 @@ public class BoardTest{
     void ExitLocationChecker (){
         Board board = new Board(3);
         boolean InBounds = true;
-        int[] exitPosition = board.getExit().getPosition();
+        int[] exitPosition = board.getBoardArrayManager().getExit().getPosition();
         if ((exitPosition[0] < 0 || exitPosition[0] >= 27) || (exitPosition[1] < 0 || exitPosition[1] >= 27)){
             InBounds = false;
         }
-        if (!(board.isWall(exitPosition[0] - 1, exitPosition[1]) || board.isWall(exitPosition[0] + 1, exitPosition[1]) || board.isWall(exitPosition[0], exitPosition[1] - 1) || board.isWall(exitPosition[0], exitPosition[1] + 1))){
+        if (!(board.getBoardArrayManager().isWall(exitPosition[0] - 1, exitPosition[1]) || board.getBoardArrayManager().isWall(exitPosition[0] + 1, exitPosition[1]) || board.getBoardArrayManager().isWall(exitPosition[0], exitPosition[1] - 1) || board.getBoardArrayManager().isWall(exitPosition[0], exitPosition[1] + 1))){
             InBounds = false;
         }
         assertTrue(InBounds);
