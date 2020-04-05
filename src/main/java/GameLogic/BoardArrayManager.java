@@ -21,10 +21,30 @@ public class BoardArrayManager {
     }
 
 
+    /**
+     * Get the Trap Array Manager for this BoardArrayManager Class
+     * @return this BoardArrayManager class's Trap Array Manager
+     */
     public ArrayList<Trap> getTrapArrayManager(){ return trapArrayManager;}
+    /**
+     * Get the Reward Array Manager for this BoardArrayManager Class
+     * @return this BoardArrayManager class's Reward Array Manager
+     */
     public ArrayList<Reward> getRewardArrayManager(){ return rewardArrayManager;}
+    /**
+     * Get the Enemy Array Manager for this BoardArrayManager Class
+     * @return this BoardArrayManager class's Enemy Array Manager
+     */
     public ArrayList<Enemy> getEnemyArrayManager(){ return enemyArrayManager;}
+    /**
+     * Get the exit object for this BoardArrayManager Class
+     * @return this BoardArrayManager class's exit
+     */
     public Exit getExit(){ return exit;}
+    /**
+     * Get the board object for this BoardArrayManager Class
+     * @return this BoardArrayManager class's board class
+     */
     public int[][] getBoard(){ return board;}
     /**
      * Get the ith index's Enemy's position from the Enemy Array
@@ -58,6 +78,15 @@ public class BoardArrayManager {
      */
     public boolean isInBounds(int x, int y) { return (x >= 0 && x < 27 && y >= 0 && y < 27); }
 
+    /**
+     *
+     /**
+     * Check whether that location on the map contains that type of object.
+     * @param x An integer for the x position.
+     * @param y An integer for the y position.
+     * @param type A string that defines the type of object.
+     * @return true when it contains a trap and vise versa.
+     */
     public boolean isObject (int x, int y, String type){
         boolean isFound = false;
         switch (type){
@@ -71,6 +100,13 @@ public class BoardArrayManager {
         return isFound;
     }
 
+    /**
+     * Check whether that location on the map contains that type of object and return the index of the object in the array
+     * @param x An integer for the x position.
+     * @param y An integer for the y position.
+     * @param type A string that defines the type of object.
+     * @return Return the index of the object in the object Array.
+     */
     public int objectFinder (int x, int y, String type){
         int index = 0;
         switch (type){

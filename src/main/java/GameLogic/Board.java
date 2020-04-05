@@ -110,6 +110,11 @@ public class Board {
      * @return this Board class's Score
      */
     public Score getScore() { return score; }
+
+    /**
+     * Get the timer of this Board Class
+     * @return this Board Class's Timer
+     */
     public Timer getTimer() { return timer; }
 
 
@@ -160,7 +165,7 @@ public class Board {
      */
     public void chaseThePlayer(Enemy enemy, int i){
         boolean testValidMove = true;
-        int[] planMove = {0,0};
+        int[] planMove;
         planMove = enemy.chaseThePlayer(player.getPosition());
         int[] PlayerPosition = getPlayerPos();
         int PlayerX = PlayerPosition[0];//playerPositionX
@@ -176,26 +181,26 @@ public class Board {
                     {
                         if(boardArrayManager.isWall(EnemyX+1,EnemyY) && boardArrayManager.isWall(EnemyX,EnemyY+1) && boardArrayManager.isWall(EnemyX-1,EnemyY))
                         {
-                            planMove[0]=0;
-                            planMove[1]=-1;
+                            planMove[0] = 0;
+                            planMove[1] =- 1;
                         }
 
                         if(boardArrayManager.isWall(EnemyX+1,EnemyY) && boardArrayManager.isWall(EnemyX,EnemyY-1) && boardArrayManager.isWall(EnemyX-1,EnemyY))
                         {
-                            planMove[0]=0;
-                            planMove[1]=1;
+                            planMove[0] = 0;
+                            planMove[1] = 1;
                         }
 
                         if(boardArrayManager.isWall(EnemyX,EnemyY+1) && boardArrayManager.isWall(EnemyX,EnemyY-1) && boardArrayManager.isWall(EnemyX-1,EnemyY))
                         {
-                            planMove[0]=1;
-                            planMove[1]=0;
+                            planMove[0] = 1;
+                            planMove[1] = 0;
                         }
 
                         if(boardArrayManager.isWall(EnemyX,EnemyY+1) && boardArrayManager.isWall(EnemyX,EnemyY-1) && boardArrayManager.isWall(EnemyX+1,EnemyY))
                         {
-                            planMove[0]=-1;
-                            planMove[1]=0;
+                            planMove[0] =- 1;
+                            planMove[1] = 0;
                         }
                     }
 
@@ -203,26 +208,26 @@ public class Board {
                  {
                      if(boardArrayManager.isWall(EnemyX+1,EnemyY) && boardArrayManager.isWall(EnemyX,EnemyY+1))
                      {
-                         planMove[0]=0;
-                         planMove[1]=-1;
+                         planMove[0] = 0;
+                         planMove[1] =- 1;
                      }
 
                      if(boardArrayManager.isWall(EnemyX-1,EnemyY) && boardArrayManager.isWall(EnemyX,EnemyY+1))
                      {
-                         planMove[0]=0;
-                         planMove[1]=-1;
+                         planMove[0] = 0;
+                         planMove[1] =- 1;
                      }
 
                      if(boardArrayManager.isWall(EnemyX+1,EnemyY) && boardArrayManager.isWall(EnemyX,EnemyY-1))
                      {
-                         planMove[0]=0;
-                         planMove[1]=1;
+                         planMove[0] = 0;
+                         planMove[1] = 1;
                      }
 
                      if(boardArrayManager.isWall(EnemyX-1,EnemyY) && boardArrayManager.isWall(EnemyX,EnemyY-1))
                      {
-                         planMove[0]=0;
-                         planMove[1]=1;
+                         planMove[0] = 0;
+                         planMove[1] = 1;
                      }
                  }
 

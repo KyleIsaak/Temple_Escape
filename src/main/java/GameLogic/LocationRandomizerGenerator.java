@@ -3,6 +3,9 @@ package GameLogic;
 
 import java.util.Random;
 
+/**
+ * Extension of BoardArrayManager : Add additional randomizing location functionality for objects
+ */
 public class LocationRandomizerGenerator extends BoardArrayManager {
     public LocationRandomizerGenerator(int[][] board) {
         super(board);
