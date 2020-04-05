@@ -8,11 +8,20 @@ public class LocationRandomizerGenerator extends BoardArrayManager {
         super(board);
     }
 
+    /**
+     * Integer Randomizer with the bound of latitudinal length of board
+     * @return an randomized integer with the bound of x latitudinal of board
+     */
     private int integerRandomizer(){
         Random random = new Random();
         return (random.nextInt(27 - 5) + 4);
     }
 
+    /**
+     * Create objects in the gameplay area depending on the difficulty selected.
+     * @param difficultyLevel an integer that specify the difficulty selected.
+     * @param type a string that defines the type of object needed to be created.
+     */
     public void objectGenerator (int difficultyLevel, String type){
         for (int i = 0; i < difficultyLevel*2; i++) {
             typeGenerator('A', type);
@@ -22,6 +31,12 @@ public class LocationRandomizerGenerator extends BoardArrayManager {
         }
     }
 
+    /**
+     * objectGenerator's Helper function: Facilitates in creating the specific objects
+     * Implements the factory method design pattern.
+     * @param objectType A character that specify the type of specific object selected.
+     * @param classType A string that defines the general type of object being created.
+     */
     private void typeGenerator (char objectType, String classType){
         int[] objectPosition;
         objectPosition = objectLocationRandomizer();
@@ -65,6 +80,9 @@ public class LocationRandomizerGenerator extends BoardArrayManager {
         }
     }
 
+    /**
+     * objectGenerator's Helper Function: Facilitates in the randomizing the location of the objects
+     */
     private int[] objectLocationRandomizer (){
         int x = integerRandomizer();
         int y = integerRandomizer();

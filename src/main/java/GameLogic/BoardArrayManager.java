@@ -20,14 +20,21 @@ public class BoardArrayManager {
         this.board = board;
     }
 
+
     public ArrayList<Trap> getTrapArrayManager(){ return trapArrayManager;}
     public ArrayList<Reward> getRewardArrayManager(){ return rewardArrayManager;}
     public ArrayList<Enemy> getEnemyArrayManager(){ return enemyArrayManager;}
     public Exit getExit(){ return exit;}
+    /**
+     * Get the ith index's Enemy's position from the Enemy Array
+     * @param i index of the Enemy located in the array
+     * @return the ith index's Enemy's position from the Enemy Array
+     */
+    public int[] getEnemyPos(int i){ return enemyArrayManager.get(i).getPosition(); }
 
     /**
      * Check whether that position consists a wall
-     * Wall in matrix represent by 0 ; Path in matrix represent by 1
+     * Wall in the matrix represent by 0 ; Path in the matrix represent by 1
      * @param x An integer for the x position
      * @param y An integer for the y position
      * @return true if that position contains a wall and vise versa.
@@ -49,5 +56,13 @@ public class BoardArrayManager {
      * @return true when the location is inside the boundary and vise versa.
      */
     public boolean isInBounds(int x, int y) { return (x >= 0 && x < 27 && y >= 0 && y < 27); }
+
+    /**
+     * Unlock this Board class's exit.
+     */
+    public void unlockExit(){
+        exit.setUnlocked(true);
+        System.out.println("Exit unlocked");
+    }
 
 }
