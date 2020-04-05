@@ -9,7 +9,7 @@ public class Score {
     /**
      * Default Constructor
      */
-    public Score (){ this.currentScore = 100; }
+    public Score (){ this.currentScore = 500; }
 
     /**
      * Non-Default Constructor
