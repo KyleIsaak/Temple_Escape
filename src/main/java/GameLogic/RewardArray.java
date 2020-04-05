@@ -15,7 +15,7 @@ public class RewardArray extends ArrayFinderManager {
         return false;
     }
 
-    public int trapFinder (int x, int y, ArrayList<?> objectArray){
+    public int objectFinder (int x, int y, ArrayList<?> objectArray){
         for (int i = 0; i < objectArray.size(); i++){
             Reward currentTrap = (Reward) objectArray.get(i);
             int[] current = currentTrap.getPosition();
