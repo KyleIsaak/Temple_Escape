@@ -22,6 +22,7 @@ public class Board {
 
     private LocationRandomizerGenerator boardArrayManager;
     private LevelGenerator generator;
+    private PlayerFinder playerFinder = new PlayerFinder();
 
     /**
      * Non-Default Constructor (Board Class)
@@ -117,173 +118,14 @@ public class Board {
      */
     public Timer getTimer() { return timer; }
 
-
     /**
-     * Check whether the position is at a corner of a wall in the map.
-     * @param position Position in the Map
-     * @return true if the position is at a corner of a wall in the map and vise versa.
-     */
-    public boolean isCorner(int[] position)
-    {
-        int X=position[0];
-        int Y=position[1];
-        if(boardArrayManager.isWall(X + 1,Y) && boardArrayManager.isWall(X,Y + 1))
-            return true;
-        if(boardArrayManager.isWall(X - 1,Y) && boardArrayManager.isWall(X,Y + 1))
-            return true;
-        if(boardArrayManager.isWall(X + 1,Y) && boardArrayManager.isWall(X,Y - 1))
-            return true;
-        if(boardArrayManager.isWall(X - 1,Y) && boardArrayManager.isWall(X,Y - 1))
-            return true;
-        return false;
-    }
-
-    /**
-     * Check whether the position is at a corner of a wall in the map.
-     * @param position Position in the Map
-     * @return true if the position is at a corner of a wall in the map and vise versa.
-     */
-    public boolean isThreeWall(int[]position)
-    {
-        int X=position[0];
-        int Y=position[1];
-        if(boardArrayManager.isWall(X + 1,Y) && boardArrayManager.isWall(X,Y + 1) && boardArrayManager.isWall(X-1,Y))
-            return true;
-        if(boardArrayManager.isWall(X + 1,Y) && boardArrayManager.isWall(X,Y - 1) && boardArrayManager.isWall(X-1,Y))
-            return true;
-        if(boardArrayManager.isWall(X,Y + 1) && boardArrayManager.isWall(X,Y - 1) && boardArrayManager.isWall(X-1,Y))
-            return true;
-        if(boardArrayManager.isWall(X,Y + 1) && boardArrayManager.isWall(X,Y - 1) && boardArrayManager.isWall(X+1,Y))
-            return true;
-        return false;
-    }
-
-    /**
-     * Provide enemy functionality of approaching the player using the nearest path
+     * Provide enemy functionality of approaching the player using the nearest path (Breadth First Search Algorithm)
      * @param enemy The enemy that is chasing the player.
-     * @param i The index of that enemy in the Enemy Array Manager.
      */
-    public void chaseThePlayer(Enemy enemy, int i){
-        boolean testValidMove = true;
-        int[] planMove;
-        planMove = enemy.chaseThePlayer(player.getPosition());
-        int[] PlayerPosition = getPlayerPos();
-        int PlayerX = PlayerPosition[0];//playerPositionX
-        int PlayerY = PlayerPosition[1];//PlayerPositionY
-        int[] enemyPosition = boardArrayManager.getEnemyPos(i);
-        int EnemyX = enemyPosition[0];
-        int EnemyY = enemyPosition[1];
-        while(testValidMove) {
-            testValidMove = boardArrayManager.isWall(EnemyX + planMove[0],EnemyY + planMove[1]);
-            if(testValidMove == true)
-            {
-                 if(isThreeWall(enemyPosition) == true)
-                    {
-                        if(boardArrayManager.isWall(EnemyX + 1,EnemyY) && boardArrayManager.isWall(EnemyX,EnemyY + 1) && boardArrayManager.isWall(EnemyX-1,EnemyY))
-                        {
-                            planMove[0] = 0;
-                            planMove[1] =- 1;
-                        }
-
-                        if(boardArrayManager.isWall(EnemyX + 1,EnemyY) && boardArrayManager.isWall(EnemyX,EnemyY - 1) && boardArrayManager.isWall(EnemyX-1,EnemyY))
-                        {
-                            planMove[0] = 0;
-                            planMove[1] = 1;
-                        }
-
-                        if(boardArrayManager.isWall(EnemyX,EnemyY + 1) && boardArrayManager.isWall(EnemyX,EnemyY - 1) && boardArrayManager.isWall(EnemyX-1,EnemyY))
-                        {
-                            planMove[0] = 1;
-                            planMove[1] = 0;
-                        }
-
-                        if(boardArrayManager.isWall(EnemyX,EnemyY + 1) && boardArrayManager.isWall(EnemyX,EnemyY - 1) && boardArrayManager.isWall(EnemyX+1,EnemyY))
-                        {
-                            planMove[0] =- 1;
-                            planMove[1] = 0;
-                        }
-                    }
-
-                 else if(isCorner(enemyPosition) == true)
-                 {
-                     if(boardArrayManager.isWall(EnemyX + 1,EnemyY) && boardArrayManager.isWall(EnemyX,EnemyY + 1))
-                     {
-                         planMove[0] = 0;
-                         planMove[1] =- 1;
-                     }
-
-                     if(boardArrayManager.isWall(EnemyX - 1,EnemyY) && boardArrayManager.isWall(EnemyX,EnemyY + 1))
-                     {
-                         planMove[0] = 0;
-                         planMove[1] =- 1;
-                     }
-
-                     if(boardArrayManager.isWall(EnemyX + 1,EnemyY) && boardArrayManager.isWall(EnemyX,EnemyY - 1))
-                     {
-                         planMove[0] = 0;
-                         planMove[1] = 1;
-                     }
-
-                     if(boardArrayManager.isWall(EnemyX - 1,EnemyY) && boardArrayManager.isWall(EnemyX,EnemyY - 1))
-                     {
-                         planMove[0] = 0;
-                         planMove[1] = 1;
-                     }
-                 }
-
-                 else if(isCorner(enemyPosition) == false)
-                 {
-                     if (planMove[0] == 1) {
-                         planMove[0] = 0;
-                         if (PlayerY > EnemyY)
-                             planMove[1] = -1;
-                         else
-                             planMove[1] = 1;
-
-                     }
-
-                     else if (planMove[0] == -1) {
-                         planMove[0] = 0;
-                         if (PlayerY > EnemyY)
-                             planMove[1] = 1;
-                         else
-                             planMove[1] = -1;
-                     }
-
-                     else if (planMove[1] == 1) {
-                         planMove[1] = 0;
-                         if (PlayerX > EnemyX)
-                             planMove[0] = 1;
-                         else
-                             planMove[0] = -1;
-                     }
-
-                     else if (planMove[1] == -1) {
-                         planMove[1] = 0;
-                         if (PlayerX > EnemyX)
-                             planMove[0] = 1;
-                         else
-                             planMove[0] = -1;
-                     }
-                 }
-                testValidMove = boardArrayManager.isWall(EnemyX + planMove[0],EnemyY + planMove[1]);
-            }
-        }
-        //Solving two enemy standing in a same position
-        int level = Misc.getCurrentLevel();
-        if(level >= 3) {
-            level = 3;
-        }
-        for (int j = 0; j < level; j++) {
-            if (i == j)
-                continue;
-            else if (EnemyX + planMove[0] == boardArrayManager.getEnemyArrayManager().get(j).getPosition()[0] && EnemyY + planMove[1] == boardArrayManager.getEnemyArrayManager().get(j).getPosition()[1]) {
-                planMove[0] = 0;
-                planMove[1] = 0;
-            }
-        }
-        enemy.move(planMove);
-
+    public void chaseThePlayer(Enemy enemy){
+        int [] nextMove;
+        nextMove = playerFinder.shortPathStep(boardArrayManager.getBoard(), enemy.getPosition(), player.getPosition());
+        enemy.move(nextMove);
     }
 
     //GameOverCase
@@ -291,7 +133,7 @@ public class Board {
         boolean test = false;
         if(enemy.getPosition()[0] == player.getPosition()[0] && enemy.getPosition()[1] == player.getPosition()[1])
             test = true;
-        if(score.isNegative() == true)
+        if(score.isNegative())
             test = true;
         return test;
     }
