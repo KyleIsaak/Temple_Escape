@@ -223,7 +223,7 @@ public class BoardTest {
         int[] test={1,2};
         board.getBoardArrayManager().enemyArrayManager.get(0).setPosition(test);
         int numberOfStep=0;
-            board.chaseThePlayer(board.getBoardArrayManager().getEnemyArrayManager().get(0), 0);
+            board.chaseThePlayer(board.getBoardArrayManager().getEnemyArrayManager().get(0));
             numberOfStep++;
         assertArrayEquals(board.getPlayerPos(),board.getBoardArrayManager().getEnemyArrayManager().get(0).getPosition());
 
@@ -231,7 +231,7 @@ public class BoardTest {
         board.getBoardArrayManager().enemyArrayManager.get(0).setPosition(test1);
         int numberOfStep1=0;
         if(board.getPlayerPos()!=board.getBoardArrayManager().getEnemyArrayManager().get(0).getPosition()) {
-            board.chaseThePlayer(board.getBoardArrayManager().getEnemyArrayManager().get(0), 0);
+            board.chaseThePlayer(board.getBoardArrayManager().getEnemyArrayManager().get(0));
             numberOfStep1++;
         }
         assertArrayEquals(board.getPlayerPos(),board.getBoardArrayManager().getEnemyArrayManager().get(0).getPosition());
