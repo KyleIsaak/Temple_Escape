@@ -73,6 +73,7 @@ public class EndScreen extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent actionEvent) {
         String listener = actionEvent.getActionCommand();
         if (listener.equals(TITLE)){
+            Misc.setCurrentLevel(1);
             setVisible(false);
             title.setVisible(true);
             title.requestFocus();

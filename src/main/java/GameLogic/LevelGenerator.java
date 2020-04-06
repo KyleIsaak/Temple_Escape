@@ -20,6 +20,20 @@ public class LevelGenerator {
     private final int WALL = 0;
     private final int PATH = 1;
 
+    public static void main(String[] args){
+        LevelGenerator test = new LevelGenerator(27, 27);
+        test.setLevel(LevelGenerator.Difficulty.EASY);
+        int[][] map = test.getBoard();
+
+        for (int y = 0; y < 27; y++) {
+            for (int x = 0; x < 27; x++) {
+                System.out.print(map[x][y]);
+            }
+            System.out.println();
+        }
+    }
+
+
     /**
      * Non Default Constructor
      * @param x An integer that specify the horizontal length of a board.
@@ -201,10 +215,7 @@ public class LevelGenerator {
      * @return true if the position is in bound and vise versa
      */
     private boolean isInBound(int x, int y){
-        if (x < 1 || x > this.x - 2 || y < 1 || y > this.y - 2) {
-            return false;
-        }
-        return true;
+        return x >= 1 && x <= this.x - 2 && y >= 1 && y <= this.y - 2;
     }
 
     /**
