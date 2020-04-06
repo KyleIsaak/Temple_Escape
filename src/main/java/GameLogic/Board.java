@@ -127,13 +127,13 @@ public class Board {
     {
         int X=position[0];
         int Y=position[1];
-        if(boardArrayManager.isWall(X+1,Y) && boardArrayManager.isWall(X,Y+1))
+        if(boardArrayManager.isWall(X + 1,Y) && boardArrayManager.isWall(X,Y + 1))
             return true;
-        if(boardArrayManager.isWall(X-1,Y) && boardArrayManager.isWall(X,Y+1))
+        if(boardArrayManager.isWall(X - 1,Y) && boardArrayManager.isWall(X,Y + 1))
             return true;
-        if(boardArrayManager.isWall(X+1,Y) && boardArrayManager.isWall(X,Y-1))
+        if(boardArrayManager.isWall(X + 1,Y) && boardArrayManager.isWall(X,Y - 1))
             return true;
-        if(boardArrayManager.isWall(X-1,Y) && boardArrayManager.isWall(X,Y-1))
+        if(boardArrayManager.isWall(X - 1,Y) && boardArrayManager.isWall(X,Y - 1))
             return true;
         return false;
     }
@@ -147,13 +147,13 @@ public class Board {
     {
         int X=position[0];
         int Y=position[1];
-        if(boardArrayManager.isWall(X+1,Y) && boardArrayManager.isWall(X,Y+1) && boardArrayManager.isWall(X-1,Y))
+        if(boardArrayManager.isWall(X + 1,Y) && boardArrayManager.isWall(X,Y + 1) && boardArrayManager.isWall(X-1,Y))
             return true;
-        if(boardArrayManager.isWall(X+1,Y) && boardArrayManager.isWall(X,Y-1) && boardArrayManager.isWall(X-1,Y))
+        if(boardArrayManager.isWall(X + 1,Y) && boardArrayManager.isWall(X,Y - 1) && boardArrayManager.isWall(X-1,Y))
             return true;
-        if(boardArrayManager.isWall(X,Y+1) && boardArrayManager.isWall(X,Y-1) && boardArrayManager.isWall(X-1,Y))
+        if(boardArrayManager.isWall(X,Y + 1) && boardArrayManager.isWall(X,Y - 1) && boardArrayManager.isWall(X-1,Y))
             return true;
-        if(boardArrayManager.isWall(X,Y+1) && boardArrayManager.isWall(X,Y-1) && boardArrayManager.isWall(X+1,Y))
+        if(boardArrayManager.isWall(X,Y + 1) && boardArrayManager.isWall(X,Y - 1) && boardArrayManager.isWall(X+1,Y))
             return true;
         return false;
     }
@@ -174,30 +174,30 @@ public class Board {
         int EnemyX = enemyPosition[0];
         int EnemyY = enemyPosition[1];
         while(testValidMove) {
-            testValidMove = boardArrayManager.isWall(EnemyX+planMove[0],EnemyY+planMove[1]);
+            testValidMove = boardArrayManager.isWall(EnemyX + planMove[0],EnemyY + planMove[1]);
             if(testValidMove == true)
             {
                  if(isThreeWall(enemyPosition) == true)
                     {
-                        if(boardArrayManager.isWall(EnemyX+1,EnemyY) && boardArrayManager.isWall(EnemyX,EnemyY+1) && boardArrayManager.isWall(EnemyX-1,EnemyY))
+                        if(boardArrayManager.isWall(EnemyX + 1,EnemyY) && boardArrayManager.isWall(EnemyX,EnemyY + 1) && boardArrayManager.isWall(EnemyX-1,EnemyY))
                         {
                             planMove[0] = 0;
                             planMove[1] =- 1;
                         }
 
-                        if(boardArrayManager.isWall(EnemyX+1,EnemyY) && boardArrayManager.isWall(EnemyX,EnemyY-1) && boardArrayManager.isWall(EnemyX-1,EnemyY))
+                        if(boardArrayManager.isWall(EnemyX + 1,EnemyY) && boardArrayManager.isWall(EnemyX,EnemyY - 1) && boardArrayManager.isWall(EnemyX-1,EnemyY))
                         {
                             planMove[0] = 0;
                             planMove[1] = 1;
                         }
 
-                        if(boardArrayManager.isWall(EnemyX,EnemyY+1) && boardArrayManager.isWall(EnemyX,EnemyY-1) && boardArrayManager.isWall(EnemyX-1,EnemyY))
+                        if(boardArrayManager.isWall(EnemyX,EnemyY + 1) && boardArrayManager.isWall(EnemyX,EnemyY - 1) && boardArrayManager.isWall(EnemyX-1,EnemyY))
                         {
                             planMove[0] = 1;
                             planMove[1] = 0;
                         }
 
-                        if(boardArrayManager.isWall(EnemyX,EnemyY+1) && boardArrayManager.isWall(EnemyX,EnemyY-1) && boardArrayManager.isWall(EnemyX+1,EnemyY))
+                        if(boardArrayManager.isWall(EnemyX,EnemyY + 1) && boardArrayManager.isWall(EnemyX,EnemyY - 1) && boardArrayManager.isWall(EnemyX+1,EnemyY))
                         {
                             planMove[0] =- 1;
                             planMove[1] = 0;
@@ -206,32 +206,32 @@ public class Board {
 
                  else if(isCorner(enemyPosition) == true)
                  {
-                     if(boardArrayManager.isWall(EnemyX+1,EnemyY) && boardArrayManager.isWall(EnemyX,EnemyY+1))
+                     if(boardArrayManager.isWall(EnemyX + 1,EnemyY) && boardArrayManager.isWall(EnemyX,EnemyY + 1))
                      {
                          planMove[0] = 0;
                          planMove[1] =- 1;
                      }
 
-                     if(boardArrayManager.isWall(EnemyX-1,EnemyY) && boardArrayManager.isWall(EnemyX,EnemyY+1))
+                     if(boardArrayManager.isWall(EnemyX - 1,EnemyY) && boardArrayManager.isWall(EnemyX,EnemyY + 1))
                      {
                          planMove[0] = 0;
                          planMove[1] =- 1;
                      }
 
-                     if(boardArrayManager.isWall(EnemyX+1,EnemyY) && boardArrayManager.isWall(EnemyX,EnemyY-1))
+                     if(boardArrayManager.isWall(EnemyX + 1,EnemyY) && boardArrayManager.isWall(EnemyX,EnemyY - 1))
                      {
                          planMove[0] = 0;
                          planMove[1] = 1;
                      }
 
-                     if(boardArrayManager.isWall(EnemyX-1,EnemyY) && boardArrayManager.isWall(EnemyX,EnemyY-1))
+                     if(boardArrayManager.isWall(EnemyX - 1,EnemyY) && boardArrayManager.isWall(EnemyX,EnemyY - 1))
                      {
                          planMove[0] = 0;
                          planMove[1] = 1;
                      }
                  }
 
-                 else if(isCorner(enemyPosition)==false)
+                 else if(isCorner(enemyPosition) == false)
                  {
                      if (planMove[0] == 1) {
                          planMove[0] = 0;
@@ -266,7 +266,7 @@ public class Board {
                              planMove[0] = -1;
                      }
                  }
-                testValidMove = boardArrayManager.isWall(EnemyX+planMove[0],EnemyY+planMove[1]);
+                testValidMove = boardArrayManager.isWall(EnemyX + planMove[0],EnemyY + planMove[1]);
             }
         }
         //Solving two enemy standing in a same position
@@ -287,9 +287,8 @@ public class Board {
     }
 
     //GameOverCase
-    public boolean isGameOver(Enemy enemy)
-    {
-        boolean test=false;
+    public boolean isGameOver(Enemy enemy) {
+        boolean test = false;
         if(enemy.getPosition()[0] == player.getPosition()[0] && enemy.getPosition()[1] == player.getPosition()[1])
             test = true;
         if(score.isNegative() == true)
