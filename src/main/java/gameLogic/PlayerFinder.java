@@ -57,7 +57,6 @@ public class PlayerFinder {
         while (queue.size() != 0){
             current = queue.pop();
             if (isPath(board, current.position[0], current.position[1]) && (current.position[0] == destinationPosition[0] && current.position[1] == destinationPosition[1])){
-                System.out.println("test");
                 return new Node (new int[]{current.position[0], current.position[1]}, current);
             }
             if (isPath(board, current.position[0] + 1, current.position[1]) && !visitedNode[current.position[0] + 1][current.position[1]]){
@@ -94,7 +93,6 @@ public class PlayerFinder {
             while (shortestPath.parent.parent != null) {
                 shortestPath = shortestPath.parent;
                 current = shortestPath.position;
-                System.out.println(current[0] + ", " + current[1]);
             }
         }
         else{
