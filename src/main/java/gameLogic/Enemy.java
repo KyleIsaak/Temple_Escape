@@ -1,4 +1,4 @@
-package GameLogic;
+package gameLogic;
 
 /**
  * Represents the enemy that chases the player in the game.

@@ -1,12 +1,7 @@
 package UI;
 
-import GameLogic.Board;
-import GameLogic.LevelGenerator;
-
 import javax.swing.*;
 
-import java.awt.*;
-import java.util.ArrayList;
 /**
  * store the screen the the game will show depend on the situation
  */

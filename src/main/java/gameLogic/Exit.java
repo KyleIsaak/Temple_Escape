@@ -1,4 +1,4 @@
-package GameLogic;
+package gameLogic;
 
 /**
  * Represent the Exit Door in the game.

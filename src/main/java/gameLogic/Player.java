@@ -1,4 +1,4 @@
-package GameLogic;
+package gameLogic;
 
 /**
  * Represent the main character of the game.

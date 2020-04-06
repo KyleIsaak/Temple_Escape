@@ -1,13 +1,12 @@
 package UI;
 
-import GameLogic.LevelGenerator;
+import gameLogic.LevelGenerator;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.InputStream;
+
 /**
  * Show the information of the title Screen
  */

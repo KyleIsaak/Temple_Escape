@@ -1,7 +1,5 @@
 package UI;
 
-        import GameLogic.Score;
-
         import javax.swing.*;
         import java.awt.*;
         import java.awt.event.ActionEvent;

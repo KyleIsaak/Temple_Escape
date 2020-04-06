@@ -1,4 +1,4 @@
-package GameLogic;
+package gameLogic;
 
 /**
  * Manages the game timer

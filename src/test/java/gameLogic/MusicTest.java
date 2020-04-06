@@ -1,4 +1,4 @@
-package GameLogic;
+package gameLogic;
 
 import org.junit.jupiter.api.Test;
 import java.io.File;

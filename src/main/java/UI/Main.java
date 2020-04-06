@@ -1,6 +1,5 @@
 package UI;
-import GameLogic.Board;
-import GameLogic.Timer;
+import gameLogic.Board;
 
 //<<<<<<< HEAD
 //import javax.swing.*;
@@ -8,8 +7,7 @@ import GameLogic.Timer;
 //import java.awt.*;
 //
 //=======
-import java.io.FileNotFoundException;
-import java.util.concurrent.TimeUnit;
+
 
 public class Main  {
     private static boolean isGameOver = false;

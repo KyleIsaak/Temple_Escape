@@ -1,12 +1,9 @@
-package GameLogic;
-import GameLogic.*;
+package gameLogic;
 import UI.*;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import javax.swing.*;
 
 import java.util.ArrayList;
 

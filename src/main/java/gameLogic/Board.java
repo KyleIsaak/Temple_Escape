@@ -1,10 +1,5 @@
-package GameLogic;
+package gameLogic;
 
-
-import UI.Misc;
-
-import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * Store the dimension of the Game Play Area.

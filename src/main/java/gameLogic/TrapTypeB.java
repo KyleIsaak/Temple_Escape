@@ -1,4 +1,4 @@
-package GameLogic;
+package gameLogic;
 
 /**
  * Represents a specific kind of Traps (Lava Pits) in the game.
