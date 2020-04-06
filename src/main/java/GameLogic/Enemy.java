@@ -16,6 +16,14 @@ public class Enemy {
     }
 
     /**
+     * Set the position of this enemy class
+     * @param position A x,y position in the map for the enemy's current position to set as.
+     */
+    public void setPosition(int[] position) {
+        this.position = position;
+    }
+
+    /**
      * Get the current position of the enemy
      *
      * @return this enemy object's current position

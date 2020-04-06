@@ -125,6 +125,11 @@ public class Board {
     public void chaseThePlayer(Enemy enemy){
         int [] nextMove;
         nextMove = playerFinder.shortPathStep(boardArrayManager.getBoard(), enemy.getPosition(), player.getPosition());
+        for (int i = 0; i < boardArrayManager.getEnemyArrayManager().size(); i++){
+            if (nextMove[0] == boardArrayManager.getEnemyArrayManager().get(i).getPosition()[0] && nextMove[1] == boardArrayManager.getEnemyArrayManager().get(i).getPosition()[1]){
+                return;
+            }
+        }
         enemy.move(nextMove);
     }
 
