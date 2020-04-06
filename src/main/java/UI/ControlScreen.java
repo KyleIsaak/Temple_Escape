@@ -63,14 +63,14 @@ public class ControlScreen extends JPanel implements ActionListener {
             @Override
             public void paint(Graphics g){
                 super.paintComponent(g);
-                g.drawImage(Sprite.controlBackground(), 0, 0, this);
+                g.drawImage(new Sprite().controlBackground(), 0, 0, this);
             }
         };
         errorGirl = new JComponent(){
             @Override
             public void paint(Graphics g){
                 super.paintComponent(g);
-                g.drawImage(Sprite.controlError(), 0, 0, this);
+                g.drawImage(new Sprite().controlError(), 0, 0, this);
             }
         };
         this.gameScreen = gameScreen;
@@ -120,6 +120,7 @@ public class ControlScreen extends JPanel implements ActionListener {
 
         errorOff();
 
+        add(errorGirl);
         add(background);
         background.setBounds(0, 0, 1000, 1000);
 

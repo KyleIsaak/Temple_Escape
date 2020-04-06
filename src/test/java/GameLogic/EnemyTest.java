@@ -12,16 +12,16 @@ class EnemyTest {
         assertArrayEquals(test, enemy.getPosition());
     }
 
-    @Test
-    void move() {
-        int[] test = {0, 4};
-        int[] move = {1, 11};
-        int[] AfterMove;
-        AfterMove = new int[]{1, 15};
-        Enemy enemy = new Enemy(test);
-        enemy.move(move);
-        assertArrayEquals(AfterMove, enemy.getPosition());
-    }
+//    @Test
+//    void move() {
+//        int[] test = {0, 4};
+//        int[] move = {1, 11};
+//        int[] AfterMove;
+//        AfterMove = new int[]{1, 15};
+//        Enemy enemy = new Enemy(test);
+//        enemy.move(move);
+//        assertArrayEquals(AfterMove, enemy.getPosition());
+//    }
 
     @Test
     void setPosition() {

@@ -55,8 +55,8 @@ public class Sprite {
             gamePath2 = ImageIO.read(read("/path2.png"));
             gameCoin = ImageIO.read(read("/coin.png"));
             gameKey = ImageIO.read(read("/key.png"));
-            gameLock = ImageIO.read(read("/Lock.png"));
-            gameUnlock = ImageIO.read(read("/Unlock.png"));
+            gameLock = ImageIO.read(read("/lock.png"));
+            gameUnlock = ImageIO.read(read("/unlock.png"));
             wall_cross = ImageIO.read(read("/wall_cross.png"));
             wall_top_right = ImageIO.read(read("/wall_top_right.png"));
             wall_horizontal = ImageIO.read(read("/wall_horizontal.png"));
@@ -80,8 +80,8 @@ public class Sprite {
         }
     }
 
-    private InputStream read(String file){
-        return Sprite.class.getResourceAsStream(file);
+    private static InputStream read(String file){
+        return Main.class.getResourceAsStream(file);
     }
 
     public static Image controlBackground(){return controlBackground;}

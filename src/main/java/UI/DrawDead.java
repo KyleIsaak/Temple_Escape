@@ -1,17 +1,14 @@
 package UI;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.io.InputStream;
 import java.util.Random;
 
 /**
  * To Draw the object that does not move in the game
  */
 public class DrawDead extends JComponent {
-
-    private Image sprite;
+    private Image image;
     private cellType type;
     private int[] pos;
     private int step;
@@ -32,43 +29,43 @@ public class DrawDead extends JComponent {
         this.step = step;
         this.pos = pos;
         this.type = type;
-        selectSprite();
+        selectsprite();
     }
     /**
      * add a picture to the object base on what objects they are.
      */
-    private void selectSprite(){
+    private void selectsprite(){
         switch(type){
             case WALL:
-                sprite = Sprite.gameWall();
+                image = Sprite.gameWall();
                 break;
 
             case TRAPTYPEA:
-                sprite = Sprite.gameSpike();
+                image = Sprite.gameSpike();
                 break;
 
             case TRAPTYPEB:
-                sprite = Sprite.gameLava();
+                image = Sprite.gameLava();
                 break;
 
             case PATH:
                 Random ran = new Random();
                 int choice = ran.nextInt(2);
                 if (choice == 0){
-                    sprite = Sprite.gamePath();
+                    image = Sprite.gamePath();
                 } else if (choice == 1){
-                    sprite = Sprite.gamePath2();
+                    image = Sprite.gamePath2();
                 }
                 break;
             case REWARDTYPEA:
-                sprite = Sprite.gameCoin();
+                image = Sprite.gameCoin();
                 break;
 
             case REWARDTYPEB:
-                sprite = Sprite.gameKey();
+                image = Sprite.gameKey();
                 break;
             case EXIT:
-                sprite = Sprite.gameLock();
+                image = Sprite.gameLock();
                 break;
         }
     }
@@ -76,7 +73,7 @@ public class DrawDead extends JComponent {
      * unlock the location graph
      */
     public void setLockUnlocked() {
-        sprite = Sprite.gameUnlock();
+        image = Sprite.gameUnlock();
         repaint();
     }
     /**
@@ -88,37 +85,37 @@ public class DrawDead extends JComponent {
      */
     public void setWallDirection(boolean top, boolean left, boolean down, boolean right){
         if (top && left && down && right){
-            sprite = Sprite.wall_cross();
+            image = Sprite.wall_cross();
         } else if (top && left && down){
-            sprite = Sprite.wall_top_right();
+            image = Sprite.wall_top_right();
         } else if (top && left && right){
-            sprite = Sprite.wall_horizontal();
+            image = Sprite.wall_horizontal();
         } else if (top && right && down){
-            sprite = Sprite.wall_top_left();
+            image = Sprite.wall_top_left();
         } else if (right && left && down){
-            sprite = Sprite.wall_cross();
+            image = Sprite.wall_cross();
         } else if (top && left){
-            sprite = Sprite.wall_bottom_right();
+            image = Sprite.wall_bottom_right();
         } else if (top && down){
-            sprite = Sprite.wall_top();
+            image = Sprite.wall_top();
         } else if (top && right){
-            sprite = Sprite.wall_bottom_left();
+            image = Sprite.wall_bottom_left();
         } else if (left && down){
-            sprite = Sprite.wall_top_right();
+            image = Sprite.wall_top_right();
         } else if (left && right){
-            sprite = Sprite.wall_horizontal();
+            image = Sprite.wall_horizontal();
         } else if (right && down){
-            sprite = Sprite.wall_top_left();
+            image = Sprite.wall_top_left();
         } else if (top){
-            sprite = Sprite.wall_down();
+            image = Sprite.wall_down();
         } else if (left){
-            sprite = Sprite.wall_right();
+            image = Sprite.wall_right();
         } else if (right){
-            sprite = Sprite.wall_left();
+            image = Sprite.wall_left();
         } else if (down){
-            sprite = Sprite.wall_top();
+            image = Sprite.wall_top();
         } else{
-            sprite = Sprite.wall();
+            image = Sprite.wall();
         }
     }
     /**
@@ -127,7 +124,7 @@ public class DrawDead extends JComponent {
      */
     public void paint (Graphics graphic) {
         super.paintComponent(graphic);
-        graphic.drawImage(sprite, this.pos[0] * step + 10, this.pos[1] * step + 50, this);
+        graphic.drawImage(image, this.pos[0] * step + 10, this.pos[1] * step + 50, this);
 
     }
     /**
@@ -144,7 +141,7 @@ public class DrawDead extends JComponent {
      */
     public void updateCell(cellType type){
         this.type = type;
-        selectSprite();
+        selectsprite();
         repaint();
 
     }
