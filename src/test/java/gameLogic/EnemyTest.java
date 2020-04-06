@@ -33,7 +33,6 @@ class EnemyTest {
         assertThrows(UnsupportedOperationException.class, () -> enemy.move(newPosition));
     }
 
-
     @Test
     void setPosition() {
         int[] test = {1, 1};
