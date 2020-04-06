@@ -8,27 +8,35 @@ public abstract class Reward {
     private int[] position;
 
     /**
-     * Default constructor
+     * Default constructor.
      */
-    public Reward(){ position = new int[] {0, 0}; }
+    public Reward(){
+        position = new int[] { 0, 0 };
+    }
 
     /**
-     * Non-Default Constructor
+     * Non-Default Constructor.
      * @param position A x,y position for the location of this Reward.
      */
-    public Reward (int[] position) { this.position = position; }
+    public Reward(final int[] position) {
+        this.position = position;
+    }
 
     /**
      * Set the current position of this Reward object.
      * @param position A x,y position for the new location of this Reward.
      */
-    public void setPosition(int[] position) { this.position = position; }
+    public void setPosition(final int[] position) {
+        this.position = position;
+    }
 
     /**
      * Get the current position of this reward.
      * @return the current position of this reward.
      */
-    public int[] getPosition(){ return position; }
+    public int[] getPosition(){
+        return position;
+    }
 
     /**
      * Get the value of this Reward.
