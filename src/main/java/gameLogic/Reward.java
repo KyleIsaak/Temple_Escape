@@ -1,4 +1,4 @@
-package GameLogic;
+package gameLogic;
 
 /**
  * Abstract class for the rewards in the game play area.

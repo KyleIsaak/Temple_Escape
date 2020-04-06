@@ -1,4 +1,4 @@
-package GameLogic;
+package gameLogic;
 
 /**
  * Abstract class for the traps in the game play area.

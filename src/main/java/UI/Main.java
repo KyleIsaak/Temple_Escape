@@ -1,6 +1,6 @@
 package UI;
-import GameLogic.Board;
-import GameLogic.Timer;
+import gameLogic.Board;
+import gameLogic.Timer;
 
 //<<<<<<< HEAD
 //import javax.swing.*;

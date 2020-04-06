@@ -1,6 +1,6 @@
 package UI;
 
-        import GameLogic.Score;
+        import gameLogic.Score;
 
         import javax.swing.*;
         import java.awt.*;

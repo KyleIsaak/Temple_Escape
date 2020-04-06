@@ -1,6 +1,6 @@
 package UI;
 
-import GameLogic.LevelGenerator;
+import gameLogic.LevelGenerator;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

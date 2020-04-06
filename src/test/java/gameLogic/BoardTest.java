@@ -1,5 +1,5 @@
-package GameLogic;
-import GameLogic.*;
+package gameLogic;
+import gameLogic.*;
 import UI.*;
 
 import org.junit.jupiter.api.Test;

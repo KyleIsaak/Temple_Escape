@@ -1,4 +1,4 @@
-package GameLogic;
+package gameLogic;
 
 /**
  * Keep Track of Player's Score Throughout the Game Session

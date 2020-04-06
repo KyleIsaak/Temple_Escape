@@ -1,7 +1,7 @@
 package UI;
 
-import GameLogic.Board;
-import GameLogic.LevelGenerator;
+import gameLogic.Board;
+import gameLogic.LevelGenerator;
 
 import javax.swing.*;
 import java.awt.*;
