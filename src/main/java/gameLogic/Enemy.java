@@ -33,12 +33,26 @@ public class Enemy {
     }
 
     /**
+     * Enemy Move Helper Function: Ensure enemy is only moving one step at a time.
+     * @param direction A x,y position on the map that defines the new location that the enemy is moving to.
+     * @return true if the enemy is moving by one step from current position vise versa.
+     */
+    private boolean nextTo(int[] direction){
+        return (direction[0] == position[0] + 1 && direction[1] == position[1]) || (direction[0] == position[0] - 1 && direction[1] == position[1]) || (direction[0] == position[0] && direction[1] == position[1] + 1) || (direction[0] == position[0] && direction[1] == position[1] - 1);
+    }
+
+    /**
      * Move the enemy to the desired position
      *
      * @param direction An x,y position in the map
      */
     public void move(int[] direction) {
-        this.position[0] = direction[0];
-        this.position[1] = direction[1];
+        if (nextTo(direction)) {
+            this.position[0] = direction[0];
+            this.position[1] = direction[1];
+        }
+        else {
+            throw new UnsupportedOperationException("ERROR: Enemy not moving by one step. PLease check enemy movement.");
+        }
     }
 }
