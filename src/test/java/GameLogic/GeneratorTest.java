@@ -10,16 +10,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class GeneratorTest {
     private boolean isPath (int[][] board, int x, int y){
-        return (x >= 1 && x <= 25) && (y >= 1 && y <= 25) && board[x][y] == 1;
+        return ((x >= 1 && x < 26) && (y >= 1 && y < 26)) && board[x][y] == 1;
     }
     private boolean BFS (int[][] board, int[] position){
         System.out.println(position[0] +", " + position[1]);
-        for (int y = 0; y < 27; y++) {
-            for (int x = 0; x < 27; x++) {
-                System.out.print(board[x][y]);
-            }
-            System.out.println();
-        }
         boolean[][] visitedNode = new boolean[27][27];
         for (int i = 0 ; i < 27; i ++){
             for (int j = 0; j < 27; j++){
@@ -31,7 +25,7 @@ public class GeneratorTest {
         queue.add(position);
         int[] current;
         while (queue.size() != 0){
-            current = queue.poll();
+            current = queue.pop();
             if (isPath(board, current[0], current[1]) && (current[0] == position[0] && current[1] == position[1])){
                 return true;
             }
@@ -71,7 +65,6 @@ public class GeneratorTest {
         }
         LocationRandomizerGenerator testLocationRandomizerGenerator = new LocationRandomizerGenerator(testGenerator.getBoard());
         testLocationRandomizerGenerator.randomizeExitPosition();
-        testLocationRandomizerGenerator.getExit().setPosition(new int[]{25,22});
         assertTrue(BFS(testGenerator.getBoard(), testLocationRandomizerGenerator.getExit().getPosition()));
     }
 

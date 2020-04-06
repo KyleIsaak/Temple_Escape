@@ -121,7 +121,7 @@ public class LocationRandomizerGenerator extends BoardArrayManager {
             exitPos = randomExitPicker();
             x = exitPos[0];
             y = exitPos[1];
-        } while (( (!isInBounds(x,y))|| ( x < 5 && y < 5) || (rewardFinder.isObject(x, y, rewardArrayManager)) || (trapFinder.isObject(x, y, trapArrayManager))));
+        } while (((isWall(x, y)) || (!isInBounds(x,y))|| ( x < 5 && y < 5) || (rewardFinder.isObject(x, y, rewardArrayManager)) || (trapFinder.isObject(x, y, trapArrayManager))));
 
         exit.setPosition(new int[]{x, y});
     }
@@ -143,7 +143,7 @@ public class LocationRandomizerGenerator extends BoardArrayManager {
                 break;
 
             case 1:                 // lock to right wall
-                exitPos[0] = 27 - 2;
+                exitPos[0] = 25;
                 exitPos[1] = integerRandomizer();
                 break;
 
@@ -154,7 +154,7 @@ public class LocationRandomizerGenerator extends BoardArrayManager {
 
             case 3:                 // lock to bottom wall
                 exitPos[0] = integerRandomizer();
-                exitPos[1] = 27 - 2;
+                exitPos[1] = 25;
                 break;
         }
         return exitPos;
