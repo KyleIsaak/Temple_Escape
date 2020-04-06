@@ -85,7 +85,7 @@ public class PlayerFinder {
      * @param board A matrix that holds the map.
      * @param initialPosition The current position of the enemy.
      * @param destinationPosition The position of the player.
-     * @return
+     * @return an x, y position for the next step that should be taken for shortest path to player.
      */
     public int[] shortPathStep (int[][] board, int[] initialPosition, int[] destinationPosition){
         Node shortestPath = BFS (board, initialPosition, destinationPosition);
