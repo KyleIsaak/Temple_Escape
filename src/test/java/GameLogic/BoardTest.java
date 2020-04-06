@@ -153,17 +153,17 @@ public class BoardTest {
     void getEnemy_test(int level){
         Board board=new Board(level);
         ArrayList<Enemy> test=board.getBoardArrayManager().getEnemyArrayManager();
-        for(int i=0;i<level;i++) {
+        for(int i=0;i<level;i++){
             assertEquals(test.get(i), board.getBoardArrayManager().getEnemyArrayManager().get(i));
         }
     }
 
     @ParameterizedTest
     @ValueSource (ints = {1, 2 ,3})
-    void getEnemyPos(int level) {
+    void getEnemyPos(int level){
         Board board = new Board(level);
         ArrayList<Enemy> test = board.getBoardArrayManager().getEnemyArrayManager();
-        for (int i = 0; i < level; i++) {
+        for (int i = 0; i < level; i++){
             boolean test1 = true;
             test1 = board.getBoardArrayManager().isObject(test.get(i).getPosition()[0], test.get(i).getPosition()[1], "Enemy");
             assertEquals(true, test1);
@@ -188,12 +188,12 @@ public class BoardTest {
     @ParameterizedTest
     @ValueSource (ints = {1, 2 ,3})
     //test function EnemyGenerator function
-    void numberOfEnemyCreatedBasedOnLevel (int level) {
+    void numberOfEnemyCreatedBasedOnLevel (int level){
         Board board = new Board(level);
         int numberofEnemyCreated = 0;
         for (int i = 0; i < 27; i++) {
             for(int j = 0 ; j < 27; j++) {
-                if(board.getBoardArrayManager().isObject(i, j, "Enemy")) {
+                if(board.getBoardArrayManager().isObject(i, j, "Enemy")){
                     numberofEnemyCreated++;
                 }
             }
@@ -203,10 +203,10 @@ public class BoardTest {
 
     @ParameterizedTest
     @ValueSource (ints = {1, 2 ,3})
-    void EnemyFinderTest(int level) {
+    void EnemyFinderTest(int level){
        Board board=new Board(level);
        ArrayList<Enemy> test = board.getBoardArrayManager().getEnemyArrayManager();
-       for(int i = 0; i < test.size(); i++) {
+       for(int i = 0; i < test.size(); i++){
            int x = test.get(i).getPosition()[0];
            int y = test.get(i).getPosition()[1];
            int result = board.getBoardArrayManager().objectFinder(x, y, "Enemy");
@@ -230,7 +230,7 @@ public class BoardTest {
         int[] test1={2,1};
         board.getBoardArrayManager().enemyArrayManager.get(0).setPosition(test1);
         int numberOfStep1=0;
-        if(board.getPlayerPos()!=board.getBoardArrayManager().getEnemyArrayManager().get(0).getPosition()) {
+        if(board.getPlayerPos()!=board.getBoardArrayManager().getEnemyArrayManager().get(0).getPosition()){
             board.chaseThePlayer(board.getBoardArrayManager().getEnemyArrayManager().get(0));
             numberOfStep1++;
         }
