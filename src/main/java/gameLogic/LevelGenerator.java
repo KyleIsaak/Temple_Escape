@@ -10,17 +10,44 @@ import java.util.Stack;
  * this class provides a getter for the generated maze.
  */
 public class LevelGenerator {
+    /**
+     * Store the horizontal bound
+     */
     private int x;
+    /**
+     * Store the vertical bound
+     */
     private int y;
+    /**
+     * Store the board info.
+     */
     private int[][] board;
+    /**
+     * Store the unvisit X info.
+     */
     private Stack<Integer> unvisitX;
+    /**
+     * Store the unvisit Y info.
+     */
     private Stack<Integer> unvisitY;
+    /**
+     * Store the neighbor X info.
+     */
     private ArrayList<Integer> neighborX;
+    /**
+     * Store the neighbor Y info.
+     */
     private ArrayList<Integer> neighborY;
+    /**
+     * state wall = 0;
+     */
     private final static int WALL = 0;
+    /**
+     * state path = 1;
+     */
     private final static int PATH = 1;
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         LevelGenerator test = new LevelGenerator(27, 27);
         test.setLevel(LevelGenerator.Difficulty.EASY);
         int[][] map = test.getBoard();
@@ -39,7 +66,7 @@ public class LevelGenerator {
      * @param x An integer that specify the horizontal length of a board.
      * @param y An integer that specify the vertical length of a board.
      */
-    public LevelGenerator(int x, int y){
+    public LevelGenerator(int x, int y) {
         this.x = x;
         this.y = y;
         this.board = new int[x][y];
@@ -50,7 +77,7 @@ public class LevelGenerator {
         generate();
     }
 
-    public enum Difficulty{
+    public enum Difficulty {
         EASY,
         MEDIUM,
         HARD
@@ -62,19 +89,22 @@ public class LevelGenerator {
      * @param choice The chosen Difficulty (EASY, MEDIUM, HARD)
      */
     public void setLevel(Difficulty choice){
+        int easy = 3;
+        int medium = 4;
+        int hard = 5;
         switch(choice){
             case EASY:
-                for(int i = 0; i < (x * y / 3); i++){
+                for(int i = 0; i < (x * y / easy); i++) {
                     randomRemoveWall();
                 }
                 break;
             case MEDIUM:
-                for(int i = 0; i < (x * y / 4); i ++){
+                for(int i = 0; i < (x * y / medium); i ++) {
                     randomRemoveWall();
                 }
                 break;
             case HARD:
-                for(int i = 0; i < (x * y / 5); i ++){
+                for(int i = 0; i < (x * y / hard); i ++) {
                     randomRemoveWall();
                 }
                 break;
@@ -88,7 +118,7 @@ public class LevelGenerator {
     /**
      * Generate the board of the game using Depth First Search.
      */
-    private void generate(){
+    private void generate() {
         board[1][1] = PATH;                //player init
 
         pushStacks(1, 1);
@@ -137,7 +167,7 @@ public class LevelGenerator {
      * @param x  An integer for the x position
      * @param y  An integer for the y position
      */
-    private void pushStacks(int x, int y){
+    private void pushStacks(int x, int y) {
         unvisitX.push(x);
         unvisitY.push(y);
     }
@@ -148,7 +178,7 @@ public class LevelGenerator {
      * @param y  An integer for the y position
      * @param next An integer of the next position
      */
-    private void makePath(int x, int y, int next){
+    private void makePath(int x, int y, int next) {
         int nextX = neighborX.get(next);
         int nextY = neighborY.get(next);
         int wallX = x - (x - nextX) / 2;
@@ -162,16 +192,16 @@ public class LevelGenerator {
      * @param x An integer for the x position
      * @param y An integer for the y position
      */
-    private void findNeighbor(int x, int y){
+    private void findNeighbor(int x, int y) {
         neighborX.clear();
         neighborY.clear();
 
-        if (isInBound(x - 2, y) && isWall(x - 2, y)){   // left
+        if (isInBound(x - 2, y) && isWall(x - 2, y)) {   // left
             neighborX.add(x - 2);
             neighborY.add(y);
         }
 
-        if (isInBound(x + 2, y) && isWall(x + 2, y)){   //right
+        if (isInBound(x + 2, y) && isWall(x + 2, y)) {   //right
             neighborX.add(x + 2);
             neighborY.add(y);
         }
@@ -181,7 +211,7 @@ public class LevelGenerator {
             neighborY.add(y + 2);
         }
 
-        if (isInBound(x, y - 2) && isWall(x, y - 2)){   //down
+        if (isInBound(x, y - 2) && isWall(x, y - 2)) {   //down
             neighborX.add(x);
             neighborY.add(y - 2);
         }
@@ -207,7 +237,7 @@ public class LevelGenerator {
      * Helper function for generate() function
      * @return randomize Neighbor
      */
-    private int randomNeighbor(){
+    private int randomNeighbor() {
         Random random = new Random();
         return random.nextInt(neighborX.size());
     }
@@ -225,7 +255,7 @@ public class LevelGenerator {
     /**
      * Remove walls in random location of the map.
      */
-    private void randomRemoveWall(){
+    private void randomRemoveWall() {
         Random random = new Random();
         boolean isRemoved = false;
         boolean found = false;
@@ -233,7 +263,7 @@ public class LevelGenerator {
         int ranY = 0;
         while (!isRemoved){
 
-            while(!found) {
+            while (!found) {
                 ranX = random.nextInt(x);
                 ranY = random.nextInt(y);
                 if (board[ranX][ranY] == WALL && isInBound(ranX, ranY)){
