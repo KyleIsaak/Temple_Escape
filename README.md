@@ -69,8 +69,8 @@ Example from ScoreTest:
 
 ## Built With
 
-* [IntelliJ](https://www.jetbrains.com/idea/) - IDE used
-* [Maven](https://maven.apache.org/) - Dependency Management
+* [IntelliJ IDEA](https://www.jetbrains.com/idea/) - IDE used
+* [Apache Maven](https://maven.apache.org/) - Dependency Management
 
 
 ## Authors
