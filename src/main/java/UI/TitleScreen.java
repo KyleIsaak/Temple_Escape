@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.io.InputStream;
 /**
  * Show the information of the title Screen
@@ -17,16 +18,17 @@ public class TitleScreen extends JPanel implements ActionListener{
     private Button button_hard;
     private Button button_quit;
     private Button button_control;
+    private Button button_skin;
 
     private Misc misc;
     private GameScreen gameScreen;
     private ControlScreen control;
-
-    private final String EASY = "EASY";
-    private final String MEDIUM = "MEDIUM";
-    private final String HARD = "HARD";
-    private final String QUIT = "QUIT";
-    private final String CONTROL = "CONTROL";
+    private JFrame frame;
+    private final static String EASY = "EASY";
+    private final static String MEDIUM = "MEDIUM";
+    private final static String HARD = "HARD";
+    private final static String QUIT = "QUIT";
+    private final static String CONTROL = "CONTROL";
 
     /**
      * Non default Constructor ((Title Screen
@@ -34,10 +36,11 @@ public class TitleScreen extends JPanel implements ActionListener{
      * @param control storing the control info
      * @param misc storing the misc info
      */
-    public TitleScreen(GameScreen gameScreen, ControlScreen control, Misc misc){
+    public TitleScreen(GameScreen gameScreen, ControlScreen control, Misc misc, JFrame frame){
         this.gameScreen = gameScreen;
         this.control = control;
         this.misc = misc;
+        this.frame = frame;
         setLayout(null);
 
         JComponent background = new JComponent(){
@@ -89,7 +92,7 @@ public class TitleScreen extends JPanel implements ActionListener{
             gameScreen.setDifficulty(LevelGenerator.Difficulty.HARD);
             enterGame();
         } else if (listener.equals(QUIT)){
-            System.exit(0);
+            frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
         } else if (listener.equals(CONTROL)){
             flipButtons();
             control.setVisible(true);
@@ -121,7 +124,7 @@ public class TitleScreen extends JPanel implements ActionListener{
         button_control = new Button(CONTROL, this, true);
 
         button_easy.setBounds(160, 540, 100, 35);
-        button_medium.setBounds(435, 540, 100, 35);
+        button_medium.setBounds(440, 540, 100, 35);
         button_hard.setBounds(730, 540, 100, 35);
         button_quit.setBounds(570, 620, 100, 35);
         button_control.setBounds(280, 620, 150, 35);

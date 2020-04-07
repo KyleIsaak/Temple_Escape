@@ -20,17 +20,17 @@ public class Interface extends JFrame {
         PauseScreen pause = new PauseScreen(control);
         GameScreen game = new GameScreen(step);
         Misc misc = new Misc(game, pause);
-        TitleScreen title = new TitleScreen(game, control, misc);
+        TitleScreen title = new TitleScreen(game, control, misc, this);
         NextScreen nextScreen = new NextScreen();
         EndScreen endScreen = new EndScreen(title);
 
+        pause.setTitle(title);
         game.setMisc(misc);
         game.setEnd(endScreen);
         control.setPause(pause);
         control.setGameScreen(game);
         control.setTitle(title);
         game.setNextScreen(nextScreen);
-
         nextScreen.setGameScreen(game);
         pause.setGameScreen(game);
         title.setBounds(0, 0, 1000, 1000);

@@ -13,13 +13,11 @@ import java.io.InputStream;
 public class EndScreen extends JPanel implements ActionListener {
 
     private TitleScreen title;
-    private Image image;
-
-    private JButton button_title;
-    private final String TITLE = "TITLE";
+    private Image image = Sprite.gameOver();
 
     private static JButton button_score;
-    private final String SCORE = "ERROR";
+    private final static String TITLE = "TITLE";
+    private final static String SCORE = "ERROR";
 
     /**
      * Non-Default COnstructor(ENDSCREEN)
@@ -27,12 +25,6 @@ public class EndScreen extends JPanel implements ActionListener {
      */
     public EndScreen(TitleScreen title){
         this.title = title;
-        InputStream inputStream = PauseScreen.class.getResourceAsStream("/gameOver.png");
-        try {
-            image = ImageIO.read(inputStream);
-        } catch (Exception e){
-            e.printStackTrace();
-        }
 
         JComponent background = new JComponent(){
             @Override
@@ -54,7 +46,7 @@ public class EndScreen extends JPanel implements ActionListener {
      * Set the button that shows on endScreen
      */
     private void addButtons(){
-        button_title = new Button(TITLE, this, true);
+        JButton button_title = new Button(TITLE, this, true);
         button_title.setBounds(450, 500, 80, 50);
 
         button_score = new Button(SCORE, this, false);
@@ -73,11 +65,9 @@ public class EndScreen extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent actionEvent) {
         String listener = actionEvent.getActionCommand();
         if (listener.equals(TITLE)){
-            Misc.setCurrentLevel(1);
             setVisible(false);
             title.setVisible(true);
             title.requestFocus();
-            Misc.setScore(100);
         }
     }
 }

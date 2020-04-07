@@ -9,11 +9,11 @@ import java.util.Random;
  */
 public class DrawDead extends JComponent {
     private Image image;
-    private cellType type;
+    private CellType type;
     private int[] pos;
     private int step;
 
-    public enum cellType{
+    public enum CellType {
         WALL,
         PATH,
         TRAPTYPEA,
@@ -25,9 +25,9 @@ public class DrawDead extends JComponent {
     /**
      *   color can be set to sprites later on
      */
-    public DrawDead(int[] pos, int step, cellType type){
+    public DrawDead(int[] pos, int step, CellType type){
         this.step = step;
-        this.pos = pos;
+        this.pos = pos.clone();
         this.type = type;
         selectsprite();
     }
@@ -50,10 +50,10 @@ public class DrawDead extends JComponent {
 
             case PATH:
                 Random ran = new Random();
-                int choice = ran.nextInt(2);
-                if (choice == 0){
+                int choice = ran.nextInt(5);
+                if (choice <= 3){
                     image = Sprite.gamePath();
-                } else if (choice == 1){
+                } else if (choice == 4){
                     image = Sprite.gamePath2();
                 }
                 break;
@@ -132,14 +132,14 @@ public class DrawDead extends JComponent {
      * @return the object position
      */
     public int[] getPosition(){
-        return this.pos;
+        return this.pos.clone();
     }
 
     /**
      * update the cell if there is change
      * @param type: The object type
      */
-    public void updateCell(cellType type){
+    public void updateCell(CellType type){
         this.type = type;
         selectsprite();
         repaint();

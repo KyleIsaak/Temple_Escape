@@ -8,13 +8,13 @@ import java.awt.*;
  */
 public class DrawLive extends JComponent {
     private Image image;
-    private cellType type;
+    private CellType type;
     private int[] pos;
     private int step;
     /**
      * There are two moving object in the game: player and enemies
      */
-    public enum cellType{
+    public enum CellType {
         PLAYER,
         ENEMY,
     }
@@ -22,9 +22,9 @@ public class DrawLive extends JComponent {
     /**
      * sprites can be set to sprites later on
      */
-    public DrawLive(int[] pos, int step, cellType type){
+    public DrawLive(int[] pos, int step, CellType type){
         this.step = step;
-        this.pos = pos;
+        this.pos = pos.clone();
         this.type = type;
         selectSprite();
     }
@@ -63,7 +63,7 @@ public class DrawLive extends JComponent {
      * @param pos: the new location of
      */
     public void setNewPosition(int[] pos){
-        this.pos = pos;
+        this.pos = pos.clone();
         System.out.println(image.getSource());
         repaint();
     }

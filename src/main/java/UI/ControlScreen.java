@@ -23,15 +23,15 @@ public class ControlScreen extends JPanel implements ActionListener {
      * the string for setting action command and button name
      */
     //the string for setting action command and button name
-    private final String UP = "UP";
-    private final String DOWN = "DOWN";
-    private final String LEFT = "LEFT";
-    private final String RIGHT = "RIGHT";
-    private final String DONE = "DONE";
-    private final String MUTE = "MUTE";
+    private final static String UP = "UP";
+    private final static String DOWN = "DOWN";
+    private final static String LEFT = "LEFT";
+    private final static String RIGHT = "RIGHT";
+    private final static String DONE = "DONE";
+    private final static String MUTE = "MUTE";
 
-    private final String CONTROL = "CONTROL";
-    private final String ERROR = "ERROR";
+    private final static String CONTROL = "CONTROL";
+    private final static String ERROR = "<html>" + "Invalid duplicated" + "<br>" + "key bindings!" + "</html>";
 
     private JButton error;
 
@@ -63,14 +63,14 @@ public class ControlScreen extends JPanel implements ActionListener {
             @Override
             public void paint(Graphics g){
                 super.paintComponent(g);
-                g.drawImage(new Sprite().controlBackground(), 0, 0, this);
+                g.drawImage(Sprite.controlBackground(), 0, 0, this);
             }
         };
         errorGirl = new JComponent(){
             @Override
             public void paint(Graphics g){
                 super.paintComponent(g);
-                g.drawImage(new Sprite().controlError(), 0, 0, this);
+                g.drawImage(Sprite.controlError(), 0, 0, this);
             }
         };
         this.gameScreen = gameScreen;
@@ -78,8 +78,6 @@ public class ControlScreen extends JPanel implements ActionListener {
         JButton subtitle = new Button(CONTROL, this, false);
 
         error = new Button(ERROR, this, false);
-        error.setText("<html>" + "Invalid duplicated" + "<br>" + "key bindings!" + "</html>");
-        error.getFont().deriveFont(14f);
 
         JButton txtUP = new Button(UP, this, false);
         JButton txtDOWN = new Button(DOWN, this, false);

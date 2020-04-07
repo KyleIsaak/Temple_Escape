@@ -90,33 +90,45 @@ public class Board {
      * Set the difficulty of the game.
      * @param choice Difficulty of the Game.
      */
-    public void setDifficulty(LevelGenerator.Difficulty choice) { generator.setLevel(choice); }
+    public void setDifficulty(LevelGenerator.Difficulty choice){
+        generator.setLevel(choice);
+    }
 
-    public LocationRandomizerGenerator getBoardArrayManager(){ return boardArrayManager; }
+    public LocationRandomizerGenerator getBoardArrayManager(){
+        return boardArrayManager;
+    }
     /**
      * Get the Player of this board.
      * @return this Board's Player.
      */
-    public Player getPlayer(){ return this.player; }
+    public Player getPlayer(){
+        return this.player;
+    }
 
     /**
      * Get the Position of this Board's Player
      * @return the position of this Board's Player.
       */
-    public int[] getPlayerPos(){ return player.getPosition(); }
+    public int[] getPlayerPos(){
+        return player.getPosition();
+    }
 
 
     /**
      * Get the score of this Board class
      * @return this Board class's Score
      */
-    public Score getScore() { return score; }
+    public Score getScore() {
+        return score;
+    }
 
     /**
      * Get the timer of this Board Class
      * @return this Board Class's Timer
      */
-    public Timer getTimer() { return timer; }
+    public Timer getTimer() {
+        return timer;
+    }
 
     /**
      * Provide enemy functionality of approaching the player using the nearest path (Breadth First Search Algorithm)
