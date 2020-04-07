@@ -5,17 +5,17 @@ import java.util.Random;
 import java.util.Stack;
 
 /**
- * Level Generator is a class that uses Depth-first search algorithm to auto generate a maze
+ * Level Generator is a class that uses Depth-first search algorithm to auto generate a maze.
  * To make the game playable, we randomly deleted walls to make more room for the player.
  * this class provides a getter for the generated maze.
  */
 public class LevelGenerator {
     /**
-     * Store the horizontal bound
+     * Store the horizontal bound.
      */
     private int x;
     /**
-     * Store the vertical bound
+     * Store the vertical bound.
      */
     private int y;
     /**
@@ -39,14 +39,19 @@ public class LevelGenerator {
      */
     private ArrayList<Integer> neighborY;
     /**
-     * state wall = 0;
+     * state wall = 0.
      */
     private final static int WALL = 0;
     /**
-     * state path = 1;
+     * state path = 1.
      */
     private final static int PATH = 1;
 
+    /**
+     * main program of generate the maze.
+     *
+     * @param args main program require.
+     */
     public static void main(String[] args) {
         LevelGenerator test = new LevelGenerator(27, 27);
         test.setLevel(LevelGenerator.Difficulty.EASY);
@@ -62,7 +67,8 @@ public class LevelGenerator {
 
 
     /**
-     * Non Default Constructor
+     * Non Default Constructor.
+     *
      * @param x An integer that specify the horizontal length of a board.
      * @param y An integer that specify the vertical length of a board.
      */
@@ -77,6 +83,9 @@ public class LevelGenerator {
         generate();
     }
 
+    /**
+     * Choose the difficult.
+     */
     public enum Difficulty {
         EASY,
         MEDIUM,
@@ -84,27 +93,28 @@ public class LevelGenerator {
     }
 
     /**
-     * Set the Difficulty of the game
+     * Set the Difficulty of the game.
      * The harder the game, the more walls the game have.
-     * @param choice The chosen Difficulty (EASY, MEDIUM, HARD)
+     *
+     * @param choice The chosen Difficulty (EASY, MEDIUM, HARD).
      */
-    public void setLevel(Difficulty choice){
+    public void setLevel(Difficulty choice) {
         int easy = 3;
         int medium = 4;
         int hard = 5;
-        switch(choice){
+        switch (choice) {
             case EASY:
-                for(int i = 0; i < (x * y / easy); i++) {
+                for (int i = 0; i < (x * y / easy); i++) {
                     randomRemoveWall();
                 }
                 break;
             case MEDIUM:
-                for(int i = 0; i < (x * y / medium); i ++) {
+                for (int i = 0; i < (x * y / medium); i++) {
                     randomRemoveWall();
                 }
                 break;
             case HARD:
-                for(int i = 0; i < (x * y / hard); i ++) {
+                for (int i = 0; i < (x * y / hard); i++) {
                     randomRemoveWall();
                 }
                 break;
@@ -130,7 +140,7 @@ public class LevelGenerator {
             while (hasNeighbor()) {
                 next = randomNeighbor();
                 makePath(currentX, currentY, next);
-                if (!isComplete()){
+                if (!isComplete()) {
                     pushStacks(currentX, currentY);
                 }
 
@@ -145,27 +155,30 @@ public class LevelGenerator {
 
     /**
      * Check whether that position consists a wall
+     *
      * @param x An integer for the x position
      * @param y An integer for the y position
      * @return true if that position contains a wall and vise versa.
      */
-    public boolean isWall(int x, int y){
+    public boolean isWall(int x, int y) {
         return board[x][y] == WALL;
     }
 
     /**
      * Get the board of this class
+     *
      * @return the board of this class
      */
-    public int[][] getBoard(){
+    public int[][] getBoard() {
         return board.clone();
     }
 
     /**
      * Helper Function for generate() function.
      * Push x, y position to unvisited points.
-     * @param x  An integer for the x position
-     * @param y  An integer for the y position
+     *
+     * @param x An integer for the x position
+     * @param y An integer for the y position
      */
     private void pushStacks(int x, int y) {
         unvisitX.push(x);
@@ -174,8 +187,9 @@ public class LevelGenerator {
 
     /**
      * Helper function for generate() function
-     * @param x An integer for the x position
-     * @param y  An integer for the y position
+     *
+     * @param x    An integer for the x position
+     * @param y    An integer for the y position
      * @param next An integer of the next position
      */
     private void makePath(int x, int y, int next) {
@@ -189,6 +203,7 @@ public class LevelGenerator {
 
     /**
      * Helper Function for generate() function.
+     *
      * @param x An integer for the x position
      * @param y An integer for the y position
      */
@@ -219,22 +234,25 @@ public class LevelGenerator {
 
     /**
      * Helper Function for generate() function
+     *
      * @return true if there is only one elements in neighborX.
      */
-    private boolean isComplete(){
+    private boolean isComplete() {
         return (neighborX.size() == 1);
     }
 
     /**
      * Helper function for generate() function
+     *
      * @return true if neighborX is not empty and vise versa.
      */
-    private boolean hasNeighbor(){
+    private boolean hasNeighbor() {
         return !neighborX.isEmpty();
     }
 
     /**
      * Helper function for generate() function
+     *
      * @return randomize Neighbor
      */
     private int randomNeighbor() {
@@ -244,11 +262,12 @@ public class LevelGenerator {
 
     /**
      * Helper Function for generate() function
+     *
      * @param x An integer for the x position
      * @param y An integer for the y position
      * @return true if the position is in bound and vise versa
      */
-    private boolean isInBound(int x, int y){
+    private boolean isInBound(int x, int y) {
         return x >= 1 && x <= this.x - 2 && y >= 1 && y <= this.y - 2;
     }
 
@@ -261,12 +280,12 @@ public class LevelGenerator {
         boolean found = false;
         int ranX = 0;
         int ranY = 0;
-        while (!isRemoved){
+        while (!isRemoved) {
 
             while (!found) {
                 ranX = random.nextInt(x);
                 ranY = random.nextInt(y);
-                if (board[ranX][ranY] == WALL && isInBound(ranX, ranY)){
+                if (board[ranX][ranY] == WALL && isInBound(ranX, ranY)) {
                     found = true;
                 }
             }

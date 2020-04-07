@@ -8,22 +8,39 @@ import java.awt.event.ActionListener;
 import java.io.InputStream;
 
 /**
- * Storing the nextScreen Info
+ * Storing the nextScreen Info.
  */
 public class NextScreen extends JPanel implements ActionListener {
+    /**
+     * Storing the game screen Info.
+     */
     private GameScreen gameScreen;
+    /**
+     * Storing the input stream.
+     */
     private InputStream inputStream;
+    /**
+     * Storing the sprite next image.
+     */
     private Image image = Sprite.next();
+    /**
+     * Storing the string continue name.
+     */
     private String NEXT = "Continue";
-
+    /**
+     * store the button: resume info.
+     */
     JButton button_resume;
 
-    public NextScreen(){
+    /**
+     * Default Constructor.
+     */
+    public NextScreen() {
         button_resume = new Button(NEXT, this, true);
 
-        JComponent background = new JComponent(){
+        JComponent background = new JComponent() {
             @Override
-            public void paint(Graphics g){
+            public void paint(Graphics g) {
                 super.paintComponent(g);
                 g.drawImage(image, 0, 0, this);
             }
@@ -33,7 +50,7 @@ public class NextScreen extends JPanel implements ActionListener {
         add(background);
         button_resume.setBounds(430, 330, 100, 30);
 
-        background.setBounds(50, 150,800, 400);
+        background.setBounds(50, 150, 800, 400);
 
         setBackground(new Color(0, 0, 0, 175));
         setFocusable(true);
@@ -41,6 +58,11 @@ public class NextScreen extends JPanel implements ActionListener {
 
     }
 
+    /**
+     * Setter.
+     *
+     * @param gameScreen store game screen info.
+     */
     public void setGameScreen(GameScreen gameScreen) {
         this.gameScreen = gameScreen;
     }
@@ -48,7 +70,7 @@ public class NextScreen extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
         String listener = actionEvent.getActionCommand();
-        if (listener.equals(NEXT)){
+        if (listener.equals(NEXT)) {
             setVisible(false);
             gameScreen.setVisible(true);
             gameScreen.requestFocus();

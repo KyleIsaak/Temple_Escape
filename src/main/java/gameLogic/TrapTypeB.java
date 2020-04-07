@@ -12,16 +12,17 @@ public class TrapTypeB extends Trap {
     /**
      * Store the trap type.
      */
-    private  char type = 'B';
+    private char type = 'B';
 
     /**
-     * Default Constructor
+     * Default Constructor.
      */
     public TrapTypeB() {
-        super(new int[] {0,0}); }
+        super(new int[]{0, 0});
+    }
 
     /**
-     * Non Default Constructor
+     * Non Default Constructor.
      */
     public TrapTypeB(int[] pos) {
         this.setPosition(pos);
@@ -29,16 +30,20 @@ public class TrapTypeB extends Trap {
 
     /**
      * Get the damage of this trap.
+     *
      * @return the damage of this trap.
      */
     public int getDamage() {
-        return damage; }
+        return damage;
+    }
 
     /**
-     * Get the type of this Trap which is A (Lava Pit)
-     * @return the type of this Trap which is A (Lava Pit)
+     * Get the type of this Trap which is A (Lava Pit).
+     *
+     * @return the type of this Trap which is A (Lava Pit).
      */
     public char getType() {
-        return type; }
+        return type;
+    }
 
 }

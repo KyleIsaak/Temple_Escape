@@ -9,65 +9,132 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+
 /**
- * Store and setup control screen
+ * Store and setup control screen.
  */
 public class ControlScreen extends JPanel implements ActionListener {
-
+    /**
+     * Store the gameScreen Info.
+     */
     GameScreen gameScreen;
+    /**
+     * Store the titleScreen info.
+     */
     TitleScreen title;
+    /**
+     * Store the pauseScreen info.
+     */
     PauseScreen pause;
     //actual value of button
     /**
-     * the string for setting action command and button name
+     * the string for setting action command and button name.
      */
-    //the string for setting action command and button name
+    /**
+     * the string for setting action command and button name.
+     */
     private final static String UP = "UP";
+    /**
+     * the string for setting action command and button name.
+     */
     private final static String DOWN = "DOWN";
+    /**
+     * the string for setting action command and button name.
+     */
     private final static String LEFT = "LEFT";
+    /**
+     * the string for setting action command and button name.
+     */
     private final static String RIGHT = "RIGHT";
+    /**
+     * the string for setting action command and button name.
+     */
     private final static String DONE = "DONE";
+    /**
+     * the string for setting action command and button name.
+     */
     private final static String MUTE = "MUTE";
-
+    /**
+     * the string for setting action command and button name.
+     */
     private final static String CONTROL = "CONTROL";
+    /**
+     * the string for setting action command and button name.
+     */
     private final static String ERROR = "<html>" + "Invalid duplicated" + "<br>" + "key bindings!" + "</html>";
-
+    /**
+     * the string for setting action command and button name.
+     */
     private JButton error;
 
     /**
-     * the button for setting control
+     * the button for setting control.
      */
     private JButton setUP;
+    /**
+     * the button for setting control.
+     */
     private JButton setDOWN;
+    /**
+     * the button for setting control.
+     */
     private JButton setLEFT;
+    /**
+     * the button for setting control.
+     */
     private JButton setRIGHT;
+    /**
+     * the button for setting control.
+     */
     private JButton mute;
+    /**
+     * the button for setting control.
+     */
     private JButton done;
 
-    boolean up = false;
-    boolean down = false;
-    boolean left = false;
-    boolean right = false;
-
-    private ArrayList<String> keyBindings;
-    JComponent errorGirl;
     /**
-     * setup of GameScreen
-     * @param gameScreen Storing the information of GameScreen
+     * store is up or not info.
+     */
+    boolean up = false;
+    /**
+     * store is down or not info.
+     */
+    boolean down = false;
+    /**
+     * store is left or not info.
+     */
+    boolean left = false;
+    /**
+     * store is right or not info.
+     */
+    boolean right = false;
+    /**
+     * Store the key bindings info.
+     */
+    private ArrayList<String> keyBindings;
+    /**
+     * Store JComponent info.
+     */
+    JComponent errorGirl;
+
+    /**
+     * setup of GameScreen.
+     *
+     * @param gameScreen Storing the information of GameScreen.
      */
     public void setGameScreen(GameScreen gameScreen) {
         keyBindings = new ArrayList<>();
 
-        JComponent background = new JComponent(){
+        JComponent background = new JComponent() {
             @Override
-            public void paint(Graphics g){
+            public void paint(Graphics g) {
                 super.paintComponent(g);
                 g.drawImage(Sprite.controlBackground(), 0, 0, this);
             }
         };
-        errorGirl = new JComponent(){
+        errorGirl = new JComponent() {
             @Override
-            public void paint(Graphics g){
+            public void paint(Graphics g) {
                 super.paintComponent(g);
                 g.drawImage(Sprite.controlError(), 0, 0, this);
             }
@@ -84,10 +151,10 @@ public class ControlScreen extends JPanel implements ActionListener {
         JButton txtRIGHT = new Button(RIGHT, this, false);
         mute = new Button(MUTE, this, true);
         done = new Button(DONE, this, true);
-        setUP = new Button(String.valueOf((char)(gameScreen.getUP())), this, true);
-        setDOWN = new Button(String.valueOf((char)gameScreen.getDOWN()), this, true);
-        setLEFT = new Button(String.valueOf((char)gameScreen.getLEFT()), this, true);
-        setRIGHT = new Button(String.valueOf((char)gameScreen.getRIGHT()), this, true);
+        setUP = new Button(String.valueOf((char) (gameScreen.getUP())), this, true);
+        setDOWN = new Button(String.valueOf((char) gameScreen.getDOWN()), this, true);
+        setLEFT = new Button(String.valueOf((char) gameScreen.getLEFT()), this, true);
+        setRIGHT = new Button(String.valueOf((char) gameScreen.getRIGHT()), this, true);
 
         keyBindings.add(setUP.getText());
         keyBindings.add(setLEFT.getText());
@@ -138,30 +205,45 @@ public class ControlScreen extends JPanel implements ActionListener {
         setVisible(false);
     }
 
-    private void errorOn(){
+    /**
+     * turn on the error case.
+     */
+    private void errorOn() {
         error.setVisible(true);
         errorGirl.setVisible(true);
     }
 
-    private void errorOff(){
+    /**
+     * turn off the error case.
+     */
+    private void errorOff() {
         error.setVisible(false);
         errorGirl.setVisible(false);
     }
+
     /**
-     * setup pause;
-     * @param pause store the pasue information
+     * setup pause.
+     *
+     * @param pause store the pasue information.
      */
-    public void setPause(PauseScreen pause){
+    public void setPause(PauseScreen pause) {
         this.pause = pause;
     }
+
     /**
      * setup title
-     * @param title store the title information
+     *
+     * @param title store the title information.
      */
-    public void setTitle(TitleScreen title){
+    public void setTitle(TitleScreen title) {
         this.title = title;
     }
 
+    /**
+     * base on the action event and preformed the corresponding performed.
+     *
+     * @param actionEvent the user action.
+     */
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
         up = false;
@@ -178,10 +260,10 @@ public class ControlScreen extends JPanel implements ActionListener {
             gameScreen.setControlLEFT(setLEFT.getText().charAt(0));
             gameScreen.setControlRIGHT(setRIGHT.getText().charAt(0));
 
-            if(title.isVisible()){
+            if (title.isVisible()) {
                 title.flipButtons();
                 title.requestFocus();
-            } else if (gameScreen.isVisible()){
+            } else if (gameScreen.isVisible()) {
                 gameScreen.requestFocus();
                 pause.flipButtons();
             }
@@ -194,10 +276,9 @@ public class ControlScreen extends JPanel implements ActionListener {
         } else if (listener.equals(RIGHT)) {
             right = true;
         } else if (listener.equals(MUTE)) {
-            if (gameScreen.getMusic().isPause()){
+            if (gameScreen.getMusic().isPause()) {
                 gameScreen.getMusic().unPause();
-            }
-            else{
+            } else {
                 gameScreen.getMusic().pauseMusic();
             }
         }
@@ -206,38 +287,51 @@ public class ControlScreen extends JPanel implements ActionListener {
     private class keyListener extends KeyAdapter {
         boolean isReleased = true;
 
+        /**
+         * detected the key is released or not.
+         *
+         * @param e the kep that user pressed.
+         */
         @Override
         public void keyReleased(KeyEvent e) {
             isReleased = true;
         }
 
+        /**
+         * detected the key the user pressed.
+         *
+         * @param e the alpha the user pressed.
+         */
         @Override
         public void keyPressed(KeyEvent e) {
             int key = e.getKeyCode();
-            if (isReleased){
+            if (isReleased) {
                 isReleased = false;
-                if (up){
-                    setUP.setText(String.valueOf((char)key));
-                    if (keyBindings.contains(setUP.getText())){
+                if (up) {
+                    setUP.setText(String.valueOf((char) key));
+                    if (keyBindings.contains(setUP.getText())) {
                         errorOn();
                         System.out.println("found");
                     } else errorOff();
                     keyBindings.set(0, setUP.getText());
-                }if (down){
-                    setDOWN.setText(String.valueOf((char)key));
-                    if (keyBindings.contains(setDOWN.getText())){
+                }
+                if (down) {
+                    setDOWN.setText(String.valueOf((char) key));
+                    if (keyBindings.contains(setDOWN.getText())) {
                         errorOn();
                     } else errorOff();
                     keyBindings.set(1, setDOWN.getText());
-                } if (left){
-                    setLEFT.setText(String.valueOf((char)key));
-                    if (keyBindings.contains(setLEFT.getText())){
+                }
+                if (left) {
+                    setLEFT.setText(String.valueOf((char) key));
+                    if (keyBindings.contains(setLEFT.getText())) {
                         errorOn();
                     } else errorOff();
                     keyBindings.set(2, setLEFT.getText());
-                } if (right){
-                    setRIGHT.setText(String.valueOf((char)key));
-                    if (keyBindings.contains(setRIGHT.getText())){
+                }
+                if (right) {
+                    setRIGHT.setText(String.valueOf((char) key));
+                    if (keyBindings.contains(setRIGHT.getText())) {
                         errorOn();
                     } else errorOff();
                     keyBindings.set(3, setRIGHT.getText());

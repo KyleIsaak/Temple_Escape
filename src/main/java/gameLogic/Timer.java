@@ -39,6 +39,7 @@ public class Timer {
 
     /**
      * Non-Default Constructor.
+     *
      * @param oldTimer A Timer of the previous level.
      */
     public Timer(Timer oldTimer) {
@@ -49,6 +50,7 @@ public class Timer {
     /**
      * Get the current game time.
      * Calculate time elapsed in milliseconds.
+     *
      * @return the current game time.
      */
     private long getTime() {
@@ -59,35 +61,41 @@ public class Timer {
 
     /**
      * Get the Start Time of this Timer.
+     *
      * @return the Start Time of this Timer.
      */
     public long getStartTime() {
-        return this.startTime; }
+        return this.startTime;
+    }
 
     /**
      * Get the Pause Time of this Timer.
-     * @return  the Pause Time of this Timer.
+     *
+     * @return the Pause Time of this Timer.
      */
     public long getPausedTime() {
-        return this.pausedTime; }
+        return this.pausedTime;
+    }
 
     /**
      * Get the current time in seconds.
+     *
      * @return the current time in seconds.
      */
     public long getSeconds() {
         int div = 1000;
-        this.elapsedTime = getTime()/ div ;
+        this.elapsedTime = getTime() / div;
         return elapsedTime;
     }
 
     /**
      * Display current time in seconds.
+     *
      * @return current time in seconds.
      */
     public long displaySeconds() {
-        int div=60;
-        this.elapsedTime = getSeconds() %div;
+        int div = 60;
+        this.elapsedTime = getSeconds() % div;
         return elapsedTime;
     }
 

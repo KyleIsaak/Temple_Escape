@@ -5,14 +5,29 @@ import java.awt.*;
 import java.util.Random;
 
 /**
- * To Draw the object that does not move in the game
+ * To Draw the object that does not move in the game.
  */
 public class DrawDead extends JComponent {
+    /**
+     * the object image info.
+     */
     private Image image;
+    /**
+     * store the object type info.
+     */
     private CellType type;
+    /**
+     * store the object position.
+     */
     private int[] pos;
+    /**
+     * store the object step info.
+     */
     private int step;
 
+    /**
+     * Set the object cell type
+     */
     public enum CellType {
         WALL,
         PATH,
@@ -22,20 +37,22 @@ public class DrawDead extends JComponent {
         REWARDTYPEB,
         EXIT
     }
+
     /**
-     *   color can be set to sprites later on
+     * color can be set to sprites later on
      */
-    public DrawDead(int[] pos, int step, CellType type){
+    public DrawDead(int[] pos, int step, CellType type) {
         this.step = step;
         this.pos = pos.clone();
         this.type = type;
         selectsprite();
     }
+
     /**
      * add a picture to the object base on what objects they are.
      */
-    private void selectsprite(){
-        switch(type){
+    private void selectsprite() {
+        switch (type) {
             case WALL:
                 image = Sprite.gameWall();
                 break;
@@ -51,9 +68,9 @@ public class DrawDead extends JComponent {
             case PATH:
                 Random ran = new Random();
                 int choice = ran.nextInt(5);
-                if (choice <= 3){
+                if (choice <= 3) {
                     image = Sprite.gamePath();
-                } else if (choice == 4){
+                } else if (choice == 4) {
                     image = Sprite.gamePath2();
                 }
                 break;
@@ -69,6 +86,7 @@ public class DrawDead extends JComponent {
                 break;
         }
     }
+
     /**
      * unlock the location graph
      */
@@ -76,70 +94,77 @@ public class DrawDead extends JComponent {
         image = Sprite.gameUnlock();
         repaint();
     }
+
     /**
      * add the wall graph base on the direction of the wall
-     * @param top: the wall on top
-     * @param left: the wall on left
-     * @param down: the wall on down
+     *
+     * @param top:   the wall on top
+     * @param left:  the wall on left
+     * @param down:  the wall on down
      * @param right: the wall on right
      */
-    public void setWallDirection(boolean top, boolean left, boolean down, boolean right){
-        if (top && left && down && right){
+    public void setWallDirection(boolean top, boolean left, boolean down, boolean right) {
+        if (top && left && down && right) {
             image = Sprite.wall_cross();
-        } else if (top && left && down){
+        } else if (top && left && down) {
             image = Sprite.wall_top_right();
-        } else if (top && left && right){
+        } else if (top && left && right) {
             image = Sprite.wall_horizontal();
-        } else if (top && right && down){
+        } else if (top && right && down) {
             image = Sprite.wall_top_left();
-        } else if (right && left && down){
+        } else if (right && left && down) {
             image = Sprite.wall_cross();
-        } else if (top && left){
+        } else if (top && left) {
             image = Sprite.wall_bottom_right();
-        } else if (top && down){
+        } else if (top && down) {
             image = Sprite.wall_top();
-        } else if (top && right){
+        } else if (top && right) {
             image = Sprite.wall_bottom_left();
-        } else if (left && down){
+        } else if (left && down) {
             image = Sprite.wall_top_right();
-        } else if (left && right){
+        } else if (left && right) {
             image = Sprite.wall_horizontal();
-        } else if (right && down){
+        } else if (right && down) {
             image = Sprite.wall_top_left();
-        } else if (top){
+        } else if (top) {
             image = Sprite.wall_down();
-        } else if (left){
+        } else if (left) {
             image = Sprite.wall_right();
-        } else if (right){
+        } else if (right) {
             image = Sprite.wall_left();
-        } else if (down){
+        } else if (down) {
             image = Sprite.wall_top();
-        } else{
+        } else {
             image = Sprite.wall();
         }
     }
+
     /**
      * paint the graphic
+     *
      * @param graphic
      */
-    public void paint (Graphics graphic) {
+    public void paint(Graphics graphic) {
         super.paintComponent(graphic);
         graphic.drawImage(image, this.pos[0] * step + 10, this.pos[1] * step + 50, this);
 
     }
+
     /**
      * get the position
+     *
      * @return the object position
      */
-    public int[] getPosition(){
+    public int[] getPosition() {
         return this.pos.clone();
     }
 
     /**
      * update the cell if there is change
+     *
      * @param type: The object type
      */
-    public void updateCell(CellType type){
+    public void updateCell(CellType type) {
         this.type = type;
         selectsprite();
         repaint();

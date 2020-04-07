@@ -20,6 +20,7 @@ public class Enemy {
 
     /**
      * Set the position of this enemy class
+     *
      * @param position A x,y position in the map for the enemy's current position to set as.
      */
     public void setPosition(int[] position) {
@@ -37,6 +38,7 @@ public class Enemy {
 
     /**
      * Enemy Move Helper Function: Ensure enemy is only moving one step at a time.
+     *
      * @param direction A x,y position on the map that defines the new location that the enemy is moving to.
      * @return true if the enemy is moving by one step from current position vise versa.
      */
@@ -56,8 +58,7 @@ public class Enemy {
         if (nextTo(direction)) {
             this.position[0] = direction[0];
             this.position[1] = direction[1];
-        }
-        else {
+        } else {
             throw new UnsupportedOperationException("ERROR: Enemy not moving by one step. PLease check enemy movement.");
         }
     }

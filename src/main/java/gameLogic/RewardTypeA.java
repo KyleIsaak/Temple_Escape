@@ -13,13 +13,14 @@ public class RewardTypeA extends Reward {
     /**
      * Store the reward type.
      */
-    private  char type = 'A';
+    private char type = 'A';
 
     /**
      * Default Constructor.
      */
     public RewardTypeA() {
-        super(new int[] {0,0}); }
+        super(new int[]{0, 0});
+    }
 
     /**
      * Non Default Constructor.
@@ -31,16 +32,20 @@ public class RewardTypeA extends Reward {
 
     /**
      * Get the value of this reward.
+     *
      * @return the value of this reward.
      */
     public int getRewardAmount() {
-        return this.rewardAmount; }
+        return this.rewardAmount;
+    }
 
     /**
      * Get the type of this Rewards.
+     *
      * @return the type of this rewards which is A (Keys).
      */
     public char getType() {
-        return type; }
+        return type;
+    }
 
 }

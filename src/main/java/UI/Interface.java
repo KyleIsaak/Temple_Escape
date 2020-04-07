@@ -7,11 +7,16 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.util.ArrayList;
+
 /**
- * store the screen the the game will show depend on the situation
+ * store the screen the the game will show depend on the situation.
  */
 public class Interface extends JFrame {
-
+    /**
+     * non-default constructor.
+     *
+     * @param step store how far the charater can move at each time.
+     */
     public Interface(int step) {
         setLayout(null);
         setTitle("Game");
@@ -54,9 +59,9 @@ public class Interface extends JFrame {
     }
 
     /**
-     * create the size of the window pop up when start run the program
+     * create the size of the window pop up when start run the program.
      */
-    private void createWindow(){
+    private void createWindow() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1000, 1000);
         setVisible(true);

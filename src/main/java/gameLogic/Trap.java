@@ -13,29 +13,32 @@ public abstract class Trap {
     /**
      * Default constructor.
      */
-    
-    public Trap(){
-        position = new int[] { 0, 0 };
+
+    public Trap() {
+        position = new int[]{0, 0};
     }
 
     /**
      * Non Default Constructor.
+     *
      * @param position A x,y position for the location of this Trap.
      */
-    public Trap (int[] position) {
+    public Trap(int[] position) {
         this.position = position.clone();
     }
 
     /**
      * Get the current position of this Trap.
+     *
      * @return the current position of this Trap.
      */
-    public int[] getPosition(){
+    public int[] getPosition() {
         return position.clone();
     }
 
     /**
      * Set the current position of this Trap object.
+     *
      * @param position A x,y position for the new location of this Trap.
      */
     public void setPosition(int[] position) {
@@ -44,12 +47,14 @@ public abstract class Trap {
 
     /**
      * Get the damage of this trap.
+     *
      * @return the damage of this trap.
      */
     public abstract int getDamage();
 
     /**
      * Get the type of this Trap.
+     *
      * @return the type of this Trap.
      */
     public abstract char getType();

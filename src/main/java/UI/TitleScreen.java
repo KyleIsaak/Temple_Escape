@@ -9,45 +9,98 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.io.InputStream;
+
 /**
- * Show the information of the title Screen
+ * Show the information of the title Screen.
  */
-public class TitleScreen extends JPanel implements ActionListener{
+public class TitleScreen extends JPanel implements ActionListener {
+    /**
+     * store the button easy info.
+     */
     private Button button_easy;
+    /**
+     * store the button medium info.
+     */
     private Button button_medium;
+    /**
+     * store the button hard info.
+     */
     private Button button_hard;
+    /**
+     * store the button quit info.
+     */
     private Button button_quit;
+    /**
+     * store the button control info.
+     */
     private Button button_control;
+    /**
+     * store the button skin info.
+     */
     private Button button_skin;
 
+    /**
+     * store the misc info.
+     */
     private Misc misc;
+    /**
+     * store the game screen info.
+     */
     private GameScreen gameScreen;
+    /**
+     * store the control info.
+     */
     private ControlScreen control;
+    /**
+     * store the skin screen info.
+     */
     private SkinScreen skinScreen;
+    /**
+     * store the frame info.
+     */
     private JFrame frame;
+    /**
+     * store the name easy as string.
+     */
     private final static String EASY = "EASY";
+    /**
+     * store the name medium as string.
+     */
     private final static String MEDIUM = "MEDIUM";
+    /**
+     * store the name hard as string.
+     */
     private final static String HARD = "HARD";
+    /**
+     * store the name quit as string.
+     */
     private final static String QUIT = "QUIT";
+    /**
+     * store the name control as string.
+     */
     private final static String CONTROL = "CONTROL";
+    /**
+     * store the name skin as string.
+     */
     private final static String SKIN = "SKIN";
 
     /**
-     * Non default Constructor ((Title Screen
-     * @param gameScreen storing the gameScreen info
-     * @param control storing the control info
-     * @param misc storing the misc info
+     * Non default Constructor ((Title Screen)).
+     *
+     * @param gameScreen storing the gameScreen info.
+     * @param control    storing the control info.
+     * @param misc       storing the misc info.
      */
-    public TitleScreen(GameScreen gameScreen, ControlScreen control, Misc misc, JFrame frame){
+    public TitleScreen(GameScreen gameScreen, ControlScreen control, Misc misc, JFrame frame) {
         this.gameScreen = gameScreen;
         this.control = control;
         this.misc = misc;
         this.frame = frame;
         setLayout(null);
 
-        JComponent background = new JComponent(){
+        JComponent background = new JComponent() {
             @Override
-            public void paint(Graphics g){
+            public void paint(Graphics g) {
                 super.paintComponent(g);
                 g.drawImage(new Sprite().titleBackground(), 0, 0, this);
             }
@@ -55,22 +108,25 @@ public class TitleScreen extends JPanel implements ActionListener{
 
         addButton();
         add(background);
-        background.setBounds(0, 0,1000, 1000);
+        background.setBounds(0, 0, 1000, 1000);
 
         setBackground(Color.decode("#483b3a"));
         setFocusable(true);
         setVisible(true);
     }
 
-    public void flipButtons(){
-        if (button_easy.isEnabled()){
+    /**
+     * set/change when flip the buttons.
+     */
+    public void flipButtons() {
+        if (button_easy.isEnabled()) {
             button_quit.setEnabled(false);
             button_easy.setEnabled(false);
             button_control.setEnabled(false);
             button_control.setVisible(false);
             button_hard.setEnabled(false);
             button_medium.setEnabled(false);
-        } else{
+        } else {
             button_quit.setEnabled(true);
             button_easy.setEnabled(true);
             button_control.setEnabled(true);
@@ -84,18 +140,18 @@ public class TitleScreen extends JPanel implements ActionListener{
     public void actionPerformed(ActionEvent actionEvent) {
 
         String listener = actionEvent.getActionCommand();
-        if (listener.equals(EASY)){
+        if (listener.equals(EASY)) {
             gameScreen.setDifficulty(LevelGenerator.Difficulty.EASY);
             enterGame();
-        } else if (listener.equals(MEDIUM)){
+        } else if (listener.equals(MEDIUM)) {
             gameScreen.setDifficulty(LevelGenerator.Difficulty.MEDIUM);
             enterGame();
-        } else if (listener.equals(HARD)){
+        } else if (listener.equals(HARD)) {
             gameScreen.setDifficulty(LevelGenerator.Difficulty.HARD);
             enterGame();
-        } else if (listener.equals(QUIT)){
+        } else if (listener.equals(QUIT)) {
             frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
-        } else if (listener.equals(CONTROL)){
+        } else if (listener.equals(CONTROL)) {
             flipButtons();
             control.setVisible(true);
             control.requestFocus();
@@ -104,9 +160,9 @@ public class TitleScreen extends JPanel implements ActionListener{
     }
 
     /**
-     * Setting before the program Enter the game
+     * Setting before the program Enter the game.
      */
-    private void enterGame(){
+    private void enterGame() {
         gameScreen.setVisible(true);
         gameScreen.requestFocus();
         misc.setVisible(true);
@@ -116,9 +172,9 @@ public class TitleScreen extends JPanel implements ActionListener{
     }
 
     /**
-     * add the button on main screen
+     * add the button on main screen.
      */
-    private void addButton(){
+    private void addButton() {
         button_easy = new Button(EASY, this, true);
         button_medium = new Button(MEDIUM, this, true);
         button_hard = new Button(HARD, this, true);

@@ -4,53 +4,68 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.io.File;
+
 /**
  * Store the details of the background Music
  */
 public class Music {
+    /**
+     * store the clip info.
+     */
     private long clipPosition;
+    /**
+     * store the music pause or not info.
+     */
     private boolean isPause;
+    /**
+     * store the clip info.
+     */
     private Clip clip;
-    void playSound(){
-        try{
+
+    /**
+     * function to play the music.
+     */
+    void playSound() {
+        try {
             String filepath = "src/main/resources/BackgroundMusic.wav";
             File musicFilePath = new File(filepath);
-            if (musicFilePath.exists()){
+            if (musicFilePath.exists()) {
                 AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicFilePath);
                 clip = AudioSystem.getClip();
                 clip.open(audioInput);
                 clip.start();
                 isPause = false;
                 clip.loop(Clip.LOOP_CONTINUOUSLY);
-            }
-            else{
+            } else {
                 System.out.println("Error: Can't find file");
             }
-        }
-        catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
     /**
-     * check the music is pause or not
-     * @return true if the music is pause
+     * check the music is pause or not.
+     *
+     * @return true if the music is pause.
      */
-    public boolean isPause(){ return isPause; }
+    public boolean isPause() {
+        return isPause;
+    }
 
     /**
-     * Set to pause the background music of the game
+     * Set to pause the background music of the game.
      */
-    public void pauseMusic(){
+    public void pauseMusic() {
         clipPosition = clip.getMicrosecondPosition();
         clip.stop();
         isPause = true;
     }
 
     /**
-     * play the music when the player unmute the background music
+     * play the music when the player unmute the background music.
      */
-    public void unPause(){
+    public void unPause() {
         clip.setMicrosecondPosition(clipPosition);
         clip.start();
         isPause = false;

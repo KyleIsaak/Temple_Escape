@@ -8,27 +8,41 @@ import java.awt.event.ActionListener;
 import java.io.InputStream;
 
 /**
- * Store the End Game Screen (show up when game over)
+ * Store the End Game Screen (show up when game over).
  */
 public class EndScreen extends JPanel implements ActionListener {
-
+    /**
+     * store the title screen info.
+     */
     private TitleScreen title;
+    /**
+     * Store the image of game over.
+     */
     private Image image = Sprite.gameOver();
-
+    /**
+     * Store the button info.
+     */
     private static JButton button_score;
+    /**
+     * Store the title name.
+     */
     private final static String TITLE = "TITLE";
+    /**
+     * Store the score name.
+     */
     private final static String SCORE = "ERROR";
 
     /**
-     * Non-Default COnstructor(ENDSCREEN)
-     * @param title shoring the title screen info
+     * Non-Default Constructor(ENDSCREEN).
+     *
+     * @param title shoring the title screen info.
      */
-    public EndScreen(TitleScreen title){
+    public EndScreen(TitleScreen title) {
         this.title = title;
 
-        JComponent background = new JComponent(){
+        JComponent background = new JComponent() {
             @Override
-            public void paint(Graphics g){
+            public void paint(Graphics g) {
                 super.paintComponent(g);
                 g.drawImage(image, 0, 0, this);
             }
@@ -37,15 +51,16 @@ public class EndScreen extends JPanel implements ActionListener {
         setLayout(null);
         addButtons();
         add(background);
-        background.setBounds(0, 0,1000, 1000);
+        background.setBounds(0, 0, 1000, 1000);
 
         setFocusable(true);
         setVisible(false);
     }
+
     /**
-     * Set the button that shows on endScreen
+     * Set the button that shows on endScreen.
      */
-    private void addButtons(){
+    private void addButtons() {
         JButton button_title = new Button(TITLE, this, true);
         button_title.setBounds(450, 500, 80, 50);
 
@@ -54,9 +69,9 @@ public class EndScreen extends JPanel implements ActionListener {
     }
 
     /**
-    * Set the score that shows on endScreen
+     * Set the score that shows on endScreen.
      */
-    public void setScore(int score){
+    public void setScore(int score) {
         //scoreContainer = score;
         button_score.setText("Score: " + String.valueOf(score));
     }
@@ -64,7 +79,7 @@ public class EndScreen extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
         String listener = actionEvent.getActionCommand();
-        if (listener.equals(TITLE)){
+        if (listener.equals(TITLE)) {
             setVisible(false);
             title.setVisible(true);
             title.requestFocus();

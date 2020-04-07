@@ -6,48 +6,156 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 /**
- * Store sprite image of the game
+ * Store sprite image of the game.
  */
 public class Sprite {
+    /**
+     * store the control background image.
+     */
     private static Image controlBackground;
+    /**
+     * store the control error image.
+     */
     private static Image controlError;
+    /**
+     * store the pause background image.
+     */
     private static Image pauseBackground;
+    /**
+     * store the title background image.
+     */
     private static Image titleBackground;
+    /**
+     * store the game wall image.
+     */
     private static Image gameWall;
+    /**
+     * store the spike image.
+     */
     private static Image gameSpike;
+    /**
+     * store the lava image.
+     */
     private static Image gameLava;
+    /**
+     * store the path image.
+     */
     private static Image gamePath;
+    /**
+     * store the path2 image.
+     */
     private static Image gamePath2;
+    /**
+     * store the coin image.
+     */
     private static Image gameCoin;
+    /**
+     * store the key image.
+     */
     private static Image gameKey;
+    /**
+     * store the lock image.
+     */
     private static Image gameLock;
+    /**
+     * store the unlock image.
+     */
     private static Image gameUnlock;
+    /**
+     * store the wall_cross image.
+     */
     private static Image wall_cross;
+    /**
+     * store the wall_top_right image.
+     */
     private static Image wall_top_right;
+    /**
+     * store the wall_horizontal image.
+     */
     private static Image wall_horizontal;
+    /**
+     * store the wall_top_left image.
+     */
     private static Image wall_top_left;
+    /**
+     * store the wall_bottom_right image.
+     */
     private static Image wall_bottom_right;
+    /**
+     * store the wall_top image.
+     */
     private static Image wall_top;
+    /**
+     * store the wall_bottom_left image.
+     */
     private static Image wall_bottom_left;
+    /**
+     * store the wall image.
+     */
     private static Image wall;
+    /**
+     * store the wall_down image.
+     */
     private static Image wall_down;
+    /**
+     * store the wall_right image.
+     */
     private static Image wall_right;
+    /**
+     * store the wall_left image.
+     */
     private static Image wall_left;
+    /**
+     * store the player_up image.
+     */
     private static Image player_up;
+    /**
+     * store the player_left image.
+     */
     private static Image player_left;
+    /**
+     * store the player_right image.
+     */
     private static Image player_right;
+    /**
+     * store the player_down image.
+     */
     private static Image player_down;
+    /**
+     * store the player_blue_up image.
+     */
     private static Image player_blue_up;
+    /**
+     * store the player_blue_left image.
+     */
     private static Image player_blue_left;
+    /**
+     * store the player_blue_right image.
+     */
     private static Image player_blue_right;
+    /**
+     * store the player_blue_down image.
+     */
     private static Image player_blue_down;
+    /**
+     * store the enemy_right image.
+     */
     private static Image enemy_right;
+    /**
+     * store the gameOver image.
+     */
     private static Image gameOver;
+    /**
+     * store the next image.
+     */
     private static Image next;
+    /**
+     * store the skin image.
+     */
     private static Image skin;
 
     /**
-     * Default Constructor
+     * Default Constructor.
      */
     static {
         try {
@@ -88,107 +196,311 @@ public class Sprite {
             gameOver = ImageIO.read(read("/gameOver.png"));
             next = ImageIO.read(read("/next.png"));
             skin = ImageIO.read(read("/skin.png"));
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private static InputStream read(String file){
+    /**
+     * get the input stream.
+     *
+     * @param file file name.
+     * @return the resources.
+     */
+    private static InputStream read(String file) {
         return Main.class.getResourceAsStream(file);
     }
 
-    public static Image controlBackground(){return controlBackground;}
-    public static Image controlError(){return controlError;}
-    public static Image pauseBackground(){return pauseBackground;}
-    public static Image titleBackground(){return titleBackground;}
+    /**
+     * getter.
+     *
+     * @return control background image.
+     */
+    public static Image controlBackground() {
+        return controlBackground;
+    }
+
+    /**
+     * getter.
+     *
+     * @return control error image.
+     */
+    public static Image controlError() {
+        return controlError;
+    }
+
+    /**
+     * getter.
+     *
+     * @return pause background image.
+     */
+    public static Image pauseBackground() {
+        return pauseBackground;
+    }
+
+    /**
+     * getter.
+     *
+     * @return title background image.
+     */
+    public static Image titleBackground() {
+        return titleBackground;
+    }
+
+    /**
+     * getter.
+     *
+     * @return game wall image.
+     */
     public static Image gameWall() {
         return gameWall;
     }
+
+    /**
+     * getter.
+     *
+     * @return game spike image.
+     */
     public static Image gameSpike() {
         return gameSpike;
     }
+
+    /**
+     * getter.
+     *
+     * @return game lava image.
+     */
     public static Image gameLava() {
         return gameLava;
     }
+
+    /**
+     * getter.
+     *
+     * @return game path image.
+     */
     public static Image gamePath() {
         return gamePath;
     }
+
+    /**
+     * getter.
+     *
+     * @return game path2 image.
+     */
     public static Image gamePath2() {
         return gamePath2;
     }
+
+    /**
+     * getter.
+     *
+     * @return game coin image.
+     */
     public static Image gameCoin() {
         return gameCoin;
     }
+
+    /**
+     * getter.
+     *
+     * @return game key image.
+     */
     public static Image gameKey() {
         return gameKey;
     }
+
+    /**
+     * getter.
+     *
+     * @return game lock image.
+     */
     public static Image gameLock() {
         return gameLock;
     }
+
+    /**
+     * getter.
+     *
+     * @return game unlock image.
+     */
     public static Image gameUnlock() {
         return gameUnlock;
     }
+
+    /**
+     * getter.
+     *
+     * @return wall_cross image.
+     */
     public static Image wall_cross() {
         return wall_cross;
     }
+
+    /**
+     * getter.
+     *
+     * @return wall_top_right image.
+     */
     public static Image wall_top_right() {
         return wall_top_right;
     }
+
+    /**
+     * getter.
+     *
+     * @return wall_horizontal image.
+     */
     public static Image wall_horizontal() {
         return wall_horizontal;
     }
+
+    /**
+     * getter.
+     *
+     * @return wall_top_left image.
+     */
     public static Image wall_top_left() {
         return wall_top_left;
     }
+
+    /**
+     * getter.
+     *
+     * @return wall_bottom_right image.
+     */
     public static Image wall_bottom_right() {
         return wall_bottom_right;
     }
+
+    /**
+     * getter.
+     *
+     * @return wall_top image.
+     */
     public static Image wall_top() {
         return wall_top;
     }
+
+    /**
+     * getter.
+     *
+     * @return wall_bottom_left image.
+     */
     public static Image wall_bottom_left() {
         return wall_bottom_left;
     }
+
+    /**
+     * getter.
+     *
+     * @return wall image.
+     */
     public static Image wall() {
         return wall;
     }
+
+    /**
+     * getter.
+     *
+     * @return wall_down image.
+     */
     public static Image wall_down() {
         return wall_down;
     }
+
+    /**
+     * getter.
+     *
+     * @return wall_right image.
+     */
     public static Image wall_right() {
         return wall_right;
     }
+
+    /**
+     * getter.
+     *
+     * @return wall_left image.
+     */
     public static Image wall_left() {
         return wall_left;
     }
+
+    /**
+     * getter.
+     *
+     * @return player_right image.
+     */
     public static Image player_right(int color) {
-        switch(color){
+        switch (color) {
             case 1:
                 return player_blue_right;
             default:
                 return player_right;
         }
     }
+
+    /**
+     * getter.
+     *
+     * @return player_up image.
+     */
     public static Image player_up() {
         return player_up;
     }
+
+    /**
+     * getter.
+     *
+     * @return player_left image.
+     */
     public static Image player_left() {
         return player_left;
     }
+
+    /**
+     * getter.
+     *
+     * @return player_down image.
+     */
     public static Image player_down() {
         return player_down;
     }
 
+    /**
+     * getter.
+     *
+     * @return enemy_right image.
+     */
     public static Image enemy_right() {
         return enemy_right;
     }
+
+    /**
+     * getter.
+     *
+     * @return gameOver image.
+     */
     public static Image gameOver() {
         return gameOver;
     }
-    public static Image next(){
+
+    /**
+     * getter.
+     *
+     * @return next image.
+     */
+    public static Image next() {
         return next;
     }
-    public static Image skin(){
+
+    /**
+     * getter.
+     *
+     * @return skin image.
+     */
+    public static Image skin() {
         return skin;
     }
 

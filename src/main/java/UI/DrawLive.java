@@ -4,15 +4,28 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Draw the moving object in the game
+ * Draw the moving object in the game.
  */
 public class DrawLive extends JComponent {
-    private Image image;
-    private CellType type;
-    private int[] pos;
-    private int step;
     /**
-     * There are two moving object in the game: player and enemies
+     * the object image info.
+     */
+    private Image image;
+    /**
+     * store the object type info.
+     */
+    private CellType type;
+    /**
+     * store the object position.
+     */
+    private int[] pos;
+    /**
+     * store the object step info.
+     */
+    private int step;
+
+    /**
+     * There are two moving object in the game: player and enemies.
      */
     public enum CellType {
         PLAYER,
@@ -20,9 +33,9 @@ public class DrawLive extends JComponent {
     }
 
     /**
-     * sprites can be set to sprites later on
+     * sprites can be set to sprites later on.
      */
-    public DrawLive(int[] pos, int step, CellType type){
+    public DrawLive(int[] pos, int step, CellType type) {
         this.step = step;
         this.pos = pos.clone();
         this.type = type;
@@ -30,10 +43,10 @@ public class DrawLive extends JComponent {
     }
 
     /**
-     * add the graph to the object base on the type of that object
+     * add the graph to the object base on the type of that object.
      */
-    private void selectSprite(){
-        switch(type){
+    private void selectSprite() {
+        switch (type) {
             case PLAYER:
                 image = Sprite.player_right(0);
                 break;
@@ -44,36 +57,41 @@ public class DrawLive extends JComponent {
     }
 
     /**
-     * set the graph of the player based on its direction
+     * set the graph of the player based on its direction.
      */
-    public void setPlayerUP(){
+    public void setPlayerUP() {
         image = Sprite.player_up();
     }
-    public void setPlayerLEFT(){
+
+    public void setPlayerLEFT() {
         image = Sprite.player_left();
     }
-    public void setPlayerRIGHT(){
+
+    public void setPlayerRIGHT() {
         image = Sprite.player_right(0);
     }
-    public void setPlayerDOWN(){
+
+    public void setPlayerDOWN() {
         image = Sprite.player_down();
     }
 
     /**
-     * update the graph position when the object move
-     * @param pos: the new location of
+     * update the graph position when the object move.
+     *
+     * @param pos: the new location of the object.
      */
-    public void setNewPosition(int[] pos){
+    public void setNewPosition(int[] pos) {
         this.pos = pos.clone();
         System.out.println(image.getSource());
         repaint();
     }
 
     /**
-     * Paint the graphic
-     * @param graphic: graphic of the object
+     * Paint the graphic.
+     *
+     * @param graphic: graphic of the object.
      */
-    public void paint (Graphics graphic) {
+    public void paint(Graphics graphic) {
         super.paintComponent(graphic);
         graphic.drawImage(image, this.pos[0] * step + 10, this.pos[1] * step + 42, this);
 
