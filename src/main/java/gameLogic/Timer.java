@@ -2,9 +2,11 @@ package gameLogic;
 
 /**
  * Manages the game timer
- * To get different time formats (minutes, seconds, or milliseconds elapsed) use the corresponding getter method.
+ * To get different time formats (minutes, seconds,
+ * or milliseconds elapsed) use the corresponding getter method.
  */
 public class Timer {
+    
     private long startTime;
     private long elapsedTime;
     private long pausedTime;

@@ -26,33 +26,45 @@ public class BoardArrayManager {
      * Get the Trap Array Manager for this BoardArrayManager Class
      * @return this BoardArrayManager class's Trap Array Manager
      */
-    public ArrayList<Trap> getTrapArrayManager(){ return trapArrayManager;}
+    public ArrayList<Trap> getTrapArrayManager(){
+        return trapArrayManager;
+    }
     /**
      * Get the Reward Array Manager for this BoardArrayManager Class
      * @return this BoardArrayManager class's Reward Array Manager
      */
-    public ArrayList<Reward> getRewardArrayManager(){ return rewardArrayManager;}
+    public ArrayList<Reward> getRewardArrayManager(){
+        return rewardArrayManager;
+    }
     /**
      * Get the Enemy Array Manager for this BoardArrayManager Class
      * @return this BoardArrayManager class's Enemy Array Manager
      */
-    public ArrayList<Enemy> getEnemyArrayManager(){ return enemyArrayManager;}
+    public ArrayList<Enemy> getEnemyArrayManager(){
+        return enemyArrayManager;
+    }
     /**
      * Get the exit object for this BoardArrayManager Class
      * @return this BoardArrayManager class's exit
      */
-    public Exit getExit(){ return exit;}
+    public Exit getExit(){
+        return exit;
+    }
     /**
      * Get the board object for this BoardArrayManager Class
      * @return this BoardArrayManager class's board class
      */
-    public int[][] getBoard(){ return board;}
+    public int[][] getBoard(){
+        return board;
+    }
     /**
      * Get the ith index's Enemy's position from the Enemy Array
      * @param i index of the Enemy located in the array
      * @return the ith index's Enemy's position from the Enemy Array
      */
-    public int[] getEnemyPos(int i){ return enemyArrayManager.get(i).getPosition(); }
+    public int[] getEnemyPos(int i){
+        return enemyArrayManager.get(i).getPosition();
+    }
 
     /**
      * Check whether that position consists a wall
@@ -61,7 +73,9 @@ public class BoardArrayManager {
      * @param y An integer for the y position
      * @return true if that position contains a wall and vise versa.
      */
-    public boolean isWall(int x, int y){ return board[x][y] == 0; }
+    public boolean isWall(int x, int y){
+        return board[x][y] == 0;
+    }
 
     /**
      * Check whether that location on the map is the exit
@@ -69,7 +83,9 @@ public class BoardArrayManager {
      * @param y An integer for the y position
      * @return true when the location is the exit.
      */
-    public boolean isExit(int x, int y){ return exit.getPosition()[0] == x && exit.getPosition()[1] == y; }
+    public boolean isExit(int x, int y){
+        return exit.getPosition()[0] == x && exit.getPosition()[1] == y;
+    }
 
     /**
      * Check whether that location on the map is inside the boundary of the game play area.
@@ -77,7 +93,9 @@ public class BoardArrayManager {
      * @param y An integer for the y position
      * @return true when the location is inside the boundary and vise versa.
      */
-    public boolean isInBounds(int x, int y) { return (x >= 0 && x < 27 && y >= 0 && y < 27); }
+    public boolean isInBounds(int x, int y) {
+        return (x >= 0 && x < 27 && y >= 0 && y < 27);
+    }
 
     /**
      *
@@ -100,6 +118,7 @@ public class BoardArrayManager {
             case "Enemy" :
                 isFound = enemyFinder.isObject(x, y, enemyArrayManager);
                 break;
+            default:
         }
         return isFound;
     }
@@ -123,6 +142,7 @@ public class BoardArrayManager {
             case "Enemy" :
                 index = enemyFinder.objectFinder(x, y, enemyArrayManager);
                 break;
+            default:
         }
         return index;
     }
