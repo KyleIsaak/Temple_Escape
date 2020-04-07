@@ -1,30 +1,30 @@
 package gameLogic;
 
 /**
- * Manages the game timer
+ * Manages the game timer.
  * To get different time formats (minutes, seconds,
  * or milliseconds elapsed) use the corresponding getter method.
  */
 public class Timer {
 
     /**
-     * store the start time
+     * store the start time.
      */
     private long startTime;
     /**
-     * store the elasped time
+     * store the elasped time.
      */
     private long elapsedTime;
     /**
-     * store the paused time
+     * store the paused time.
      */
     private long pausedTime;
     /**
-     * store the start paused time
+     * store the start paused time.
      */
     private long startPausedTime;
     /**
-     * store the end paused time
+     * store the end paused time.
      */
     private long endPausedTime;
 
@@ -61,13 +61,15 @@ public class Timer {
      * Get the Start Time of this Timer.
      * @return the Start Time of this Timer.
      */
-    public long getStartTime() { return this.startTime; }
+    public long getStartTime() {
+        return this.startTime; }
 
     /**
      * Get the Pause Time of this Timer.
      * @return  the Pause Time of this Timer.
      */
-    public long getPausedTime() { return  this.pausedTime; }
+    public long getPausedTime() {
+        return this.pausedTime; }
 
     /**
      * Get the current time in seconds.
@@ -90,14 +92,14 @@ public class Timer {
     }
 
     /**
-     * Pause this timer
+     * Pause this timer.
      */
     public void pauseTimer() {
         this.startPausedTime = System.currentTimeMillis();
     }
 
     /**
-     * Resume this timer
+     * Resume this timer.
      */
     public void resumeTimer() {
         this.endPausedTime = System.currentTimeMillis();
