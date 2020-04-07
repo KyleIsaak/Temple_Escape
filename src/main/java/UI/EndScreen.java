@@ -15,7 +15,6 @@ public class EndScreen extends JPanel implements ActionListener {
     private TitleScreen title;
     private Image image;
 
-    private JButton button_title;
     private final String TITLE = "TITLE";
 
     private static JButton button_score;
@@ -54,7 +53,7 @@ public class EndScreen extends JPanel implements ActionListener {
      * Set the button that shows on endScreen
      */
     private void addButtons(){
-        button_title = new Button(TITLE, this, true);
+        JButton button_title = new Button(TITLE, this, true);
         button_title.setBounds(450, 500, 80, 50);
 
         button_score = new Button(SCORE, this, false);

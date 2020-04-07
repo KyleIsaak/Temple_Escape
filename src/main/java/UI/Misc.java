@@ -45,7 +45,7 @@ public class Misc extends JPanel implements ActionListener {
         button_TxtTime = new Button(TIME, this, false);
         button_time = new Button("000", this, false);
 
-        button_pause.setVisible(false);
+//        button_pause.setVisible(false);
         button_pause.setBounds(0, 50, 100, 40);
         button_TxtScore.setBounds(0, 120, 100, 40);
         button_score.setBounds(0, 160, 100, 40);
@@ -63,6 +63,7 @@ public class Misc extends JPanel implements ActionListener {
      */
     public void setPause(boolean visible){
         button_pause.setVisible(visible);
+        button_pause.setEnabled(visible);
     }
     public static int getScoreContainer() {return scoreContainer; }
 
@@ -103,6 +104,7 @@ public class Misc extends JPanel implements ActionListener {
         String listener = actionEvent.getActionCommand();
         if (listener.equals(PAUSE)){
             gameScreen.getBoard().getTimer().pauseTimer();
+            button_pause.setEnabled(false);
             pauseScreen.requestFocus();
             pauseScreen.setVisible(true);
 
