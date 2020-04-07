@@ -5,6 +5,9 @@ package gameLogic;
  * Uses Factory Method for different kind of traps.
  */
 public abstract class Trap {
+    /**
+     * Store trap position.
+     */
     private int[] position;
 
     /**
@@ -16,7 +19,7 @@ public abstract class Trap {
     }
 
     /**
-     * Non Default Constructor
+     * Non Default Constructor.
      * @param position A x,y position for the location of this Trap.
      */
     public Trap (int[] position) {
@@ -25,14 +28,14 @@ public abstract class Trap {
 
     /**
      * Get the current position of this Trap.
-     * @return the current position of this Trap
+     * @return the current position of this Trap.
      */
     public int[] getPosition(){
         return position.clone();
     }
 
     /**
-     * Set the current position of this Trap object
+     * Set the current position of this Trap object.
      * @param position A x,y position for the new location of this Trap.
      */
     public void setPosition(int[] position) {
