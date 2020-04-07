@@ -38,14 +38,14 @@ Install java JDK and update path variable.
 
 [Download](https://www.jetbrains.com/idea/) and install IntelliJ IDEA
 ```
-Follow promts in the installer to set up your IDE
+Follow prompts in the installer to set up your IDE
 ```
 
 Open the pom.xml file as a project using intelliJ to edit the project.
 
 ## Running the tests
 
-All of the tests can be run using the command
+All the tests can be run using the command
 
 ```
 mvn test
@@ -78,6 +78,7 @@ Example from ScoreTest:
 * **Kyle Isaak** - [kisaak@sfu.ca](mailto:kisaak@sfu.ca?subject=[Temple%20Runner])
 * **Jocelyn Gau** - [jgau@sfu.ca](mailto:jgau@sfu.ca?subject=[Temple%20Runner])
 * **Alex Chou** - [hontatc@sfu.ca](mailto:hontatc@sfu.ca?subject=[Temple%20Runner])
+* **Jason Tan** - [jytan@sfu.ca](mailto:jytan@sfu.ca?subject=[Temple%20Runner])
 
 ## License
 

@@ -50,7 +50,8 @@ public class DrawLive extends JComponent {
         image = Sprite.player_up();
     }
     public void setPlayerLEFT(){
-        image = Sprite.player_left(); }
+        image = Sprite.player_left();
+    }
     public void setPlayerRIGHT(){
         image = Sprite.player_right(0);
     }
