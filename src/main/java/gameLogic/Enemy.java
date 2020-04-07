@@ -4,6 +4,9 @@ package gameLogic;
  * Represents the enemy that chases the player in the game.
  */
 public class Enemy {
+    /**
+     * Store Enemy position
+     */
     private int[] position;
 
     /**
@@ -12,7 +15,7 @@ public class Enemy {
      * @param position A x,y position on the Map
      */
     public Enemy(int[] position) {
-        this.position = position;
+        this.position = position.clone();
     }
 
     /**
@@ -20,7 +23,7 @@ public class Enemy {
      * @param position A x,y position in the map for the enemy's current position to set as.
      */
     public void setPosition(int[] position) {
-        this.position = position;
+        this.position = position.clone();
     }
 
     /**
@@ -29,7 +32,7 @@ public class Enemy {
      * @return this enemy object's current position
      */
     public int[] getPosition() {
-        return this.position;
+        return this.position.clone();
     }
 
     /**
@@ -37,7 +40,7 @@ public class Enemy {
      * @param direction A x,y position on the map that defines the new location that the enemy is moving to.
      * @return true if the enemy is moving by one step from current position vise versa.
      */
-    private boolean nextTo(int[] direction){
+    private boolean nextTo(int[] direction) {
         return (direction[0] == position[0] + 1 && direction[1] == position[1]) || (direction[0] == position[0] - 1 && direction[1] == position[1]) || (direction[0] == position[0] && direction[1] == position[1] + 1) || (direction[0] == position[0] && direction[1] == position[1] - 1);
     }
 

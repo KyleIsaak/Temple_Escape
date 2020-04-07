@@ -20,7 +20,7 @@ public abstract class Trap {
      * @param position A x,y position for the location of this Trap.
      */
     public Trap (int[] position) {
-        this.position = position;
+        this.position = position.clone();
     }
 
     /**
@@ -28,7 +28,7 @@ public abstract class Trap {
      * @return the current position of this Trap
      */
     public int[] getPosition(){
-        return position;
+        return position.clone();
     }
 
     /**
@@ -36,7 +36,7 @@ public abstract class Trap {
      * @param position A x,y position for the new location of this Trap.
      */
     public void setPosition(int[] position) {
-        this.position = position;
+        this.position = position.clone();
     }
 
     /**
