@@ -41,7 +41,10 @@ public class Enemy {
      * @return true if the enemy is moving by one step from current position vise versa.
      */
     private boolean nextTo(int[] direction) {
-        return (direction[0] == position[0] + 1 && direction[1] == position[1]) || (direction[0] == position[0] - 1 && direction[1] == position[1]) || (direction[0] == position[0] && direction[1] == position[1] + 1) || (direction[0] == position[0] && direction[1] == position[1] - 1);
+        return (direction[0] == position[0] + 1 && direction[1] == position[1])
+                || (direction[0] == position[0] - 1 && direction[1] == position[1])
+                || (direction[0] == position[0] && direction[1] == position[1] + 1)
+                || (direction[0] == position[0] && direction[1] == position[1] - 1);
     }
 
     /**
