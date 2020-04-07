@@ -17,7 +17,8 @@ public class TrapTypeA extends Trap {
     /**
      * Default Constructor.
      */
-    public TrapTypeA() { super(new int[] {0,0}); }
+    public TrapTypeA() {
+        super(new int[] {0,0}); }
 
     /**
      * Non Default Constructor.
@@ -30,12 +31,14 @@ public class TrapTypeA extends Trap {
      * Get the damage of this trap.
      * @return the damage of this trap.
      */
-    public int getDamage() { return damage; }
+    public int getDamage() {
+        return damage; }
 
     /**
      * Get the type of this Trap which is A (Spikes).
      * @return the type of this Trap which is A (Spikes).
      */
-    public char getType() { return type; }
+    public char getType() {
+        return type; }
 
 }
