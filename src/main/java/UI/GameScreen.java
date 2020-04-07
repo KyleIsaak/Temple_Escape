@@ -123,6 +123,8 @@ public class GameScreen extends JPanel {
      */
     public void setDifficulty(LevelGenerator.Difficulty mode){
         this.mode = mode;
+        Misc.setCurrentLevel(1);
+        Misc.setScore(100);
         startGame();
     }
 
