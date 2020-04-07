@@ -12,7 +12,7 @@ public class Enemy {
      * @param position A x,y position on the Map
      */
     public Enemy(int[] position) {
-        this.position = position;
+        this.position = position.clone();
     }
 
     /**
@@ -20,7 +20,7 @@ public class Enemy {
      * @param position A x,y position in the map for the enemy's current position to set as.
      */
     public void setPosition(int[] position) {
-        this.position = position;
+        this.position = position.clone();
     }
 
     /**
@@ -29,7 +29,7 @@ public class Enemy {
      * @return this enemy object's current position
      */
     public int[] getPosition() {
-        return this.position;
+        return this.position.clone();
     }
 
     /**
