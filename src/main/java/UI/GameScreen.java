@@ -433,6 +433,13 @@ public class GameScreen extends JPanel {
             }
 
             for(int i = 0; i < Math.min(Misc.getCurrentLevel(), 3); i++) {
+                if(board.isGameOver(board.getBoardArrayManager().getEnemyArrayManager().get(i))) {
+                    setVisible(false);
+                    misc.setPause(false);
+                    endScreen.setScore(board.getScore().getScore());
+                    endScreen.setVisible(true);
+                    endScreen.requestFocus();
+                }
                 board.chaseThePlayer(board.getBoardArrayManager().getEnemyArrayManager().get(i));
                 if(board.isGameOver(board.getBoardArrayManager().getEnemyArrayManager().get(i))) {
                     setVisible(false);
