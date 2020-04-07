@@ -1,7 +1,9 @@
 package gameLogic;
 
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
+
 import java.util.concurrent.TimeUnit;
 
 class TimerTest {
@@ -15,8 +17,7 @@ class TimerTest {
         //TimeUnit.SECONDS.sleep(delay);
         try {
             TimeUnit.SECONDS.sleep(3);
-        } catch (InterruptedException ie)
-        {
+        } catch (InterruptedException ie) {
             Thread.currentThread().interrupt();
         }
         long testTime = timer.getSeconds();
@@ -35,8 +36,7 @@ class TimerTest {
 
         try {
             TimeUnit.SECONDS.sleep(3);
-        } catch (InterruptedException ie)
-        {
+        } catch (InterruptedException ie) {
             Thread.currentThread().interrupt();
         }
 
@@ -44,8 +44,7 @@ class TimerTest {
 
         try {
             TimeUnit.SECONDS.sleep(2);
-        } catch (InterruptedException ie)
-        {
+        } catch (InterruptedException ie) {
             Thread.currentThread().interrupt();
         }
 

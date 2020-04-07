@@ -7,14 +7,14 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 public class PlayerTest {
 
     @Test
-    void getPosition(){
+    void getPosition() {
         int[] init = {1, 1};
         Player player = new Player(init);
         assertArrayEquals(init, player.getPosition());
     }
 
     @Test
-    void moveUp(){
+    void moveUp() {
         int[] init = {1, 1};
         int[] moved = {1, 0};
         Player player = new Player(init);
@@ -23,7 +23,7 @@ public class PlayerTest {
     }
 
     @Test
-    void moveLeft(){
+    void moveLeft() {
         int[] init = {1, 1};
         int[] moved = {0, 1};
         Player player = new Player(init);
@@ -32,7 +32,7 @@ public class PlayerTest {
     }
 
     @Test
-    void moveRight(){
+    void moveRight() {
         int[] init = {1, 1};
         int[] moved = {2, 1};
         Player player = new Player(init);
@@ -41,7 +41,7 @@ public class PlayerTest {
     }
 
     @Test
-    void moveDown(){
+    void moveDown() {
         int[] init = {1, 1};
         int[] moved = {1, 2};
         Player player = new Player(init);

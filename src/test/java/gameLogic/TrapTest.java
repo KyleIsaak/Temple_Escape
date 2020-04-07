@@ -1,23 +1,24 @@
 package gameLogic;
 
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class TrapTest {
 
     @Test
     void getPosition() {
-        int[] test={1,1};
+        int[] test = {1, 1};
         Trap trapA = new TrapTypeA(test);
         Trap trapB = new TrapTypeB(test);
 
-        assertArrayEquals(test,trapA.getPosition());
-        assertArrayEquals(test,trapB.getPosition());
+        assertArrayEquals(test, trapA.getPosition());
+        assertArrayEquals(test, trapB.getPosition());
     }
 
     @Test
     public void getDamage() {
-        Trap trapA =new TrapTypeA();
+        Trap trapA = new TrapTypeA();
         Trap trapB = new TrapTypeB();
 
         int testTrapAmount = 150;
@@ -29,8 +30,8 @@ class TrapTest {
 
     @Test
     void setPosition() {
-        int[] test={1,1};
-        int[] testSetPosition={0,0};
+        int[] test = {1, 1};
+        int[] testSetPosition = {0, 0};
 
         Trap trapA = new TrapTypeA(test);
         Trap trapB = new TrapTypeA(test);
