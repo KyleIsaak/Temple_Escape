@@ -77,6 +77,7 @@ Example from ScoreTest:
 
 * **Kyle Isaak** - [kisaak@sfu.ca](mailto:kisaak@sfu.ca?subject=[Temple%20Runner])
 * **Jocelyn Gau** - [jgau@sfu.ca](mailto:jgau@sfu.ca?subject=[Temple%20Runner])
+* **Alex Chou** - [hontatc@sfu.ca](mailto:hontatc@sfu.ca?subject=[Temple%20Runner])
 
 ## License
 
