@@ -11,10 +11,10 @@ import java.io.InputStream;
  * Storing the nextScreen Info
  */
 public class NextScreen extends JPanel implements ActionListener {
-    GameScreen gameScreen;
-    InputStream inputStream;
-    Image image;
-    String NEXT = "Continue";
+    private GameScreen gameScreen;
+    private InputStream inputStream;
+    private Image image;
+    private String NEXT = "Continue";
 
     JButton button_resume;
 

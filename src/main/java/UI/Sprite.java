@@ -42,7 +42,7 @@ public class Sprite {
     /**
      * Default Constructor
      */
-    public Sprite(){
+    static {
         try {
             controlBackground = ImageIO.read(read("/control.png"));
             controlError = ImageIO.read(read("/control_error.png"));
