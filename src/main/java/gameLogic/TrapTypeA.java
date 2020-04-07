@@ -9,9 +9,16 @@ public class TrapTypeA extends Trap {
     private  char type = 'A';
 
     /**
-     * Default Constructor
+     * Default Constructor.
      */
     public TrapTypeA() { super(new int[] {0,0}); }
+
+    /**
+     * Non Default Constructor
+     */
+    public TrapTypeA(int[] pos) {
+        this.setPosition(pos);
+    }
 
     /**
      * Get the damage of this trap.
