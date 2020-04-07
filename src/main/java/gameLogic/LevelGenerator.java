@@ -17,8 +17,8 @@ public class LevelGenerator {
     private Stack<Integer> unvisitY;
     private ArrayList<Integer> neighborX;
     private ArrayList<Integer> neighborY;
-    private final int WALL = 0;
-    private final int PATH = 1;
+    private final static int WALL = 0;
+    private final static int PATH = 1;
 
     public static void main(String[] args){
         LevelGenerator test = new LevelGenerator(27, 27);
@@ -119,13 +119,17 @@ public class LevelGenerator {
      * @param y An integer for the y position
      * @return true if that position contains a wall and vise versa.
      */
-    public boolean isWall(int x, int y){ return board[x][y] == WALL; }
+    public boolean isWall(int x, int y){
+        return board[x][y] == WALL;
+    }
 
     /**
      * Get the board of this class
      * @return the board of this class
      */
-    public int[][] getBoard(){ return board; }
+    public int[][] getBoard(){
+        return board.clone();
+    }
 
     /**
      * Helper Function for generate() function.

@@ -13,12 +13,11 @@ import java.io.InputStream;
 public class EndScreen extends JPanel implements ActionListener {
 
     private TitleScreen title;
-    private Image image;
-
-    private final String TITLE = "TITLE";
+    private Image image = Sprite.gameOver();
 
     private static JButton button_score;
-    private final String SCORE = "ERROR";
+    private final static String TITLE = "TITLE";
+    private final static String SCORE = "ERROR";
 
     /**
      * Non-Default COnstructor(ENDSCREEN)
@@ -26,12 +25,6 @@ public class EndScreen extends JPanel implements ActionListener {
      */
     public EndScreen(TitleScreen title){
         this.title = title;
-        InputStream inputStream = PauseScreen.class.getResourceAsStream("/gameOver.png");
-        try {
-            image = ImageIO.read(inputStream);
-        } catch (Exception e){
-            e.printStackTrace();
-        }
 
         JComponent background = new JComponent(){
             @Override

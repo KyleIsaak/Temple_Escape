@@ -11,19 +11,25 @@ public abstract class Trap {
      * Non Default Constructor
      * @param position A x,y position for the location of this Trap.
      */
-    public Trap (int[] position) { this.position = position; }
+    public Trap (int[] position) {
+        this.position = position.clone();
+    }
 
     /**
      * Get the current position of this Trap.
      * @return the current position of this Trap
      */
-    public int[] getPosition(){ return position; }
+    public int[] getPosition(){
+        return position.clone();
+    }
 
     /**
      * Set the current position of this Trap object
      * @param position A x,y position for the new location of this Trap.
      */
-    public void setPosition(int[] position) { this.position = position; }
+    public void setPosition(int[] position) {
+        this.position = position.clone();
+    }
 
     /**
      * Get the damage of this trap.

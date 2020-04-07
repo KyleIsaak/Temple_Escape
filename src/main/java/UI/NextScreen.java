@@ -13,19 +13,12 @@ import java.io.InputStream;
 public class NextScreen extends JPanel implements ActionListener {
     private GameScreen gameScreen;
     private InputStream inputStream;
-    private Image image;
+    private Image image = Sprite.next();
     private String NEXT = "Continue";
 
     JButton button_resume;
 
     public NextScreen(){
-        inputStream = NextScreen.class.getResourceAsStream("/next.png");
-        try {
-            image = ImageIO.read(inputStream);
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-
         button_resume = new Button(NEXT, this, true);
 
         JComponent background = new JComponent(){

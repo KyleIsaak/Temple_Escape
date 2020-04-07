@@ -112,7 +112,7 @@ public class Misc extends JPanel implements ActionListener {
      * set CurrentLevel
      * @param currentLevel: game current level
      */
-    public static void setCurrentLevel(int currentLevel) {
+    public void setCurrentLevel(int currentLevel) {
         Misc.currentLevel = currentLevel;
     }
 }

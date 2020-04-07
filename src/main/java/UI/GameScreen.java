@@ -5,13 +5,8 @@ import gameLogic.LevelGenerator;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.util.ArrayList;
 /**
  * Storing the information when the program.
@@ -33,8 +28,7 @@ public class GameScreen extends JPanel {
     private LevelGenerator.Difficulty mode;
     private Board board;
     private int[][] map;
-    private static Music music;
-    private boolean despawnTraps = true;
+    private  Music music;
     private boolean isReleased = true;
 
     private JPanel nextScreen;
@@ -123,8 +117,8 @@ public class GameScreen extends JPanel {
      */
     public void setDifficulty(LevelGenerator.Difficulty mode){
         this.mode = mode;
-        Misc.setCurrentLevel(1);
-        Misc.setScore(100);
+        misc.setCurrentLevel(1);
+        misc.setScore(100);
         startGame();
     }
 
@@ -146,10 +140,10 @@ public class GameScreen extends JPanel {
         this.map = board.getBoardArrayManager().getBoard();
 
 
-        player = new DrawLive(board.getPlayerPos(), step, DrawLive.cellType.PLAYER);
-        exit = new DrawDead(board.getBoardArrayManager().getExit().getPosition(), step, DrawDead.cellType.EXIT);
+        player = new DrawLive(board.getPlayerPos(), step, DrawLive.CellType.PLAYER);
+        exit = new DrawDead(board.getBoardArrayManager().getExit().getPosition(), step, DrawDead.CellType.EXIT);
         for(int i = 0; i < Math.min(Misc.getCurrentLevel(), 3); i++) {
-            enemy = new DrawLive(board.getBoardArrayManager().getEnemyPos(i), step, DrawLive.cellType.ENEMY);
+            enemy = new DrawLive(board.getBoardArrayManager().getEnemyPos(i), step, DrawLive.CellType.ENEMY);
             add(enemy);
         }
 
@@ -183,10 +177,10 @@ public class GameScreen extends JPanel {
         this.map = board.getBoardArrayManager().getBoard();
 
 
-        player = new DrawLive(board.getPlayerPos(), step, DrawLive.cellType.PLAYER);
-        exit = new DrawDead(board.getBoardArrayManager().getExit().getPosition(), step, DrawDead.cellType.EXIT);
+        player = new DrawLive(board.getPlayerPos(), step, DrawLive.CellType.PLAYER);
+        exit = new DrawDead(board.getBoardArrayManager().getExit().getPosition(), step, DrawDead.CellType.EXIT);
         for(int i = 0; i < Math.min(Misc.getCurrentLevel(), 3); i++) {
-            enemy = new DrawLive(board.getBoardArrayManager().getEnemyPos(i), step, DrawLive.cellType.ENEMY);
+            enemy = new DrawLive(board.getBoardArrayManager().getEnemyPos(i), step, DrawLive.CellType.ENEMY);
             add(enemy);
         }
 
@@ -206,7 +200,7 @@ public class GameScreen extends JPanel {
      * create the game board of the game
      */
     private void createBoard() {
-        int pos[];
+        int[] pos;
         for (int y = 0; y < map[0].length; y++) {
             for (int x = 0; x < map.length; x++) {
                 pos = new int[]{x, y};
@@ -215,11 +209,11 @@ public class GameScreen extends JPanel {
                     int index = board.getBoardArrayManager().objectFinder(x, y, "Trap");
                     char trapType = board.getBoardArrayManager().getTrapArrayManager().get(index).getType();
                     if (trapType == 'A'){
-                        DrawDead trapA = new DrawDead(pos, step, DrawDead.cellType.TRAPTYPEA);
+                        DrawDead trapA = new DrawDead(pos, step, DrawDead.CellType.TRAPTYPEA);
                         trapACell.add(trapA);
                         add(trapA);
                     } else if (trapType == 'B'){
-                        DrawDead trapB = new DrawDead(pos, step, DrawDead.cellType.TRAPTYPEB);
+                        DrawDead trapB = new DrawDead(pos, step, DrawDead.CellType.TRAPTYPEB);
                         trapBCell.add(trapB);
                         add(trapB);
                     }
@@ -228,19 +222,19 @@ public class GameScreen extends JPanel {
                     int index = board.getBoardArrayManager().objectFinder(x, y, "Reward");
                     char rewardType = board.getBoardArrayManager().getRewardArrayManager().get(index).getType();
                     if (rewardType == 'A') {
-                        DrawDead rewardA = new DrawDead(pos, step, DrawDead.cellType.REWARDTYPEA);
+                        DrawDead rewardA = new DrawDead(pos, step, DrawDead.CellType.REWARDTYPEA);
                         rewardACell.add(rewardA);
                         add(rewardA);
 
-                        DrawDead path = new DrawDead(pos, step, DrawDead.cellType.PATH);
+                        DrawDead path = new DrawDead(pos, step, DrawDead.CellType.PATH);
                         pathCell.add(path);
                         add(path);
                     } else if (rewardType == 'B') {
-                        DrawDead rewardB = new DrawDead(pos, step, DrawDead.cellType.REWARDTYPEB);
+                        DrawDead rewardB = new DrawDead(pos, step, DrawDead.CellType.REWARDTYPEB);
                         rewardBCell.add(rewardB);
                         add(rewardB);
 
-                        DrawDead path = new DrawDead(pos, step, DrawDead.cellType.PATH);
+                        DrawDead path = new DrawDead(pos, step, DrawDead.CellType.PATH);
                         pathCell.add(path);
                         add(path);
                     }
@@ -249,7 +243,7 @@ public class GameScreen extends JPanel {
                     createWall(x, y, pos);
 
                 } else {
-                    DrawDead path = new DrawDead(pos, step, DrawDead.cellType.PATH);
+                    DrawDead path = new DrawDead(pos, step, DrawDead.CellType.PATH);
                     pathCell.add(path);
                     add(path);
                 }
@@ -269,12 +263,20 @@ public class GameScreen extends JPanel {
         boolean top = false;
         boolean down = false;
 
-        if (board.getBoardArrayManager().isInBounds(x - 1, y) && board.getBoardArrayManager().isWall(x - 1, y)){ left = true; }
-        if (board.getBoardArrayManager().isInBounds(x + 1, y) && board.getBoardArrayManager().isWall(x + 1, y)){ right = true; }
-        if (board.getBoardArrayManager().isInBounds(x, y + 1) && board.getBoardArrayManager().isWall(x, y + 1)){ down = true; }
-        if (board.getBoardArrayManager().isInBounds(x, y - 1) && board.getBoardArrayManager().isWall(x, y - 1)){ top = true; }
+        if (board.getBoardArrayManager().isInBounds(x - 1, y) && board.getBoardArrayManager().isWall(x - 1, y)){
+            left = true;
+        }
+        if (board.getBoardArrayManager().isInBounds(x + 1, y) && board.getBoardArrayManager().isWall(x + 1, y)){
+            right = true;
+        }
+        if (board.getBoardArrayManager().isInBounds(x, y + 1) && board.getBoardArrayManager().isWall(x, y + 1)){
+            down = true;
+        }
+        if (board.getBoardArrayManager().isInBounds(x, y - 1) && board.getBoardArrayManager().isWall(x, y - 1)){
+            top = true;
+        }
 
-        DrawDead wall = new DrawDead(pos, step, DrawDead.cellType.WALL);
+        DrawDead wall = new DrawDead(pos, step, DrawDead.CellType.WALL);
         wall.setWallDirection(top, left, down, right);
         wallCell.add(wall);
         add(wall);
@@ -292,7 +294,7 @@ public class GameScreen extends JPanel {
 
         @Override
         public void keyPressed(KeyEvent e) {
-            Misc.setTime(board.getTimer().getSeconds());
+            misc.setTime(board.getTimer().getSeconds());
             int key = e.getKeyCode();
             int[] playerPos = board.getPlayerPos();
             if (isReleased) {
@@ -338,37 +340,36 @@ public class GameScreen extends JPanel {
                     board.getScore().subtractScore(damage);
 
 
-                    if(despawnTraps) {
-                        if (trapType == 'A') {
-                            for (int i = 0; i < trapACell.size(); i++) {
-                                DrawDead oldTrap = trapACell.get(i);
-                                if (oldTrap.getPosition()[0] == trapPos[0]) {
-                                    if (oldTrap.getPosition()[1] == trapPos[1]) {
-                                        oldTrap.setVisible(false);
-                                        trapACell.remove(oldTrap);
-                                        remove(oldTrap);
-                                        break;
-                                    }
+                    boolean despawnTraps = true;
+                    if (trapType == 'A') {
+                        for (int i = 0; i < trapACell.size(); i++) {
+                            DrawDead oldTrap = trapACell.get(i);
+                            if (oldTrap.getPosition()[0] == trapPos[0]) {
+                                if (oldTrap.getPosition()[1] == trapPos[1]) {
+                                    oldTrap.setVisible(false);
+                                    trapACell.remove(oldTrap);
+                                    remove(oldTrap);
+                                    break;
                                 }
                             }
                         }
-
-                        if (trapType == 'B') {
-                            for (int i = 0; i < trapBCell.size(); i++) {
-                                DrawDead oldTrap = trapBCell.get(i);
-                                if (oldTrap.getPosition()[0] == trapPos[0]) {
-                                    if (oldTrap.getPosition()[1] == trapPos[1]) {
-
-                                        oldTrap.setVisible(false);
-                                        trapBCell.remove(oldTrap);
-                                        remove(oldTrap);
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                        board.getBoardArrayManager().getTrapArrayManager().remove(trapIndex);  //Remove reward from its array
                     }
+
+                    if (trapType == 'B') {
+                        for (int i = 0; i < trapBCell.size(); i++) {
+                            DrawDead oldTrap = trapBCell.get(i);
+                            if (oldTrap.getPosition()[0] == trapPos[0]) {
+                                if (oldTrap.getPosition()[1] == trapPos[1]) {
+
+                                    oldTrap.setVisible(false);
+                                    trapBCell.remove(oldTrap);
+                                    remove(oldTrap);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    board.getBoardArrayManager().getTrapArrayManager().remove(trapIndex);  //Remove reward from its array
                 }
 
                 if (board.getBoardArrayManager().isObject(playerPos[0], playerPos[1], "Reward")) {
@@ -413,7 +414,7 @@ public class GameScreen extends JPanel {
                     }
 
 
-                    DrawDead newPath = new DrawDead(rewardPos, step, DrawDead.cellType.PATH);
+                    DrawDead newPath = new DrawDead(rewardPos, step, DrawDead.CellType.PATH);
                     pathCell.add(newPath);
                     add(newPath);
 
@@ -431,7 +432,7 @@ public class GameScreen extends JPanel {
 
                     }
                 }
-                Misc.setScore(board.getScore().getScore());
+                misc.setScore(board.getScore().getScore());
             }
 
             for(int i = 0; i < Math.min(Misc.getCurrentLevel(), 3); i++) {

@@ -19,7 +19,7 @@ public abstract class Reward {
      * @param position A x,y position for the location of this Reward.
      */
     public Reward(final int[] position) {
-        this.position = position;
+        this.position = position.clone();
     }
 
     /**
@@ -27,7 +27,7 @@ public abstract class Reward {
      * @param position A x,y position for the new location of this Reward.
      */
     public void setPosition(final int[] position) {
-        this.position = position;
+        this.position = position.clone();
     }
 
     /**
@@ -35,7 +35,7 @@ public abstract class Reward {
      * @return the current position of this reward.
      */
     public int[] getPosition(){
-        return position;
+        return position.clone();
     }
 
     /**

@@ -38,6 +38,8 @@ public class Sprite {
     private static Image player_right;
     private static Image player_down;
     private static Image enemy_right;
+    private static Image gameOver;
+    private static Image next;
 
     /**
      * Default Constructor
@@ -74,7 +76,8 @@ public class Sprite {
             player_right = ImageIO.read(read("/player_right.png"));
             player_down = ImageIO.read(read("/player_down.png"));
             enemy_right = ImageIO.read(read("/enemy_right.png"));
-
+            gameOver = ImageIO.read(read("/gameOver.png"));
+            next = ImageIO.read(read("/next.png"));
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -162,5 +165,11 @@ public class Sprite {
     }
     public static Image enemy_right() {
         return enemy_right;
+    }
+    public static Image gameOver() {
+        return gameOver;
+    }
+    public static Image next(){
+        return next;
     }
 }
