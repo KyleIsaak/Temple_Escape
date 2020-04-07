@@ -16,7 +16,7 @@ public class GameScreen extends JPanel {
     private int step;
     private DrawLive player;
     private DrawDead exit;
-    private DrawLive enemy;
+    private ArrayList<DrawLive> enemy;
 
     private ArrayList<DrawDead> wallCell;
     private ArrayList<DrawDead> pathCell;
@@ -130,7 +130,7 @@ public class GameScreen extends JPanel {
 
         board = new Board(Misc.getCurrentLevel(), Misc.getScoreContainer());
         board.setDifficulty(mode);
-
+        enemy = new ArrayList<>();
         wallCell = new ArrayList<>();
         pathCell = new ArrayList<>();
         trapACell = new ArrayList<>();
@@ -143,8 +143,8 @@ public class GameScreen extends JPanel {
         player = new DrawLive(board.getPlayerPos(), step, DrawLive.CellType.PLAYER);
         exit = new DrawDead(board.getBoardArrayManager().getExit().getPosition(), step, DrawDead.CellType.EXIT);
         for(int i = 0; i < Math.min(Misc.getCurrentLevel(), 3); i++) {
-            enemy = new DrawLive(board.getBoardArrayManager().getEnemyPos(i), step, DrawLive.CellType.ENEMY);
-            add(enemy);
+            enemy.add(new DrawLive(board.getBoardArrayManager().getEnemyPos(i), step, DrawLive.CellType.ENEMY));
+            add(enemy.get(i));
         }
 
         add(player);
@@ -180,8 +180,8 @@ public class GameScreen extends JPanel {
         player = new DrawLive(board.getPlayerPos(), step, DrawLive.CellType.PLAYER);
         exit = new DrawDead(board.getBoardArrayManager().getExit().getPosition(), step, DrawDead.CellType.EXIT);
         for(int i = 0; i < Math.min(Misc.getCurrentLevel(), 3); i++) {
-            enemy = new DrawLive(board.getBoardArrayManager().getEnemyPos(i), step, DrawLive.CellType.ENEMY);
-            add(enemy);
+            enemy.add(new DrawLive(board.getBoardArrayManager().getEnemyPos(i), step, DrawLive.CellType.ENEMY));
+            add(enemy.get(i));
         }
 
         add(player);
@@ -436,6 +436,7 @@ public class GameScreen extends JPanel {
             }
             for(int i = 0; i < Math.min(Misc.getCurrentLevel(), 3); i++) {
                 board.chaseThePlayer(board.getBoardArrayManager().getEnemyArrayManager().get(i));
+                enemy.get(i).setNewPosition(board.getBoardArrayManager().getEnemyArrayManager().get(i).getPosition());
                 if(board.isGameOver(board.getBoardArrayManager().getEnemyArrayManager().get(i))) {
                     setVisible(false);
                     misc.setPause(false);
