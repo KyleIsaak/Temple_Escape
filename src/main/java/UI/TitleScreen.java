@@ -66,7 +66,6 @@ public class TitleScreen extends JPanel implements ActionListener{
         if (button_easy.isEnabled()){
             button_quit.setEnabled(false);
             button_easy.setEnabled(false);
-            button_skin.setEnabled(false);
             button_control.setEnabled(false);
             button_control.setVisible(false);
             button_hard.setEnabled(false);
@@ -74,7 +73,6 @@ public class TitleScreen extends JPanel implements ActionListener{
         } else{
             button_quit.setEnabled(true);
             button_easy.setEnabled(true);
-            button_skin.setEnabled(true);
             button_control.setEnabled(true);
             button_control.setVisible(true);
             button_hard.setEnabled(true);
@@ -101,9 +99,6 @@ public class TitleScreen extends JPanel implements ActionListener{
             flipButtons();
             control.setVisible(true);
             control.requestFocus();
-        } else if (listener.equals(SKIN)){
-            flipButtons();
-
         }
 
     }
@@ -129,7 +124,7 @@ public class TitleScreen extends JPanel implements ActionListener{
         button_hard = new Button(HARD, this, true);
         button_quit = new Button(QUIT, this, true);
         button_control = new Button(CONTROL, this, true);
-        button_skin = new Button(SKIN, this, true);
+        button_skin = new Button(SKIN, this, false);
 
         button_easy.setBounds(160, 540, 100, 35);
         button_medium.setBounds(440, 540, 100, 35);
