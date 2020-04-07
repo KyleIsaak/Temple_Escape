@@ -3,7 +3,7 @@ package gameLogic;
 import java.util.ArrayList;
 
 /**
- * Abstract class as an interface for finder functionality of an array
+ * Abstract class as an interface for finder functionality of an array.
  */
 public abstract class ArrayFinderManager {
 
@@ -19,7 +19,7 @@ public abstract class ArrayFinderManager {
     }
 
     /**
-     * Check whether that location on the map contains that type of object and return the index of the object in the array
+     * Check whether that location on the map contains that type of object and return the index of the object in the array.
      * @param x An integer for the x position.
      * @param y An integer for the y position.
      * @param objectArray The array containing the Objects.

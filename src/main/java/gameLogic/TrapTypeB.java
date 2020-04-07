@@ -5,13 +5,20 @@ package gameLogic;
  * Player lose points when stepped on traps.
  */
 public class TrapTypeB extends Trap {
+    /**
+     * Store the trap damage value.
+     */
     private int damage = 200;
+    /**
+     * Store the trap type.
+     */
     private  char type = 'B';
 
     /**
      * Default Constructor
      */
-    public TrapTypeB() { super(new int[] {0,0}); }
+    public TrapTypeB() {
+        super(new int[] {0,0}); }
 
     /**
      * Non Default Constructor
@@ -24,12 +31,14 @@ public class TrapTypeB extends Trap {
      * Get the damage of this trap.
      * @return the damage of this trap.
      */
-    public int getDamage() { return damage; }
+    public int getDamage() {
+        return damage; }
 
     /**
      * Get the type of this Trap which is A (Lava Pit)
      * @return the type of this Trap which is A (Lava Pit)
      */
-    public char getType() { return type; }
+    public char getType() {
+        return type; }
 
 }
