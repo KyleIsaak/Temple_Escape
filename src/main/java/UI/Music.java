@@ -4,6 +4,8 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.io.File;
+import java.io.InputStream;
+
 /**
  * Store the details of the background Music
  */
@@ -13,10 +15,8 @@ public class Music {
     private Clip clip;
     void playSound(){
         try{
-            String filepath = "src/main/resources/BackgroundMusic.wav";
-            File musicFilePath = new File(filepath);
-            if (musicFilePath.exists()){
-                AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicFilePath);
+            AudioInputStream audioInput = AudioSystem.getAudioInputStream(GameScreen.class.getResourceAsStream("/BackgroundMusic.wav"));
+            if (audioInput != null){
                 clip = AudioSystem.getClip();
                 clip.open(audioInput);
                 clip.start();
