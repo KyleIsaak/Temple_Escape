@@ -1,23 +1,31 @@
 package gameLogic;
 
 /**
- * Represents a specific kind of rewards (Keys) in the game
+ * Represents a specific kind of rewards (Keys) in the game.
  * Player is required to collect all this rewards before can proceed to
- * next level
+ * next level.
  */
 public class RewardTypeA extends Reward {
+    /**
+     * Store the reward amount.
+     */
     private int rewardAmount = 50;
+    /**
+     * Store the reward type.
+     */
     private  char type = 'A';
 
     /**
-     * Default Constructor
+     * Default Constructor.
      */
-    public RewardTypeA() { super(new int[] {0,0}); }
+    public RewardTypeA() {
+        super(new int[] {0,0}); }
 
     /**
-     * Non Default Constructor
+     * Non Default Constructor.
      */
     public RewardTypeA(int[] pos) {
+
         this.setPosition(pos);
     }
 
@@ -25,12 +33,14 @@ public class RewardTypeA extends Reward {
      * Get the value of this reward.
      * @return the value of this reward.
      */
-    public int getRewardAmount(){ return this.rewardAmount; }
+    public int getRewardAmount() {
+        return this.rewardAmount; }
 
     /**
-     * Get the type of this Rewards
+     * Get the type of this Rewards.
      * @return the type of this rewards which is A (Keys).
      */
-    public char getType() { return type; }
+    public char getType() {
+        return type; }
 
 }
