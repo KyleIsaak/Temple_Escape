@@ -37,9 +37,14 @@ public class Sprite {
     private static Image player_left;
     private static Image player_right;
     private static Image player_down;
+    private static Image player_blue_up;
+    private static Image player_blue_left;
+    private static Image player_blue_right;
+    private static Image player_blue_down;
     private static Image enemy_right;
     private static Image gameOver;
     private static Image next;
+    private static Image skin;
 
     /**
      * Default Constructor
@@ -75,9 +80,14 @@ public class Sprite {
             player_left = ImageIO.read(read("/player_left.png"));
             player_right = ImageIO.read(read("/player_right.png"));
             player_down = ImageIO.read(read("/player_down.png"));
+            player_blue_up = ImageIO.read(read("/player_blue_up.png"));
+            player_blue_left = ImageIO.read(read("/player_blue_left.png"));
+            player_blue_right = ImageIO.read(read("/player_blue_right.png"));
+            player_blue_down = ImageIO.read(read("/player_blue_down.png"));
             enemy_right = ImageIO.read(read("/enemy_right.png"));
             gameOver = ImageIO.read(read("/gameOver.png"));
             next = ImageIO.read(read("/next.png"));
+            skin = ImageIO.read(read("/skin.png"));
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -151,8 +161,13 @@ public class Sprite {
     public static Image wall_left() {
         return wall_left;
     }
-    public static Image player_right() {
-        return player_right;
+    public static Image player_right(int color) {
+        switch(color){
+            case 1:
+                return player_blue_right;
+            default:
+                return player_right;
+        }
     }
     public static Image player_up() {
         return player_up;
@@ -163,6 +178,7 @@ public class Sprite {
     public static Image player_down() {
         return player_down;
     }
+
     public static Image enemy_right() {
         return enemy_right;
     }
@@ -172,4 +188,8 @@ public class Sprite {
     public static Image next(){
         return next;
     }
+    public static Image skin(){
+        return skin;
+    }
+
 }

@@ -23,6 +23,7 @@ public class Interface extends JFrame {
         TitleScreen title = new TitleScreen(game, control, misc, this);
         NextScreen nextScreen = new NextScreen();
         EndScreen endScreen = new EndScreen(title);
+        SkinScreen skinScreen = new SkinScreen(title);
 
         pause.setTitle(title);
         game.setMisc(misc);
