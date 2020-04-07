@@ -4,10 +4,10 @@ import java.awt.*;
 import java.io.File;
 import java.io.InputStream;
 
-public class newFont {
-    private static Font font;
+public class NewFont {
+    private Font font;
 
-    public newFont(){
+    public NewFont(){
         try {
             InputStream input = GameScreen.class.getResourceAsStream("/font.ttf");
             System.out.println(input);
@@ -19,7 +19,7 @@ public class newFont {
         }
     }
 
-    public static Font getFont(){
+    public Font getFont(){
         return font;
     }
 

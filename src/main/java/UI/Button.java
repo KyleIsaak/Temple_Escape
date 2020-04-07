@@ -19,7 +19,7 @@ public class Button extends JButton {
         addActionListener((ActionListener) panel);
         setText(text);
         setForeground(Color.decode("#aa8d7a"));
-        setFont(newFont.getFont());
+        setFont(new NewFont().getFont());
         setActionCommand(text);
         setBorder(BorderFactory.createRaisedBevelBorder());
         setBackground(null);

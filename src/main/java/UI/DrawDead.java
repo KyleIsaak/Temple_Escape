@@ -50,10 +50,10 @@ public class DrawDead extends JComponent {
 
             case PATH:
                 Random ran = new Random();
-                int choice = ran.nextInt(2);
-                if (choice == 0){
+                int choice = ran.nextInt(5);
+                if (choice <= 3){
                     image = Sprite.gamePath();
-                } else if (choice == 1){
+                } else if (choice == 4){
                     image = Sprite.gamePath2();
                 }
                 break;
