@@ -14,6 +14,13 @@ public class TrapTypeB extends Trap {
     public TrapTypeB() { super(new int[] {0,0}); }
 
     /**
+     * Non Default Constructor
+     */
+    public TrapTypeB(int[] pos) {
+        this.setPosition(pos);
+    }
+
+    /**
      * Get the damage of this trap.
      * @return the damage of this trap.
      */

@@ -38,8 +38,8 @@ class RewardTest {
         rewardA.setPosition(testSetPosition);
         rewardB.setPosition(testSetPosition);
 
-        assertEquals(testSetPosition, rewardA.getPosition());
-        assertEquals(testSetPosition, rewardB.getPosition());
+        assertArrayEquals(testSetPosition, rewardA.getPosition());
+        assertArrayEquals(testSetPosition, rewardB.getPosition());
     }
 
     @Test

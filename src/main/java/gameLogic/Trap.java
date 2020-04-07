@@ -8,6 +8,14 @@ public abstract class Trap {
     private int[] position;
 
     /**
+     * Default constructor.
+     */
+    
+    public Trap(){
+        position = new int[] { 0, 0 };
+    }
+
+    /**
      * Non Default Constructor
      * @param position A x,y position for the location of this Trap.
      */

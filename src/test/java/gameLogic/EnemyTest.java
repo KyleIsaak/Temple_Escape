@@ -39,6 +39,6 @@ class EnemyTest {
         Enemy enemy = new Enemy(test);
         int[] testSetPosition = {0, 0};
         enemy.setPosition(testSetPosition);
-        assertEquals(testSetPosition, enemy.getPosition());
+        assertArrayEquals(testSetPosition, enemy.getPosition());
     }
 }

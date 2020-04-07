@@ -69,14 +69,15 @@ Example from ScoreTest:
 
 ## Built With
 
-* [IntelliJ](https://www.jetbrains.com/idea/) - IDE used
-* [Maven](https://maven.apache.org/) - Dependency Management
+* [IntelliJ IDEA](https://www.jetbrains.com/idea/) - IDE used
+* [Apache Maven](https://maven.apache.org/) - Dependency Management
 
 
 ## Authors
 
 * **Kyle Isaak** - [kisaak@sfu.ca](mailto:kisaak@sfu.ca?subject=[Temple%20Runner])
 * **Jocelyn Gau** - [jgau@sfu.ca](mailto:jgau@sfu.ca?subject=[Temple%20Runner])
+* **Alex Chou** - [hontatc@sfu.ca](mailto:hontatc@sfu.ca?subject=[Temple%20Runner])
 
 ## License
 
