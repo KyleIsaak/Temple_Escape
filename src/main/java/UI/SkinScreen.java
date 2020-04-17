@@ -16,7 +16,8 @@ public class SkinScreen extends JPanel implements ActionListener {
     /**
      * storing the button_skin info.
      */
-    private JButton skin;
+    private DrawLive skin;
+
     /**
      * storing the image skin info.
      */
@@ -29,6 +30,10 @@ public class SkinScreen extends JPanel implements ActionListener {
      * storing the string > name.
      */
     private final static String RIGHT = ">";
+    /**
+     * storing the string BACK name.
+     */
+    private final static String BACK = "BACK";
 
     /**
      * non default constructor.
@@ -44,10 +49,20 @@ public class SkinScreen extends JPanel implements ActionListener {
                 g.drawImage(image, 0, 0, this);
             }
         };
+        JComponent skinTitle = new JComponent() {
+            @Override
+            public void paint(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(Sprite.skinTitle(), 0, 0, this);
+            }
+        };
         setLayout(null);
         addButtons();
         add(background);
-        background.setBounds(0, 0, 1000, 1000);
+        add(skinTitle);
+        background.setBounds(440, 400, 128, 96);
+        skinTitle.setBounds(0, 0, 1000, 1000);
+        setBackground(Color.decode("#483b3a"));
         setFocusable(true);
         setVisible(false);
     }
@@ -56,32 +71,37 @@ public class SkinScreen extends JPanel implements ActionListener {
      * add the button info.
      */
     private void addButtons() {
-        skin = new Button("PLAYER", this, false);
-        skin.setBounds(500, 450, 80, 80);
-        skin.setIcon(new ImageIcon(Sprite.player_right(0)));
+        skin = new DrawLive(new int[]{0, 0}, 32, DrawLive.CellType.PLAYER);
+        skin.setBounds(470, 400, 80, 80);
         JButton buttonLeft = new Button(LEFT, this, true);
-        buttonLeft.setBounds(400, 500, 80, 50);
+        buttonLeft.setBounds(360, 500, 80, 50);
 
         JButton buttonRight = new Button(RIGHT, this, true);
-        buttonRight.setBounds(600, 500, 80, 50);
+        buttonRight.setBounds(565, 500, 80, 50);
+
+        JButton buttonBack = new Button(BACK, this, true);
+        buttonBack.setBounds(470, 600, 80, 50);
+
+        add(skin);
+        add(buttonRight);
+        add(buttonLeft);
+        add(buttonBack);
     }
 
-    /**
-     * change the skin icon.
-     *
-     * @param direction left or right.
-     */
-    private void swapSkin(int direction) {
-        skin.setIcon(new ImageIcon(Sprite.player_right(direction % 2)));
-    }
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
         String listener = actionEvent.getActionCommand();
         if (listener.equals(LEFT)) {
-
+            Sprite.skinPrevious();
         } else if (listener.equals(RIGHT)) {
-
+            Sprite.skinNext();
+        } else if (listener.equals(BACK)){
+            title.requestFocus();
+            setVisible(false);
+            title.flipButtons();
         }
+        skin.setPlayerRIGHT();
+        repaint();
     }
 }

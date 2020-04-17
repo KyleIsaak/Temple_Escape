@@ -9,6 +9,8 @@ import java.util.ArrayList;
  * Store sprite image of the game.
  */
 public class Sprite {
+    private static int NUM_OF_SKIN = 4;
+    private static int currentSkin = 1;
     /**
      * store the control background image.
      */
@@ -108,35 +110,19 @@ public class Sprite {
     /**
      * store the player_up image.
      */
-    private static Image player_up;
+    private static ArrayList<Image> player_up = new ArrayList<>();
     /**
      * store the player_left image.
      */
-    private static Image player_left;
+    private static ArrayList<Image> player_left = new ArrayList<>();
     /**
      * store the player_right image.
      */
-    private static Image player_right;
+    private static ArrayList<Image> player_right = new ArrayList<>();
     /**
      * store the player_down image.
      */
-    private static Image player_down;
-    /**
-     * store the player_blue_up image.
-     */
-    private static Image player_blue_up;
-    /**
-     * store the player_blue_left image.
-     */
-    private static Image player_blue_left;
-    /**
-     * store the player_blue_right image.
-     */
-    private static Image player_blue_right;
-    /**
-     * store the player_blue_down image.
-     */
-    private static Image player_blue_down;
+    private static ArrayList<Image> player_down = new ArrayList<>();
     /**
      * store the enemy_right image.
      */
@@ -153,6 +139,10 @@ public class Sprite {
      * store the skin image.
      */
     private static Image skin;
+    /**
+     * store the skinTitle image.
+     */
+    private static Image skinTitle;
 
     /**
      * Default Constructor.
@@ -184,18 +174,18 @@ public class Sprite {
             wall = ImageIO.read(read("/wall.png"));
             wall_right = ImageIO.read(read("/wall_right.png"));
             wall_left = ImageIO.read(read("/wall_left.png"));
-            player_up = ImageIO.read(read("/player_up.png"));
-            player_left = ImageIO.read(read("/player_left.png"));
-            player_right = ImageIO.read(read("/player_right.png"));
-            player_down = ImageIO.read(read("/player_down.png"));
-            player_blue_up = ImageIO.read(read("/player_blue_up.png"));
-            player_blue_left = ImageIO.read(read("/player_blue_left.png"));
-            player_blue_right = ImageIO.read(read("/player_blue_right.png"));
-            player_blue_down = ImageIO.read(read("/player_blue_down.png"));
+            for (int i = 0; i < NUM_OF_SKIN; i++){
+                player_up.add(ImageIO.read(read("/player_up" + i + ".png")));
+                player_left.add(ImageIO.read(read("/player_left" + i + ".png")));
+                player_right.add(ImageIO.read(read("/player_right" + i + ".png")));
+                player_down.add(ImageIO.read(read("/player_down" + i + ".png")));
+            }
             enemy_right = ImageIO.read(read("/enemy_right.png"));
             gameOver = ImageIO.read(read("/gameOver.png"));
             next = ImageIO.read(read("/next.png"));
             skin = ImageIO.read(read("/skin.png"));
+            skinTitle = ImageIO.read(read("/skinTitle.png"));
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -427,18 +417,23 @@ public class Sprite {
         return wall_left;
     }
 
+    public static void skinNext(){
+        currentSkin++;
+    }
+
+    public static void skinPrevious(){
+        if (currentSkin == 0){
+            currentSkin = 2 * NUM_OF_SKIN - 1;
+        }
+        currentSkin--;
+    }
     /**
      * getter.
      *
      * @return player_right image.
      */
-    public static Image player_right(int color) {
-        switch (color) {
-            case 1:
-                return player_blue_right;
-            default:
-                return player_right;
-        }
+    public static Image player_right() {
+        return player_right.get(currentSkin % NUM_OF_SKIN);
     }
 
     /**
@@ -447,7 +442,7 @@ public class Sprite {
      * @return player_up image.
      */
     public static Image player_up() {
-        return player_up;
+        return player_up.get(currentSkin % NUM_OF_SKIN);
     }
 
     /**
@@ -456,7 +451,7 @@ public class Sprite {
      * @return player_left image.
      */
     public static Image player_left() {
-        return player_left;
+        return player_left.get(currentSkin % NUM_OF_SKIN);
     }
 
     /**
@@ -465,7 +460,7 @@ public class Sprite {
      * @return player_down image.
      */
     public static Image player_down() {
-        return player_down;
+        return player_down.get(currentSkin % NUM_OF_SKIN);
     }
 
     /**
@@ -502,6 +497,14 @@ public class Sprite {
      */
     public static Image skin() {
         return skin;
+    }
+    /**
+     * getter.
+     *
+     * @return skin image.
+     */
+    public static Image skinTitle() {
+        return skinTitle;
     }
 
 }

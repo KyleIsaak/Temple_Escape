@@ -1,14 +1,5 @@
 package UI;
 
-import gameLogic.Board;
-
-//<<<<<<< HEAD
-//import javax.swing.*;
-//import javax.swing.border.Border;
-//import java.awt.*;
-//
-//=======
-
 
 public class Main {
 

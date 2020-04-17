@@ -30,15 +30,17 @@ public class Interface extends JFrame {
         EndScreen endScreen = new EndScreen(title);
         SkinScreen skinScreen = new SkinScreen(title);
 
-        pause.setTitle(title);
-        game.setMisc(misc);
-        game.setEnd(endScreen);
         control.setPause(pause);
         control.setGameScreen(game);
         control.setTitle(title);
+        game.setMisc(misc);
+        game.setEnd(endScreen);
         game.setNextScreen(nextScreen);
         nextScreen.setGameScreen(game);
+        pause.setTitle(title);
         pause.setGameScreen(game);
+        title.setSkinScreen(skinScreen);
+
         title.setBounds(0, 0, 1000, 1000);
         game.setBounds(0, 0, 880, 1000);
         pause.setBounds(0, 0, 1000, 1000);
@@ -46,7 +48,9 @@ public class Interface extends JFrame {
         nextScreen.setBounds(0, 0, 1000, 1000);
         control.setBounds(0, 0, 1000, 1000);
         endScreen.setBounds(0, 0, 1000, 1000);
+        skinScreen.setBounds(0, 0, 1000, 1000);
 
+        getContentPane().add(skinScreen);
         getContentPane().add(endScreen);
         getContentPane().add(control);
         getContentPane().add(title);

@@ -48,7 +48,7 @@ public class DrawLive extends JComponent {
     private void selectSprite() {
         switch (type) {
             case PLAYER:
-                image = Sprite.player_right(0);
+                image = Sprite.player_right();
                 break;
             case ENEMY:
                 image = Sprite.enemy_right();
@@ -68,7 +68,7 @@ public class DrawLive extends JComponent {
     }
 
     public void setPlayerRIGHT() {
-        image = Sprite.player_right(0);
+        image = Sprite.player_right();
     }
 
     public void setPlayerDOWN() {
