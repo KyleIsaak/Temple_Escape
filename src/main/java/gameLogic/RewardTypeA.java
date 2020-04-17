@@ -24,6 +24,7 @@ public class RewardTypeA extends Reward {
 
     /**
      * Non Default Constructor.
+     * @param pos A x,y position for the initial position of the player.
      */
     public RewardTypeA(int[] pos) {
 

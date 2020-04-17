@@ -70,6 +70,7 @@ public class EndScreen extends JPanel implements ActionListener {
 
     /**
      * Set the score that shows on endScreen.
+     *  @param score An integer to set the current score as.
      */
     public void setScore(int score) {
         //scoreContainer = score;

@@ -34,6 +34,9 @@ public class DrawLive extends JComponent {
 
     /**
      * sprites can be set to sprites later on.
+     * @param pos An x, y position on the board
+     * @param step An int that specify size of a block
+     * @param type An Celltype that specify what is the object.
      */
     public DrawLive(int[] pos, int step, CellType type) {
         this.step = step;

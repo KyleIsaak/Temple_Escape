@@ -99,9 +99,10 @@ public class TitleScreen extends JPanel implements ActionListener {
     /**
      * Non default Constructor ((Title Screen)).
      *
-     * @param gameScreen storing the gameScreen info.
-     * @param control    storing the control info.
-     * @param misc       storing the misc info.
+     * @param gameScreen store the gameScreen info.
+     * @param control    store the control info.
+     * @param misc       store the misc info.
+     * @param frame      JFrame Extension.
      */
     public TitleScreen(GameScreen gameScreen, ControlScreen control, Misc misc, JFrame frame) {
         this.gameScreen = gameScreen;

@@ -26,7 +26,7 @@ public class DrawDead extends JComponent {
     private int step;
 
     /**
-     * Set the object cell type
+     *
      */
     public enum CellType {
         WALL,
@@ -40,6 +40,9 @@ public class DrawDead extends JComponent {
 
     /**
      * color can be set to sprites later on
+     * @param pos An x, y position on the board
+     * @param step An int that specify size of a block
+     * @param type An Celltype that specify what is the object.
      */
     public DrawDead(int[] pos, int step, CellType type) {
         this.step = step;
@@ -142,7 +145,7 @@ public class DrawDead extends JComponent {
     /**
      * paint the graphic
      *
-     * @param graphic
+     * @param graphic: Graphic Extension.
      */
     public void paint(Graphics graphic) {
         super.paintComponent(graphic);

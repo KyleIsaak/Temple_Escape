@@ -13,6 +13,8 @@ public class Button extends JButton {
      * set the button information.
      *
      * @param text: the name of the button.
+     * @param panel: JPanel Extension.
+     * @param enabled: Set true if button should be visible, vise versa.
      */
     public Button(String text, JPanel panel, boolean enabled) {
         panel.add(this);

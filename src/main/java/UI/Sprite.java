@@ -159,13 +159,13 @@ public class Sprite {
             titleBackground = ImageIO.read(read("/title.png"));
             gameWall = ImageIO.read(read("/wall.png"));
             gameSpike = ImageIO.read(read("/spike.png"));
-            gameLava = ImageIO.read(read("/lava.png"));
+            gameLava = ImageIO.read(read("/Lava.png"));
             gamePath = ImageIO.read(read("/path.png"));
             gamePath2 = ImageIO.read(read("/path2.png"));
             gameCoin = ImageIO.read(read("/coin.png"));
             gameKey = ImageIO.read(read("/key.png"));
-            gameLock = ImageIO.read(read("/lock.png"));
-            gameUnlock = ImageIO.read(read("/unlock.png"));
+            gameLock = ImageIO.read(read("/Lock.png"));
+            gameUnlock = ImageIO.read(read("/Unlock.png"));
             wall_cross = ImageIO.read(read("/wall_cross.png"));
             wall_top_right = ImageIO.read(read("/wall_top_right.png"));
             wall_horizontal = ImageIO.read(read("/wall_horizontal.png"));

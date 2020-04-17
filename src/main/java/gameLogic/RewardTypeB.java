@@ -23,6 +23,7 @@ public class RewardTypeB extends Reward {
 
     /**
      * Non Default Constructor.
+     * @param pos A x,y position for the initial position of the player.
      */
     public RewardTypeB(int[] pos) {
         this.setPosition(pos);

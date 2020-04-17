@@ -3,6 +3,7 @@ package UI;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.InputStream;
 
@@ -30,7 +31,9 @@ public class Music {
      */
     void playSound(){
         try{
-            AudioInputStream audioInput = AudioSystem.getAudioInputStream(GameScreen.class.getResourceAsStream("/BackgroundMusic.wav"));
+            InputStream audioSrc = getClass().getResourceAsStream("/BackgroundMusic.wav");
+            InputStream bufferedIn = new BufferedInputStream(audioSrc);
+            AudioInputStream audioInput = AudioSystem.getAudioInputStream(bufferedIn);
             if (audioInput != null){
                 clip = AudioSystem.getClip();
                 clip.open(audioInput);

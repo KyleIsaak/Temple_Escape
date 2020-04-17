@@ -126,28 +126,32 @@ public class GameScreen extends JPanel {
     }
 
     /**
-     * get the control information.
+     * set the UP control information.
+     * @param UP An integer that specify the new controls.
      */
     public void setControlUP(int UP) {
         this.UP = UP;
     }
 
     /**
-     * get the control information.
+     * set the DOWN control information.
+     * @param DOWN An integer that specify the new controls.
      */
     public void setControlDOWN(int DOWN) {
         this.DOWN = DOWN;
     }
 
     /**
-     * get the control information.
+     * set the LEFT control information.
+     * @param LEFT An integer that specify the new controls.
      */
     public void setControlLEFT(int LEFT) {
         this.LEFT = LEFT;
     }
 
     /**
-     * get the control information.
+     * set the RIGHT control information.
+     * @param RIGHT An integer that specify the new controls.
      */
     public void setControlRIGHT(int RIGHT) {
         this.RIGHT = RIGHT;
@@ -155,6 +159,7 @@ public class GameScreen extends JPanel {
 
     /**
      * get the control information.
+     * @return Return the key control for UP
      */
     public int getUP() {
         return UP;
@@ -162,6 +167,7 @@ public class GameScreen extends JPanel {
 
     /**
      * get the control information.
+     * @return Return the key control for DOWN
      */
     public int getDOWN() {
         return DOWN;
@@ -169,6 +175,7 @@ public class GameScreen extends JPanel {
 
     /**
      * get the control information.
+     * @return Return the key control for LEFT
      */
     public int getLEFT() {
         return LEFT;
@@ -176,6 +183,7 @@ public class GameScreen extends JPanel {
 
     /**
      * get the control information.
+     * @return Return the key control for RIGHT
      */
     public int getRIGHT() {
         return RIGHT;
@@ -192,6 +200,7 @@ public class GameScreen extends JPanel {
 
     /**
      * set the next Screen variable.
+     * @param next A nextScreen that set the current nextscreen as.
      */
     public void setNextScreen(NextScreen next) {
         nextScreen = next;
@@ -199,6 +208,7 @@ public class GameScreen extends JPanel {
 
     /**
      * set the End Screen variable.
+     * @param endScreen A endScreen that set the current endScreen as.
      */
     public void setEnd(EndScreen endScreen) {
         this.endScreen = endScreen;

@@ -23,6 +23,7 @@ public class TrapTypeA extends Trap {
 
     /**
      * Non Default Constructor.
+     * @param pos A x,y position for the initial position of the player.
      */
     public TrapTypeA(int[] pos) {
         this.setPosition(pos);
