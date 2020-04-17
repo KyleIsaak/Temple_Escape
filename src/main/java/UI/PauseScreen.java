@@ -18,6 +18,10 @@ public class PauseScreen extends JPanel implements ActionListener {
      */
     private TitleScreen titleScreen;
     /**
+     * store the misc screen info.
+     */
+    private Misc miscScreen;
+    /**
      * store the string main menu name.
      */
     private final String MAIN_MENU = "Main Menu";
@@ -136,6 +140,15 @@ public class PauseScreen extends JPanel implements ActionListener {
 
         titleScreen = title;
     }
+    /**
+     * set the misc screen info.
+     *
+     * @param misc storing the misc screen info.
+     */
+    public void setMisc(Misc misc) {
+
+        miscScreen = misc;
+    }
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
@@ -143,6 +156,7 @@ public class PauseScreen extends JPanel implements ActionListener {
         if (listener.equals(RESUME)) {
             gameScreen.getBoard().getTimer().resumeTimer();
             setVisible(false);
+            miscScreen.setPause(true);
             gameScreen.requestFocus();
         } else if (listener.equals(CONTROL)) {
             flipButtons();

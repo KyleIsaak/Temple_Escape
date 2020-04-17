@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public class Sprite {
     private static int NUM_OF_SKIN = 4;
-    private static int currentSkin = 1;
+    private static int currentSkin = 0;
     /**
      * store the control background image.
      */
@@ -143,6 +143,10 @@ public class Sprite {
      * store the skinTitle image.
      */
     private static Image skinTitle;
+    /**
+     * store the skinTitle image.
+     */
+    private static Image helpPage;
 
     /**
      * Default Constructor.
@@ -185,7 +189,7 @@ public class Sprite {
             next = ImageIO.read(read("/next.png"));
             skin = ImageIO.read(read("/skin.png"));
             skinTitle = ImageIO.read(read("/skinTitle.png"));
-
+            helpPage = ImageIO.read(read("/help.png"));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -505,6 +509,14 @@ public class Sprite {
      */
     public static Image skinTitle() {
         return skinTitle;
+    }
+    /**
+     * getter.
+     *
+     * @return skin image.
+     */
+    public static Image help() {
+        return helpPage;
     }
 
 }

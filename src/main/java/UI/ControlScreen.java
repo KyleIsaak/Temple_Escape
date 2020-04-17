@@ -253,7 +253,6 @@ public class ControlScreen extends JPanel implements ActionListener {
         String listener = actionEvent.getActionCommand();
         if (listener.equals(DONE)) {
 
-            System.out.println("done");
             setVisible(false);
             gameScreen.setControlUP(setUP.getText().charAt(0));
             gameScreen.setControlDOWN(setDOWN.getText().charAt(0));
@@ -263,8 +262,8 @@ public class ControlScreen extends JPanel implements ActionListener {
             if (title.isVisible()) {
                 title.flipButtons();
                 title.requestFocus();
-            } else if (gameScreen.isVisible()) {
-                gameScreen.requestFocus();
+            } else if (pause.isVisible()) {
+                pause.requestFocus();
                 pause.flipButtons();
             }
         } else if (listener.equals(UP)) {

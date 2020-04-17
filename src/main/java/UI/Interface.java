@@ -26,6 +26,7 @@ public class Interface extends JFrame {
         GameScreen game = new GameScreen(step);
         Misc misc = new Misc(game, pause);
         TitleScreen title = new TitleScreen(game, control, misc, this);
+        HelpScreen helpScreen = new HelpScreen(title, game);
         NextScreen nextScreen = new NextScreen();
         EndScreen endScreen = new EndScreen(title);
         SkinScreen skinScreen = new SkinScreen(title);
@@ -39,7 +40,11 @@ public class Interface extends JFrame {
         nextScreen.setGameScreen(game);
         pause.setTitle(title);
         pause.setGameScreen(game);
+        pause.setMisc(misc);
         title.setSkinScreen(skinScreen);
+        title.setHelp(helpScreen);
+        misc.setHelpScreen(helpScreen);
+
 
         title.setBounds(0, 0, 1000, 1000);
         game.setBounds(0, 0, 880, 1000);
@@ -49,7 +54,9 @@ public class Interface extends JFrame {
         control.setBounds(0, 0, 1000, 1000);
         endScreen.setBounds(0, 0, 1000, 1000);
         skinScreen.setBounds(0, 0, 1000, 1000);
+        helpScreen.setBounds(0, 0, 1000, 1000);
 
+        getContentPane().add(helpScreen);
         getContentPane().add(skinScreen);
         getContentPane().add(endScreen);
         getContentPane().add(control);
@@ -67,7 +74,7 @@ public class Interface extends JFrame {
      */
     private void createWindow() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1000, 1000);
+        setSize(1010, 1010);
         setVisible(true);
     }
 

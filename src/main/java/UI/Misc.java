@@ -16,11 +16,15 @@ public class Misc extends JPanel implements ActionListener {
     /**
      * store the game screen info.
      */
-    GameScreen gameScreen;
+    private GameScreen gameScreen;
+    /**
+     * store the game screen info.
+     */
+    private HelpScreen helpScreen;
     /**
      * store the pause screen info.
      */
-    JPanel pauseScreen;
+    private JPanel pauseScreen;
     /**
      * store the button info.
      */
@@ -38,6 +42,10 @@ public class Misc extends JPanel implements ActionListener {
      */
     private JButton button_time;
     /**
+     * button to bring up help page.
+     */
+    private JButton button_help;
+    /**
      * store the string pause name.
      */
     private final static String PAUSE = " pause ";
@@ -49,6 +57,10 @@ public class Misc extends JPanel implements ActionListener {
      * store the string time name.
      */
     private final static String TIME = "time: ";
+    /**
+     * store the string help name.
+     */
+    private final static String HELP = "help";
 
     /**
      * NOn default constructor.
@@ -66,13 +78,14 @@ public class Misc extends JPanel implements ActionListener {
         button_score = new Button("100", this, false);
         JButton button_TxtTime = new Button(TIME, this, false);
         button_time = new Button("000", this, false);
+        button_help = new Button(HELP, this, true);
 
-//        button_pause.setVisible(false);
         button_pause.setBounds(0, 50, 100, 40);
         button_TxtScore.setBounds(0, 120, 100, 40);
         button_score.setBounds(0, 160, 100, 40);
         button_TxtTime.setBounds(0, 240, 100, 40);
         button_time.setBounds(0, 280, 100, 40);
+        button_help.setBounds(0, 360, 100, 40);
 
         setBackground(Color.decode("#483b3a"));
         setFocusable(true);
@@ -85,8 +98,12 @@ public class Misc extends JPanel implements ActionListener {
      * @param visible storing the info visible or not.
      */
     public void setPause(boolean visible) {
-        button_pause.setVisible(visible);
         button_pause.setEnabled(visible);
+        button_pause.setVisible(visible);
+    }
+
+    public void setHelpScreen(HelpScreen help){
+        helpScreen = help;
     }
 
     public static int getScoreContainer() {
@@ -138,7 +155,10 @@ public class Misc extends JPanel implements ActionListener {
             button_pause.setEnabled(false);
             pauseScreen.requestFocus();
             pauseScreen.setVisible(true);
-
+        }
+        else if (listener.equals(HELP)){
+            helpScreen.setVisible(true);
+            helpScreen.requestFocus();
         }
     }
 

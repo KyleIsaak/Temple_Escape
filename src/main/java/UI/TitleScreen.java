@@ -15,38 +15,46 @@ import java.io.InputStream;
  */
 public class TitleScreen extends JPanel implements ActionListener {
     /**
-     * store the button easy info.
+     * button to start easy mode.
      */
     private Button button_easy;
     /**
-     * store the button medium info.
+     * button to start medium mode.
      */
     private Button button_medium;
     /**
-     * store the button hard info.
+     * button to start hard mode.
      */
     private Button button_hard;
     /**
-     * store the button quit info.
+     * a button that quits the game.
      */
     private Button button_quit;
     /**
-     * store the button control info.
+     * a button to control setting page.
      */
     private Button button_control;
     /**
-     * store the button skin info.
+     * a button to skin page.
      */
     private Button button_skin;
+    /**
+     * a button for help page.
+     */
+    private Button button_help;
 
     /**
      * store the misc info.
      */
     private Misc misc;
     /**
-     * store the game screen info.
+     * stores the gameScreen panel.
      */
     private GameScreen gameScreen;
+    /**
+     * stores the helpScreen panel.
+     */
+    private HelpScreen helpScreen;
     /**
      * store the control info.
      */
@@ -83,6 +91,10 @@ public class TitleScreen extends JPanel implements ActionListener {
      * store the name skin as string.
      */
     private final static String SKIN = "SKIN";
+    /**
+     * store the name HELP as string.
+     */
+    private final static String HELP = "HELP";
 
     /**
      * Non default Constructor ((Title Screen)).
@@ -127,6 +139,7 @@ public class TitleScreen extends JPanel implements ActionListener {
             button_hard.setEnabled(false);
             button_medium.setEnabled(false);
             button_skin.setEnabled(false);
+            button_help.setEnabled(false);
         } else {
             button_quit.setEnabled(true);
             button_easy.setEnabled(true);
@@ -135,7 +148,7 @@ public class TitleScreen extends JPanel implements ActionListener {
             button_hard.setEnabled(true);
             button_medium.setEnabled(true);
             button_skin.setEnabled(true);
-
+            button_help.setEnabled(true);
         }
     }
 
@@ -162,6 +175,10 @@ public class TitleScreen extends JPanel implements ActionListener {
             flipButtons();
             skinScreen.setVisible(true);
             skinScreen.requestFocus();
+        } else if (listener.equals(HELP)){
+            flipButtons();
+            helpScreen.setVisible(true);
+            helpScreen.requestFocus();
         }
 
     }
@@ -188,6 +205,7 @@ public class TitleScreen extends JPanel implements ActionListener {
         button_quit = new Button(QUIT, this, true);
         button_control = new Button(CONTROL, this, true);
         button_skin = new Button(SKIN, this, true);
+        button_help = new Button(HELP, this, true);
 
         button_easy.setBounds(160, 540, 100, 35);
         button_medium.setBounds(440, 540, 100, 35);
@@ -195,9 +213,14 @@ public class TitleScreen extends JPanel implements ActionListener {
         button_quit.setBounds(570, 620, 100, 35);
         button_control.setBounds(280, 620, 150, 35);
         button_skin.setBounds(160, 700, 100, 35);
+        button_help.setBounds(700, 700, 100, 35);
     }
 
     public void setSkinScreen(SkinScreen skinScreen){
         this.skinScreen = skinScreen;
+    }
+
+    public void setHelp(HelpScreen helpScreen){
+        this.helpScreen = helpScreen;
     }
 }
