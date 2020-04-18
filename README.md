@@ -43,7 +43,7 @@ Follow prompts in the installer to set up your IDE
 
 Open the pom.xml file as a project using intelliJ to edit the project.
 
-###To install the program
+### To install the program
 ```
 mvn clean install
 ```
