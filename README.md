@@ -97,7 +97,7 @@ JAVADocs generated this command is located at target/site/apidocs.
 
 ## Tutorial Showcase Video
 A showcase/tutorial video of this game can be found on:\
-https://www.youtube.com/watch?v=GFD_CAXuOiE&feature=youtu.be
+[https://www.youtube.com/watch?v=GFD_CAXuOiE&feature=youtu.be](https://youtu.be/nYqKTUPzi1Y)
 
 ## Authors
 
